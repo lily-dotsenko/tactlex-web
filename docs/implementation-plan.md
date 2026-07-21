@@ -12,20 +12,20 @@
 
 ## Послідовність і залежності
 
-| Етап                        | Результат                                                      | Залежить від | Статус                                 |
-| --------------------------- | -------------------------------------------------------------- | ------------ | -------------------------------------- |
-| 1. Аудит і дизайн           | Вимоги, архітектура, ERD, API, security, content, tests, ADR   | —            | Завершено                              |
-| 2. Foundation               | Next.js JavaScript, Tailwind, next-intl, PWA, tooling, Compose | 1            | Завершено                              |
-| 3. Database                 | Prisma schema, SQL migration, constraints, indexes, seed       | 2            | Завершено                              |
-| 4. Auth і RBAC              | Argon2id, opaque sessions, CSRF, policies, bootstrap admin     | 3            | Завершено                              |
-| 5. Content admin            | Terms, sources, review transitions, CSV, audio metadata        | 3–4          | Завершено                              |
-| 6. Public content           | Categories, glossary, search, term detail, reports             | 5            | Завершено                              |
-| 7. Learning                 | Lessons, sessions, answer validation, AAR                      | 4–6          | Завершено                              |
-| 8. Reviews і progress       | FSRS-compatible scheduler, due queue, logs                     | 7            | Завершено                              |
-| 9. Gamification             | XP, activity, streaks, achievements, leaderboards              | 7–8          | Завершено                              |
-| 10. Audio і UI              | Adapters, TTS fallback, responsive bilingual screens           | 4–9          | Завершено                              |
-| 11. QA і hardening          | Unit, API, integration, E2E, clean-DB rehearsal                | 2–10         | Локальні gates завершено; PG gate у CI |
-| 12. Documentation і publish | README, guides, changelog, commits, push verification          | 11           | У роботі                               |
+| Етап                        | Результат                                                      | Залежить від | Статус    |
+| --------------------------- | -------------------------------------------------------------- | ------------ | --------- |
+| 1. Аудит і дизайн           | Вимоги, архітектура, ERD, API, security, content, tests, ADR   | —            | Завершено |
+| 2. Foundation               | Next.js JavaScript, Tailwind, next-intl, PWA, tooling, Compose | 1            | Завершено |
+| 3. Database                 | Prisma schema, SQL migration, constraints, indexes, seed       | 2            | Завершено |
+| 4. Auth і RBAC              | Argon2id, opaque sessions, CSRF, policies, bootstrap admin     | 3            | Завершено |
+| 5. Content admin            | Terms, sources, review transitions, CSV, audio metadata        | 3–4          | Завершено |
+| 6. Public content           | Categories, glossary, search, term detail, reports             | 5            | Завершено |
+| 7. Learning                 | Lessons, sessions, answer validation, AAR                      | 4–6          | Завершено |
+| 8. Reviews і progress       | FSRS-compatible scheduler, due queue, logs                     | 7            | Завершено |
+| 9. Gamification             | XP, activity, streaks, achievements, leaderboards              | 7–8          | Завершено |
+| 10. Audio і UI              | Adapters, TTS fallback, responsive bilingual screens           | 4–9          | Завершено |
+| 11. QA і hardening          | Unit, API, integration, E2E, clean-DB rehearsal                | 2–10         | Завершено |
+| 12. Documentation і publish | README, guides, changelog, commits, push verification          | 11           | Завершено |
 
 ## Прийняті правила
 
@@ -74,3 +74,5 @@ API groups: `/api/v1/auth/*`, `profile`, `categories`, `terms`, `lessons`, `stud
 ## Gate готовності
 
 Етап не позначається завершеним, якщо реалізація не пройшла відповідну перевірку. Зовнішня залежність, якої немає в середовищі (наприклад Docker daemon або browser binary), фіксується окремо; така перевірка не видається за успішну.
+
+Фінальний GitHub Actions run `29866985179` успішно виконав clean migration, подвійний seed, unit та PostgreSQL integration tests, production build і Chromium E2E у Linux CI.

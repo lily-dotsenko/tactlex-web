@@ -49,4 +49,4 @@ If Docker, PostgreSQL or the Playwright browser is unavailable, the exact comman
 
 ## MVP verification snapshot
 
-Локально на 21 липня 2026 року пройдено: Prettier, ESLint без warnings, Prisma schema validation, 83 unit/UI tests, production build на 80 маршрутах і 5 Chromium E2E tests. Два integration-файли (5 сценаріїв) локально пропускаються без `TEST_DATABASE_URL`; GitHub Actions запускає їх після clean migration та подвійного seed у PostgreSQL 17.
+Локально на 21 липня 2026 року пройдено: Prettier, ESLint без warnings, Prisma schema validation, 83 unit/UI tests, production build на 80 маршрутах і 5 Chromium E2E tests. Два integration-файли (5 сценаріїв) локально пропускаються без `TEST_DATABASE_URL`. GitHub Actions run `29866985179` успішно виконав їх після clean migration та подвійного seed у PostgreSQL 17, а потім повторив build і Chromium E2E у Linux CI.
