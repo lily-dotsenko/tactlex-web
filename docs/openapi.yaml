@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: TactLex API
+  version: 1.0.0
+  description: Versioned API for the bilingual TactLex learning application.
+servers:
+  - url: /api/v1
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: tactlex_session
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            requestId: { type: string }
+    Credentials:
+      type: object
+      additionalProperties: false
+      required: [email, password]
+      properties:
+        email: { type: string, format: email, maxLength: 254 }
+        password: { type: string, minLength: 12, maxLength: 128 }
+    Principal:
+      type: object
+      required: [id, nickname, roles]
+      properties:
+        id: { type: string, format: uuid }
+        nickname: { type: string }
+        roles:
+          type: array
+          items: { type: string }
+paths:
+  /auth/register:
+    post:
+      summary: Register a user and start a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Credentials'
+                - type: object
+                  required: [nickname]
+                  properties:
+                    nickname: { type: string, minLength: 2, maxLength: 32 }
+                    locale: { type: string, enum: [uk, en] }
+      responses:
+        '201': { description: Registered }
+        '422':
+          description: Invalid input
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '429': { description: Rate limited }
+  /auth/login:
+    post:
+      summary: Start a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Credentials' }
+      responses:
+        '200': { description: Authenticated }
+        '401': { description: Invalid credentials }
+  /auth/logout:
+    post:
+      summary: Revoke current session
+      security: [{ sessionCookie: [] }]
+      responses:
+        '204': { description: Logged out }
+  /auth/session:
+    get:
+      summary: Resolve current session
+      responses:
+        '200': { description: Principal or null }
+  /profile:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Current profile }
+        '401': { description: Authentication required }
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Updated profile }
+        '422': { description: Invalid input }
+  /categories:
+    get:
+      responses:
+        '200': { description: Active category collection }
+  /terms:
+    get:
+      parameters:
+        - { in: query, name: q, schema: { type: string, maxLength: 100 } }
+        - { in: query, name: category, schema: { type: string } }
+        - { in: query, name: locale, schema: { type: string, enum: [uk, en] } }
+        - { in: query, name: cursor, schema: { type: string } }
+        - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 50 } }
+      responses:
+        '200': { description: Published terms }
+  /terms/{id}:
+    get:
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: Published term detail }
+        '404': { description: Not found }
+  /lessons:
+    get:
+      responses:
+        '200': { description: Available lessons }
+  /study-sessions:
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '201': { description: Study session created }
+  /study-sessions/{id}/answers:
+    post:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+        - { in: header, name: Idempotency-Key, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: Server-evaluated answer }
+        '409': { description: Replay or ordinal conflict }
+  /study-sessions/{id}/complete:
+    post:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+        - { in: header, name: Idempotency-Key, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: AAR and server-awarded rewards }
+  /reviews:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Due review queue }
+  /reviews/{termId}:
+    post:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: termId, required: true, schema: { type: string, format: uuid } }
+        - { in: header, name: Idempotency-Key, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: Updated deterministic schedule }
+  /progress:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: User progress summary }
+  /achievements:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Achievement catalog and earned state }
+  /leaderboards:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Opt-in nickname ranking }
+  /reports:
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '201': { description: Report created }
+  /admin/terms:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Admin term work queue }
+        '403': { description: ADMIN permission required }
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '201': { description: Draft term created }
+        '403': { description: ADMIN permission required }
+  /admin/terms/{id}/transition:
+    post:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: Content status advanced }
+        '409': { description: Invalid transition or publication invariant }
+  /admin/audit-log:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        '200': { description: Cursor-paginated immutable events }
+        '403': { description: ADMIN permission required }
