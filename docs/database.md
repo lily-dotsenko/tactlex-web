@@ -124,7 +124,7 @@ Security, learning, XP, review and audit history is not cascade-deleted. Content
 
 ## Seed policy
 
-Seed uses stable keys and `upsert`, so a second run does not create duplicates. It creates permissions, roles, achievements, four categories, small source-backed demo content in `DRAFT`, and one lesson only when its terms meet publication requirements. It never creates an admin password. A separate bootstrap command promotes an existing account identified by `ADMIN_EMAIL`.
+Seed uses stable keys and `upsert`, so a second run does not create duplicates. It creates permissions, roles, achievement rules, four empty category shells and current/all-time leaderboard periods. It intentionally creates no terms, lessons, users or passwords: terminology must arrive through the reviewed draft/import workflow. A separate bootstrap command promotes an existing active account identified by `ADMIN_EMAIL`.
 
 ## Backup and restore
 

@@ -10,13 +10,13 @@ The browser is untrusted. Role, correctness, XP, streak, scheduling, achievement
 - Passwords are hashed with Argon2id using the library's current secure parameters; only the encoded hash is stored.
 - Login creates 256-bit random opaque token. The browser receives it in a cookie; the database stores only a SHA-256 digest.
 - Cookie attributes: `httpOnly`, `sameSite=lax`, path `/`, bounded `maxAge`, and `secure` outside local development.
-- Sessions expire absolutely, may be revoked individually, and are revoked on password/account security events.
+- Sessions have absolute and idle expiry and may be revoked individually. Logout revokes the active server row; future password/account-state operations must revoke all affected sessions in the same transaction.
 - Logout revokes the server row before clearing the cookie.
 - Authentication code logs neither supplied credentials nor token/cookie values.
 
 ## Authorization and RBAC
 
-`USER` and `ADMIN` are data-backed roles composed from permissions. Policies run for every protected API route and privileged server-rendered page. Client navigation is only a convenience and never an authorization boundary. Resource ownership is checked in addition to permission where applicable.
+`USER` and `ADMIN` are data-backed roles composed from permissions. Policies run for every protected API route; authenticated and admin page layouts also resolve the server session before rendering. Client navigation is only a convenience and never an authorization boundary. Resource ownership is checked in addition to permission where applicable.
 
 The normalized role/permission model permits later `EDITOR`, `REVIEWER` and `MODERATOR` roles without schema changes.
 

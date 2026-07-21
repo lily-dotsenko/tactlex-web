@@ -12,20 +12,20 @@
 
 ## Послідовність і залежності
 
-| Етап | Результат | Залежить від | Статус |
-| --- | --- | --- | --- |
-| 1. Аудит і дизайн | Вимоги, архітектура, ERD, API, security, content, tests, ADR | — | Завершено |
-| 2. Foundation | Next.js JavaScript, Tailwind, next-intl, PWA, tooling, Compose | 1 | У роботі |
-| 3. Database | Prisma schema, SQL migration, constraints, indexes, seed | 2 | Заплановано |
-| 4. Auth і RBAC | Argon2id, opaque sessions, CSRF, policies, bootstrap admin | 3 | Заплановано |
-| 5. Content admin | Terms, sources, review transitions, CSV, audio metadata | 3–4 | Заплановано |
-| 6. Public content | Categories, glossary, search, term detail, reports | 5 | Заплановано |
-| 7. Learning | Lessons, sessions, answer validation, AAR | 4–6 | Заплановано |
-| 8. Reviews і progress | FSRS-compatible scheduler, due queue, logs | 7 | Заплановано |
-| 9. Gamification | XP, activity, streaks, achievements, leaderboards | 7–8 | Заплановано |
-| 10. Audio і UI | Adapters, TTS fallback, responsive bilingual screens | 4–9 | Заплановано |
-| 11. QA і hardening | Unit, API, integration, E2E, clean-DB rehearsal | 2–10 | Заплановано |
-| 12. Documentation і publish | README, guides, changelog, commits, push verification | 11 | Заплановано |
+| Етап                        | Результат                                                      | Залежить від | Статус                                 |
+| --------------------------- | -------------------------------------------------------------- | ------------ | -------------------------------------- |
+| 1. Аудит і дизайн           | Вимоги, архітектура, ERD, API, security, content, tests, ADR   | —            | Завершено                              |
+| 2. Foundation               | Next.js JavaScript, Tailwind, next-intl, PWA, tooling, Compose | 1            | Завершено                              |
+| 3. Database                 | Prisma schema, SQL migration, constraints, indexes, seed       | 2            | Завершено                              |
+| 4. Auth і RBAC              | Argon2id, opaque sessions, CSRF, policies, bootstrap admin     | 3            | Завершено                              |
+| 5. Content admin            | Terms, sources, review transitions, CSV, audio metadata        | 3–4          | Завершено                              |
+| 6. Public content           | Categories, glossary, search, term detail, reports             | 5            | Завершено                              |
+| 7. Learning                 | Lessons, sessions, answer validation, AAR                      | 4–6          | Завершено                              |
+| 8. Reviews і progress       | FSRS-compatible scheduler, due queue, logs                     | 7            | Завершено                              |
+| 9. Gamification             | XP, activity, streaks, achievements, leaderboards              | 7–8          | Завершено                              |
+| 10. Audio і UI              | Adapters, TTS fallback, responsive bilingual screens           | 4–9          | Завершено                              |
+| 11. QA і hardening          | Unit, API, integration, E2E, clean-DB rehearsal                | 2–10         | Локальні gates завершено; PG gate у CI |
+| 12. Documentation і publish | README, guides, changelog, commits, push verification          | 11           | У роботі                               |
 
 ## Прийняті правила
 
@@ -61,22 +61,15 @@ API groups: `/api/v1/auth/*`, `profile`, `categories`, `terms`, `lessons`, `stud
 - UI: Playwright uk/en, keyboard navigation, mobile viewport, auth/lesson/admin critical paths.
 - Final: secrets scan, format check, lint, all unit/integration/API tests, migration/seed rehearsal, build, Playwright where browser runtime is available.
 
-## Запланована історія Git
+## Історія Git
 
-Коміти створюються за реальними стабільними частинами, орієнтовно:
+Реалізація збирається у великі, але перевірені логічні частини:
 
 1. `docs: define the TactLex MVP architecture`
-2. `chore: establish the web application foundation`
-3. `feat: add the PostgreSQL domain model`
-4. `feat: secure accounts and role checks`
-5. `feat: add the reviewed content workflow`
-6. `feat: deliver lessons and scheduled reviews`
-7. `feat: track progress and learning rewards`
-8. `feat: complete the bilingual learning interface`
-9. `test: cover critical user and admin journeys`
-10. `docs: finish setup and operations guidance`
+2. `feat: build the secure bilingual TactLex MVP`
+3. `docs: complete setup and operations guidance`
 
-Назви коригуються відповідно до фактичного diff. Перед кожним стабільним push виконуються релевантні перевірки. Force push, зміна author/email та переписування історії заборонені.
+Перед стабільним push виконуються релевантні перевірки. Force push, зміна author/email та переписування історії заборонені.
 
 ## Gate готовності
 

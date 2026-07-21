@@ -30,32 +30,33 @@ Mutations require a same-origin request. Replay-sensitive routes require `Idempo
 
 ## Authentication
 
-| Method | Route | Auth | Purpose |
-| --- | --- | --- | --- |
-| POST | `/auth/register` | public | Create USER account and session |
-| POST | `/auth/login` | public | Verify Argon2id password and create session |
-| POST | `/auth/logout` | user | Revoke current session |
-| GET | `/auth/session` | optional | Return safe principal/permissions or null |
+| Method | Route            | Auth     | Purpose                                     |
+| ------ | ---------------- | -------- | ------------------------------------------- |
+| POST   | `/auth/register` | public   | Create USER account and session             |
+| POST   | `/auth/login`    | public   | Verify Argon2id password and create session |
+| POST   | `/auth/logout`   | user     | Revoke current session                      |
+| GET    | `/auth/session`  | optional | Return safe principal/permissions or null   |
 
 Register body: `email`, `password`, `nickname`, `locale?`. Login body: `email`, `password`. Responses never include password hashes, session tokens, email verification tokens or role assignment internals.
 
 ## Profile
 
-| Method | Route | Purpose |
-| --- | --- | --- |
-| GET | `/profile` | Current private profile and preferences |
-| PATCH | `/profile` | Update nickname, locale, timezone, audience type, daily goal, leaderboard visibility |
+| Method | Route      | Purpose                                                                              |
+| ------ | ---------- | ------------------------------------------------------------------------------------ |
+| GET    | `/profile` | Current private profile and preferences                                              |
+| PATCH  | `/profile` | Update nickname, locale, timezone, audience type, daily goal, leaderboard visibility |
 
 ## Published catalog
 
-| Method | Route | Purpose |
-| --- | --- | --- |
-| GET | `/categories` | Active categories with published/progress counts |
-| GET | `/categories/{slug}` | Category detail and available lessons |
-| GET | `/terms?q=&category=&locale=&cursor=&limit=` | Published glossary search |
-| GET | `/terms/{id}` | Published bilingual detail, sources and audio state |
-| GET | `/lessons?category=` | Available lessons |
-| GET | `/lessons/{id}` | Lesson overview without answer keys |
+| Method | Route                                        | Purpose                                                       |
+| ------ | -------------------------------------------- | ------------------------------------------------------------- |
+| GET    | `/categories`                                | Active categories with published/progress counts              |
+| GET    | `/categories/{slug}`                         | Category detail and available lessons                         |
+| GET    | `/terms?q=&category=&locale=&cursor=&limit=` | Published glossary search                                     |
+| GET    | `/terms/{id}`                                | Published bilingual detail, sources and audio state           |
+| GET    | `/lessons?category=`                         | Available lessons                                             |
+| GET    | `/lessons/{id}`                              | Lesson overview without answer keys                           |
+| GET    | `/audio/{id}`                                | Stream a non-archived human audio asset for published content |
 
 Glossary pagination is cursor-based and capped. Search uses normalized variants and PostgreSQL trigram matching only for retrieval, not answer correctness.
 
@@ -63,9 +64,9 @@ Glossary pagination is cursor-based and capped. Search uses normalized variants 
 
 | Method | Route | Purpose |
 | --- | --- |
-| POST | `/study-sessions` | Create session from `lessonId` and direction |
+| POST | `/study-sessions` | Create session from `lessonId`/`categoryId` and product direction |
 | GET | `/study-sessions/{id}` | Resume own active session, answer keys omitted |
-| POST | `/study-sessions/{id}/answers` | Submit `exerciseId`, ordinal, answer and idempotency key |
+| POST | `/study-sessions/{id}/answers` | Submit `sessionItemId`, answer, optional rating/timing and idempotency key |
 | POST | `/study-sessions/{id}/complete` | Finalize once and return AAR/rewards |
 
 Answer response reveals correctness, accepted primary answer, short feedback and the server-awarded session delta only after evaluation. Completion derives total XP; request body cannot set XP.
@@ -91,22 +92,30 @@ Answer response reveals correctness, accepted primary answer, short feedback and
 
 All routes require an explicit permission and return 403 to an authenticated USER.
 
-| Method | Route | Purpose |
-| --- | --- | --- |
-| GET/POST | `/admin/terms` | Paginated work queue / create DRAFT |
-| GET/PATCH | `/admin/terms/{id}` | Full editor data / create revision |
-| POST | `/admin/terms/{id}/transition` | Guarded next status with note |
-| POST | `/admin/terms/import` | Validate/import bounded CSV as DRAFT |
-| POST | `/admin/terms/{id}/audio` | Store validated human audio through adapter |
-| GET/POST | `/admin/categories` | List/create categories |
-| PATCH | `/admin/categories/{id}` | Edit/archive category |
-| GET/POST | `/admin/lessons` | List/create lessons |
-| PATCH | `/admin/lessons/{id}` | Edit composition and state |
-| GET | `/admin/reviews` | Content review queue |
-| GET/PATCH | `/admin/users/{id}` | Safe user summary / allowed role or status change |
-| GET/PATCH | `/admin/reports/{id}` | Review/resolve reports |
-| GET | `/admin/audit-log` | Cursor-paginated immutable audit events |
-| GET/POST/PATCH | `/admin/achievements...` | Manage rule-backed achievements |
+| Method           | Route                          | Purpose                                               |
+| ---------------- | ------------------------------ | ----------------------------------------------------- |
+| GET/POST         | `/admin/terms`                 | Paginated work queue / create DRAFT                   |
+| GET/PATCH        | `/admin/terms/{id}`            | Full editor data / create immutable revision snapshot |
+| POST             | `/admin/terms/{id}/transition` | Guarded next status with note                         |
+| POST             | `/admin/terms/{id}/audio`      | Store validated human audio through adapter           |
+| GET/DELETE       | `/admin/audio/{id}`            | Preview or archive an audio asset                     |
+| POST             | `/admin/imports/preview`       | Validate bounded CSV/JSON and return checksum/errors  |
+| POST             | `/admin/imports/commit`        | Import an unchanged preview as DRAFT rows             |
+| GET/POST         | `/admin/categories`            | List/create categories                                |
+| GET/PATCH/DELETE | `/admin/categories/{id}`       | Read/edit/soft-archive category                       |
+| PATCH            | `/admin/categories/reorder`    | Reorder a bounded unique category set                 |
+| GET/POST         | `/admin/lessons`               | List/create lessons                                   |
+| PATCH            | `/admin/lessons/{id}`          | Edit composition and state                            |
+| POST             | `/admin/lessons/{id}/status`   | Publish/archive with the 8–12 invariant               |
+| GET              | `/admin/reviews`               | Content review queue                                  |
+| POST             | `/admin/reviews/{id}/decision` | Approve/request changes/reject current revision       |
+| GET              | `/admin/users`                 | Paginated safe user administration list               |
+| GET/PATCH        | `/admin/users/{id}`            | Safe user summary / allowed role or status change     |
+| GET              | `/admin/reports`               | Paginated report moderation queue                     |
+| PATCH            | `/admin/reports/{id}`          | Review/resolve/dismiss a report                       |
+| GET              | `/admin/audit`                 | Cursor-paginated immutable audit events               |
+| GET/POST         | `/admin/achievements`          | List/create rule-backed achievements                  |
+| GET/PATCH        | `/admin/achievements/{id}`     | Read/update achievement and rules                     |
 
 ## Status codes
 

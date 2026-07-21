@@ -49,20 +49,20 @@ paths:
           application/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/Credentials'
+                - $ref: "#/components/schemas/Credentials"
                 - type: object
                   required: [nickname]
                   properties:
                     nickname: { type: string, minLength: 2, maxLength: 32 }
                     locale: { type: string, enum: [uk, en] }
       responses:
-        '201': { description: Registered }
-        '422':
+        "201": { description: Registered }
+        "422":
           description: Invalid input
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Error' }
-        '429': { description: Rate limited }
+              schema: { $ref: "#/components/schemas/Error" }
+        "429": { description: Rate limited }
   /auth/login:
     post:
       summary: Start a session
@@ -70,36 +70,44 @@ paths:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/Credentials' }
+            schema: { $ref: "#/components/schemas/Credentials" }
       responses:
-        '200': { description: Authenticated }
-        '401': { description: Invalid credentials }
+        "200": { description: Authenticated }
+        "401": { description: Invalid credentials }
   /auth/logout:
     post:
       summary: Revoke current session
       security: [{ sessionCookie: [] }]
       responses:
-        '204': { description: Logged out }
+        "204": { description: Logged out }
   /auth/session:
     get:
       summary: Resolve current session
       responses:
-        '200': { description: Principal or null }
+        "200": { description: Principal or null }
   /profile:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Current profile }
-        '401': { description: Authentication required }
+        "200": { description: Current profile }
+        "401": { description: Authentication required }
     patch:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Updated profile }
-        '422': { description: Invalid input }
+        "200": { description: Updated profile }
+        "422": { description: Invalid input }
   /categories:
     get:
       responses:
-        '200': { description: Active category collection }
+        "200": { description: Active category collection }
+  /categories/{slug}:
+    get:
+      parameters:
+        - { in: path, name: slug, required: true, schema: { type: string } }
+        - { in: query, name: locale, schema: { type: string, enum: [uk, en] } }
+      responses:
+        "200": { description: Category detail and published lessons }
+        "404": { description: Not found }
   /terms:
     get:
       parameters:
@@ -109,95 +117,326 @@ paths:
         - { in: query, name: cursor, schema: { type: string } }
         - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 50 } }
       responses:
-        '200': { description: Published terms }
+        "200": { description: Published terms }
   /terms/{id}:
     get:
       parameters:
         - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
       responses:
-        '200': { description: Published term detail }
-        '404': { description: Not found }
+        "200": { description: Published term detail }
+        "404": { description: Not found }
   /lessons:
     get:
       responses:
-        '200': { description: Available lessons }
+        "200": { description: Available lessons }
+  /lessons/{id}:
+    get:
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      responses:
+        "200": { description: Published lesson without answer keys }
+        "404": { description: Not found }
+  /audio/{id}:
+    get:
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          description: Published human audio bytes
+          content:
+            audio/mpeg: { schema: { type: string, format: binary } }
+            audio/ogg: { schema: { type: string, format: binary } }
+            audio/wav: { schema: { type: string, format: binary } }
+        "404": { description: Not found }
   /study-sessions:
     post:
       security: [{ sessionCookie: [] }]
       responses:
-        '201': { description: Study session created }
+        "201": { description: Study session created }
+  /study-sessions/{id}:
+    get:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          {
+            description: Own session without unsubmitted answer keys; completed sessions include AAR,
+          }
+        "404": { description: Not found }
   /study-sessions/{id}/answers:
     post:
       security: [{ sessionCookie: [] }]
       parameters:
         - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
-        - { in: header, name: Idempotency-Key, required: true, schema: { type: string, format: uuid } }
+        - {
+            in: header,
+            name: Idempotency-Key,
+            required: true,
+            schema: { type: string, format: uuid },
+          }
       responses:
-        '200': { description: Server-evaluated answer }
-        '409': { description: Replay or ordinal conflict }
+        "200": { description: Server-evaluated answer }
+        "409": { description: Replay or ordinal conflict }
   /study-sessions/{id}/complete:
     post:
       security: [{ sessionCookie: [] }]
       parameters:
         - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
-        - { in: header, name: Idempotency-Key, required: true, schema: { type: string, format: uuid } }
+        - {
+            in: header,
+            name: Idempotency-Key,
+            required: true,
+            schema: { type: string, format: uuid },
+          }
       responses:
-        '200': { description: AAR and server-awarded rewards }
+        "200": { description: AAR and server-awarded rewards }
   /reviews:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Due review queue }
+        "200": { description: Due review queue }
   /reviews/{termId}:
     post:
       security: [{ sessionCookie: [] }]
       parameters:
         - { in: path, name: termId, required: true, schema: { type: string, format: uuid } }
-        - { in: header, name: Idempotency-Key, required: true, schema: { type: string, format: uuid } }
+        - {
+            in: header,
+            name: Idempotency-Key,
+            required: true,
+            schema: { type: string, format: uuid },
+          }
       responses:
-        '200': { description: Updated deterministic schedule }
+        "200": { description: Updated deterministic schedule }
   /progress:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: User progress summary }
+        "200": { description: User progress summary }
   /achievements:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Achievement catalog and earned state }
+        "200": { description: Achievement catalog and earned state }
   /leaderboards:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Opt-in nickname ranking }
+        "200": { description: Opt-in nickname ranking }
   /reports:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Current user's reports }
     post:
       security: [{ sessionCookie: [] }]
       responses:
-        '201': { description: Report created }
+        "201": { description: Report created }
   /admin/terms:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Admin term work queue }
-        '403': { description: ADMIN permission required }
+        "200": { description: Admin term work queue }
+        "403": { description: ADMIN permission required }
+  /admin/terms/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200": { description: Full term editor record }
+        "403": { description: terms.manage required }
+    patch:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200": { description: New draft revision created }
     post:
       security: [{ sessionCookie: [] }]
       responses:
-        '201': { description: Draft term created }
-        '403': { description: ADMIN permission required }
+        "201": { description: Draft term created }
+        "403": { description: ADMIN permission required }
   /admin/terms/{id}/transition:
     post:
       security: [{ sessionCookie: [] }]
       parameters:
         - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
       responses:
-        '200': { description: Content status advanced }
-        '409': { description: Invalid transition or publication invariant }
-  /admin/audit-log:
+        "200": { description: Content status advanced }
+        "409": { description: Invalid transition or publication invariant }
+  /admin/terms/{id}/audio:
+    post:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file: { type: string, format: binary }
+                locale: { type: string, enum: [EN, UK] }
+                attribution: { type: string, maxLength: 300 }
+                isPrimary: { type: boolean }
+      responses:
+        "201": { description: Audio metadata stored outside PostgreSQL }
+        "413": { description: File exceeds 8 MiB }
+  /admin/audio/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200": { description: Protected audio preview }
+    delete:
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200": { description: Audio asset archived }
+  /admin/imports/preview:
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Bounded CSV/JSON validation result and checksum }
+        "413": { description: Import too large }
+        "422": { description: Invalid rows }
+  /admin/imports/commit:
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "201": { description: Unchanged preview imported as DRAFT records }
+        "409": { description: Checksum changed or import already committed }
+  /admin/categories:
     get:
       security: [{ sessionCookie: [] }]
       responses:
-        '200': { description: Cursor-paginated immutable events }
-        '403': { description: ADMIN permission required }
+        "200": { description: Category administration list }
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "201": { description: Category created }
+  /admin/categories/reorder:
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Categories reordered }
+  /admin/categories/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Category detail }
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Category updated }
+    delete:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Category soft-archived }
+  /admin/reviews:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Content review queue }
+  /admin/reviews/{id}/decision:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Current revision decided }
+        "409": { description: Review stale or already decided }
+  /admin/lessons:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Lesson administration list }
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "201": { description: Draft lesson created }
+  /admin/lessons/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Lesson editor record }
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Draft lesson updated }
+  /admin/lessons/{id}/status:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Lesson status changed after 8–12-term validation }
+  /admin/users:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Safe paginated user administration data }
+  /admin/users/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: User administration detail }
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: User state or roles updated }
+        "409": { description: Last active admin protected }
+  /admin/reports:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Report moderation queue }
+  /admin/reports/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Report moved through moderation workflow }
+  /admin/achievements:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Achievement rule administration list }
+    post:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "201": { description: Achievement created }
+  /admin/achievements/{id}:
+    parameters:
+      - { in: path, name: id, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Achievement detail }
+    patch:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Achievement and rules updated }
+  /admin/audit:
+    get:
+      security: [{ sessionCookie: [] }]
+      responses:
+        "200": { description: Cursor-paginated immutable events }
+        "403": { description: ADMIN permission required }

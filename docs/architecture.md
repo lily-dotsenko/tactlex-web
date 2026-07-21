@@ -51,21 +51,21 @@ Repository wrappers створюються лише для запитів або
 
 ## Модулі
 
-| Модуль | Відповідальність |
-| --- | --- |
-| auth | registration, password hashing, login/logout, session lifecycle |
-| profiles | private profile, nickname, preferences, privacy |
-| content | categories, terms, variants, definitions, sources, revisions |
-| reviews | moderation transitions and publication invariants |
-| glossary | published search, pagination and term detail |
-| learning | lesson composition, study sessions and answer checking |
-| scheduling | deterministic Again/Hard/Good/Easy state transitions |
-| progress | per-term and per-category aggregates |
-| gamification | immutable XP ledger, streaks, levels and achievements |
-| leaderboard | weekly/all-time projections with opt-in privacy |
-| audio | metadata, storage adapters and TTS disclosure |
-| reports | user reports and admin resolution |
-| audit | append-only security and admin events |
+| Модуль       | Відповідальність                                                |
+| ------------ | --------------------------------------------------------------- |
+| auth         | registration, password hashing, login/logout, session lifecycle |
+| profiles     | private profile, nickname, preferences, privacy                 |
+| content      | categories, terms, variants, definitions, sources, revisions    |
+| reviews      | moderation transitions and publication invariants               |
+| glossary     | published search, pagination and term detail                    |
+| learning     | lesson composition, study sessions and answer checking          |
+| scheduling   | deterministic Again/Hard/Good/Easy state transitions            |
+| progress     | per-term and per-category aggregates                            |
+| gamification | immutable XP ledger, streaks, levels and achievements           |
+| leaderboard  | weekly/all-time projections with opt-in privacy                 |
+| audio        | metadata, storage adapters and TTS disclosure                   |
+| reports      | user reports and admin resolution                               |
+| audit        | append-only security and admin events                           |
 
 ## Request lifecycle
 
