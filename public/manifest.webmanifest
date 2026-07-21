@@ -1,0 +1,38 @@
+{
+  "name": "ТактЛекс / TactLex",
+  "short_name": "TactLex",
+  "description": "Двомовний тренажер військової англійської",
+  "lang": "uk",
+  "start_url": "/uk/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#111613",
+  "theme_color": "#111613",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Навчання",
+      "short_name": "Навчання",
+      "url": "/uk/learn"
+    },
+    {
+      "name": "Повторення",
+      "short_name": "Повторення",
+      "url": "/uk/review"
+    },
+    {
+      "name": "Словник",
+      "short_name": "Словник",
+      "url": "/uk/glossary"
+    }
+  ]
+}

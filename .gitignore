@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Next.js and test output
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+
+# Environment and local data
+.env
+.env.*
+!.env.example
+storage/
+uploads/
+*.dump
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+
+# Prisma runtime
+prisma/dev.db*

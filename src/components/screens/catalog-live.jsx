@@ -1,0 +1,417 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  BookOpen,
+  Clock3,
+  Crosshair,
+  HeartPulse,
+  Layers3,
+  RadioTower,
+  RefreshCw,
+  ShieldCheck,
+} from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "@/lib/i18n/navigation";
+import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
+import {
+  Badge,
+  Button,
+  ButtonLink,
+  Card,
+  EmptyState,
+  ListLink,
+  PageHeader,
+  ProgressBar,
+  SectionHeading,
+} from "@/components/ui";
+
+function localCopy(locale) {
+  return locale === "uk"
+    ? {
+        loadError: "Не вдалося завантажити опубліковані матеріали.",
+        emptyTitle: "Опублікованих уроків поки немає",
+        emptyText:
+          "Адміністратор має перевірити джерела й переклади, перш ніж матеріали стануть доступними для навчання.",
+        retry: "Спробувати знову",
+        published: "Опубліковано",
+        lessons: "Уроки",
+        terms: "термінів",
+        lessonLoading: "Перевіряємо доступність уроку…",
+        signIn: "Увійдіть, щоб почати серверну навчальну сесію.",
+        startError: "Не вдалося створити навчальну сесію.",
+        unavailable: "Цей урок недоступний або ще не опублікований.",
+        starting: "Створюємо сесію…",
+      }
+    : {
+        loadError: "Published learning material could not be loaded.",
+        emptyTitle: "No lessons have been published yet",
+        emptyText:
+          "An administrator must review sources and translations before material becomes available for learning.",
+        retry: "Try again",
+        published: "Published",
+        lessons: "Lessons",
+        terms: "terms",
+        lessonLoading: "Checking lesson availability…",
+        signIn: "Sign in to start a server-backed learning session.",
+        startError: "The learning session could not be created.",
+        unavailable: "This lesson is unavailable or has not been published.",
+        starting: "Creating session…",
+      };
+}
+
+function categoryIcon(slug) {
+  if (slug?.includes("tccc") || slug?.includes("medicine")) return HeartPulse;
+  if (slug?.includes("uas") || slug?.includes("drone")) return RadioTower;
+  if (slug?.includes("sniper")) return Crosshair;
+  return Layers3;
+}
+
+function LoadingCards() {
+  return (
+    <div className="learning-category-grid" aria-busy="true" aria-label="Loading">
+      {[0, 1, 2, 3].map((item) => (
+        <Card className="learning-category-card live-skeleton" key={item} />
+      ))}
+    </div>
+  );
+}
+
+export function CatalogLearnScreen() {
+  const locale = useLocale();
+  const t = useTranslations("Learn");
+  const common = useTranslations("Common");
+  const copy = localCopy(locale);
+  const [state, setState] = useState({ status: "loading", categories: [], lessons: [] });
+
+  async function load() {
+    setState((current) => ({ ...current, status: "loading" }));
+    try {
+      const [categories, lessons] = await Promise.all([
+        apiRequest(`/categories?locale=${locale}`),
+        apiRequest(`/lessons?locale=${locale}`),
+      ]);
+      setState({
+        status: "ready",
+        categories: Array.isArray(categories) ? categories : [],
+        lessons: Array.isArray(lessons) ? lessons : [],
+      });
+    } catch (error) {
+      setState({ status: "error", categories: [], lessons: [], error: error.message });
+    }
+  }
+
+  useEffect(() => {
+    let active = true;
+    Promise.all([
+      apiRequest(`/categories?locale=${locale}`),
+      apiRequest(`/lessons?locale=${locale}`),
+    ])
+      .then(([categories, lessons]) => {
+        if (!active) return;
+        setState({
+          status: "ready",
+          categories: Array.isArray(categories) ? categories : [],
+          lessons: Array.isArray(lessons) ? lessons : [],
+        });
+      })
+      .catch((error) => {
+        if (active)
+          setState({ status: "error", categories: [], lessons: [], error: error.message });
+      });
+    return () => {
+      active = false;
+    };
+  }, [locale]);
+
+  const nextLesson = state.lessons[0];
+
+  return (
+    <div className="page-stack">
+      <PageHeader eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
+
+      {state.status === "loading" && <LoadingCards />}
+      {state.status === "error" && (
+        <EmptyState
+          icon={<AlertTriangle size={30} />}
+          title={copy.loadError}
+          text={state.error}
+          action={
+            <Button onClick={load} variant="secondary">
+              <RefreshCw size={18} /> {copy.retry}
+            </Button>
+          }
+        />
+      )}
+      {state.status === "ready" && state.categories.length === 0 && (
+        <EmptyState
+          icon={<ShieldCheck size={31} />}
+          title={copy.emptyTitle}
+          text={copy.emptyText}
+        />
+      )}
+      {state.status === "ready" && state.categories.length > 0 && (
+        <>
+          {nextLesson && (
+            <Card className="continue-strip">
+              <span className="continue-strip-icon">
+                <BookOpen size={24} />
+              </span>
+              <div>
+                <Badge tone="blue">{copy.published}</Badge>
+                <h2>{nextLesson.title}</h2>
+                <p>
+                  {nextLesson.termCount} {copy.terms} · {nextLesson.estimatedMinutes} min
+                </p>
+              </div>
+              <ButtonLink
+                href={`/categories/${nextLesson.category?.slug || "all"}/lessons/${nextLesson.id}`}
+                arrow
+              >
+                {common("continue")}
+              </ButtonLink>
+            </Card>
+          )}
+          <div className="learning-category-grid">
+            {state.categories.map((category) => {
+              const Icon = categoryIcon(category.slug);
+              const available = Number(category.publishedLessonCount || 0) > 0;
+              const percent = category.targetTermCount
+                ? Math.round(
+                    (Number(category.publishedTermCount || 0) / category.targetTermCount) * 100,
+                  )
+                : 0;
+              return (
+                <Card className="learning-category-card" key={category.id}>
+                  <div className="learning-category-top">
+                    <span className="category-large-icon">
+                      <Icon size={27} aria-hidden="true" />
+                    </span>
+                    <Badge tone={available ? "blue" : "neutral"}>
+                      {available
+                        ? `${category.publishedLessonCount} ${copy.lessons.toLowerCase()}`
+                        : t("preparing")}
+                    </Badge>
+                  </div>
+                  <h2>{category.name}</h2>
+                  <p>{category.description || copy.emptyText}</p>
+                  <div className="category-plan-row">
+                    <span>
+                      {category.publishedTermCount || 0} / {category.targetTermCount || 0}{" "}
+                      {copy.terms}
+                    </span>
+                    <ProgressBar value={percent} label={`${category.name}: ${percent}%`} compact />
+                  </div>
+                  {available ? (
+                    <ButtonLink
+                      href={`/categories/${category.slug}`}
+                      variant="secondary"
+                      className="card-action"
+                    >
+                      {common("start")}
+                    </ButtonLink>
+                  ) : (
+                    <Button className="card-action" variant="ghost" disabled>
+                      {t("preparing")}
+                    </Button>
+                  )}
+                </Card>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export function CategoryLiveScreen({ categorySlug }) {
+  const locale = useLocale();
+  const common = useTranslations("Common");
+  const copy = localCopy(locale);
+  const [state, setState] = useState({ status: "loading", category: null });
+
+  useEffect(() => {
+    let active = true;
+    apiRequest(`/categories/${encodeURIComponent(categorySlug)}?locale=${locale}`)
+      .then((category) => active && setState({ status: "ready", category }))
+      .catch(
+        (error) => active && setState({ status: "error", category: null, error: error.message }),
+      );
+    return () => {
+      active = false;
+    };
+  }, [categorySlug, locale]);
+
+  return (
+    <div className="page-stack">
+      <ButtonLink href="/learn" variant="ghost" size="small">
+        <ArrowLeft size={18} /> {common("back")}
+      </ButtonLink>
+      {state.status === "loading" && (
+        <Card className="live-detail-loading">{copy.lessonLoading}</Card>
+      )}
+      {state.status === "error" && (
+        <EmptyState icon={<AlertTriangle size={30} />} title={copy.loadError} text={state.error} />
+      )}
+      {state.status === "ready" && state.category && (
+        <>
+          <PageHeader
+            eyebrow={copy.published}
+            title={state.category.name}
+            lead={state.category.description || copy.emptyText}
+          />
+          <Card className="catalog-facts">
+            <span>
+              <BookOpen size={19} /> {state.category.publishedTermCount || 0} {copy.terms}
+            </span>
+            <span>
+              <Clock3 size={19} /> {state.category.publishedLessonCount || 0}{" "}
+              {copy.lessons.toLowerCase()}
+            </span>
+          </Card>
+          <section>
+            <SectionHeading title={copy.lessons} />
+            {!state.category.lessons?.length ? (
+              <EmptyState
+                icon={<BookOpen size={30} />}
+                title={copy.emptyTitle}
+                text={copy.emptyText}
+              />
+            ) : (
+              <Card className="lesson-list">
+                {state.category.lessons.map((lesson) => (
+                  <ListLink
+                    key={lesson.id}
+                    href={`/categories/${categorySlug}/lessons/${lesson.id}`}
+                    title={lesson.title}
+                    meta={`${lesson.termCount} ${copy.terms} · ${lesson.estimatedMinutes} min`}
+                    icon={<BookOpen size={20} />}
+                    badge={<Badge tone="blue">{copy.published}</Badge>}
+                  />
+                ))}
+              </Card>
+            )}
+          </section>
+        </>
+      )}
+    </div>
+  );
+}
+
+export function LessonLiveScreen({ lessonId, categorySlug }) {
+  const locale = useLocale();
+  const common = useTranslations("Common");
+  const router = useRouter();
+  const copy = localCopy(locale);
+  const [state, setState] = useState({ status: "loading", lesson: null });
+  const [startError, setStartError] = useState("");
+  const [starting, setStarting] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    apiRequest(`/lessons/${encodeURIComponent(lessonId)}?locale=${locale}`)
+      .then((lesson) => active && setState({ status: "ready", lesson }))
+      .catch(
+        (error) => active && setState({ status: "error", lesson: null, error: error.message }),
+      );
+    return () => {
+      active = false;
+    };
+  }, [lessonId, locale]);
+
+  async function startSession() {
+    setStarting(true);
+    setStartError("");
+    try {
+      const storedDirection = window.localStorage.getItem("tactlex-learning-direction");
+      const direction = storedDirection === "UA_TO_EN" ? "UA_TO_EN" : "EN_TO_UA";
+      const session = await apiRequest("/study-sessions", {
+        method: "POST",
+        headers: { "Idempotency-Key": createIdempotencyKey() },
+        body: JSON.stringify({ lessonId, mode: "LESSON", direction }),
+      });
+      if (!session?.id) throw new Error(copy.startError);
+      router.push(`/sessions/${session.id}`);
+    } catch (error) {
+      setStartError(error.status === 401 ? copy.signIn : error.message || copy.startError);
+    } finally {
+      setStarting(false);
+    }
+  }
+
+  return (
+    <div className="lesson-intro-page">
+      <ButtonLink href={`/categories/${categorySlug}`} variant="ghost" size="small">
+        <ArrowLeft size={18} /> {common("back")}
+      </ButtonLink>
+      {state.status === "loading" && (
+        <Card className="live-detail-loading">{copy.lessonLoading}</Card>
+      )}
+      {state.status === "error" && (
+        <EmptyState
+          icon={<AlertTriangle size={30} />}
+          title={copy.unavailable}
+          text={state.error}
+        />
+      )}
+      {state.status === "ready" && state.lesson && (
+        <div className="lesson-intro-grid">
+          <section>
+            <Badge tone="blue">{copy.published}</Badge>
+            <h1>{state.lesson.title}</h1>
+            <p className="page-lead">{state.lesson.description}</p>
+            <div className="lesson-meta-row">
+              <span>
+                <BookOpen size={18} /> {state.lesson.termCount} {copy.terms}
+              </span>
+              <span>
+                <Clock3 size={18} /> {state.lesson.estimatedMinutes} min
+              </span>
+            </div>
+            {startError && (
+              <div className="form-alert" role="alert">
+                {startError}
+              </div>
+            )}
+            <Button size="large" onClick={startSession} disabled={starting}>
+              {starting ? copy.starting : common("start")}
+            </Button>
+          </section>
+          <Card className="lesson-stages-card">
+            <div className="lesson-stage">
+              <span className="lesson-stage-number">01</span>
+              <span className="lesson-stage-icon">
+                <BookOpen size={21} />
+              </span>
+              <div>
+                <h3>{locale === "uk" ? "Серверна сесія" : "Server-backed session"}</h3>
+                <p>
+                  {locale === "uk"
+                    ? "Завдання та варіанти надходять без ключів відповідей."
+                    : "Prompts and choices arrive without answer keys."}
+                </p>
+              </div>
+            </div>
+            <div className="lesson-stage">
+              <span className="lesson-stage-number">02</span>
+              <span className="lesson-stage-icon">
+                <ShieldCheck size={21} />
+              </span>
+              <div>
+                <h3>{locale === "uk" ? "Перевірка на сервері" : "Server evaluation"}</h3>
+                <p>
+                  {locale === "uk"
+                    ? "Правильність, XP і прогрес не визначаються браузером."
+                    : "Correctness, XP and progress are never decided by the browser."}
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
+    </div>
+  );
+}
