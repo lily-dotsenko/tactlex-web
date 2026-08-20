@@ -2,8 +2,11 @@
 
 import "@testing-library/jest-dom/vitest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { hydrateRoot } from "react-dom/client";
+import { renderToString } from "react-dom/server";
 import { NextIntlClientProvider } from "next-intl";
+import { PwaProvider } from "@/components/providers";
 import { Button, ProgressBar } from "@/components/ui";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
 
@@ -25,6 +28,13 @@ const messages = {
     syntheticDisclosure: "System speech synthesis is being used.",
     unavailable: "Pronunciation is unavailable on this device",
   },
+  Offline: {
+    banner: "You are offline. Server progress is temporarily unavailable.",
+    install: "Install",
+    installText: "Install the application.",
+    update: "An update is available.",
+    updateAction: "Update",
+  },
 };
 
 describe("UI foundations", () => {
@@ -39,6 +49,32 @@ describe("UI foundations", () => {
   it("keeps the default button type safe for forms", () => {
     render(<Button>Continue</Button>);
     expect(screen.getByRole("button", { name: "Continue" })).toHaveAttribute("type", "button");
+  });
+
+  it("hydrates the PWA shell without replacing offline markup", async () => {
+    Object.defineProperty(window.navigator, "onLine", { configurable: true, value: false });
+    const view = (
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <PwaProvider>
+          <main>Application</main>
+        </PwaProvider>
+      </NextIntlClientProvider>
+    );
+    const container = document.createElement("div");
+    container.innerHTML = renderToString(view);
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    let root;
+    await act(async () => {
+      root = hydrateRoot(container, view);
+    });
+
+    expect(container.querySelector("main")).toHaveTextContent("Application");
+    expect(container.querySelector('[role="status"]')).toHaveTextContent("You are offline");
+    expect(consoleError.mock.calls.flat().join(" ")).not.toContain("Hydration failed");
+    await act(async () => root.unmount());
+    consoleError.mockRestore();
+    Object.defineProperty(window.navigator, "onLine", { configurable: true, value: true });
   });
 });
 

@@ -42,7 +42,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="uk" suppressHydrationWarning>
+    <html lang="uk" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>

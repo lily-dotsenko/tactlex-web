@@ -1,4 +1,4 @@
-const CACHE_VERSION = "tactlex-shell-v1";
+const CACHE_VERSION = "tactlex-shell-v2";
 const SHELL_ASSETS = ["/manifest.webmanifest", "/icon.png", "/uk/offline", "/en/offline"];
 
 self.addEventListener("install", (event) => {
@@ -70,11 +70,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (
-    url.pathname === "/icon.png" ||
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.startsWith("/audio/")
-  ) {
+  if (url.pathname === "/icon.png" || url.pathname.startsWith("/audio/")) {
     event.respondWith(
       caches.match(request).then(
         (cached) =>

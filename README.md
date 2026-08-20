@@ -42,6 +42,19 @@ npm run dev
 
 Відкрийте [http://localhost:3000/uk](http://localhost:3000/uk). `docker-compose.yml` створює основну базу `tactlex` і, на новому volume, disposable базу `tactlex_test`.
 
+### Windows без Docker
+
+Для локальної розробки на Windows доступний ізольований portable PostgreSQL 17. Він завантажується з EDB, перевіряється за SHA-256, зберігається лише в Git-ignored `.local/` і слухає `127.0.0.1:5432`:
+
+```powershell
+npm run db:local:setup
+npm run db:migrate:deploy
+npm run db:seed
+npm run dev
+```
+
+Після перезавантаження достатньо виконати `npm run db:local:start`; зупинка — `npm run db:local:stop`, перевірка — `npm run db:local:status`. Для production використовуйте керований PostgreSQL або звичайну системну інсталяцію, а не portable dev-кластер.
+
 Не використовуйте `prisma db push` у робочому середовищі. Історією схеми є файли в `prisma/migrations/`.
 
 ## Environment variables

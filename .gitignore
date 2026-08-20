@@ -14,12 +14,14 @@ test-results/
 !.env.example
 storage/
 uploads/
+.local/
 *.dump
 
 # Logs and operating-system files
 *.log
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Editors
 .idea/

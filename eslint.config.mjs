@@ -5,6 +5,7 @@ export default defineConfig([
   ...nextVitals,
   globalIgnores([
     ".next/**",
+    ".local/**",
     "coverage/**",
     "node_modules/**",
     "playwright-report/**",

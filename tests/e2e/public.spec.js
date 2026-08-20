@@ -2,6 +2,12 @@ import { expect, test } from "@playwright/test";
 
 test.describe("public bilingual experience", () => {
   test("renders the Ukrainian landing page and switches to English", async ({ page }) => {
+    const browserErrors = [];
+    page.on("console", (message) => {
+      if (message.type() === "error") browserErrors.push(message.text());
+    });
+    page.on("pageerror", (error) => browserErrors.push(error.message));
+
     await page.goto("/uk");
 
     await expect(
@@ -14,13 +20,21 @@ test.describe("public bilingual experience", () => {
     await expect(
       page.getByRole("heading", { name: "Terms that matter need precise understanding." }),
     ).toBeVisible();
+    expect(browserErrors).toEqual([]);
   });
 
   test("redirects anonymous learners away from protected learning pages", async ({ page }) => {
+    const browserErrors = [];
+    page.on("console", (message) => {
+      if (message.type() === "error") browserErrors.push(message.text());
+    });
+    page.on("pageerror", (error) => browserErrors.push(error.message));
+
     await page.goto("/uk/dashboard");
 
     await expect(page).toHaveURL(/\/uk\/login$/);
     await expect(page.getByRole("heading", { name: "Раді бачити знову" })).toBeVisible();
+    expect(browserErrors).toEqual([]);
   });
 
   test("reflows the public hero without horizontal page overflow", async ({ page }) => {
