@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { format } from "prettier";
+import { tcccGlossarySource, vttGlossarySources } from "./vtt-glossary-data.js";
 
 const sourceByCategory = {
   "basic-military-english": {
@@ -844,6 +845,72 @@ function makeTerm(category, lesson, pair, position) {
   };
 }
 
+function makeGlossaryTerm(category, sourceGroup, pair, position) {
+  const [english, ukrainianRaw] = pair;
+  const [ukrainian, ...aliasesUk] = ukrainianRaw.split(";").map((value) => value.trim());
+  const technical = category.slug !== "basic-military-english";
+  const verbHeadwords = new Set([
+    "allow",
+    "can",
+    "compare",
+    "could",
+    "crawl",
+    "flee",
+    "must",
+    "prohibit",
+    "receive",
+    "retreat",
+    "transmit",
+    "withdraw",
+  ]);
+  const exactUrl =
+    sourceGroup.exactUrl ??
+    `https://www.youtube.com/results?search_query=${encodeURIComponent(sourceGroup.title)}`;
+  return {
+    externalKey: `glossary:${slugify(english)}`,
+    slug: `glossary-${slugify(english)}`,
+    dictionaryOnly: true,
+    english,
+    ukrainian,
+    partOfSpeech: verbHeadwords.has(english.toLowerCase())
+      ? "VERB"
+      : /^[A-Z0-9-]{2,12}$/u.test(english)
+        ? "ABBREVIATION"
+        : english.includes(" ")
+          ? "PHRASE"
+          : "NOUN",
+    difficulty: technical ? 3 : 2,
+    cefrLevel: technical ? "B1" : "A2",
+    aliasesEn: [],
+    aliasesUk,
+    definitionEn: `A dictionary term from the “${sourceGroup.title}” vocabulary collection.`,
+    definitionUk: `Словниковий термін із тематичної добірки «${sourceGroup.title}».`,
+    exampleEn: `The learner reviews “${english}” as a standalone dictionary entry.`,
+    exampleUk: `Користувач переглядає «${ukrainian}» як окрему словникову статтю.`,
+    contextNoteEn:
+      category.slug === "tactical-medicine"
+        ? "Language reference based on TCCC Ukraine terminology; not a substitute for certified medical training."
+        : "Language reference only; no operational procedure is provided.",
+    contextNoteUk:
+      category.slug === "tactical-medicine"
+        ? "Мовна довідка за термінологією TCCC Ukraine; не замінює сертифікованого медичного навчання."
+        : "Лише мовна довідка без опису оперативних процедур.",
+    source: {
+      exactUrl,
+      title: sourceGroup.title,
+      publisher: sourceGroup.exactUrl ? "TCCC Ukraine" : "ENG for UARMY",
+      sourceType: category.slug === "tactical-medicine" ? "MEDICAL" : "OTHER",
+      verificationStatus: "UNVERIFIED",
+      citationNote: sourceGroup.exactUrl
+        ? "Bilingual terminology checked against the linked TCCC Ukraine publication."
+        : "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded.",
+    },
+    origin: "AI_ASSISTED",
+    audioState: "TTS_FALLBACK",
+    sourcePosition: position,
+  };
+}
+
 const outputDir = path.resolve("prisma/content/v1");
 await mkdir(outputDir, { recursive: true });
 
@@ -852,12 +919,38 @@ async function formattedJson(value) {
 }
 
 const manifest = {
-  version: "1.1.0-draft",
+  version: "1.2.0-draft",
   status: "DRAFT_REQUIRES_HUMAN_REVIEW",
   generatedAt: new Date().toISOString(),
-  expected: { categories: 5, terms: 300, lessons: 30, termsPerLesson: 10 },
+  expected: {
+    categories: 5,
+    terms: 0,
+    lessonTerms: 300,
+    glossaryTerms: 0,
+    lessons: 30,
+    termsPerLesson: 10,
+  },
   files: [],
 };
+
+const occupiedEnglish = new Set(
+  curriculum.flatMap((category) =>
+    category.lessons.flatMap(([, , , pairs]) => pairs.map(([english]) => english.toLowerCase())),
+  ),
+);
+const glossaryByCategory = new Map(curriculum.map(({ slug }) => [slug, []]));
+for (const sourceGroup of [...vttGlossarySources, tcccGlossarySource]) {
+  const category = curriculum.find(({ slug }) => slug === sourceGroup.categorySlug);
+  if (!category) throw new Error(`Unknown glossary category: ${sourceGroup.categorySlug}`);
+  sourceGroup.terms.forEach((pair, position) => {
+    const normalizedEnglish = pair[0].toLowerCase();
+    if (occupiedEnglish.has(normalizedEnglish)) return;
+    occupiedEnglish.add(normalizedEnglish);
+    glossaryByCategory
+      .get(category.slug)
+      .push(makeGlossaryTerm(category, sourceGroup, pair, position));
+  });
+}
 
 for (const category of curriculum) {
   const lessons = category.lessons.map(
@@ -882,19 +975,29 @@ for (const category of curriculum) {
     },
   );
   const fileName = `${category.slug}.json`;
+  const glossaryTerms = glossaryByCategory.get(category.slug);
   const payload = {
     version: manifest.version,
     category: { slug: category.slug, nameUk: category.nameUk, nameEn: category.nameEn },
     lessons,
+    glossaryTerms,
   };
   await writeFile(path.join(outputDir, fileName), await formattedJson(payload), "utf8");
   manifest.files.push({
     file: fileName,
     categorySlug: category.slug,
-    termCount: lessons.reduce((sum, lesson) => sum + lesson.terms.length, 0),
+    termCount: lessons.reduce((sum, lesson) => sum + lesson.terms.length, 0) + glossaryTerms.length,
+    lessonTermCount: lessons.reduce((sum, lesson) => sum + lesson.terms.length, 0),
+    glossaryTermCount: glossaryTerms.length,
     lessonCount: lessons.length,
   });
 }
+
+manifest.expected.glossaryTerms = [...glossaryByCategory.values()].reduce(
+  (sum, terms) => sum + terms.length,
+  0,
+);
+manifest.expected.terms = manifest.expected.lessonTerms + manifest.expected.glossaryTerms;
 
 await writeFile(path.join(outputDir, "manifest.json"), await formattedJson(manifest), "utf8");
 console.log(`Built ${manifest.expected.terms} draft terms in ${outputDir}`);

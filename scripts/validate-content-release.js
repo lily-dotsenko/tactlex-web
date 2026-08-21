@@ -24,10 +24,52 @@ for (const descriptor of manifest.files) {
   if (payload.lessons.length !== descriptor.lessonCount) {
     errors.push(`${descriptor.file}: expected ${descriptor.lessonCount} lessons`);
   }
-  const descriptorTermCount = payload.lessons.reduce((sum, lesson) => sum + lesson.terms.length, 0);
+  const glossaryTerms = payload.glossaryTerms ?? [];
+  const lessonTermCount = payload.lessons.reduce((sum, lesson) => sum + lesson.terms.length, 0);
+  const descriptorTermCount = lessonTermCount + glossaryTerms.length;
   if (descriptorTermCount !== descriptor.termCount) {
     errors.push(`${descriptor.file}: expected ${descriptor.termCount} terms`);
   }
+  if (lessonTermCount !== descriptor.lessonTermCount) {
+    errors.push(`${descriptor.file}: expected ${descriptor.lessonTermCount} lesson terms`);
+  }
+  if (glossaryTerms.length !== descriptor.glossaryTermCount) {
+    errors.push(`${descriptor.file}: expected ${descriptor.glossaryTermCount} glossary terms`);
+  }
+  const validateTerm = (term, owner, { requireDistractors = false } = {}) => {
+    termCount += 1;
+    required(term.externalKey, `${owner}.externalKey`);
+    required(term.slug, `${owner}.slug`);
+    required(term.english, `${term.slug}.english`);
+    required(term.ukrainian, `${term.slug}.ukrainian`);
+    required(term.definitionEn, `${term.slug}.definitionEn`);
+    required(term.definitionUk, `${term.slug}.definitionUk`);
+    required(term.exampleEn, `${term.slug}.exampleEn`);
+    required(term.exampleUk, `${term.slug}.exampleUk`);
+    required(term.contextNoteEn, `${term.slug}.contextNoteEn`);
+    required(term.contextNoteUk, `${term.slug}.contextNoteUk`);
+    for (const alias of [...(term.aliasesEn ?? []), ...(term.aliasesUk ?? [])]) {
+      required(alias, `${term.slug}.alias`);
+    }
+    if (keys.has(term.externalKey)) errors.push(`Duplicate externalKey: ${term.externalKey}`);
+    if (slugs.has(term.slug)) errors.push(`Duplicate slug: ${term.slug}`);
+    keys.add(term.externalKey);
+    slugs.add(term.slug);
+    if (
+      requireDistractors &&
+      (!Array.isArray(term.distractorKeys) || term.distractorKeys.length < 3)
+    ) {
+      errors.push(`${term.slug}: at least three distractors are required`);
+    }
+    if (!term.source?.exactUrl || !URL.canParse(term.source.exactUrl)) {
+      errors.push(`${term.slug}: exact public source URL is required`);
+    }
+    if (term.source?.verificationStatus !== "VERIFIED") {
+      const message = `${term.slug}: source still requires human verification`;
+      if (releaseMode) errors.push(message);
+      else warnings.push(message);
+    }
+  };
   for (const lesson of payload.lessons) {
     lessonCount += 1;
     if (lesson.terms.length !== manifest.expected.termsPerLesson) {
@@ -37,39 +79,18 @@ for (const descriptor of manifest.files) {
       errors.push(`${lesson.slug}: CEFR level does not match difficulty`);
     }
     for (const term of lesson.terms) {
-      termCount += 1;
-      required(term.externalKey, `${lesson.slug}.externalKey`);
-      required(term.slug, `${lesson.slug}.slug`);
-      required(term.english, `${term.slug}.english`);
-      required(term.ukrainian, `${term.slug}.ukrainian`);
-      required(term.definitionEn, `${term.slug}.definitionEn`);
-      required(term.definitionUk, `${term.slug}.definitionUk`);
-      required(term.exampleEn, `${term.slug}.exampleEn`);
-      required(term.exampleUk, `${term.slug}.exampleUk`);
-      required(term.contextNoteEn, `${term.slug}.contextNoteEn`);
-      required(term.contextNoteUk, `${term.slug}.contextNoteUk`);
       if (term.cefrLevel !== lesson.cefrLevel) {
         errors.push(`${term.slug}: CEFR level does not match lesson`);
       }
-      for (const alias of [...(term.aliasesEn ?? []), ...(term.aliasesUk ?? [])]) {
-        required(alias, `${term.slug}.alias`);
-      }
-      if (keys.has(term.externalKey)) errors.push(`Duplicate externalKey: ${term.externalKey}`);
-      if (slugs.has(term.slug)) errors.push(`Duplicate slug: ${term.slug}`);
-      keys.add(term.externalKey);
-      slugs.add(term.slug);
-      if (!Array.isArray(term.distractorKeys) || term.distractorKeys.length < 3) {
-        errors.push(`${term.slug}: at least three distractors are required`);
-      }
-      if (!term.source?.exactUrl || !URL.canParse(term.source.exactUrl)) {
-        errors.push(`${term.slug}: exact public source URL is required`);
-      }
-      if (term.source?.verificationStatus !== "VERIFIED") {
-        const message = `${term.slug}: source still requires human verification`;
-        if (releaseMode) errors.push(message);
-        else warnings.push(message);
-      }
+      validateTerm(term, lesson.slug, { requireDistractors: true });
     }
+  }
+  for (const term of glossaryTerms) {
+    if (!term.dictionaryOnly) errors.push(`${term.slug}: glossary term must be dictionary-only`);
+    if (term.cefrLevel !== cefrByDifficulty[term.difficulty]) {
+      errors.push(`${term.slug}: CEFR level does not match difficulty`);
+    }
+    validateTerm(term, `${payload.category.slug}.glossary`);
   }
 }
 

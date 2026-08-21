@@ -42,63 +42,67 @@ try {
     const payload = JSON.parse(await readFile(path.join(root, descriptor.file), "utf8"));
     const category = await db.category.findUnique({ where: { slug: payload.category.slug } });
     if (!category) throw new Error(`Missing category ${payload.category.slug}; run db:seed first.`);
-    for (const lesson of payload.lessons) {
-      for (const term of lesson.terms) {
-        const input = {
-          slug: term.slug,
-          partOfSpeech: term.partOfSpeech,
-          difficulty: term.difficulty,
-          origin: "AI_ASSISTED",
-          isDemo: false,
-          variants: [
-            {
-              locale: "EN",
-              kind: "PRIMARY",
-              value: term.english,
-              isPrimary: true,
-              isAcceptedAnswer: true,
-            },
-            {
-              locale: "UK",
-              kind: "PRIMARY",
-              value: term.ukrainian,
-              isPrimary: true,
-              isAcceptedAnswer: true,
-            },
-            ...(term.aliasesEn ?? []).map((value) => aliasVariant("EN", value)),
-            ...(term.aliasesUk ?? []).map((value) => aliasVariant("UK", value)),
-          ],
-          definitions: [
-            {
-              locale: "EN",
-              shortDefinition: term.definitionEn,
-              example: term.exampleEn,
-              contextNote: term.contextNoteEn,
-            },
-            {
-              locale: "UK",
-              shortDefinition: term.definitionUk,
-              example: term.exampleUk,
-              contextNote: term.contextNoteUk,
-            },
-          ],
-          categories: [{ categoryId: category.id, isPrimary: true }],
-          sources: [{ ...term.source, isPrimary: true }],
-        };
-        const existing = await db.term.findUnique({ where: { slug: term.slug } });
-        const saved = existing
-          ? await service.updateTerm(actor.id, existing.id, {
-              ...input,
-              changeNote: `Synchronize content release ${manifest.version}`,
-            })
-          : await service.createTerm(actor.id, {
-              ...input,
-              changeNote: `Import content release ${manifest.version}`,
-            });
-        keyToId.set(term.externalKey, saved.id);
+    const terms = [
+      ...payload.lessons.flatMap((lesson) => lesson.terms),
+      ...(payload.glossaryTerms ?? []),
+    ];
+    for (const term of terms) {
+      const input = {
+        slug: term.slug,
+        partOfSpeech: term.partOfSpeech,
+        difficulty: term.difficulty,
+        origin: "AI_ASSISTED",
+        isDemo: false,
+        variants: [
+          {
+            locale: "EN",
+            kind: "PRIMARY",
+            value: term.english,
+            isPrimary: true,
+            isAcceptedAnswer: true,
+          },
+          {
+            locale: "UK",
+            kind: "PRIMARY",
+            value: term.ukrainian,
+            isPrimary: true,
+            isAcceptedAnswer: true,
+          },
+          ...(term.aliasesEn ?? []).map((value) => aliasVariant("EN", value)),
+          ...(term.aliasesUk ?? []).map((value) => aliasVariant("UK", value)),
+        ],
+        definitions: [
+          {
+            locale: "EN",
+            shortDefinition: term.definitionEn,
+            example: term.exampleEn,
+            contextNote: term.contextNoteEn,
+          },
+          {
+            locale: "UK",
+            shortDefinition: term.definitionUk,
+            example: term.exampleUk,
+            contextNote: term.contextNoteUk,
+          },
+        ],
+        categories: [{ categoryId: category.id, isPrimary: true }],
+        sources: [{ ...term.source, isPrimary: true }],
+      };
+      const existing = await db.term.findUnique({ where: { slug: term.slug } });
+      const saved = existing
+        ? await service.updateTerm(actor.id, existing.id, {
+            ...input,
+            changeNote: `Synchronize content release ${manifest.version}`,
+          })
+        : await service.createTerm(actor.id, {
+            ...input,
+            changeNote: `Import content release ${manifest.version}`,
+          });
+      keyToId.set(term.externalKey, saved.id);
+      if (term.distractorKeys?.length) {
         pendingDistractors.push({ termId: saved.id, keys: term.distractorKeys });
-        imported += 1;
       }
+      imported += 1;
     }
   }
 

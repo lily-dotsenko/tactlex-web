@@ -1,10 +1,12 @@
 {
-  "version": "1.1.0-draft",
+  "version": "1.2.0-draft",
   "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
-  "generatedAt": "2026-08-21T12:02:01.234Z",
+  "generatedAt": "2026-08-21T12:18:53.437Z",
   "expected": {
     "categories": 5,
-    "terms": 300,
+    "terms": 556,
+    "lessonTerms": 300,
+    "glossaryTerms": 256,
     "lessons": 30,
     "termsPerLesson": 10
   },
@@ -12,31 +14,41 @@
     {
       "file": "basic-military-english.json",
       "categorySlug": "basic-military-english",
-      "termCount": 100,
+      "termCount": 251,
+      "lessonTermCount": 100,
+      "glossaryTermCount": 151,
       "lessonCount": 10
     },
     {
       "file": "general-tactical-english.json",
       "categorySlug": "general-tactical-english",
-      "termCount": 60,
+      "termCount": 145,
+      "lessonTermCount": 60,
+      "glossaryTermCount": 85,
       "lessonCount": 6
     },
     {
       "file": "tactical-medicine.json",
       "categorySlug": "tactical-medicine",
-      "termCount": 50,
+      "termCount": 60,
+      "lessonTermCount": 50,
+      "glossaryTermCount": 10,
       "lessonCount": 5
     },
     {
       "file": "drones-uas.json",
       "categorySlug": "drones-uas",
-      "termCount": 50,
+      "termCount": 60,
+      "lessonTermCount": 50,
+      "glossaryTermCount": 10,
       "lessonCount": 5
     },
     {
       "file": "sniper-terminology.json",
       "categorySlug": "sniper-terminology",
       "termCount": 40,
+      "lessonTermCount": 40,
+      "glossaryTermCount": 0,
       "lessonCount": 4
     }
   ]

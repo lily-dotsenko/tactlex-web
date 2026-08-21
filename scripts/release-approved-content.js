@@ -28,7 +28,10 @@ try {
       JSON.parse(await readFile(path.join(root, file), "utf8")),
     ),
   );
-  const allTerms = bundles.flatMap(({ lessons }) => lessons.flatMap(({ terms }) => terms));
+  const allTerms = bundles.flatMap(({ lessons, glossaryTerms = [] }) => [
+    ...lessons.flatMap(({ terms }) => terms),
+    ...glossaryTerms,
+  ]);
   const rows = await db.term.findMany({
     where: { slug: { in: allTerms.map(({ slug }) => slug) } },
     select: { id: true, slug: true, status: true },

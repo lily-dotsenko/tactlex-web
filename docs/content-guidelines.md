@@ -47,7 +47,7 @@ CSV import is bounded, validates headers and every row, reports row-level errors
 
 ## Demo content
 
-The versioned release contains 300 terms in 30 lessons. Imports remain drafts; a temporary owner-authorized beta release keeps unreviewed records visibly marked and never fabricates reviewer metadata. Normal approval and publication still require a subject-matter expert.
+The versioned release contains 300 lesson terms in 30 lessons plus 256 dictionary-only entries. Dictionary-only records are searchable but are not lesson members and do not affect learning progress. Imports remain drafts; a temporary owner-authorized beta release keeps unreviewed records visibly marked and never fabricates reviewer metadata. Normal approval and publication still require a subject-matter expert.
 
 ## Reports
 
