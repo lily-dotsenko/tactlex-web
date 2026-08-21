@@ -406,7 +406,7 @@ export function createGameService(db, { clock = () => new Date() } = {}) {
     if (lessonCount >= 10) eligibleCodes.add("learning-ten");
     if (learnedTerms >= 100) eligibleCodes.add("hundred-terms");
     if (learnedTerms >= 300) eligibleCodes.add("three-hundred-terms");
-    if (learnedTerms >= 556) eligibleCodes.add("full-dictionary");
+    if (learnedTerms >= 616) eligibleCodes.add("full-dictionary");
     for (const [days, code] of [
       [3, "streak-three"],
       [7, "streak-seven"],

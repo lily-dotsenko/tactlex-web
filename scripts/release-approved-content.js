@@ -120,6 +120,27 @@ try {
         Math.ceil(((index + 1) * releasedLessons.length) / (rewardCount + 1)),
       ),
     );
+    const activeNodeSlugs = releasedLessons.flatMap((lesson, index) => {
+      const baseSlug = `${bundle.category.slug}-${lesson.source.slug}`;
+      return [
+        `${baseSlug}-lesson`,
+        `${baseSlug}-quiz`,
+        ...(lesson.fact ? [`${baseSlug}-fact`] : []),
+        ...(rewardAfter.has(index + 1) ? [`${bundle.category.slug}-reward-${index + 1}`] : []),
+      ];
+    });
+    activeNodeSlugs.push(`${bundle.category.slug}-checkpoint`, `${bundle.category.slug}-patch`);
+    // Move obsolete and retained nodes into separate temporary ranges before
+    // assigning the new contiguous positions. This keeps the unique
+    // (category, position) constraint valid even after lesson insertion.
+    await db.learningNode.updateMany({
+      where: { categoryId: category.id, slug: { notIn: activeNodeSlugs } },
+      data: { position: { increment: 1_000_000 }, active: false },
+    });
+    await db.learningNode.updateMany({
+      where: { categoryId: category.id, slug: { in: activeNodeSlugs } },
+      data: { position: { increment: 100_000 } },
+    });
     let position = 0;
     for (const [index, lesson] of releasedLessons.entries()) {
       const baseSlug = `${bundle.category.slug}-${lesson.source.slug}`;
@@ -162,7 +183,7 @@ try {
           position,
           titleUk: `Квіз: ${lesson.source.titleUk}`,
           titleEn: `Quiz: ${lesson.source.titleEn}`,
-          displayMetadata: { textOnly: true, choices: 4 },
+          displayMetadata: { textOnly: true, choices: 6 },
         },
       });
       position += 1;
@@ -174,6 +195,7 @@ try {
             lessonId: lesson.saved.id,
             factId: lesson.fact.id,
             position,
+            active: true,
             titleUk: lesson.fact.titleUk,
             titleEn: lesson.fact.titleEn,
           },
@@ -187,6 +209,7 @@ try {
             titleUk: lesson.fact.titleUk,
             titleEn: lesson.fact.titleEn,
             rewardXp: 5,
+            active: true,
           },
         });
         position += 1;
@@ -194,7 +217,7 @@ try {
       if (rewardAfter.has(index + 1)) {
         await db.learningNode.upsert({
           where: { slug: `${bundle.category.slug}-reward-${index + 1}` },
-          update: { categoryId: category.id, position },
+          update: { categoryId: category.id, position, active: true },
           create: {
             categoryId: category.id,
             slug: `${bundle.category.slug}-reward-${index + 1}`,
@@ -204,6 +227,7 @@ try {
             titleEn: "Field chest",
             rewardCoins: 20,
             displayMetadata: { requiredCompletions: index + 1 },
+            active: true,
           },
         });
         position += 1;
@@ -211,7 +235,7 @@ try {
     }
     await db.learningNode.upsert({
       where: { slug: `${bundle.category.slug}-checkpoint` },
-      update: { categoryId: category.id, position },
+      update: { categoryId: category.id, position, active: true },
       create: {
         categoryId: category.id,
         slug: `${bundle.category.slug}-checkpoint`,
@@ -220,6 +244,7 @@ try {
         titleUk: "Контрольна точка з Морквою",
         titleEn: "Checkpoint with Morkva",
         displayMetadata: { mascotState: "checkpoint" },
+        active: true,
       },
     });
     position += 1;
@@ -228,7 +253,7 @@ try {
     });
     await db.learningNode.upsert({
       where: { slug: `${bundle.category.slug}-patch` },
-      update: { categoryId: category.id, patchId: categoryPatch?.id, position },
+      update: { categoryId: category.id, patchId: categoryPatch?.id, position, active: true },
       create: {
         categoryId: category.id,
         patchId: categoryPatch?.id,
@@ -237,7 +262,12 @@ try {
         position,
         titleUk: categoryPatch?.titleUk ?? "Категорійний патч",
         titleEn: categoryPatch?.titleEn ?? "Category patch",
+        active: true,
       },
+    });
+    await db.learningNode.updateMany({
+      where: { categoryId: category.id, slug: { notIn: activeNodeSlugs } },
+      data: { active: false },
     });
 
     const legacyProgress = await db.userLessonProgress.findMany({

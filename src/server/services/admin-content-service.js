@@ -8,6 +8,10 @@ import { DomainError, notFound } from "@/server/services/errors";
 const TERM_INCLUDE = {
   variants: { orderBy: [{ locale: "asc" }, { isPrimary: "desc" }, { value: "asc" }] },
   definitions: { orderBy: { locale: "asc" } },
+  contextDefinitions: {
+    include: { category: true },
+    orderBy: [{ categoryId: "asc" }, { locale: "asc" }],
+  },
   categories: {
     include: { category: true },
     orderBy: [{ isPrimary: "desc" }, { createdAt: "asc" }],
@@ -69,6 +73,13 @@ function validateTermCollections(input) {
   }
   if (input.definitions) {
     assertUniqueCollection(input.definitions, ({ locale }) => locale, "Визначення");
+  }
+  if (input.contextDefinitions) {
+    assertUniqueCollection(
+      input.contextDefinitions,
+      ({ categoryId, locale }) => `${categoryId}:${locale}`,
+      "Контекстні визначення",
+    );
   }
   if (input.categories) {
     assertUniqueCollection(input.categories, ({ categoryId }) => categoryId, "Категорії");
@@ -174,6 +185,27 @@ async function replaceTermCollections(db, termId, input, actorUserId, now) {
         data: input.categories.map((category) => ({ termId, ...category })),
       });
     }
+    await db.termContextDefinition.deleteMany({
+      where: {
+        termId,
+        ...(input.categories.length
+          ? { categoryId: { notIn: input.categories.map(({ categoryId }) => categoryId) } }
+          : {}),
+      },
+    });
+  }
+
+  if (input.contextDefinitions) {
+    await assertCategoriesExist(
+      db,
+      input.contextDefinitions.map(({ categoryId }) => categoryId),
+    );
+    await db.termContextDefinition.deleteMany({ where: { termId } });
+    if (input.contextDefinitions.length) {
+      await db.termContextDefinition.createMany({
+        data: input.contextDefinitions.map((definition) => ({ termId, ...definition })),
+      });
+    }
   }
 
   if (input.sources) {
@@ -238,6 +270,15 @@ function revisionSnapshot(term) {
       example,
       contextNote,
     })),
+    contextDefinitions: (term.contextDefinitions ?? []).map(
+      ({ categoryId, locale, shortDefinition, example, contextNote }) => ({
+        categoryId,
+        locale,
+        shortDefinition,
+        example,
+        contextNote,
+      }),
+    ),
     categories: term.categories.map(({ categoryId, isPrimary }) => ({ categoryId, isPrimary })),
     sources: term.sources.map(
       ({
@@ -405,7 +446,15 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
   }
 
   async function createTerm(actorUserId, input) {
-    const { variants, definitions, categories, sources, changeNote, ...termData } = input;
+    const {
+      variants,
+      definitions,
+      contextDefinitions,
+      categories,
+      sources,
+      changeNote,
+      ...termData
+    } = input;
     try {
       return await db.$transaction(async (transaction) => {
         const term = await transaction.term.create({
@@ -419,7 +468,7 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
         await replaceTermCollections(
           transaction,
           term.id,
-          { variants, definitions, categories, sources },
+          { variants, definitions, contextDefinitions, categories, sources },
           actorUserId,
           clock(),
         );
@@ -447,7 +496,15 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
     if (current.status === "ARCHIVED") {
       throw new DomainError("TERM_ARCHIVED", "Архівований термін не можна редагувати.", 409);
     }
-    const { variants, definitions, categories, sources, changeNote, ...termData } = input;
+    const {
+      variants,
+      definitions,
+      contextDefinitions,
+      categories,
+      sources,
+      changeNote,
+      ...termData
+    } = input;
     const nextRevision = current.currentRevision + 1;
     try {
       return await db.$transaction(async (transaction) => {
@@ -473,7 +530,7 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
         await replaceTermCollections(
           transaction,
           id,
-          { variants, definitions, categories, sources },
+          { variants, definitions, contextDefinitions, categories, sources },
           actorUserId,
           clock(),
         );
@@ -854,10 +911,10 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
     }
     if (status === "PUBLISHED") {
       const termIds = lesson.terms.map(({ termId }) => termId);
-      if (termIds.length < 8 || termIds.length > 12) {
+      if (termIds.length < 6 || termIds.length > 12) {
         throw new DomainError(
           "INVALID_LESSON_SIZE",
-          "Опублікований урок повинен містити від 8 до 12 термінів.",
+          "Опублікований урок повинен містити від 6 до 12 термінів.",
           422,
         );
       }
@@ -917,6 +974,12 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
         {
           variants: row.data.variants,
           definitions: row.data.definitions,
+          contextDefinitions: row.data.contextDefinitions.map(
+            ({ categorySlug: _categorySlug, ...definition }) => ({
+              ...definition,
+              categoryId: category.id,
+            }),
+          ),
           categories: [{ categoryId: category.id, isPrimary: true }],
           sources: [row.data.source],
         },

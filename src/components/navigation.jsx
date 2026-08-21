@@ -136,7 +136,7 @@ export function UserSidebar({ user }) {
   const totalXp = Number.isFinite(user?.totalXp) ? user.totalXp : 0;
   return (
     <aside className="user-sidebar">
-      <Brand />
+      <Brand href="/dashboard" />
       <nav className="side-navigation" aria-label="Primary">
         {primaryNav.map((item) => (
           <ActiveLink key={item.href} item={item} />
@@ -186,7 +186,7 @@ export function AdminSidebar() {
   return (
     <>
       <div className="admin-mobile-bar">
-        <Brand />
+        <Brand href="/admin" />
         <IconButton label={open ? t("closeMenu") : t("openMenu")} onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </IconButton>
@@ -199,7 +199,7 @@ export function AdminSidebar() {
         />
       )}
       <aside className={clsx("admin-sidebar", open && "is-open")}>
-        <Brand />
+        <Brand href="/admin" />
         <div className="admin-mode">
           <ShieldCheck size={18} aria-hidden="true" />
           <span>{navT("admin")}</span>

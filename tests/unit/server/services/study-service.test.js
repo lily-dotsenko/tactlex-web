@@ -2,8 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 
 import {
   applyProgressReview,
+  checkpointTermPriority,
   createStudyService,
   deriveEffectiveRating,
+  exercisePlan,
+  exercisePatternForItem,
+  sentencePrompt,
 } from "@/server/services/study-service";
 
 const now = new Date("2026-07-21T12:00:00.000Z");
@@ -68,7 +72,8 @@ describe("study service", () => {
       direction: "UA_TO_EN",
       answeredItems: 0,
       totalItems: 1,
-      items: [{ prompt: "евакуація", result: null }],
+      currentItem: { prompt: "евакуація" },
+      items: [{ prompt: "евакуація", answerLocale: "en", result: null }],
     });
     expect(JSON.stringify(session)).not.toContain("evacuation");
   });
@@ -78,6 +83,99 @@ describe("study service", () => {
     expect(deriveEffectiveRating(true, "AGAIN")).toBe("GOOD");
     expect(deriveEffectiveRating(true, "HARD")).toBe("HARD");
     expect(deriveEffectiveRating(true)).toBe("GOOD");
+  });
+
+  it("prioritizes overdue and weak terms for checkpoint selection", () => {
+    const newTerm = checkpointTermPriority(null, now);
+    const futureStrong = checkpointTermPriority(
+      { dueAt: new Date("2026-07-24T12:00:00.000Z"), lapses: 0, incorrectCount: 0, difficulty: 2 },
+      now,
+    );
+    const futureWeak = checkpointTermPriority(
+      { dueAt: new Date("2026-07-24T12:00:00.000Z"), lapses: 2, incorrectCount: 3, difficulty: 8 },
+      now,
+    );
+    const overdue = checkpointTermPriority(
+      { dueAt: new Date("2026-07-20T12:00:00.000Z"), lapses: 0, incorrectCount: 0, difficulty: 1 },
+      now,
+    );
+
+    expect(overdue).toBeGreaterThan(futureWeak);
+    expect(futureWeak).toBeGreaterThan(futureStrong);
+    expect(newTerm).toBeGreaterThan(futureWeak);
+  });
+
+  it("uses choice-only onboarding lessons and introduces typing from lesson three", () => {
+    const firstLesson = Array.from({ length: 10 }, (_, index) =>
+      exercisePatternForItem({ kind: "LESSON", direction: "MIXED", index, lessonOrdinal: 1 }),
+    );
+    const thirdLesson = Array.from({ length: 10 }, (_, index) =>
+      exercisePatternForItem({ kind: "LESSON", direction: "MIXED", index, lessonOrdinal: 3 }),
+    );
+
+    expect(firstLesson.every(({ type }) => type === "MULTIPLE_CHOICE")).toBe(true);
+    expect(thirdLesson.filter(({ type }) => type === "MULTIPLE_CHOICE")).toHaveLength(6);
+    expect(thirdLesson.filter(({ type }) => type === "TYPE_ANSWER")).toHaveLength(2);
+    expect(thirdLesson.filter(({ type }) => type === "AUDIO")).toHaveLength(2);
+  });
+
+  it("builds one four-term matching interaction and up to two safe sentence prompts", () => {
+    const terms = Array.from({ length: 10 }, (_, index) => {
+      const english = `term ${index}`;
+      const ukrainian = `термін ${index}`;
+      return {
+        id: `term-${index}`,
+        variants: [
+          { locale: "EN", value: english, isPrimary: true, isAcceptedAnswer: true },
+          { locale: "UK", value: ukrainian, isPrimary: true, isAcceptedAnswer: true },
+        ],
+        contextDefinitions:
+          index === 4 || index === 5
+            ? [
+                {
+                  categoryId: "category-1",
+                  locale: "UK",
+                  example: `У реченні використано ${ukrainian}.`,
+                },
+              ]
+            : [],
+      };
+    });
+
+    const plan = exercisePlan({
+      terms,
+      kind: "LESSON",
+      direction: "EN_TO_UK",
+      lessonOrdinal: 3,
+      categoryId: "category-1",
+    });
+
+    expect(plan.slice(0, 4).every(({ type }) => type === "MATCH_PAIRS")).toBe(true);
+    expect(new Set(plan.slice(0, 4).map(({ interactionGroupId }) => interactionGroupId)).size).toBe(
+      1,
+    );
+    expect(plan.filter(({ type }) => type === "CONTEXT_SENTENCE")).toHaveLength(2);
+    expect(plan[4].promptSnapshot).toContain("_____");
+  });
+
+  it("falls back when a verified example does not contain an accepted target form", () => {
+    const term = {
+      variants: [{ locale: "UK", value: "евакуація", isPrimary: true, isAcceptedAnswer: true }],
+    };
+    expect(sentencePrompt(term, { example: "Підрозділ рухається вперед." }, "UK")).toBeNull();
+  });
+
+  it("does not turn editorial placeholder examples into sentence exercises", () => {
+    const term = {
+      variants: [{ locale: "UK", value: "секція", isPrimary: true, isAcceptedAnswer: true }],
+    };
+    expect(
+      sentencePrompt(
+        term,
+        { example: "Користувач опрацьовує термін «секція» у нейтральній мовній вправі." },
+        "UK",
+      ),
+    ).toBeNull();
   });
 
   it("derives a completed AAR from immutable answer and XP records", async () => {
@@ -155,6 +253,9 @@ describe("study service", () => {
         { reason: "FIRST_LESSON_COMPLETION", amount: 20 },
         { reason: "PERFECT_LESSON", amount: 15 },
       ],
+      isFirstNodeCompletion: false,
+      isPerfect: true,
+      celebrationTier: "major",
     });
     expect(xpFindMany).toHaveBeenCalledWith(
       expect.objectContaining({

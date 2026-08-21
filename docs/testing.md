@@ -16,7 +16,7 @@
 4. ADMIN creates a draft term;
 5. content moves through review without skipped transitions;
 6. incomplete/unverified content cannot publish;
-7. user starts and completes an 8–12-term lesson;
+7. user starts and completes a 6–12-term lesson;
 8. server accepts primary/approved synonyms and rejects a different term;
 9. progress is persisted;
 10. each review grade creates deterministic state and immutable log;

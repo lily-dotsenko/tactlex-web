@@ -71,7 +71,7 @@ erDiagram
 
 ### Learning
 
-- `lessons`, `lesson_terms`: active 8–12-term lesson composition.
+- `lessons`, `lesson_terms`: active 6–12-term lesson composition.
 - `study_sessions`: direction, stage, status, counters, idempotency key and timestamps.
 - `session_answers`: one server-evaluated answer per ordinal/idempotency key; correctness and awarded XP are server fields.
 - `user_term_progress`: FSRS-compatible state, difficulty, stability, due date and aggregate accuracy.

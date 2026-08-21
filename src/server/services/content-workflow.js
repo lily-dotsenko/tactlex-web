@@ -19,6 +19,19 @@ export function contentCompleteness(term) {
         Boolean(item.checkedById) &&
         /^https?:\/\//u.test(item.source?.exactUrl ?? item.source?.url ?? item.url ?? ""),
     ) ?? [];
+  const assignedCategoryIds =
+    term.categories?.map((item) => item.categoryId ?? item.category?.id) ?? [];
+  const contextDefinitions = term.contextDefinitions ?? [];
+  const contextsComplete = assignedCategoryIds.every((categoryId) =>
+    ["EN", "UK"].every((locale) =>
+      contextDefinitions.some(
+        (item) =>
+          item.categoryId === categoryId &&
+          item.locale === locale &&
+          Boolean(item.shortDefinition?.trim()),
+      ),
+    ),
+  );
   const checks = {
     publishableRecord: term.isDemo !== true,
     primaryEnglish: term.variants?.some(
@@ -30,6 +43,7 @@ export function contentCompleteness(term) {
     englishDefinition: localized(term.definitions, "EN"),
     ukrainianDefinition: localized(term.definitions, "UK"),
     category: term.categories?.some((item) => item.isPrimary),
+    categoryContexts: assignedCategoryIds.length > 0 && contextsComplete,
     verifiedSource: verifiedSources.length > 0,
   };
 

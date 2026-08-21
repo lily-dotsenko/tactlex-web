@@ -28,6 +28,7 @@ import clsx from "clsx";
 
 import { CustomAvatar } from "@/components/custom-avatar";
 import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
+import { Mascot } from "@/components/mascot";
 import { Button, ButtonLink, Card, EmptyState, ProgressBar } from "@/components/ui";
 import { avatarByKey } from "@/lib/avatars/catalog";
 import { useRouter } from "@/lib/i18n/navigation";
@@ -224,6 +225,10 @@ export function LearningPathScreen({ categorySlug }) {
 
   async function act(node) {
     if (busy) return;
+    if (node.activeSessionId) {
+      router.push(`/sessions/${node.activeSessionId}`);
+      return;
+    }
     if (node.type === "FACT") {
       setSelected(node);
       return;
@@ -268,7 +273,14 @@ export function LearningPathScreen({ categorySlug }) {
   }
 
   if (state.loading) return <div className="path-loading" aria-busy="true" />;
-  if (state.error) return <EmptyState title={words.path} text={state.error} />;
+  if (state.error)
+    return (
+      <EmptyState
+        icon={<Mascot pose="encourage" motion="tilt" size={104} />}
+        title={words.path}
+        text={state.error}
+      />
+    );
   const path = state.path;
   return (
     <div className="learning-path-page">
@@ -278,7 +290,7 @@ export function LearningPathScreen({ categorySlug }) {
           <h1>{path.category.name}</h1>
           <p>{words.pathLead}</p>
         </div>
-        <Image src="/brand/morkva-mark.png" alt="" width={112} height={112} priority />
+        <Mascot pose="point" motion="nod" size={112} priority />
         <div className="path-progress">
           <ProgressBar
             value={Math.round((path.completedNodes / Math.max(path.totalNodes, 1)) * 100)}
@@ -322,26 +334,37 @@ export function LearningPathScreen({ categorySlug }) {
               role="listitem"
             >
               {node.type === "CHECKPOINT" ? (
-                <Image
-                  className="checkpoint-morkva"
-                  src="/brand/morkva-anchor.png"
+                <Mascot
+                  pose="guard"
+                  motion="breathe"
+                  size={150}
+                  decorative={false}
                   alt="Морква"
-                  width={150}
-                  height={150}
+                  className="checkpoint-morkva"
                 />
               ) : null}
-              <button
-                className="path-node"
-                onClick={() => act(node)}
-                disabled={busy}
-                aria-label={`${node.title}. ${node.state}`}
+              <div
+                className={clsx("path-node-ring", node.activeSessionId && "is-active")}
+                style={{ "--node-progress": `${node.progressPercent ?? 0}%` }}
               >
-                <Icon aria-hidden="true" />
-                {node.completed ? <Check className="node-check" aria-hidden="true" /> : null}
-              </button>
+                <button
+                  className="path-node"
+                  onClick={() => act(node)}
+                  disabled={busy}
+                  aria-label={`${node.title}. ${node.state}`}
+                >
+                  <Icon aria-hidden="true" />
+                  {node.completed ? <Check className="node-check" aria-hidden="true" /> : null}
+                </button>
+              </div>
               <div className="path-node-copy">
                 {node.recommended ? (
                   <span className="recommended-label">{words.recommended}</span>
+                ) : null}
+                {node.activeSessionId ? (
+                  <small>
+                    {locale === "uk" ? "Продовжити" : "Continue"} · {node.progressPercent}%
+                  </small>
                 ) : null}
                 <strong>{node.title}</strong>
                 {node.stars > 0 ? (
@@ -441,7 +464,14 @@ export function QuestsScreen() {
     await apiRequest(`/quests/${id}/claim`, { method: "POST" });
     await load();
   }
-  if (error) return <EmptyState title={words.quests} text={error} />;
+  if (error)
+    return (
+      <EmptyState
+        icon={<Mascot pose="encourage" motion="tilt" size={104} />}
+        title={words.quests}
+        text={error}
+      />
+    );
   return (
     <div className="game-page">
       <header className="game-page-heading">
@@ -452,7 +482,7 @@ export function QuestsScreen() {
           <h1>{words.quests}</h1>
           <p>{words.questsLead}</p>
         </div>
-        <Image src="/brand/morkva-anchor.png" alt="" width={130} height={130} />
+        <Mascot pose="coach" motion="breathe" size={130} />
       </header>
       {["DAILY", "WEEKLY", "MONTHLY"].map((period) => (
         <section className="quest-section" key={period}>

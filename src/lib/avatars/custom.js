@@ -1,43 +1,40 @@
 export const DEFAULT_CUSTOM_AVATAR = Object.freeze({
+  catType: "shorthair",
   gender: "neutral",
-  skin: "sand",
-  head: "oval",
-  hair: "crop",
-  hairColor: "brown",
-  facialHair: "none",
-  torso: "field-shirt",
-  equipment: "vest",
+  coatColor: "ginger",
+  coatPattern: "tabby",
+  eyeColor: "green",
+  equipment: "tactical-vest",
+  weapon: "none",
   accessory: "headset",
 });
 
 export const AVATAR_CUSTOMIZATION = Object.freeze({
-  gender: ["neutral", "woman", "man"],
-  skin: ["porcelain", "peach", "sand", "amber", "copper", "umber"],
-  head: ["oval", "round", "angular"],
-  hair: ["none", "crop", "fade", "side", "bob", "braid", "bun", "forelock"],
-  hairColor: ["black", "brown", "auburn", "blond", "silver", "blue"],
-  facialHair: ["none", "stubble", "moustache", "goatee", "beard"],
-  torso: ["field-shirt", "hoodie", "jacket", "cossack-shirt", "medic-shirt", "flight-suit"],
-  equipment: ["none", "vest", "chest-rig", "scarf", "shoulder-strap", "medic-pouch"],
-  accessory: ["none", "headset", "glasses", "goggles", "cap", "helmet", "bandana", "earpiece"],
+  catType: ["shorthair", "maine-coon", "siamese", "bengal", "scottish-fold", "sphynx"],
+  gender: ["neutral", "female", "male"],
+  coatColor: ["ginger", "charcoal", "snow", "smoke", "brown", "cream"],
+  coatPattern: ["solid", "tabby", "tuxedo", "calico", "point", "spotted"],
+  eyeColor: ["green", "amber", "blue", "copper", "heterochromia"],
+  equipment: ["none", "tactical-vest", "chest-rig", "medic-pouch", "scarf", "cossack-harness"],
+  weapon: ["none", "carbine", "marksman-rifle", "bow", "sabre"],
+  accessory: ["none", "headset", "glasses", "goggles", "cap", "helmet", "bandana", "eyepatch"],
 });
 
 export const AVATAR_COLORS = Object.freeze({
-  skin: {
-    porcelain: "#f8d8ca",
-    peach: "#efb394",
-    sand: "#d99a73",
-    amber: "#bb7650",
-    copper: "#925338",
-    umber: "#633a2d",
+  coat: {
+    ginger: "#c97835",
+    charcoal: "#30363a",
+    snow: "#ece8df",
+    smoke: "#858e91",
+    brown: "#76503b",
+    cream: "#d8bd8c",
   },
-  hair: {
-    black: "#20242a",
-    brown: "#50372c",
-    auburn: "#8f422d",
-    blond: "#d8b768",
-    silver: "#aeb5b7",
-    blue: "#315a72",
+  eyes: {
+    green: "#72bf68",
+    amber: "#e4aa37",
+    blue: "#67b7df",
+    copper: "#c9773d",
+    heterochromia: "#67b7df",
   },
 });
 

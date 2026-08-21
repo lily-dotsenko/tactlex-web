@@ -21,6 +21,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { apiRequest } from "@/components/learning-api";
+import { Mascot } from "@/components/mascot";
 import { PatchBoard } from "@/components/screens/game-screens";
 import { avatarByKey } from "@/lib/avatars/catalog";
 import { CustomAvatar } from "@/components/custom-avatar";
@@ -73,9 +74,9 @@ function liveCopy(locale) {
         profile: "Профіль",
         profileLead: "Приватні поля не відображаються іншим користувачам.",
         notShared: "Не публікується",
-        avatarTitle: "Створіть свій аватар",
+        avatarTitle: "Створіть свого тактичного кота",
         avatarLead:
-          "Налаштуйте зовнішність, одяг та екіпірування. Мініаватар також буде видно в рейтингу, якщо ви ввімкнули участь.",
+          "Оберіть вид кота, окрас, очі, екіпірування, аксесуари та стилізовану зброю. Мініаватар також буде видно в рейтингу, якщо ви ввімкнули участь.",
         avatarSave: "Зберегти аватар",
         avatarSaving: "Зберігаємо…",
         avatarSaved: "Аватар збережено.",
@@ -108,9 +109,9 @@ function liveCopy(locale) {
         profile: "Profile",
         profileLead: "Private fields are not shown to other learners.",
         notShared: "Not public",
-        avatarTitle: "Create your avatar",
+        avatarTitle: "Create your tactical cat",
         avatarLead:
-          "Customize appearance, clothing, and equipment. The mini avatar also appears when you opt into rankings.",
+          "Choose a cat type, coat, eyes, equipment, accessories, and a stylized carried weapon. The mini avatar also appears when you opt into rankings.",
         avatarSave: "Save avatar",
         avatarSaving: "Saving…",
         avatarSaved: "Avatar saved.",
@@ -119,73 +120,69 @@ function liveCopy(locale) {
 
 const avatarBuilderCopy = {
   uk: {
-    gender: ["Стать", { neutral: "Нейтральна", woman: "Жіноча", man: "Чоловіча" }],
-    skin: [
-      "Колір шкіри",
+    catType: [
+      "Вид кота",
       {
-        porcelain: "Світлий",
-        peach: "Персиковий",
-        sand: "Пісочний",
-        amber: "Бурштиновий",
-        copper: "Мідний",
-        umber: "Темний",
+        shorthair: "Короткошерстий",
+        "maine-coon": "Мейн-кун",
+        siamese: "Сіамський",
+        bengal: "Бенгальський",
+        "scottish-fold": "Висловухий",
+        sphynx: "Сфінкс",
       },
     ],
-    head: ["Форма голови", { oval: "Овальна", round: "Кругла", angular: "Кутаста" }],
-    hair: [
-      "Зачіска",
+    gender: ["Стать", { neutral: "Не вказувати", female: "Кішка", male: "Кіт" }],
+    coatColor: [
+      "Колір шерсті",
       {
-        none: "Без волосся",
-        crop: "Коротка",
-        fade: "Фейд",
-        side: "Набік",
-        bob: "Каре",
-        braid: "Коса",
-        bun: "Пучок",
-        forelock: "Оселедець",
+        ginger: "Рудий",
+        charcoal: "Графітовий",
+        snow: "Білий",
+        smoke: "Димчастий",
+        brown: "Коричневий",
+        cream: "Кремовий",
       },
     ],
-    hairColor: [
-      "Колір волосся",
+    coatPattern: [
+      "Окрас",
       {
-        black: "Чорний",
-        brown: "Каштановий",
-        auburn: "Рудий",
-        blond: "Світлий",
-        silver: "Сивий",
-        blue: "Синій",
+        solid: "Однотонний",
+        tabby: "Смугастий",
+        tuxedo: "Смокінг",
+        calico: "Триколірний",
+        point: "Колор-пойнт",
+        spotted: "Плямистий",
       },
     ],
-    facialHair: [
-      "Борода й вуса",
+    eyeColor: [
+      "Колір очей",
       {
-        none: "Немає",
-        stubble: "Щетина",
-        moustache: "Вуса",
-        goatee: "Еспаньйолка",
-        beard: "Борода",
-      },
-    ],
-    torso: [
-      "Одяг",
-      {
-        "field-shirt": "Польова сорочка",
-        hoodie: "Худі",
-        jacket: "Куртка",
-        "cossack-shirt": "Козацька сорочка",
-        "medic-shirt": "Сорочка медика",
-        "flight-suit": "Льотний комбінезон",
+        green: "Зелені",
+        amber: "Бурштинові",
+        blue: "Блакитні",
+        copper: "Мідні",
+        heterochromia: "Різні очі",
       },
     ],
     equipment: [
       "Екіпірування",
       {
         none: "Без екіпірування",
-        vest: "Жилет",
+        "tactical-vest": "Тактичний жилет",
         "chest-rig": "Нагрудник",
-        scarf: "Шарф",
-        "shoulder-strap": "Плечовий ремінь",
         "medic-pouch": "Медична сумка",
+        scarf: "Шарф",
+        "cossack-harness": "Козацький перев'яз",
+      },
+    ],
+    weapon: [
+      "Спорядження за спиною",
+      {
+        none: "Без зброї",
+        carbine: "Карабін",
+        "marksman-rifle": "Марксманська гвинтівка",
+        bow: "Лук",
+        sabre: "Шабля",
       },
     ],
     accessory: [
@@ -198,78 +195,74 @@ const avatarBuilderCopy = {
         cap: "Кепка",
         helmet: "Шолом",
         bandana: "Бандана",
-        earpiece: "Навушник",
+        eyepatch: "Пов'язка на око",
       },
     ],
   },
   en: {
-    gender: ["Gender", { neutral: "Neutral", woman: "Woman", man: "Man" }],
-    skin: [
-      "Skin tone",
+    catType: [
+      "Cat type",
       {
-        porcelain: "Porcelain",
-        peach: "Peach",
-        sand: "Sand",
-        amber: "Amber",
-        copper: "Copper",
-        umber: "Umber",
+        shorthair: "Shorthair",
+        "maine-coon": "Maine Coon",
+        siamese: "Siamese",
+        bengal: "Bengal",
+        "scottish-fold": "Scottish Fold",
+        sphynx: "Sphynx",
       },
     ],
-    head: ["Head shape", { oval: "Oval", round: "Round", angular: "Angular" }],
-    hair: [
-      "Hairstyle",
+    gender: ["Gender", { neutral: "Not specified", female: "Female cat", male: "Male cat" }],
+    coatColor: [
+      "Coat color",
       {
-        none: "None",
-        crop: "Crop",
-        fade: "Fade",
-        side: "Side",
-        bob: "Bob",
-        braid: "Braid",
-        bun: "Bun",
-        forelock: "Forelock",
-      },
-    ],
-    hairColor: [
-      "Hair color",
-      {
-        black: "Black",
+        ginger: "Ginger",
+        charcoal: "Charcoal",
+        snow: "Snow",
+        smoke: "Smoke",
         brown: "Brown",
-        auburn: "Auburn",
-        blond: "Blond",
-        silver: "Silver",
+        cream: "Cream",
+      },
+    ],
+    coatPattern: [
+      "Coat pattern",
+      {
+        solid: "Solid",
+        tabby: "Tabby",
+        tuxedo: "Tuxedo",
+        calico: "Calico",
+        point: "Color point",
+        spotted: "Spotted",
+      },
+    ],
+    eyeColor: [
+      "Eye color",
+      {
+        green: "Green",
+        amber: "Amber",
         blue: "Blue",
-      },
-    ],
-    facialHair: [
-      "Facial hair",
-      {
-        none: "None",
-        stubble: "Stubble",
-        moustache: "Moustache",
-        goatee: "Goatee",
-        beard: "Beard",
-      },
-    ],
-    torso: [
-      "Clothing",
-      {
-        "field-shirt": "Field shirt",
-        hoodie: "Hoodie",
-        jacket: "Jacket",
-        "cossack-shirt": "Cossack shirt",
-        "medic-shirt": "Medic shirt",
-        "flight-suit": "Flight suit",
+        copper: "Copper",
+        heterochromia: "Different eyes",
       },
     ],
     equipment: [
       "Equipment",
       {
         none: "None",
-        vest: "Vest",
+        "tactical-vest": "Tactical vest",
         "chest-rig": "Chest rig",
-        scarf: "Scarf",
-        "shoulder-strap": "Shoulder strap",
         "medic-pouch": "Medic pouch",
+        scarf: "Scarf",
+        "cossack-harness": "Cossack harness",
+      },
+    ],
+    weapon: [
+      "Carried gear",
+      {
+        none: "No weapon",
+        carbine: "Carbine",
+        "marksman-rifle": "Marksman rifle",
+        bow: "Bow",
+        sabre: "Sabre",
       },
     ],
     accessory: [
@@ -282,7 +275,7 @@ const avatarBuilderCopy = {
         cap: "Cap",
         helmet: "Helmet",
         bandana: "Bandana",
-        earpiece: "Earpiece",
+        eyepatch: "Eye patch",
       },
     ],
   },
@@ -290,14 +283,13 @@ const avatarBuilderCopy = {
 
 function AvatarBuilder({ value, onChange, locale }) {
   const groups = [
+    "catType",
     "gender",
-    "skin",
-    "head",
-    "hair",
-    "hairColor",
-    "facialHair",
-    "torso",
+    "coatColor",
+    "coatPattern",
+    "eyeColor",
     "equipment",
+    "weapon",
     "accessory",
   ];
   return (
@@ -310,10 +302,10 @@ function AvatarBuilder({ value, onChange, locale }) {
             <div className="avatar-builder-options">
               {AVATAR_CUSTOMIZATION[group].map((option) => {
                 const color =
-                  group === "skin"
-                    ? AVATAR_COLORS.skin[option]
-                    : group === "hairColor"
-                      ? AVATAR_COLORS.hair[option]
+                  group === "coatColor"
+                    ? AVATAR_COLORS.coat[option]
+                    : group === "eyeColor"
+                      ? AVATAR_COLORS.eyes[option]
                       : null;
                 return (
                   <button
@@ -429,7 +421,11 @@ export function LiveDashboardScreen() {
 
   return (
     <div className="page-stack">
-      <PageHeader eyebrow="TactLex" title={copy.dashboard} />
+      <PageHeader
+        eyebrow="TactLex"
+        title={copy.dashboard}
+        actions={<Mascot pose="point" motion="nod" size={108} priority />}
+      />
       {progress.status !== "ready" && <LiveState state={progress} copy={copy} />}
       {progress.status === "ready" && data && (
         <>
@@ -603,7 +599,11 @@ export function LiveAchievementsScreen() {
   const items = Array.isArray(state.data) ? state.data : [];
   return (
     <div className="page-stack">
-      <PageHeader eyebrow={copy.earned} title={locale === "uk" ? "Досягнення" : "Achievements"} />
+      <PageHeader
+        eyebrow={copy.earned}
+        title={locale === "uk" ? "Досягнення" : "Achievements"}
+        actions={<Mascot pose="victory" motion="bounce" size={108} />}
+      />
       {state.status !== "ready" && <LiveState state={state} copy={copy} />}
       {state.status === "ready" && items.length === 0 && (
         <LiveState state={state} copy={copy} emptyText={copy.achievementsEmpty} />

@@ -13,6 +13,7 @@ import { getTranslations } from "next-intl/server";
 import { PublicHeader } from "@/components/shells";
 import { Badge, ButtonLink, Card, ProgressBar } from "@/components/ui";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
+import { Mascot } from "@/components/mascot";
 
 export async function LandingScreen() {
   const t = await getTranslations("Landing");
@@ -50,6 +51,7 @@ export async function LandingScreen() {
 
             <div className="hero-demo-wrap">
               <div className="geometry-grid" aria-hidden="true" />
+              <Mascot pose="point" motion="nod" size={180} priority className="landing-mascot" />
               <Card className="hero-demo">
                 <div className="demo-topline">
                   <Badge tone="blue">EN → UA</Badge>

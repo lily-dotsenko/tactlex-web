@@ -88,6 +88,55 @@ const basicLessonSources = {
   },
 };
 
+const tcccLessonSources = {
+  phases: {
+    exactUrl: "https://tccc.org.ua/guide/module-1-principles-and-application-of-tccc",
+    title: "Принципи та застосування допомоги пораненим",
+    publisher: "TCCC Ukraine / Joint Trauma System",
+    sourceType: "MEDICAL",
+    citationNote: "ASM/CLS terminology cross-checked against the linked bilingual TCCC material.",
+  },
+  bleeding: {
+    exactUrl: "https://tccc.org.ua/guide/module-5-wound-tamponade-asm",
+    title: "Модуль 5: Тампонування рани",
+    publisher: "TCCC Ukraine / Joint Trauma System",
+    sourceType: "MEDICAL",
+    citationNote:
+      "ASM bleeding-control terminology cross-checked against the linked TCCC material.",
+  },
+  airway: {
+    exactUrl: "https://tccc.org.ua/guide/module-6-airways-asm",
+    title: "Модуль 6: Дихальні шляхи",
+    publisher: "TCCC Ukraine / Joint Trauma System",
+    sourceType: "MEDICAL",
+    citationNote: "ASM/CLS airway terminology cross-checked against the linked TCCC material.",
+  },
+  breathing: {
+    exactUrl: "https://tccc.org.ua/collection/tccc-cls",
+    title: "TCCC CLS — курс бійця-рятувальника",
+    publisher: "TCCC Ukraine / Joint Trauma System",
+    sourceType: "MEDICAL",
+    citationNote:
+      "CLS breathing and chest-trauma terminology cross-checked against the linked collection.",
+  },
+  shock: {
+    exactUrl: "https://tccc.org.ua/collection/course-asm",
+    title: "Вступний курс TCCC ASM",
+    publisher: "TCCC Ukraine / Joint Trauma System",
+    sourceType: "MEDICAL",
+    citationNote:
+      "ASM circulation, hypothermia, and injury terminology cross-checked against the linked collection.",
+  },
+  evacuation: {
+    exactUrl: "https://tccc.org.ua/guide/tacevac-guidelines-enroute",
+    title: "Настанови TACEVAC",
+    publisher: "TCCC Ukraine / Joint Trauma System",
+    sourceType: "MEDICAL",
+    citationNote:
+      "CLS/TACEVAC equipment and evacuation terminology cross-checked against the linked material.",
+  },
+};
+
 const curriculum = [
   {
     slug: "basic-military-english",
@@ -552,6 +601,7 @@ const curriculum = [
           ["pulse", "пульс"],
           ["respiration", "дихання"],
         ],
+        { difficulty: 1, source: tcccLessonSources.phases },
       ],
       [
         "bleeding-wounds",
@@ -569,6 +619,7 @@ const curriculum = [
           ["blood loss", "втрата крові"],
           ["contamination", "забруднення"],
         ],
+        { difficulty: 2, source: tcccLessonSources.bleeding },
       ],
       [
         "airway-breathing",
@@ -586,6 +637,7 @@ const curriculum = [
           ["chest seal", "оклюзійна наліпка"],
           ["recovery position", "стабільне бокове положення"],
         ],
+        { difficulty: 2, source: tcccLessonSources.airway },
       ],
       [
         "circulation-temperature",
@@ -603,6 +655,7 @@ const curriculum = [
           ["pain", "біль"],
           ["monitoring", "спостереження за станом"],
         ],
+        { difficulty: 3, source: tcccLessonSources.shock },
       ],
       [
         "evacuation-handover",
@@ -620,6 +673,127 @@ const curriculum = [
           ["documentation", "документація"],
           ["reassessment", "повторне оцінювання"],
         ],
+        { difficulty: 3, source: tcccLessonSources.evacuation },
+      ],
+      [
+        "tccc-phases-safety",
+        "Фази TCCC та безпека",
+        "TCCC phases and safety",
+        [
+          ["care under fire", "допомога під вогнем", { aliasesEn: ["CUF"] }],
+          ["tactical field care", "допомога в польових умовах", { aliasesEn: ["TFC"] }],
+          [
+            "tactical evacuation care",
+            "допомога на етапі тактичної евакуації",
+            { aliasesEn: ["TACEVAC care"] },
+          ],
+          ["scene safety", "безпека місця події"],
+          ["threat", "загроза"],
+          ["return fire", "вести вогонь у відповідь", { partOfSpeech: "VERB" }],
+          ["self-aid", "самодопомога"],
+          ["buddy aid", "взаємодопомога"],
+          ["casualty collection point", "пункт збору поранених", { aliasesEn: ["CCP"] }],
+          ["medical threat assessment", "оцінювання медичних загроз"],
+        ],
+        { difficulty: 2, source: tcccLessonSources.phases },
+      ],
+      [
+        "massive-bleeding-control",
+        "Контроль масивної кровотечі",
+        "Massive bleeding control",
+        [
+          ["extremity hemorrhage", "кровотеча з кінцівки"],
+          ["junctional hemorrhage", "вузлова кровотеча"],
+          ["direct pressure", "прямий тиск"],
+          ["hemostatic dressing", "гемостатична пов’язка"],
+          ["wound packing", "тампонування рани"],
+          ["tourniquet application", "накладання турнікета"],
+          ["tourniquet conversion", "конверсія турнікета"],
+          ["distal pulse", "дистальний пульс"],
+          ["amputation", "ампутація"],
+          ["time of application", "час накладання"],
+        ],
+        { difficulty: 3, source: tcccLessonSources.bleeding },
+      ],
+      [
+        "airway-assessment",
+        "Оцінювання дихальних шляхів",
+        "Airway assessment",
+        [
+          ["airway patency", "прохідність дихальних шляхів"],
+          ["airway compromise", "порушення прохідності дихальних шляхів"],
+          ["jaw-thrust maneuver", "висування нижньої щелепи"],
+          ["nasopharyngeal airway", "назофарингеальний повітровід", { aliasesEn: ["NPA"] }],
+          ["airway adjunct", "допоміжний засіб для дихальних шляхів"],
+          ["suction", "аспірація"],
+          ["facial trauma", "травма обличчя"],
+          ["unconscious casualty", "поранений без свідомості"],
+          ["airway positioning", "позиціонування для забезпечення прохідності дихальних шляхів"],
+          ["foreign-body obstruction", "обструкція стороннім тілом"],
+        ],
+        { difficulty: 3, source: tcccLessonSources.airway },
+      ],
+      [
+        "chest-breathing",
+        "Травми грудної клітки й дихання",
+        "Chest trauma and breathing",
+        [
+          ["respiratory distress", "дихальна недостатність"],
+          ["labored breathing", "утруднене дихання"],
+          ["open chest wound", "відкрита рана грудної клітки"],
+          ["penetrating chest trauma", "проникна травма грудної клітки"],
+          ["vented chest seal", "вентильована оклюзійна наліпка"],
+          ["bilateral chest rise", "двобічне підняття грудної клітки"],
+          ["tension pneumothorax", "напружений пневмоторакс"],
+          ["needle decompression", "голкова декомпресія", { aliasesEn: ["NDC"] }],
+          ["seal monitoring", "контроль оклюзійної наліпки"],
+          ["respiratory deterioration", "погіршення дихання"],
+        ],
+        { difficulty: 4, source: tcccLessonSources.breathing },
+      ],
+      [
+        "shock-hypothermia-injuries",
+        "Шок, гіпотермія та інші травми",
+        "Shock, hypothermia, and other injuries",
+        [
+          ["radial pulse", "пульс на променевій артерії"],
+          ["carotid pulse", "пульс на сонній артерії"],
+          ["altered mental status", "змінений психічний стан"],
+          ["hemorrhagic shock", "геморагічний шок"],
+          ["heat loss", "втрата тепла"],
+          ["insulation", "теплоізоляція"],
+          [
+            "hypothermia prevention kit",
+            "набір для профілактики гіпотермії",
+            { aliasesEn: ["HPMK"] },
+          ],
+          ["pelvic binder", "тазовий бандаж"],
+          ["rigid eye shield", "жорсткий захисний щиток для ока"],
+          ["suspected fracture", "підозра на перелом"],
+        ],
+        { difficulty: 3, source: tcccLessonSources.shock },
+      ],
+      [
+        "equipment-movement-evacuation",
+        "Спорядження, переміщення та евакуація",
+        "Equipment, movement, and evacuation",
+        [
+          ["individual first aid kit", "індивідуальна аптечка", { aliasesEn: ["IFAK"] }],
+          ["combat gauze", "бойовий гемостатичний бинт"],
+          ["pressure dressing", "компресійний бандаж"],
+          ["trauma shears", "атравматичні ножиці"],
+          ["emergency blanket", "термоковдра"],
+          ["casualty drag", "перетягування пораненого"],
+          ["casualty carry", "перенесення пораненого"],
+          [
+            "nine-line MEDEVAC request",
+            "дев’ятилінійний запит на медичну евакуацію",
+            { aliasesEn: ["9-line MEDEVAC"] },
+          ],
+          ["mechanism of injury", "механізм травми", { aliasesEn: ["MOI"] }],
+          ["evacuation platform", "евакуаційна платформа"],
+        ],
+        { difficulty: 3, source: tcccLessonSources.evacuation },
       ],
     ],
   },
@@ -805,6 +979,46 @@ function makeTerm(category, lesson, pair, position) {
   const partOfSpeech =
     metadata.partOfSpeech ??
     (/^[A-Z]{2,6}$/u.test(english) ? "ABBREVIATION" : english.includes(" ") ? "PHRASE" : "NOUN");
+  const medicalTopic = {
+    "assessment-roles": [
+      "casualty assessment and responder roles",
+      "оцінювання стану пораненого та ролей",
+    ],
+    "bleeding-wounds": ["bleeding and wound vocabulary", "лексики кровотеч і ран"],
+    "airway-breathing": ["airway and breathing vocabulary", "лексики дихальних шляхів і дихання"],
+    "circulation-temperature": [
+      "circulation, shock, and temperature vocabulary",
+      "лексики кровообігу, шоку й температури",
+    ],
+    "evacuation-handover": [
+      "evacuation and handover vocabulary",
+      "лексики евакуації та передачі пораненого",
+    ],
+    "tccc-phases-safety": ["TCCC phases and scene safety", "фаз TCCC та безпеки місця події"],
+    "massive-bleeding-control": ["massive bleeding control", "контролю масивної кровотечі"],
+    "airway-assessment": ["airway assessment", "оцінювання дихальних шляхів"],
+    "chest-breathing": ["chest trauma and breathing", "травм грудної клітки й дихання"],
+    "shock-hypothermia-injuries": [
+      "shock, hypothermia, and other injuries",
+      "шоку, гіпотермії та інших травм",
+    ],
+    "equipment-movement-evacuation": [
+      "medical equipment, movement, and evacuation",
+      "медичного спорядження, переміщення та евакуації",
+    ],
+  }[lesson.slug];
+  const definitionEn = medicalTopic
+    ? `In TCCC English, “${english}” is used in the vocabulary of ${medicalTopic[0]} and corresponds to “${ukrainian}” in Ukrainian.`
+    : `The concept denoted by “${english}” in the ${category.nameEn} vocabulary.`;
+  const definitionUk = medicalTopic
+    ? `У термінології TCCC «${ukrainian}» відповідає англійському терміну “${english}” у контексті ${medicalTopic[1]}.`
+    : `Поняття, позначене терміном «${ukrainian}» у словнику напряму «${category.nameUk}».`;
+  const exampleEn = medicalTopic
+    ? `The instructor highlighted “${english}” while reviewing ${medicalTopic[0]}.`
+    : `The learner reviews the term “${english}” in a neutral language exercise.`;
+  const exampleUk = medicalTopic
+    ? `Інструктор звернув увагу на термін «${ukrainian}» під час мовного розбору ${medicalTopic[1]}.`
+    : `Користувач опрацьовує термін «${ukrainian}» у нейтральній мовній вправі.`;
   return {
     externalKey,
     slug: `${category.slug}-${slugify(english)}`,
@@ -816,18 +1030,10 @@ function makeTerm(category, lesson, pair, position) {
     cefrLevel: lesson.cefrLevel,
     aliasesEn: metadata.aliasesEn ?? [],
     aliasesUk: metadata.aliasesUk ?? [],
-    definitionEn:
-      metadata.definitionEn ??
-      `The concept denoted by “${english}” in the ${category.nameEn} vocabulary.`,
-    definitionUk:
-      metadata.definitionUk ??
-      `Поняття, позначене терміном «${ukrainian}» у словнику напряму «${category.nameUk}».`,
-    exampleEn:
-      metadata.exampleEn ??
-      `The learner reviews the term “${english}” in a neutral language exercise.`,
-    exampleUk:
-      metadata.exampleUk ??
-      `Користувач опрацьовує термін «${ukrainian}» у нейтральній мовній вправі.`,
+    definitionEn: metadata.definitionEn ?? definitionEn,
+    definitionUk: metadata.definitionUk ?? definitionUk,
+    exampleEn: metadata.exampleEn ?? exampleEn,
+    exampleUk: metadata.exampleUk ?? exampleUk,
     contextNoteEn:
       category.slug === "tactical-medicine"
         ? "Language reference only; this material does not replace certified medical training."
@@ -866,6 +1072,7 @@ function makeGlossaryTerm(category, sourceGroup, pair, position) {
   const exactUrl =
     sourceGroup.exactUrl ??
     `https://www.youtube.com/results?search_query=${encodeURIComponent(sourceGroup.title)}`;
+  const isMedicine = category.slug === "tactical-medicine";
   return {
     externalKey: `glossary:${slugify(english)}`,
     slug: `glossary-${slugify(english)}`,
@@ -883,10 +1090,18 @@ function makeGlossaryTerm(category, sourceGroup, pair, position) {
     cefrLevel: technical ? "B1" : "A2",
     aliasesEn: [],
     aliasesUk,
-    definitionEn: `A dictionary term from the “${sourceGroup.title}” vocabulary collection.`,
-    definitionUk: `Словниковий термін із тематичної добірки «${sourceGroup.title}».`,
-    exampleEn: `The learner reviews “${english}” as a standalone dictionary entry.`,
-    exampleUk: `Користувач переглядає «${ukrainian}» як окрему словникову статтю.`,
+    definitionEn: isMedicine
+      ? `In TCCC English, “${english}” corresponds to “${ukrainian}” in the extended casualty-care vocabulary.`
+      : `A dictionary term from the “${sourceGroup.title}” vocabulary collection.`,
+    definitionUk: isMedicine
+      ? `У розширеній термінології допомоги пораненим «${ukrainian}» відповідає англійському терміну “${english}”.`
+      : `Словниковий термін із тематичної добірки «${sourceGroup.title}».`,
+    exampleEn: isMedicine
+      ? `The instructor highlighted “${english}” during the extended TCCC vocabulary review.`
+      : `The learner reviews “${english}” as a standalone dictionary entry.`,
+    exampleUk: isMedicine
+      ? `Інструктор звернув увагу на термін «${ukrainian}» під час розширеного мовного огляду TCCC.`
+      : `Користувач переглядає «${ukrainian}» як окрему словникову статтю.`,
     contextNoteEn:
       category.slug === "tactical-medicine"
         ? "Language reference based on TCCC Ukraine terminology; not a substitute for certified medical training."
@@ -925,12 +1140,12 @@ const manifest = {
   expected: {
     categories: 5,
     terms: 0,
-    lessonTerms: 556,
+    lessonTerms: 616,
     glossaryTerms: 0,
-    lessons: 57,
-    lessonTermsMin: 9,
+    lessons: 77,
+    lessonTermsMin: 6,
     lessonTermsMax: 10,
-    facts: 27,
+    facts: 41,
   },
   files: [],
 };
@@ -955,8 +1170,8 @@ for (const sourceGroup of [...vttGlossarySources, tcccGlossarySource]) {
 }
 
 const supplementalLessonCounts = {
-  "basic-military-english": 16,
-  "general-tactical-english": 9,
+  "basic-military-english": 25,
+  "general-tactical-english": 14,
   "tactical-medicine": 1,
   "drones-uas": 1,
   "sniper-terminology": 0,
@@ -965,7 +1180,7 @@ const supplementalLessonCounts = {
 const supplementalTitles = {
   "basic-military-english": ["Базова лексика", "Core vocabulary"],
   "general-tactical-english": ["Тактична лексика", "Tactical vocabulary"],
-  "tactical-medicine": ["Медична лексика", "Medical vocabulary"],
+  "tactical-medicine": ["Розширена допомога пораненим", "Expanded casualty care"],
   "drones-uas": ["Лексика дронів", "Drone vocabulary"],
 };
 

@@ -57,6 +57,16 @@ function mapTerm(term, locale) {
     })),
     definition: definition(ownLocale),
     definitions: term.definitions,
+    contextDefinitions: term.contextDefinitions.map((item) => ({
+      id: item.id,
+      categoryId: item.categoryId,
+      categorySlug: item.category.slug,
+      categoryName: localize(item.category, locale, "name"),
+      locale: item.locale,
+      shortDefinition: item.shortDefinition,
+      example: item.example,
+      contextNote: item.contextNote,
+    })),
     categories: term.categories.map(({ category, isPrimary }) => ({
       id: category.id,
       slug: category.slug,
@@ -79,18 +89,33 @@ function mapTerm(term, locale) {
       provider: asset.provider,
       durationMs: asset.durationMs,
     })),
+    distractors: (term.distractors ?? []).map(({ distractorTerm }) => ({
+      id: distractorTerm.id,
+      slug: distractorTerm.slug,
+      english:
+        distractorTerm.variants.find((variant) => variant.locale === "EN" && variant.isPrimary)
+          ?.value ?? null,
+      ukrainian:
+        distractorTerm.variants.find((variant) => variant.locale === "UK" && variant.isPrimary)
+          ?.value ?? null,
+    })),
   };
 }
 
 const termInclude = {
   variants: { orderBy: [{ locale: "asc" }, { isPrimary: "desc" }, { value: "asc" }] },
   definitions: true,
+  contextDefinitions: { include: { category: true } },
   categories: { include: { category: true }, orderBy: { isPrimary: "desc" } },
   sources: {
     include: { source: true },
     orderBy: { isPrimary: "desc" },
   },
   audioAssets: { where: { archivedAt: null, isPrimary: true } },
+  distractors: {
+    where: { direction: "EN_TO_UK" },
+    include: { distractorTerm: { include: { variants: true } } },
+  },
 };
 
 function termOrderBy(sort) {

@@ -5,6 +5,10 @@ import { Download, RefreshCw, WifiOff, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button, IconButton } from "./ui";
 
+const INSTALL_VISITS_KEY = "tactlex-visits";
+const INSTALL_SHOWS_KEY = "tactlex-install-prompt-shows";
+const MAX_INSTALL_PROMPT_SHOWS = 2;
+
 function subscribeToConnectivity(onStoreChange) {
   window.addEventListener("online", onStoreChange);
   window.addEventListener("offline", onStoreChange);
@@ -54,9 +58,13 @@ export function PwaProvider({ children }) {
     const handleInstall = (event) => {
       event.preventDefault();
       setInstallEvent(event);
-      const visits = Number(window.localStorage.getItem("tactlex-visits") || "0") + 1;
-      window.localStorage.setItem("tactlex-visits", String(visits));
-      setShowInstall(visits > 1);
+      const visits = Number(window.localStorage.getItem(INSTALL_VISITS_KEY) || "0") + 1;
+      const previousShows = Number(window.localStorage.getItem(INSTALL_SHOWS_KEY) || "0");
+      window.localStorage.setItem(INSTALL_VISITS_KEY, String(visits));
+      if (visits > 1 && previousShows < MAX_INSTALL_PROMPT_SHOWS) {
+        window.localStorage.setItem(INSTALL_SHOWS_KEY, String(previousShows + 1));
+        setShowInstall(true);
+      }
     };
 
     window.addEventListener("beforeinstallprompt", handleInstall);

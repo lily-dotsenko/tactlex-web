@@ -1,204 +1,221 @@
 import clsx from "clsx";
 import { AVATAR_COLORS, normalizeCustomAvatar } from "@/lib/avatars/custom";
 
-const torsoColors = {
-  "field-shirt": "#53654a",
-  hoodie: "#343d42",
-  jacket: "#786044",
-  "cossack-shirt": "#315f86",
-  "medic-shirt": "#586b67",
-  "flight-suit": "#4c5f59",
-};
+const outline = "#172026";
 
-function Hair({ style, color }) {
-  if (style === "none") return null;
-  const common = { fill: color, stroke: "#172026", strokeWidth: 2.4, strokeLinejoin: "round" };
-  if (style === "crop")
-    return <path d="M39 48c2-19 13-28 25-28 14 0 24 9 27 28-12-8-38-8-52 0Z" {...common} />;
-  if (style === "fade")
-    return <path d="M42 44c5-17 16-24 29-22 10 1 17 8 20 22-13-6-35-6-49 0Z" {...common} />;
-  if (style === "side")
-    return <path d="M37 49c3-22 18-31 35-28 13 2 19 13 19 28-10-9-23-15-54 0Z" {...common} />;
-  if (style === "bob")
-    return (
-      <path
-        d="M34 56c0-24 12-36 31-36 20 0 31 14 31 39l-9 13-3-27c-12-8-28-8-41 1l-2 26Z"
-        {...common}
-      />
-    );
-  if (style === "braid")
-    return (
-      <>
-        <path d="M35 53c1-22 14-33 30-33 19 0 29 13 30 34-13-12-42-14-60-1Z" {...common} />
-        <path d="M88 53c9 9 8 27 1 42l-8-5c7-15 7-26 1-33Z" {...common} />
-      </>
-    );
-  if (style === "bun")
-    return (
-      <>
-        <circle cx="83" cy="24" r="12" {...common} />
-        <path d="M36 50c2-20 14-30 30-30 18 0 28 12 29 31-14-11-42-12-59-1Z" {...common} />
-      </>
-    );
-  return <path d="M42 44c9-22 25-27 38-20-13 3-18 11-16 23-8-6-14-7-22-3Z" {...common} />;
-}
-
-function FacialHair({ style, color }) {
-  if (style === "none") return null;
-  if (style === "stubble")
-    return (
-      <path d="M49 70c8 7 23 7 31 0-1 13-8 20-16 20S50 83 49 70Z" fill={color} opacity=".35" />
-    );
-  if (style === "moustache")
-    return <path d="M50 70c5-6 11-4 14 1 3-5 9-7 15-1-6 8-12 7-15 4-4 4-10 4-14-4Z" fill={color} />;
-  if (style === "goatee")
-    return (
-      <>
-        <path d="M51 70c5-5 10-3 13 1 4-4 9-6 15-1-6 7-11 6-15 4-4 3-9 3-13-4Z" fill={color} />
-        <path d="M57 78h14l-3 16h-8Z" fill={color} />
-      </>
-    );
-  return (
-    <path
-      d="M43 65c5 8 10 10 21 10s17-3 22-10c0 21-8 32-22 34-14-2-22-13-21-34Z"
-      fill={color}
-      stroke="#172026"
-      strokeWidth="2"
-    />
-  );
-}
-
-function Equipment({ type }) {
+function CatWeapon({ type }) {
   if (type === "none") return null;
-  if (type === "vest")
-    return <path d="M39 91h50l8 35H31Z" fill="#35463c" stroke="#172026" strokeWidth="3" />;
-  if (type === "chest-rig")
+  if (type === "bow") {
     return (
-      <>
-        <path d="M35 99h58l4 27H31Z" fill="#4c513b" stroke="#172026" strokeWidth="3" />
-        <path d="M47 103v20m17-20v20m17-20v20" stroke="#9b9369" strokeWidth="3" />
-      </>
+      <g transform="rotate(-18 64 72)" aria-hidden="true">
+        <path d="M34 28c25 12 25 68 0 82" fill="none" stroke="#8c633d" strokeWidth="4" />
+        <path d="M34 28v82" stroke="#d4d0bd" strokeWidth="1.5" />
+      </g>
     );
-  if (type === "scarf")
+  }
+  if (type === "sabre") {
     return (
-      <path
-        d="M42 88c13 8 31 8 44 0l5 15c-17 8-37 8-54 0Z"
-        fill="#876b43"
-        stroke="#172026"
-        strokeWidth="2"
-      />
+      <g transform="rotate(16 95 74)" aria-hidden="true">
+        <path d="M98 25c8 36 5 65-7 86" fill="none" stroke="#c9d2d1" strokeWidth="5" />
+        <path d="M91 109h15M98 109v11" stroke="#8d6534" strokeWidth="4" strokeLinecap="round" />
+      </g>
     );
-  if (type === "shoulder-strap")
-    return <path d="M38 91 78 127H64L32 99Z" fill="#2a3132" stroke="#172026" strokeWidth="3" />;
+  }
+  const long = type === "marksman-rifle";
   return (
-    <>
-      <path d="M37 94 91 126" stroke="#394b42" strokeWidth="8" />
+    <g transform="rotate(-18 70 82)" aria-hidden="true">
       <rect
-        x="72"
-        y="107"
-        width="23"
-        height="18"
-        rx="4"
-        fill="#6b3030"
-        stroke="#172026"
+        x={long ? 18 : 25}
+        y="91"
+        width={long ? 92 : 78}
+        height="8"
+        rx="3"
+        fill="#394143"
+        stroke={outline}
         strokeWidth="2"
       />
-      <path d="M83 111v10m-5-5h10" stroke="#eee" strokeWidth="2" />
-    </>
+      <path d="M71 98 62 116h12l9-18Z" fill="#5b4735" stroke={outline} strokeWidth="2" />
+      {long ? <rect x="56" y="85" width="27" height="6" rx="3" fill="#20292b" /> : null}
+    </g>
   );
 }
 
-function Accessory({ type }) {
+function CatPattern({ type, coat }) {
+  if (type === "solid") return null;
+  if (type === "tabby") {
+    return (
+      <g fill="none" stroke="#563b30" strokeWidth="3" strokeLinecap="round" opacity=".72">
+        <path d="M57 31 62 43M70 31 66 43M48 45l8 5M80 45l-8 5M43 58l11 2M85 58l-11 2" />
+      </g>
+    );
+  }
+  if (type === "tuxedo") {
+    return <path d="M52 63c5-8 19-8 24 0l-3 24c-6 5-13 5-19 0Z" fill="#f4f0e8" opacity=".96" />;
+  }
+  if (type === "calico") {
+    return (
+      <g opacity=".9">
+        <path d="M39 43c7-13 17-14 24-5l-7 16Z" fill="#f0e8dc" />
+        <path d="M70 32c12 2 18 10 17 21l-15 1Z" fill="#262d30" />
+        <path d="M71 70c8-6 15-2 16 6-5 9-13 12-21 8Z" fill="#f0e8dc" />
+      </g>
+    );
+  }
+  if (type === "point") {
+    return (
+      <g fill="#4d403d" opacity=".9">
+        <path d="M35 35 42 12l17 23Z" />
+        <path d="m70 34 17-22 7 25Z" />
+        <ellipse cx="64" cy="70" rx="18" ry="15" />
+      </g>
+    );
+  }
+  return (
+    <g fill={coat === "charcoal" ? "#a87348" : "#55443a"} opacity=".72">
+      <circle cx="48" cy="43" r="5" />
+      <circle cx="77" cy="42" r="4" />
+      <circle cx="43" cy="67" r="4" />
+      <circle cx="83" cy="65" r="5" />
+    </g>
+  );
+}
+
+function CatEquipment({ type, accent }) {
   if (type === "none") return null;
-  if (type === "headset" || type === "earpiece")
-    return (
-      <>
-        <path
-          d="M38 57c0-18 10-28 26-28s27 10 27 28"
-          fill="none"
-          stroke="#232b2d"
-          strokeWidth="5"
-        />
-        <rect x="33" y="54" width="9" height="18" rx="4" fill="#39494a" />
-        <path d="M39 69c6 1 8 5 8 10" fill="none" stroke="#232b2d" strokeWidth="3" />
-      </>
-    );
-  if (type === "glasses")
-    return (
-      <>
-        <rect
-          x="42"
-          y="54"
-          width="19"
-          height="14"
-          rx="6"
-          fill="none"
-          stroke="#27353b"
-          strokeWidth="3"
-        />
-        <rect
-          x="67"
-          y="54"
-          width="19"
-          height="14"
-          rx="6"
-          fill="none"
-          stroke="#27353b"
-          strokeWidth="3"
-        />
-        <path d="M61 59h6" stroke="#27353b" strokeWidth="3" />
-      </>
-    );
-  if (type === "goggles")
+  if (type === "scarf") {
     return (
       <path
-        d="M40 52h48l-4 18H69l-5-6-5 6H44Z"
-        fill="#79a6ad"
-        fillOpacity=".65"
-        stroke="#202a2c"
+        d="M39 89c16 9 34 9 50 0l5 14c-20 9-41 9-60 0Z"
+        fill="#8b623c"
+        stroke={outline}
         strokeWidth="3"
       />
     );
-  if (type === "cap")
+  }
+  if (type === "cossack-harness") {
     return (
-      <>
-        <path d="M38 43c4-18 46-18 52 0Z" fill="#52654b" stroke="#172026" strokeWidth="3" />
-        <path d="M63 42h34c-4 7-16 10-34 7Z" fill="#40523d" stroke="#172026" strokeWidth="2" />
-      </>
+      <g>
+        <path d="M39 93 83 128H67L31 101Z" fill="#7b3030" stroke={outline} strokeWidth="3" />
+        <circle cx="62" cy="111" r="5" fill="#d4a53c" />
+      </g>
     );
-  if (type === "helmet")
+  }
+  if (type === "medic-pouch") {
     return (
-      <>
+      <g>
+        <path d="M36 94 93 125" stroke="#405149" strokeWidth="8" />
+        <rect
+          x="73"
+          y="107"
+          width="24"
+          height="19"
+          rx="4"
+          fill="#6c3838"
+          stroke={outline}
+          strokeWidth="2"
+        />
+        <path d="M85 111v11m-5-5.5h10" stroke="#f4eee4" strokeWidth="2.4" />
+      </g>
+    );
+  }
+  if (type === "chest-rig") {
+    return (
+      <g>
+        <path d="M34 99h60l4 29H30Z" fill="#4c513b" stroke={outline} strokeWidth="3" />
+        <path d="M47 104v21m17-21v21m17-21v21" stroke="#9b9369" strokeWidth="3" />
+      </g>
+    );
+  }
+  return (
+    <g>
+      <path d="M38 91h52l8 37H30Z" fill="#35463c" stroke={outline} strokeWidth="3" />
+      <path d="M51 94v31m27-31v31" stroke="#728169" strokeWidth="3" />
+      <path d="M58 105h13v9H58Z" fill={accent} opacity=".9" />
+    </g>
+  );
+}
+
+function CatAccessory({ type }) {
+  if (type === "none") return null;
+  if (type === "headset") {
+    return (
+      <g>
         <path
-          d="M34 49c1-22 13-34 31-34 20 0 31 13 32 34Z"
-          fill="#52614b"
-          stroke="#172026"
+          d="M36 57c0-25 12-37 28-37s29 12 29 37"
+          fill="none"
+          stroke="#273133"
+          strokeWidth="5"
+        />
+        <rect x="31" y="52" width="10" height="20" rx="4" fill="#435052" />
+        <path d="M38 69c8 1 11 6 11 12" fill="none" stroke="#273133" strokeWidth="3" />
+      </g>
+    );
+  }
+  if (type === "glasses") {
+    return (
+      <g fill="none" stroke="#263438" strokeWidth="3">
+        <rect x="39" y="50" width="21" height="16" rx="7" />
+        <rect x="68" y="50" width="21" height="16" rx="7" />
+        <path d="M60 56h8" />
+      </g>
+    );
+  }
+  if (type === "goggles") {
+    return (
+      <path
+        d="M37 48h54l-5 21H70l-6-7-6 7H42Z"
+        fill="#70a7b1"
+        fillOpacity=".65"
+        stroke={outline}
+        strokeWidth="3"
+      />
+    );
+  }
+  if (type === "cap") {
+    return (
+      <g>
+        <path d="M36 38c8-18 48-18 56 0Z" fill="#52654b" stroke={outline} strokeWidth="3" />
+        <path d="M64 37h35c-6 8-18 10-35 7Z" fill="#40523d" stroke={outline} strokeWidth="2" />
+      </g>
+    );
+  }
+  if (type === "helmet") {
+    return (
+      <g>
+        <path
+          d="M31 43c3-23 16-34 34-34 20 0 32 13 34 35Z"
+          fill="#53624b"
+          stroke={outline}
           strokeWidth="3"
         />
-        <path d="M34 47h63" stroke="#27322a" strokeWidth="5" />
-      </>
+        <path d="M31 42h68" stroke="#29352c" strokeWidth="5" />
+      </g>
     );
-  return (
-    <path
-      d="M35 43c18 8 39 8 59 0l-1 10c-19-6-38-6-57 0Z"
-      fill="#506f80"
-      stroke="#172026"
-      strokeWidth="2"
-    />
-  );
+  }
+  if (type === "bandana") {
+    return (
+      <path
+        d="M34 39c19 7 41 7 61 0l-2 12c-19-5-38-5-57 0Z"
+        fill="#4d7183"
+        stroke={outline}
+        strokeWidth="2"
+      />
+    );
+  }
+  return <path d="m39 48 48 24M82 45l-8 26" fill="none" stroke="#222a2c" strokeWidth="4" />;
 }
 
 export function CustomAvatar({ config, size = 72, className, title = "" }) {
   const value = normalizeCustomAvatar(config);
-  const skin = AVATAR_COLORS.skin[value.skin];
-  const hair = AVATAR_COLORS.hair[value.hairColor];
-  const headPath =
-    value.head === "round"
-      ? "M38 51c0-20 11-31 27-31s27 11 27 31v18c0 18-11 29-27 29S38 87 38 69Z"
-      : value.head === "angular"
-        ? "M39 48 48 27l17-8 18 8 8 22-5 34-21 17-21-16Z"
-        : "M38 49c0-20 11-30 27-30s27 10 27 30v20c0 19-11 31-27 31S38 88 38 69Z";
-  const torsoWidth = value.gender === "woman" ? 27 : value.gender === "man" ? 35 : 31;
+  const coat = AVATAR_COLORS.coat[value.coatColor];
+  const leftEye = AVATAR_COLORS.eyes[value.eyeColor];
+  const rightEye = value.eyeColor === "heterochromia" ? "#e4aa37" : leftEye;
+  const accent =
+    value.gender === "female" ? "#a65f80" : value.gender === "male" ? "#4e7b9c" : "#75834d";
+  const folded = value.catType === "scottish-fold";
+  const longFur = value.catType === "maine-coon";
+  const sphynx = value.catType === "sphynx";
+
   return (
     <svg
       className={clsx("custom-avatar", className)}
@@ -210,31 +227,76 @@ export function CustomAvatar({ config, size = 72, className, title = "" }) {
       aria-hidden={title ? undefined : "true"}
     >
       <rect width="128" height="128" rx="24" fill="#1c2927" />
+      <CatWeapon type={value.weapon} />
       <path
-        d={`M${64 - torsoWidth} 128c2-25 12-38 ${torsoWidth}c${torsoWidth - 12} 0 ${torsoWidth - 2} 13 ${torsoWidth} 38Z`}
-        fill={torsoColors[value.torso]}
-        stroke="#172026"
+        d="M27 128c3-27 16-41 37-41s35 14 38 41Z"
+        fill={coat}
+        stroke={outline}
         strokeWidth="3"
       />
-      <path d="M55 85h19v16H55Z" fill={skin} />
-      <circle cx="36" cy="61" r="9" fill={skin} stroke="#172026" strokeWidth="2" />
-      <circle cx="94" cy="61" r="9" fill={skin} stroke="#172026" strokeWidth="2" />
-      <path d={headPath} fill={skin} stroke="#172026" strokeWidth="3" />
-      <Hair style={value.hair} color={hair} />
-      <path d="M49 58h10m11 0h10" stroke="#172026" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="54" cy="62" r="2" fill="#172026" />
-      <circle cx="76" cy="62" r="2" fill="#172026" />
-      <path d="M64 62v8l4 2" fill="none" stroke="#9b604b" strokeWidth="2" strokeLinecap="round" />
+      {longFur ? (
+        <path
+          d="M37 82 48 103l16-10 17 10 11-21-6 33H42Z"
+          fill={coat}
+          stroke={outline}
+          strokeWidth="2"
+        />
+      ) : null}
+      {folded ? (
+        <>
+          <path d="M36 36 39 15l18 18Z" fill={coat} stroke={outline} strokeWidth="3" />
+          <path d="m73 33 18-18 2 22Z" fill={coat} stroke={outline} strokeWidth="3" />
+        </>
+      ) : (
+        <>
+          <path d="M34 39 41 9l22 26Z" fill={coat} stroke={outline} strokeWidth="3" />
+          <path d="m66 35 22-26 7 31Z" fill={coat} stroke={outline} strokeWidth="3" />
+          <path d="m43 18 4 15-9 3Z" fill="#d58b86" opacity={sphynx ? ".8" : ".55"} />
+          <path d="m86 18-4 15 9 3Z" fill="#d58b86" opacity={sphynx ? ".8" : ".55"} />
+        </>
+      )}
+      {longFur ? (
+        <path
+          d="m39 13-8-7 11 2m45 5 8-7-11 2"
+          fill="none"
+          stroke={coat}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+      ) : null}
       <path
-        d="M58 80c4 3 9 3 13 0"
+        d="M34 45c0-17 12-27 30-27s30 10 30 27v25c0 19-12 30-30 30S34 89 34 70Z"
+        fill={coat}
+        stroke={outline}
+        strokeWidth="3"
+      />
+      {sphynx ? (
+        <path
+          d="M41 38c15-8 31-8 46 0M43 45c14-6 28-6 42 0"
+          fill="none"
+          stroke="#a56f68"
+          strokeWidth="1.5"
+          opacity=".65"
+        />
+      ) : null}
+      <CatPattern type={value.coatPattern} coat={value.coatColor} />
+      <ellipse cx="50" cy="58" rx="7" ry="9" fill="#f4f0df" stroke={outline} strokeWidth="2" />
+      <ellipse cx="78" cy="58" rx="7" ry="9" fill="#f4f0df" stroke={outline} strokeWidth="2" />
+      <ellipse cx="50" cy="59" rx="3" ry="6" fill={leftEye} />
+      <ellipse cx="78" cy="59" rx="3" ry="6" fill={rightEye} />
+      <path d="m59 70 5-3 5 3-5 5Z" fill="#b96f72" stroke={outline} strokeWidth="1.5" />
+      <path
+        d="M64 75c-4 0-7 2-8 5m8-5c4 0 7 2 8 5"
         fill="none"
-        stroke="#8d4b47"
-        strokeWidth="2.5"
+        stroke={outline}
+        strokeWidth="2"
         strokeLinecap="round"
       />
-      <FacialHair style={value.facialHair} color={hair} />
-      <Equipment type={value.equipment} />
-      <Accessory type={value.accessory} />
+      <g stroke="#d8d1bd" strokeWidth="1.5" opacity=".8">
+        <path d="M53 74 27 69M54 78 27 80M75 74l26-5M74 78l27 2" />
+      </g>
+      <CatEquipment type={value.equipment} accent={accent} />
+      <CatAccessory type={value.accessory} />
     </svg>
   );
 }

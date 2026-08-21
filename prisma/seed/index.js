@@ -59,10 +59,10 @@ const categories = [
     nameUk: "Тактична медицина / TCCC",
     nameEn: "Tactical medicine / TCCC",
     descriptionUk:
-      "Мовна термінологія з відкритих перевірених джерел; не замінює сертифіковане навчання.",
+      "Професійна англійська рівня TCCC ASM і CLS; не замінює сертифікований курс або практичне відпрацювання з інструктором.",
     descriptionEn:
-      "Language terminology from verified public sources; not a substitute for certified training.",
-    targetTermCount: 60,
+      "Professional English for TCCC ASM and CLS; not a substitute for a certified course or supervised practical training.",
+    targetTermCount: 120,
     displayOrder: 3,
   },
   {
@@ -145,12 +145,12 @@ const achievementDefinitions = [
     code: "all-two-hundred",
     nameUk: "Повний комплект",
     nameEn: "Full set",
-    descriptionUk: "Опрацювати всі 556 термінів програми.",
-    descriptionEn: "Master all 556 terms in the curriculum.",
+    descriptionUk: "Опрацювати всі 616 термінів програми.",
+    descriptionEn: "Master all 616 terms in the curriculum.",
     iconKey: "award",
     rewardXp: 200,
     displayOrder: 6,
-    rule: { metric: "MASTERED_TERMS", threshold: 556 },
+    rule: { metric: "MASTERED_TERMS", threshold: 616 },
   },
   {
     code: "streak-seven",

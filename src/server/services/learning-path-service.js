@@ -55,11 +55,32 @@ export function createLearningPathService(db, { clock = () => new Date() } = {})
 
   async function getPath(userId, categorySlug, { locale = "uk" } = {}) {
     const category = await rawPath(userId, categorySlug);
+    const activeSessions = await db.studySession.findMany({
+      where: {
+        userId,
+        status: "ACTIVE",
+        expiresAt: { gt: clock() },
+        nodeId: { in: category.learningNodes.map((node) => node.id) },
+      },
+      orderBy: { startedAt: "desc" },
+      select: {
+        id: true,
+        nodeId: true,
+        currentStage: true,
+        items: { select: { status: true } },
+      },
+    });
+    const activeByNode = new Map();
+    for (const session of activeSessions) {
+      if (session.nodeId && !activeByNode.has(session.nodeId))
+        activeByNode.set(session.nodeId, session);
+    }
     const educational = category.learningNodes.filter((node) =>
       ["LESSON", "QUIZ", "FACT", "CHECKPOINT"].includes(node.type),
     );
+    const activeNode = category.learningNodes.find((node) => activeByNode.has(node.id));
     const recommendedNode =
-      educational.find((node) => !node.progress[0]?.completions) ?? educational[0];
+      activeNode ?? educational.find((node) => !node.progress[0]?.completions) ?? educational[0];
     const completedLessonNodes = category.learningNodes.filter(
       (node) => node.type === "LESSON" && node.progress[0]?.completions,
     ).length;
@@ -79,6 +100,10 @@ export function createLearningPathService(db, { clock = () => new Date() } = {})
       totalNodes: category.learningNodes.length,
       nodes: category.learningNodes.map((node) => {
         const progress = node.progress[0] ?? null;
+        const activeSession = activeByNode.get(node.id) ?? null;
+        const answeredItems =
+          activeSession?.items.filter((item) => item.status === "ANSWERED").length ?? 0;
+        const totalItems = activeSession?.items.length ?? 0;
         const requiredCompletions = Number(node.displayMetadata?.requiredCompletions ?? 0);
         const claimable =
           !progress?.claimedAt &&
@@ -102,6 +127,10 @@ export function createLearningPathService(db, { clock = () => new Date() } = {})
           lessonId: node.lessonId,
           termCount: node.lesson?._count.terms ?? 0,
           estimatedMinutes: node.lesson?.estimatedMinutes ?? (node.type === "FACT" ? 2 : 1),
+          activeSessionId: activeSession?.id ?? null,
+          answeredItems,
+          totalItems,
+          progressPercent: totalItems ? Math.round((answeredItems / totalItems) * 100) : 0,
           rewardPreview:
             node.type === "REWARD"
               ? { coins: node.rewardCoins }

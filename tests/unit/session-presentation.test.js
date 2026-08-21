@@ -24,4 +24,15 @@ describe("practice pronunciation presentation", () => {
       }),
     ).toBeNull();
   });
+
+  test("does not attach term audio to a contextual sentence prompt", () => {
+    expect(
+      pronunciationForItem({
+        exerciseType: "CONTEXT_SENTENCE",
+        promptLocale: "en",
+        prompt: "The _____ is ready.",
+        audio: { url: "/api/v1/audio/term" },
+      }),
+    ).toBeNull();
+  });
 });

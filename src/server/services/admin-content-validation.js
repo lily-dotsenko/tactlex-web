@@ -64,6 +64,8 @@ const termCategorySchema = z
   .object({ categoryId: z.uuid(), isPrimary: z.boolean().default(false) })
   .strict();
 
+const contextDefinitionSchema = definitionSchema.extend({ categoryId: z.uuid() }).strict();
+
 const termSourceSchema = z
   .object({
     sourceId: z.uuid().optional(),
@@ -85,6 +87,7 @@ const termSourceSchema = z
 const termCollections = {
   variants: z.array(variantSchema).max(100),
   definitions: z.array(definitionSchema).max(2),
+  contextDefinitions: z.array(contextDefinitionSchema).max(40),
   categories: z.array(termCategorySchema).max(20),
   sources: z.array(termSourceSchema).max(30),
 };
@@ -107,6 +110,7 @@ export const termCreateSchema = z
     isDemo: z.boolean().default(false),
     variants: termCollections.variants.default([]),
     definitions: termCollections.definitions.default([]),
+    contextDefinitions: termCollections.contextDefinitions.default([]),
     categories: termCollections.categories.default([]),
     sources: termCollections.sources.default([]),
     changeNote: optionalText(1_000),
@@ -122,6 +126,7 @@ export const termUpdateSchema = z
     isDemo: z.boolean().optional(),
     variants: termCollections.variants.optional(),
     definitions: termCollections.definitions.optional(),
+    contextDefinitions: termCollections.contextDefinitions.optional(),
     categories: termCollections.categories.optional(),
     sources: termCollections.sources.optional(),
     changeNote: z.string().trim().min(1).max(1_000),

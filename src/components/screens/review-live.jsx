@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AlertTriangle, CheckCircle2, Clock3, RefreshCw, RotateCcw } from "lucide-react";
+import { Clock3, RefreshCw, RotateCcw } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import clsx from "clsx";
 import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
 import { pronunciationForItem } from "@/lib/learning/session-presentation";
+import { Mascot } from "@/components/mascot";
 import { Badge, Button, Card, EmptyState, PageHeader, ProgressBar } from "@/components/ui";
 
 function reviewCopy(locale) {
@@ -132,7 +133,7 @@ export function ReviewLiveScreen() {
       )}
       {queue.status === "error" && (
         <EmptyState
-          icon={<AlertTriangle size={30} />}
+          icon={<Mascot pose="encourage" motion="tilt" size={104} />}
           title={copy.error}
           text={queue.error}
           action={
@@ -143,10 +144,15 @@ export function ReviewLiveScreen() {
         />
       )}
       {queue.status !== "loading" && queue.status !== "error" && !item && (
-        <EmptyState icon={<CheckCircle2 size={31} />} title={copy.empty} text={copy.emptyText} />
+        <EmptyState
+          icon={<Mascot pose="rest" motion="breathe" size={104} />}
+          title={copy.empty}
+          text={copy.emptyText}
+        />
       )}
       {item && (
         <Card className="review-live-card">
+          <Mascot pose="reader" motion="breathe" size={112} className="review-mascot" />
           <div className="review-live-head">
             <div>
               <Badge tone="blue">{copy.due}</Badge>

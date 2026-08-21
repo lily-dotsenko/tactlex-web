@@ -1,16 +1,16 @@
 {
   "version": "2.0.0-beta",
   "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
-  "generatedAt": "2026-08-21T13:24:31.139Z",
+  "generatedAt": "2026-08-21T16:55:29.604Z",
   "expected": {
     "categories": 5,
-    "terms": 556,
-    "lessonTerms": 556,
+    "terms": 616,
+    "lessonTerms": 616,
     "glossaryTerms": 0,
-    "lessons": 57,
-    "lessonTermsMin": 9,
+    "lessons": 77,
+    "lessonTermsMin": 6,
     "lessonTermsMax": 10,
-    "facts": 27
+    "facts": 41
   },
   "files": [
     {
@@ -19,7 +19,7 @@
       "termCount": 251,
       "lessonTermCount": 251,
       "glossaryTermCount": 0,
-      "lessonCount": 26
+      "lessonCount": 35
     },
     {
       "file": "general-tactical-english.json",
@@ -27,15 +27,15 @@
       "termCount": 145,
       "lessonTermCount": 145,
       "glossaryTermCount": 0,
-      "lessonCount": 15
+      "lessonCount": 20
     },
     {
       "file": "tactical-medicine.json",
       "categorySlug": "tactical-medicine",
-      "termCount": 60,
-      "lessonTermCount": 60,
+      "termCount": 120,
+      "lessonTermCount": 120,
       "glossaryTermCount": 0,
-      "lessonCount": 6
+      "lessonCount": 12
     },
     {
       "file": "drones-uas.json",

@@ -16,6 +16,10 @@ const importRowSchema = z
     definition_uk: z.string().trim().min(1).max(500),
     example: z.string().trim().max(500).default(""),
     context_note: z.string().trim().max(500).default(""),
+    example_en: z.string().trim().max(500).optional().default(""),
+    example_uk: z.string().trim().max(500).optional().default(""),
+    context_note_en: z.string().trim().max(500).optional().default(""),
+    context_note_uk: z.string().trim().max(500).optional().default(""),
     source_url: z.url().max(2_000),
     source_title: z.string().trim().min(1).max(300),
   })
@@ -53,6 +57,16 @@ function normalizePartOfSpeech(value) {
 }
 
 function toDraft(row) {
+  const legacyExampleEn = row.example
+    .toLocaleLowerCase("en-US")
+    .includes(row.english.toLocaleLowerCase("en-US"))
+    ? row.example
+    : "";
+  const legacyExampleUk = row.example
+    .toLocaleLowerCase("uk-UA")
+    .includes(row.ukrainian.toLocaleLowerCase("uk-UA"))
+    ? row.example
+    : "";
   return {
     externalKey: row.external_key,
     status: "DRAFT",
@@ -90,6 +104,22 @@ function toDraft(row) {
         shortDefinition: row.definition_uk,
         example: row.example || null,
         contextNote: row.context_note || null,
+      },
+    ],
+    contextDefinitions: [
+      {
+        categorySlug: row.category_slug,
+        locale: "EN",
+        shortDefinition: row.definition_en,
+        example: row.example_en || legacyExampleEn || null,
+        contextNote: row.context_note_en || row.context_note || null,
+      },
+      {
+        categorySlug: row.category_slug,
+        locale: "UK",
+        shortDefinition: row.definition_uk,
+        example: row.example_uk || legacyExampleUk || null,
+        contextNote: row.context_note_uk || row.context_note || null,
       },
     ],
     source: {

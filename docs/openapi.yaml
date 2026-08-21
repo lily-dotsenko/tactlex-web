@@ -161,7 +161,8 @@ paths:
       responses:
         "200":
           {
-            description: Own session without unsubmitted answer keys; completed sessions include AAR,
+            description: Own session with currentItem and optional grouped currentInteraction,
+            without unsubmitted answer keys; completed sessions include AAR and celebration metadata,
           }
         "404": { description: Not found }
   /study-sessions/{id}/answers:
@@ -176,7 +177,11 @@ paths:
             schema: { type: string, format: uuid },
           }
       responses:
-        "200": { description: Server-evaluated answer }
+        "200":
+          {
+            description: Server-evaluated answer for any active item,
+            including matching-group items,
+          }
         "409": { description: Replay or ordinal conflict }
   /study-sessions/{id}/complete:
     post:
@@ -190,7 +195,7 @@ paths:
             schema: { type: string, format: uuid },
           }
       responses:
-        "200": { description: AAR and server-awarded rewards }
+        "200": { description: AAR, server-awarded rewards and idempotent celebration metadata }
   /reviews:
     get:
       security: [{ sessionCookie: [] }]
@@ -384,7 +389,7 @@ paths:
     post:
       security: [{ sessionCookie: [] }]
       responses:
-        "200": { description: Lesson status changed after 8–12-term validation }
+        "200": { description: Lesson status changed after 6–12-term validation }
   /admin/users:
     get:
       security: [{ sessionCookie: [] }]

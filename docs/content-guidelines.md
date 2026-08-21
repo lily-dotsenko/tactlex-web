@@ -47,7 +47,7 @@ CSV import is bounded, validates headers and every row, reports row-level errors
 
 ## Demo content
 
-The versioned release contains 556 term records in 57 lessons; no record remains dictionary-only. The 256 supplemental records are grouped into 27 lessons of 9–10 related terms, each with a sourced optional fact and a text-only quiz. Imports remain drafts; a temporary owner-authorized beta release keeps unreviewed records visibly marked and never fabricates reviewer metadata. Normal approval and publication still require a subject-matter expert.
+The versioned release contains 616 term records in 77 lessons; no record remains dictionary-only. The 256 supplemental records are grouped into 41 shorter lessons of 6–10 related terms, each with a sourced optional fact and a text-only quiz. Imports remain drafts; a temporary owner-authorized beta release keeps unreviewed records visibly marked and never fabricates reviewer metadata. Normal approval and publication still require a subject-matter expert.
 
 ## Reports
 

@@ -3517,7 +3517,7 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:acronym", "glossary:abbreviation", "glossary:nco"]
+          "distractorKeys": ["glossary:acronym", "glossary:abbreviation", "glossary:military-pack"]
         },
         {
           "externalKey": "glossary:acronym",
@@ -3546,7 +3546,11 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:abbreviation", "glossary:nco", "glossary:mre"]
+          "distractorKeys": [
+            "glossary:abbreviation",
+            "glossary:military-pack",
+            "glossary:shoulder-strap"
+          ]
         },
         {
           "externalKey": "glossary:abbreviation",
@@ -3562,93 +3566,6 @@
           "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
           "exampleEn": "The learner reviews “abbreviation” as a standalone dictionary entry.",
           "exampleUk": "Користувач переглядає «скорочення» як окрему словникову статтю.",
-          "contextNoteEn": "Language reference only; no operational procedure is provided.",
-          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
-          "source": {
-            "exactUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
-            "title": "Military Acronyms and Abbreviations",
-            "publisher": "ENG for UARMY",
-            "sourceType": "OTHER",
-            "verificationStatus": "UNVERIFIED",
-            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
-          },
-          "origin": "AI_ASSISTED",
-          "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:nco", "glossary:mre", "glossary:nvg"]
-        },
-        {
-          "externalKey": "glossary:nco",
-          "slug": "glossary-nco",
-          "english": "NCO",
-          "ukrainian": "сержантський склад",
-          "partOfSpeech": "ABBREVIATION",
-          "difficulty": 2,
-          "cefrLevel": "A2",
-          "aliasesEn": [],
-          "aliasesUk": [],
-          "definitionEn": "A dictionary term from the “Military Acronyms and Abbreviations” vocabulary collection.",
-          "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
-          "exampleEn": "The learner reviews “NCO” as a standalone dictionary entry.",
-          "exampleUk": "Користувач переглядає «сержантський склад» як окрему словникову статтю.",
-          "contextNoteEn": "Language reference only; no operational procedure is provided.",
-          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
-          "source": {
-            "exactUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
-            "title": "Military Acronyms and Abbreviations",
-            "publisher": "ENG for UARMY",
-            "sourceType": "OTHER",
-            "verificationStatus": "UNVERIFIED",
-            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
-          },
-          "origin": "AI_ASSISTED",
-          "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:mre", "glossary:nvg", "glossary:military-pack"]
-        },
-        {
-          "externalKey": "glossary:mre",
-          "slug": "glossary-mre",
-          "english": "MRE",
-          "ukrainian": "готовий до вживання раціон",
-          "partOfSpeech": "ABBREVIATION",
-          "difficulty": 2,
-          "cefrLevel": "A2",
-          "aliasesEn": [],
-          "aliasesUk": [],
-          "definitionEn": "A dictionary term from the “Military Acronyms and Abbreviations” vocabulary collection.",
-          "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
-          "exampleEn": "The learner reviews “MRE” as a standalone dictionary entry.",
-          "exampleUk": "Користувач переглядає «готовий до вживання раціон» як окрему словникову статтю.",
-          "contextNoteEn": "Language reference only; no operational procedure is provided.",
-          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
-          "source": {
-            "exactUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
-            "title": "Military Acronyms and Abbreviations",
-            "publisher": "ENG for UARMY",
-            "sourceType": "OTHER",
-            "verificationStatus": "UNVERIFIED",
-            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
-          },
-          "origin": "AI_ASSISTED",
-          "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:nvg", "glossary:military-pack", "glossary:shoulder-strap"]
-        },
-        {
-          "externalKey": "glossary:nvg",
-          "slug": "glossary-nvg",
-          "english": "NVG",
-          "ukrainian": "прилад нічного бачення",
-          "partOfSpeech": "ABBREVIATION",
-          "difficulty": 2,
-          "cefrLevel": "A2",
-          "aliasesEn": [],
-          "aliasesUk": [],
-          "definitionEn": "A dictionary term from the “Military Acronyms and Abbreviations” vocabulary collection.",
-          "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
-          "exampleEn": "The learner reviews “NVG” as a standalone dictionary entry.",
-          "exampleUk": "Користувач переглядає «прилад нічного бачення» як окрему словникову статтю.",
           "contextNoteEn": "Language reference only; no operational procedure is provided.",
           "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
           "source": {
@@ -3688,6 +3605,93 @@
       "estimatedMinutes": 12,
       "terms": [
         {
+          "externalKey": "glossary:nco",
+          "slug": "glossary-nco",
+          "english": "NCO",
+          "ukrainian": "сержантський склад",
+          "partOfSpeech": "ABBREVIATION",
+          "difficulty": 2,
+          "cefrLevel": "A2",
+          "aliasesEn": [],
+          "aliasesUk": [],
+          "definitionEn": "A dictionary term from the “Military Acronyms and Abbreviations” vocabulary collection.",
+          "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
+          "exampleEn": "The learner reviews “NCO” as a standalone dictionary entry.",
+          "exampleUk": "Користувач переглядає «сержантський склад» як окрему словникову статтю.",
+          "contextNoteEn": "Language reference only; no operational procedure is provided.",
+          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
+          "source": {
+            "exactUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
+            "title": "Military Acronyms and Abbreviations",
+            "publisher": "ENG for UARMY",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED",
+            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "lessonSlug": "supplemental-02",
+          "distractorKeys": ["glossary:mre", "glossary:nvg", "glossary:opsec"]
+        },
+        {
+          "externalKey": "glossary:mre",
+          "slug": "glossary-mre",
+          "english": "MRE",
+          "ukrainian": "готовий до вживання раціон",
+          "partOfSpeech": "ABBREVIATION",
+          "difficulty": 2,
+          "cefrLevel": "A2",
+          "aliasesEn": [],
+          "aliasesUk": [],
+          "definitionEn": "A dictionary term from the “Military Acronyms and Abbreviations” vocabulary collection.",
+          "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
+          "exampleEn": "The learner reviews “MRE” as a standalone dictionary entry.",
+          "exampleUk": "Користувач переглядає «готовий до вживання раціон» як окрему словникову статтю.",
+          "contextNoteEn": "Language reference only; no operational procedure is provided.",
+          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
+          "source": {
+            "exactUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
+            "title": "Military Acronyms and Abbreviations",
+            "publisher": "ENG for UARMY",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED",
+            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "lessonSlug": "supplemental-02",
+          "distractorKeys": ["glossary:nvg", "glossary:opsec", "glossary:private"]
+        },
+        {
+          "externalKey": "glossary:nvg",
+          "slug": "glossary-nvg",
+          "english": "NVG",
+          "ukrainian": "прилад нічного бачення",
+          "partOfSpeech": "ABBREVIATION",
+          "difficulty": 2,
+          "cefrLevel": "A2",
+          "aliasesEn": [],
+          "aliasesUk": [],
+          "definitionEn": "A dictionary term from the “Military Acronyms and Abbreviations” vocabulary collection.",
+          "definitionUk": "Словниковий термін із тематичної добірки «Military Acronyms and Abbreviations».",
+          "exampleEn": "The learner reviews “NVG” as a standalone dictionary entry.",
+          "exampleUk": "Користувач переглядає «прилад нічного бачення» як окрему словникову статтю.",
+          "contextNoteEn": "Language reference only; no operational procedure is provided.",
+          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
+          "source": {
+            "exactUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
+            "title": "Military Acronyms and Abbreviations",
+            "publisher": "ENG for UARMY",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED",
+            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "lessonSlug": "supplemental-02",
+          "distractorKeys": ["glossary:opsec", "glossary:private", "glossary:lance-corporal"]
+        },
+        {
           "externalKey": "glossary:opsec",
           "slug": "glossary-opsec",
           "english": "OPSEC",
@@ -3714,7 +3718,7 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:private", "glossary:lance-corporal", "glossary:corporal"]
+          "distractorKeys": ["glossary:private", "glossary:lance-corporal", "glossary:nco"]
         },
         {
           "externalKey": "glossary:private",
@@ -3743,7 +3747,7 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:lance-corporal", "glossary:corporal", "glossary:sergeant"]
+          "distractorKeys": ["glossary:lance-corporal", "glossary:nco", "glossary:mre"]
         },
         {
           "externalKey": "glossary:lance-corporal",
@@ -3772,8 +3776,27 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:corporal", "glossary:sergeant", "glossary:lieutenant"]
-        },
+          "distractorKeys": ["glossary:nco", "glossary:mre", "glossary:nvg"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 2",
+        "titleEn": "How context works: core vocabulary 2",
+        "bodyUk": "Терміни «сержантський склад», «готовий до вживання раціон», «прилад нічного бачення» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “NCO”, “MRE”, “NVG” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Military Acronyms and Abbreviations",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-03",
+      "titleUk": "Базова лексика 3",
+      "titleEn": "Core vocabulary 3",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:corporal",
           "slug": "glossary-corporal",
@@ -3800,7 +3823,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
+          "lessonSlug": "supplemental-03",
           "distractorKeys": ["glossary:sergeant", "glossary:lieutenant", "glossary:captain"]
         },
         {
@@ -3829,7 +3852,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
+          "lessonSlug": "supplemental-03",
           "distractorKeys": ["glossary:lieutenant", "glossary:captain", "glossary:battalion"]
         },
         {
@@ -3858,7 +3881,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
+          "lessonSlug": "supplemental-03",
           "distractorKeys": ["glossary:captain", "glossary:battalion", "glossary:regiment"]
         },
         {
@@ -3887,8 +3910,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:battalion", "glossary:regiment", "glossary:brigade"]
+          "lessonSlug": "supplemental-03",
+          "distractorKeys": ["glossary:battalion", "glossary:regiment", "glossary:corporal"]
         },
         {
           "externalKey": "glossary:battalion",
@@ -3916,8 +3939,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:regiment", "glossary:brigade", "glossary:opsec"]
+          "lessonSlug": "supplemental-03",
+          "distractorKeys": ["glossary:regiment", "glossary:corporal", "glossary:sergeant"]
         },
         {
           "externalKey": "glossary:regiment",
@@ -3945,9 +3968,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:brigade", "glossary:opsec", "glossary:private"]
-        },
+          "lessonSlug": "supplemental-03",
+          "distractorKeys": ["glossary:corporal", "glossary:sergeant", "glossary:lieutenant"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 3",
+        "titleEn": "How context works: core vocabulary 3",
+        "bodyUk": "Терміни «капрал», «сержант», «лейтенант» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “corporal”, “sergeant”, “lieutenant” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "British Army Ranks",
+        "sourceUrl": "https://www.youtube.com/results?search_query=British%20Army%20Ranks",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-04",
+      "titleUk": "Базова лексика 4",
+      "titleEn": "Core vocabulary 4",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:brigade",
           "slug": "glossary-brigade",
@@ -3974,28 +4016,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:opsec", "glossary:private", "glossary:lance-corporal"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 2",
-        "titleEn": "How context works: core vocabulary 2",
-        "bodyUk": "Терміни «безпека операцій», «рядовий», «молодший капрал» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “OPSEC”, “private”, “lance corporal” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Military Acronyms and Abbreviations",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Acronyms%20and%20Abbreviations",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-03",
-      "titleUk": "Базова лексика 3",
-      "titleEn": "Core vocabulary 3",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-04",
+          "distractorKeys": [
+            "glossary:united-states-army",
+            "glossary:united-states-navy",
+            "glossary:united-states-air-force"
+          ]
+        },
         {
           "externalKey": "glossary:united-states-army",
           "slug": "glossary-united-states-army",
@@ -4022,7 +4049,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-04",
           "distractorKeys": [
             "glossary:united-states-navy",
             "glossary:united-states-air-force",
@@ -4055,7 +4082,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-04",
           "distractorKeys": [
             "glossary:united-states-air-force",
             "glossary:marine-corps",
@@ -4088,12 +4115,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": [
-            "glossary:marine-corps",
-            "glossary:space-force",
-            "glossary:armed-forces-of-ukraine"
-          ]
+          "lessonSlug": "supplemental-04",
+          "distractorKeys": ["glossary:marine-corps", "glossary:space-force", "glossary:brigade"]
         },
         {
           "externalKey": "glossary:marine-corps",
@@ -4121,11 +4144,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-04",
           "distractorKeys": [
             "glossary:space-force",
-            "glossary:armed-forces-of-ukraine",
-            "glossary:ground-forces"
+            "glossary:brigade",
+            "glossary:united-states-army"
           ]
         },
         {
@@ -4154,13 +4177,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-04",
           "distractorKeys": [
-            "glossary:armed-forces-of-ukraine",
-            "glossary:ground-forces",
-            "glossary:air-force"
+            "glossary:brigade",
+            "glossary:united-states-army",
+            "glossary:united-states-navy"
           ]
-        },
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 4",
+        "titleEn": "How context works: core vocabulary 4",
+        "bodyUk": "Терміни «бригада», «Сухопутні війська США», «Військово-морські сили США» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “brigade”, “United States Army”, “United States Navy” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "British Army Units",
+        "sourceUrl": "https://www.youtube.com/results?search_query=British%20Army%20Units",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-05",
+      "titleUk": "Базова лексика 5",
+      "titleEn": "Core vocabulary 5",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:armed-forces-of-ukraine",
           "slug": "glossary-armed-forces-of-ukraine",
@@ -4187,7 +4229,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": [
             "glossary:ground-forces",
             "glossary:air-force",
@@ -4220,7 +4262,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": [
             "glossary:air-force",
             "glossary:naval-forces",
@@ -4253,11 +4295,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": [
             "glossary:naval-forces",
             "glossary:special-operations-forces",
-            "glossary:united-states-army"
+            "glossary:territorial-defence-forces"
           ]
         },
         {
@@ -4286,11 +4328,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": [
             "glossary:special-operations-forces",
-            "glossary:united-states-army",
-            "glossary:united-states-navy"
+            "glossary:territorial-defence-forces",
+            "glossary:armed-forces-of-ukraine"
           ]
         },
         {
@@ -4319,32 +4361,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": [
-            "glossary:united-states-army",
-            "glossary:united-states-navy",
-            "glossary:united-states-air-force"
+            "glossary:territorial-defence-forces",
+            "glossary:armed-forces-of-ukraine",
+            "glossary:ground-forces"
           ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 3",
-        "titleEn": "How context works: core vocabulary 3",
-        "bodyUk": "Терміни «Сухопутні війська США», «Військово-морські сили США», «Повітряні сили США» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “United States Army”, “United States Navy”, “United States Air Force” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "The U.S. Armed Forces",
-        "sourceUrl": "https://www.youtube.com/results?search_query=The%20U.S.%20Armed%20Forces",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-04",
-      "titleUk": "Базова лексика 4",
-      "titleEn": "Core vocabulary 4",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+        },
         {
           "externalKey": "glossary:territorial-defence-forces",
           "slug": "glossary-territorial-defence-forces",
@@ -4371,13 +4394,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": [
-            "glossary:definite-article",
-            "glossary:proper-noun",
-            "glossary:possessive-adjective"
+            "glossary:armed-forces-of-ukraine",
+            "glossary:ground-forces",
+            "glossary:air-force"
           ]
-        },
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 5",
+        "titleEn": "How context works: core vocabulary 5",
+        "bodyUk": "Терміни «Збройні Сили України», «Сухопутні війська», «Повітряні Сили» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “Armed Forces of Ukraine”, “Ground Forces”, “Air Force” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Branches and Services of the Ukrainian Armed Forces",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Branches%20and%20Services%20of%20the%20Ukrainian%20Armed%20Forces",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-06",
+      "titleUk": "Базова лексика 6",
+      "titleEn": "Core vocabulary 6",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:definite-article",
           "slug": "glossary-definite-article",
@@ -4404,7 +4446,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": [
             "glossary:proper-noun",
             "glossary:possessive-adjective",
@@ -4437,7 +4479,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": [
             "glossary:possessive-adjective",
             "glossary:possessive-case",
@@ -4470,7 +4512,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": ["glossary:possessive-case", "glossary:must", "glossary:must-not"]
         },
         {
@@ -4499,8 +4541,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": ["glossary:must", "glossary:must-not", "glossary:obligation"]
+          "lessonSlug": "supplemental-06",
+          "distractorKeys": ["glossary:must", "glossary:must-not", "glossary:definite-article"]
         },
         {
           "externalKey": "glossary:must",
@@ -4528,8 +4570,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": ["glossary:must-not", "glossary:obligation", "glossary:prohibition"]
+          "lessonSlug": "supplemental-06",
+          "distractorKeys": [
+            "glossary:must-not",
+            "glossary:definite-article",
+            "glossary:proper-noun"
+          ]
         },
         {
           "externalKey": "glossary:must-not",
@@ -4557,9 +4603,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": ["glossary:obligation", "glossary:prohibition", "glossary:rule"]
-        },
+          "lessonSlug": "supplemental-06",
+          "distractorKeys": [
+            "glossary:definite-article",
+            "glossary:proper-noun",
+            "glossary:possessive-adjective"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 6",
+        "titleEn": "How context works: core vocabulary 6",
+        "bodyUk": "Терміни «означений артикль», «власна назва», «присвійний прикметник» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “definite article”, “proper noun”, “possessive adjective” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "The Definite Article",
+        "sourceUrl": "https://www.youtube.com/results?search_query=The%20Definite%20Article",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-07",
+      "titleUk": "Базова лексика 7",
+      "titleEn": "Core vocabulary 7",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:obligation",
           "slug": "glossary-obligation",
@@ -4586,12 +4655,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": [
-            "glossary:prohibition",
-            "glossary:rule",
-            "glossary:territorial-defence-forces"
-          ]
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": ["glossary:prohibition", "glossary:rule", "glossary:order"]
         },
         {
           "externalKey": "glossary:prohibition",
@@ -4619,12 +4684,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": [
-            "glossary:rule",
-            "glossary:territorial-defence-forces",
-            "glossary:definite-article"
-          ]
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": ["glossary:rule", "glossary:order", "glossary:permission"]
         },
         {
           "externalKey": "glossary:rule",
@@ -4652,32 +4713,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": [
-            "glossary:territorial-defence-forces",
-            "glossary:definite-article",
-            "glossary:proper-noun"
-          ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 4",
-        "titleEn": "How context works: core vocabulary 4",
-        "bodyUk": "Терміни «Сили територіальної оборони», «означений артикль», «власна назва» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “Territorial Defence Forces”, “definite article”, “proper noun” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Branches and Services of the Ukrainian Armed Forces",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Branches%20and%20Services%20of%20the%20Ukrainian%20Armed%20Forces",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-05",
-      "titleUk": "Базова лексика 5",
-      "titleEn": "Core vocabulary 5",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": ["glossary:order", "glossary:permission", "glossary:allow"]
+        },
         {
           "externalKey": "glossary:order",
           "slug": "glossary-order",
@@ -4704,8 +4742,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:permission", "glossary:allow", "glossary:prohibit"]
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": ["glossary:permission", "glossary:allow", "glossary:obligation"]
         },
         {
           "externalKey": "glossary:permission",
@@ -4733,8 +4771,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:allow", "glossary:prohibit", "glossary:imperative-mood"]
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": ["glossary:allow", "glossary:obligation", "glossary:prohibition"]
         },
         {
           "externalKey": "glossary:allow",
@@ -4762,9 +4800,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:prohibit", "glossary:imperative-mood", "glossary:leadership"]
-        },
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": ["glossary:obligation", "glossary:prohibition", "glossary:rule"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 7",
+        "titleEn": "How context works: core vocabulary 7",
+        "bodyUk": "Терміни «обов’язок», «заборона», «правило» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “obligation”, “prohibition”, “rule” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Must and Must Not",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Must%20and%20Must%20Not",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-08",
+      "titleUk": "Базова лексика 8",
+      "titleEn": "Core vocabulary 8",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:prohibit",
           "slug": "glossary-prohibit",
@@ -4791,7 +4848,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": ["glossary:imperative-mood", "glossary:leadership", "glossary:teamwork"]
         },
         {
@@ -4820,7 +4877,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": ["glossary:leadership", "glossary:teamwork", "glossary:resilience"]
         },
         {
@@ -4849,7 +4906,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": ["glossary:teamwork", "glossary:resilience", "glossary:loyalty"]
         },
         {
@@ -4878,8 +4935,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:resilience", "glossary:loyalty", "glossary:commitment"]
+          "lessonSlug": "supplemental-08",
+          "distractorKeys": ["glossary:resilience", "glossary:loyalty", "glossary:prohibit"]
         },
         {
           "externalKey": "glossary:resilience",
@@ -4907,8 +4964,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:loyalty", "glossary:commitment", "glossary:order"]
+          "lessonSlug": "supplemental-08",
+          "distractorKeys": ["glossary:loyalty", "glossary:prohibit", "glossary:imperative-mood"]
         },
         {
           "externalKey": "glossary:loyalty",
@@ -4936,9 +4993,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:commitment", "glossary:order", "glossary:permission"]
-        },
+          "lessonSlug": "supplemental-08",
+          "distractorKeys": ["glossary:prohibit", "glossary:imperative-mood", "glossary:leadership"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 8",
+        "titleEn": "How context works: core vocabulary 8",
+        "bodyUk": "Терміни «забороняти», «наказовий спосіб», «лідерство» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “prohibit”, “imperative mood”, “leadership” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Orders, Permissions, Prohibitions and Requests",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Orders%2C%20Permissions%2C%20Prohibitions%20and%20Requests",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-09",
+      "titleUk": "Базова лексика 9",
+      "titleEn": "Core vocabulary 9",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:commitment",
           "slug": "glossary-commitment",
@@ -4965,28 +5041,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:order", "glossary:permission", "glossary:allow"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 5",
-        "titleEn": "How context works: core vocabulary 5",
-        "bodyUk": "Терміни «наказ», «дозвіл», «дозволяти» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “order”, “permission”, “allow” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Orders, Permissions, Prohibitions and Requests",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Orders%2C%20Permissions%2C%20Prohibitions%20and%20Requests",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-06",
-      "titleUk": "Базова лексика 6",
-      "titleEn": "Core vocabulary 6",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-09",
+          "distractorKeys": ["glossary:physically-fit", "glossary:ability", "glossary:possibility"]
+        },
         {
           "externalKey": "glossary:physically-fit",
           "slug": "glossary-physically-fit",
@@ -5013,7 +5070,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": ["glossary:ability", "glossary:possibility", "glossary:can"]
         },
         {
@@ -5042,7 +5099,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": ["glossary:possibility", "glossary:can", "glossary:could"]
         },
         {
@@ -5071,8 +5128,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
-          "distractorKeys": ["glossary:can", "glossary:could", "glossary:defence-forces"]
+          "lessonSlug": "supplemental-09",
+          "distractorKeys": ["glossary:can", "glossary:could", "glossary:commitment"]
         },
         {
           "externalKey": "glossary:can",
@@ -5100,12 +5157,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
-          "distractorKeys": [
-            "glossary:could",
-            "glossary:defence-forces",
-            "glossary:security-forces"
-          ]
+          "lessonSlug": "supplemental-09",
+          "distractorKeys": ["glossary:could", "glossary:commitment", "glossary:physically-fit"]
         },
         {
           "externalKey": "glossary:could",
@@ -5133,13 +5186,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
-          "distractorKeys": [
-            "glossary:defence-forces",
-            "glossary:security-forces",
-            "glossary:general-staff"
-          ]
-        },
+          "lessonSlug": "supplemental-09",
+          "distractorKeys": ["glossary:commitment", "glossary:physically-fit", "glossary:ability"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 9",
+        "titleEn": "How context works: core vocabulary 9",
+        "bodyUk": "Терміни «відданість справі», «у добрій фізичній формі», «здатність» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “commitment”, “physically fit”, “ability” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Personal Qualities of a Service Member",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Personal%20Qualities%20of%20a%20Service%20Member",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-10",
+      "titleUk": "Базова лексика 10",
+      "titleEn": "Core vocabulary 10",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:defence-forces",
           "slug": "glossary-defence-forces",
@@ -5166,7 +5234,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:security-forces",
             "glossary:general-staff",
@@ -5199,7 +5267,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:general-staff",
             "glossary:national-guard",
@@ -5232,11 +5300,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:national-guard",
             "glossary:security-service-of-ukraine",
-            "glossary:physically-fit"
+            "glossary:conditional-sentence"
           ]
         },
         {
@@ -5265,11 +5333,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:security-service-of-ukraine",
-            "glossary:physically-fit",
-            "glossary:ability"
+            "glossary:conditional-sentence",
+            "glossary:defence-forces"
           ]
         },
         {
@@ -5298,28 +5366,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
-          "distractorKeys": ["glossary:physically-fit", "glossary:ability", "glossary:possibility"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 6",
-        "titleEn": "How context works: core vocabulary 6",
-        "bodyUk": "Терміни «у добрій фізичній формі», «здатність», «можливість» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “physically fit”, “ability”, “possibility” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Personal Qualities of a Service Member",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Personal%20Qualities%20of%20a%20Service%20Member",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-07",
-      "titleUk": "Базова лексика 7",
-      "titleEn": "Core vocabulary 7",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-10",
+          "distractorKeys": [
+            "glossary:conditional-sentence",
+            "glossary:defence-forces",
+            "glossary:security-forces"
+          ]
+        },
         {
           "externalKey": "glossary:conditional-sentence",
           "slug": "glossary-conditional-sentence",
@@ -5346,9 +5399,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": ["glossary:condition", "glossary:unless", "glossary:if"]
-        },
+          "lessonSlug": "supplemental-10",
+          "distractorKeys": [
+            "glossary:defence-forces",
+            "glossary:security-forces",
+            "glossary:general-staff"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 10",
+        "titleEn": "How context works: core vocabulary 10",
+        "bodyUk": "Терміни «сили оборони», «сили безпеки», «Генеральний штаб» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “defence forces”, “security forces”, “General Staff” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Security and Defence Forces of Ukraine",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Security%20and%20Defence%20Forces%20of%20Ukraine",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-11",
+      "titleUk": "Базова лексика 11",
+      "titleEn": "Core vocabulary 11",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:condition",
           "slug": "glossary-condition",
@@ -5375,7 +5451,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-11",
           "distractorKeys": ["glossary:unless", "glossary:if", "glossary:when"]
         },
         {
@@ -5404,7 +5480,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-11",
           "distractorKeys": ["glossary:if", "glossary:when", "glossary:first-name"]
         },
         {
@@ -5433,7 +5509,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-11",
           "distractorKeys": ["glossary:when", "glossary:first-name", "glossary:surname"]
         },
         {
@@ -5462,8 +5538,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": ["glossary:first-name", "glossary:surname", "glossary:nickname"]
+          "lessonSlug": "supplemental-11",
+          "distractorKeys": ["glossary:first-name", "glossary:surname", "glossary:condition"]
         },
         {
           "externalKey": "glossary:first-name",
@@ -5491,8 +5567,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": ["glossary:surname", "glossary:nickname", "glossary:cause"]
+          "lessonSlug": "supplemental-11",
+          "distractorKeys": ["glossary:surname", "glossary:condition", "glossary:unless"]
         },
         {
           "externalKey": "glossary:surname",
@@ -5520,9 +5596,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": ["glossary:nickname", "glossary:cause", "glossary:consequence"]
-        },
+          "lessonSlug": "supplemental-11",
+          "distractorKeys": ["glossary:condition", "glossary:unless", "glossary:if"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 11",
+        "titleEn": "How context works: core vocabulary 11",
+        "bodyUk": "Терміни «умова», «якщо не», «якщо» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “condition”, “unless”, “if” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Conditional Sentences",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Conditional%20Sentences",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-12",
+      "titleUk": "Базова лексика 12",
+      "titleEn": "Core vocabulary 12",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:nickname",
           "slug": "glossary-nickname",
@@ -5549,12 +5644,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": [
-            "glossary:cause",
-            "glossary:consequence",
-            "glossary:conditional-sentence"
-          ]
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:cause", "glossary:consequence", "glossary:because"]
         },
         {
           "externalKey": "glossary:cause",
@@ -5582,12 +5673,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": [
-            "glossary:consequence",
-            "glossary:conditional-sentence",
-            "glossary:condition"
-          ]
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:consequence", "glossary:because", "glossary:because-of"]
         },
         {
           "externalKey": "glossary:consequence",
@@ -5615,32 +5702,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": [
-            "glossary:conditional-sentence",
-            "glossary:condition",
-            "glossary:unless"
-          ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 7",
-        "titleEn": "How context works: core vocabulary 7",
-        "bodyUk": "Терміни «умовне речення», «умова», «якщо не» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “conditional sentence”, “condition”, “unless” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Conditional Sentences",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Conditional%20Sentences",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-08",
-      "titleUk": "Базова лексика 8",
-      "titleEn": "Core vocabulary 8",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:because", "glossary:because-of", "glossary:result-in"]
+        },
         {
           "externalKey": "glossary:because",
           "slug": "glossary-because",
@@ -5667,8 +5731,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:because-of", "glossary:result-in", "glossary:lead-to"]
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:because-of", "glossary:result-in", "glossary:nickname"]
         },
         {
           "externalKey": "glossary:because-of",
@@ -5696,8 +5760,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:result-in", "glossary:lead-to", "glossary:assault-course"]
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:result-in", "glossary:nickname", "glossary:cause"]
         },
         {
           "externalKey": "glossary:result-in",
@@ -5725,9 +5789,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:lead-to", "glossary:assault-course", "glossary:stamina"]
-        },
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:nickname", "glossary:cause", "glossary:consequence"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 12",
+        "titleEn": "How context works: core vocabulary 12",
+        "bodyUk": "Терміни «псевдонім», «причина», «наслідок» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “nickname”, “cause”, “consequence” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Introducing Yourself in English",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Introducing%20Yourself%20in%20English",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-13",
+      "titleUk": "Базова лексика 13",
+      "titleEn": "Core vocabulary 13",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:lead-to",
           "slug": "glossary-lead-to",
@@ -5754,7 +5837,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-13",
           "distractorKeys": ["glossary:assault-course", "glossary:stamina", "glossary:strength"]
         },
         {
@@ -5783,7 +5866,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-13",
           "distractorKeys": ["glossary:stamina", "glossary:strength", "glossary:rope-climb"]
         },
         {
@@ -5812,7 +5895,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-13",
           "distractorKeys": ["glossary:strength", "glossary:rope-climb", "glossary:rope-descent"]
         },
         {
@@ -5841,8 +5924,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:rope-climb", "glossary:rope-descent", "glossary:because"]
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": ["glossary:rope-climb", "glossary:rope-descent", "glossary:lead-to"]
         },
         {
           "externalKey": "glossary:rope-climb",
@@ -5870,8 +5953,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:rope-descent", "glossary:because", "glossary:because-of"]
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": ["glossary:rope-descent", "glossary:lead-to", "glossary:assault-course"]
         },
         {
           "externalKey": "glossary:rope-descent",
@@ -5899,24 +5982,24 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:because", "glossary:because-of", "glossary:result-in"]
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": ["glossary:lead-to", "glossary:assault-course", "glossary:stamina"]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: базова лексика 8",
-        "titleEn": "How context works: core vocabulary 8",
-        "bodyUk": "Терміни «тому що», «через», «призводити до» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “because”, “because of”, “result in” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "titleUk": "Як працює контекст: базова лексика 13",
+        "titleEn": "How context works: core vocabulary 13",
+        "bodyUk": "Терміни «вести до», «смуга перешкод», «витривалість» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “lead to”, “assault course”, “stamina” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
         "sourceTitle": "Causes and Consequences",
         "sourceUrl": "https://www.youtube.com/results?search_query=Causes%20and%20Consequences",
         "isBeta": true
       }
     },
     {
-      "slug": "supplemental-09",
-      "titleUk": "Базова лексика 9",
-      "titleEn": "Core vocabulary 9",
+      "slug": "supplemental-14",
+      "titleUk": "Базова лексика 14",
+      "titleEn": "Core vocabulary 14",
       "difficulty": 2,
       "cefrLevel": "A2",
       "estimatedMinutes": 12,
@@ -5947,7 +6030,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-14",
           "distractorKeys": ["glossary:military-base", "glossary:headquarters", "glossary:armoury"]
         },
         {
@@ -5976,7 +6059,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-14",
           "distractorKeys": ["glossary:headquarters", "glossary:armoury", "glossary:training-area"]
         },
         {
@@ -6005,7 +6088,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-14",
           "distractorKeys": ["glossary:armoury", "glossary:training-area", "glossary:parade-ground"]
         },
         {
@@ -6034,12 +6117,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": [
-            "glossary:training-area",
-            "glossary:parade-ground",
-            "glossary:positive-degree"
-          ]
+          "lessonSlug": "supplemental-14",
+          "distractorKeys": ["glossary:training-area", "glossary:parade-ground", "glossary:crawl"]
         },
         {
           "externalKey": "glossary:training-area",
@@ -6067,12 +6146,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": [
-            "glossary:parade-ground",
-            "glossary:positive-degree",
-            "glossary:comparative-degree"
-          ]
+          "lessonSlug": "supplemental-14",
+          "distractorKeys": ["glossary:parade-ground", "glossary:crawl", "glossary:military-base"]
         },
         {
           "externalKey": "glossary:parade-ground",
@@ -6100,13 +6175,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": [
-            "glossary:positive-degree",
-            "glossary:comparative-degree",
-            "glossary:superlative-degree"
-          ]
-        },
+          "lessonSlug": "supplemental-14",
+          "distractorKeys": ["glossary:crawl", "glossary:military-base", "glossary:headquarters"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 14",
+        "titleEn": "How context works: core vocabulary 14",
+        "bodyUk": "Терміни «повзти», «військова база», «штаб» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “crawl”, “military base”, “headquarters” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Assault Course",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Assault%20Course",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-15",
+      "titleUk": "Базова лексика 15",
+      "titleEn": "Core vocabulary 15",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:positive-degree",
           "slug": "glossary-positive-degree",
@@ -6133,11 +6223,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-15",
           "distractorKeys": [
             "glossary:comparative-degree",
             "glossary:superlative-degree",
-            "glossary:crawl"
+            "glossary:adjective"
           ]
         },
         {
@@ -6166,11 +6256,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-15",
           "distractorKeys": [
             "glossary:superlative-degree",
-            "glossary:crawl",
-            "glossary:military-base"
+            "glossary:adjective",
+            "glossary:compare"
           ]
         },
         {
@@ -6199,28 +6289,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": ["glossary:crawl", "glossary:military-base", "glossary:headquarters"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 9",
-        "titleEn": "How context works: core vocabulary 9",
-        "bodyUk": "Терміни «повзти», «військова база», «штаб» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “crawl”, “military base”, “headquarters” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Assault Course",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Assault%20Course",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-10",
-      "titleUk": "Базова лексика 10",
-      "titleEn": "Core vocabulary 10",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-15",
+          "distractorKeys": ["glossary:adjective", "glossary:compare", "glossary:drill-command"]
+        },
         {
           "externalKey": "glossary:adjective",
           "slug": "glossary-adjective",
@@ -6247,8 +6318,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
-          "distractorKeys": ["glossary:compare", "glossary:drill-command", "glossary:attention"]
+          "lessonSlug": "supplemental-15",
+          "distractorKeys": [
+            "glossary:compare",
+            "glossary:drill-command",
+            "glossary:positive-degree"
+          ]
         },
         {
           "externalKey": "glossary:compare",
@@ -6276,11 +6351,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
+          "lessonSlug": "supplemental-15",
           "distractorKeys": [
             "glossary:drill-command",
-            "glossary:attention",
-            "glossary:stand-at-ease"
+            "glossary:positive-degree",
+            "glossary:comparative-degree"
           ]
         },
         {
@@ -6309,9 +6384,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
-          "distractorKeys": ["glossary:attention", "glossary:stand-at-ease", "glossary:fall-in"]
-        },
+          "lessonSlug": "supplemental-15",
+          "distractorKeys": [
+            "glossary:positive-degree",
+            "glossary:comparative-degree",
+            "glossary:superlative-degree"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 15",
+        "titleEn": "How context works: core vocabulary 15",
+        "bodyUk": "Терміни «звичайний ступінь», «вищий ступінь», «найвищий ступінь» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “positive degree”, “comparative degree”, “superlative degree” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Degrees of Comparison",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Degrees%20of%20Comparison",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-16",
+      "titleUk": "Базова лексика 16",
+      "titleEn": "Core vocabulary 16",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:attention",
           "slug": "glossary-attention",
@@ -6338,7 +6436,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
+          "lessonSlug": "supplemental-16",
           "distractorKeys": ["glossary:stand-at-ease", "glossary:fall-in", "glossary:fall-out"]
         },
         {
@@ -6367,7 +6465,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
+          "lessonSlug": "supplemental-16",
           "distractorKeys": ["glossary:fall-in", "glossary:fall-out", "glossary:left-face"]
         },
         {
@@ -6396,7 +6494,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
+          "lessonSlug": "supplemental-16",
           "distractorKeys": ["glossary:fall-out", "glossary:left-face", "glossary:road-sign"]
         },
         {
@@ -6425,8 +6523,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
-          "distractorKeys": ["glossary:left-face", "glossary:road-sign", "glossary:adjective"]
+          "lessonSlug": "supplemental-16",
+          "distractorKeys": ["glossary:left-face", "glossary:road-sign", "glossary:attention"]
         },
         {
           "externalKey": "glossary:left-face",
@@ -6454,8 +6552,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
-          "distractorKeys": ["glossary:road-sign", "glossary:adjective", "glossary:compare"]
+          "lessonSlug": "supplemental-16",
+          "distractorKeys": ["glossary:road-sign", "glossary:attention", "glossary:stand-at-ease"]
         },
         {
           "externalKey": "glossary:road-sign",
@@ -6483,24 +6581,24 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-10",
-          "distractorKeys": ["glossary:adjective", "glossary:compare", "glossary:drill-command"]
+          "lessonSlug": "supplemental-16",
+          "distractorKeys": ["glossary:attention", "glossary:stand-at-ease", "glossary:fall-in"]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: базова лексика 10",
-        "titleEn": "How context works: core vocabulary 10",
-        "bodyUk": "Терміни «прикметник», «порівнювати», «стройова команда» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “adjective”, “compare”, “drill command” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Degrees of Comparison",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Degrees%20of%20Comparison",
+        "titleUk": "Як працює контекст: базова лексика 16",
+        "titleEn": "How context works: core vocabulary 16",
+        "bodyUk": "Терміни «струнко», «вільно», «шикуйсь» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “attention”, “stand at ease”, “fall in” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Drill Commands",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Drill%20Commands",
         "isBeta": true
       }
     },
     {
-      "slug": "supplemental-11",
-      "titleUk": "Базова лексика 11",
-      "titleEn": "Core vocabulary 11",
+      "slug": "supplemental-17",
+      "titleUk": "Базова лексика 17",
+      "titleEn": "Core vocabulary 17",
       "difficulty": 2,
       "cefrLevel": "A2",
       "estimatedMinutes": 12,
@@ -6531,7 +6629,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
+          "lessonSlug": "supplemental-17",
           "distractorKeys": [
             "glossary:regulatory-sign",
             "glossary:railway-crossing",
@@ -6564,7 +6662,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
+          "lessonSlug": "supplemental-17",
           "distractorKeys": [
             "glossary:railway-crossing",
             "glossary:go-straight-ahead",
@@ -6597,7 +6695,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
+          "lessonSlug": "supplemental-17",
           "distractorKeys": [
             "glossary:go-straight-ahead",
             "glossary:roadblock",
@@ -6630,8 +6728,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
-          "distractorKeys": ["glossary:roadblock", "glossary:function", "glossary:responsibility"]
+          "lessonSlug": "supplemental-17",
+          "distractorKeys": ["glossary:roadblock", "glossary:function", "glossary:warning-sign"]
         },
         {
           "externalKey": "glossary:roadblock",
@@ -6659,8 +6757,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
-          "distractorKeys": ["glossary:function", "glossary:responsibility", "glossary:duty"]
+          "lessonSlug": "supplemental-17",
+          "distractorKeys": [
+            "glossary:function",
+            "glossary:warning-sign",
+            "glossary:regulatory-sign"
+          ]
         },
         {
           "externalKey": "glossary:function",
@@ -6688,9 +6790,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
-          "distractorKeys": ["glossary:responsibility", "glossary:duty", "glossary:subordinate"]
-        },
+          "lessonSlug": "supplemental-17",
+          "distractorKeys": [
+            "glossary:warning-sign",
+            "glossary:regulatory-sign",
+            "glossary:railway-crossing"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 17",
+        "titleEn": "How context works: core vocabulary 17",
+        "bodyUk": "Терміни «попереджувальний знак», «знак регулювання», «залізничний переїзд» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “warning sign”, “regulatory sign”, “railway crossing” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Driving and Directions",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Driving%20and%20Directions",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-18",
+      "titleUk": "Базова лексика 18",
+      "titleEn": "Core vocabulary 18",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:responsibility",
           "slug": "glossary-responsibility",
@@ -6717,8 +6842,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
-          "distractorKeys": ["glossary:duty", "glossary:subordinate", "glossary:warning-sign"]
+          "lessonSlug": "supplemental-18",
+          "distractorKeys": ["glossary:duty", "glossary:subordinate", "glossary:ache"]
         },
         {
           "externalKey": "glossary:duty",
@@ -6746,11 +6871,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
+          "lessonSlug": "supplemental-18",
           "distractorKeys": [
             "glossary:subordinate",
-            "glossary:warning-sign",
-            "glossary:regulatory-sign"
+            "glossary:ache",
+            "glossary:shortness-of-breath"
           ]
         },
         {
@@ -6779,32 +6904,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-11",
-          "distractorKeys": [
-            "glossary:warning-sign",
-            "glossary:regulatory-sign",
-            "glossary:railway-crossing"
-          ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 11",
-        "titleEn": "How context works: core vocabulary 11",
-        "bodyUk": "Терміни «попереджувальний знак», «знак регулювання», «залізничний переїзд» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “warning sign”, “regulatory sign”, “railway crossing” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Driving and Directions",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Driving%20and%20Directions",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-12",
-      "titleUk": "Базова лексика 12",
-      "titleEn": "Core vocabulary 12",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-18",
+          "distractorKeys": ["glossary:ache", "glossary:shortness-of-breath", "glossary:poisoning"]
+        },
         {
           "externalKey": "glossary:ache",
           "slug": "glossary-ache",
@@ -6831,11 +6933,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
+          "lessonSlug": "supplemental-18",
           "distractorKeys": [
             "glossary:shortness-of-breath",
             "glossary:poisoning",
-            "glossary:sunstroke"
+            "glossary:responsibility"
           ]
         },
         {
@@ -6864,8 +6966,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
-          "distractorKeys": ["glossary:poisoning", "glossary:sunstroke", "glossary:stroke"]
+          "lessonSlug": "supplemental-18",
+          "distractorKeys": ["glossary:poisoning", "glossary:responsibility", "glossary:duty"]
         },
         {
           "externalKey": "glossary:poisoning",
@@ -6893,9 +6995,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
-          "distractorKeys": ["glossary:sunstroke", "glossary:stroke", "glossary:military-career"]
-        },
+          "lessonSlug": "supplemental-18",
+          "distractorKeys": ["glossary:responsibility", "glossary:duty", "glossary:subordinate"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 18",
+        "titleEn": "How context works: core vocabulary 18",
+        "bodyUk": "Терміни «відповідальність», «обов’язок», «підлеглий» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “responsibility”, “duty”, “subordinate” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Functions and Responsibilities in the Military",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Functions%20and%20Responsibilities%20in%20the%20Military",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-19",
+      "titleUk": "Базова лексика 19",
+      "titleEn": "Core vocabulary 19",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:sunstroke",
           "slug": "glossary-sunstroke",
@@ -6922,7 +7043,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
+          "lessonSlug": "supplemental-19",
           "distractorKeys": ["glossary:stroke", "glossary:military-career", "glossary:posting"]
         },
         {
@@ -6951,7 +7072,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
+          "lessonSlug": "supplemental-19",
           "distractorKeys": ["glossary:military-career", "glossary:posting", "glossary:deployment"]
         },
         {
@@ -6980,7 +7101,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
+          "lessonSlug": "supplemental-19",
           "distractorKeys": ["glossary:posting", "glossary:deployment", "glossary:promotion"]
         },
         {
@@ -7009,8 +7130,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
-          "distractorKeys": ["glossary:deployment", "glossary:promotion", "glossary:ache"]
+          "lessonSlug": "supplemental-19",
+          "distractorKeys": ["glossary:deployment", "glossary:promotion", "glossary:sunstroke"]
         },
         {
           "externalKey": "glossary:deployment",
@@ -7038,8 +7159,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
-          "distractorKeys": ["glossary:promotion", "glossary:ache", "glossary:shortness-of-breath"]
+          "lessonSlug": "supplemental-19",
+          "distractorKeys": ["glossary:promotion", "glossary:sunstroke", "glossary:stroke"]
         },
         {
           "externalKey": "glossary:promotion",
@@ -7067,24 +7188,24 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-12",
-          "distractorKeys": ["glossary:ache", "glossary:shortness-of-breath", "glossary:poisoning"]
+          "lessonSlug": "supplemental-19",
+          "distractorKeys": ["glossary:sunstroke", "glossary:stroke", "glossary:military-career"]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: базова лексика 12",
-        "titleEn": "How context works: core vocabulary 12",
-        "bodyUk": "Терміни «тривалий біль», «задишка», «отруєння» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “ache”, “shortness of breath”, “poisoning” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "titleUk": "Як працює контекст: базова лексика 19",
+        "titleEn": "How context works: core vocabulary 19",
+        "bodyUk": "Терміни «сонячний удар», «інсульт», «військова кар’єра» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “sunstroke”, “stroke”, “military career” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
         "sourceTitle": "Health Problems",
         "sourceUrl": "https://www.youtube.com/results?search_query=Health%20Problems",
         "isBeta": true
       }
     },
     {
-      "slug": "supplemental-13",
-      "titleUk": "Базова лексика 13",
-      "titleEn": "Core vocabulary 13",
+      "slug": "supplemental-20",
+      "titleUk": "Базова лексика 20",
+      "titleEn": "Core vocabulary 20",
       "difficulty": 2,
       "cefrLevel": "A2",
       "estimatedMinutes": 12,
@@ -7115,7 +7236,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
+          "lessonSlug": "supplemental-20",
           "distractorKeys": ["glossary:rifleman", "glossary:signaller", "glossary:interpreter"]
         },
         {
@@ -7144,7 +7265,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
+          "lessonSlug": "supplemental-20",
           "distractorKeys": ["glossary:signaller", "glossary:interpreter", "glossary:engineer"]
         },
         {
@@ -7173,7 +7294,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
+          "lessonSlug": "supplemental-20",
           "distractorKeys": ["glossary:interpreter", "glossary:engineer", "glossary:have-to"]
         },
         {
@@ -7202,8 +7323,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
-          "distractorKeys": ["glossary:engineer", "glossary:have-to", "glossary:do-not-have-to"]
+          "lessonSlug": "supplemental-20",
+          "distractorKeys": ["glossary:engineer", "glossary:have-to", "glossary:military-training"]
         },
         {
           "externalKey": "glossary:engineer",
@@ -7231,8 +7352,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
-          "distractorKeys": ["glossary:have-to", "glossary:do-not-have-to", "glossary:had-to"]
+          "lessonSlug": "supplemental-20",
+          "distractorKeys": ["glossary:have-to", "glossary:military-training", "glossary:rifleman"]
         },
         {
           "externalKey": "glossary:have-to",
@@ -7260,9 +7381,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
-          "distractorKeys": ["glossary:do-not-have-to", "glossary:had-to", "glossary:will-have-to"]
-        },
+          "lessonSlug": "supplemental-20",
+          "distractorKeys": [
+            "glossary:military-training",
+            "glossary:rifleman",
+            "glossary:signaller"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 20",
+        "titleEn": "How context works: core vocabulary 20",
+        "bodyUk": "Терміни «військова підготовка», «стрілець», «зв’язківець» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “military training”, “rifleman”, “signaller” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Military Career",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Career",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-21",
+      "titleUk": "Базова лексика 21",
+      "titleEn": "Core vocabulary 21",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:do-not-have-to",
           "slug": "glossary-do-not-have-to",
@@ -7289,12 +7433,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
-          "distractorKeys": [
-            "glossary:had-to",
-            "glossary:will-have-to",
-            "glossary:military-training"
-          ]
+          "lessonSlug": "supplemental-21",
+          "distractorKeys": ["glossary:had-to", "glossary:will-have-to", "glossary:necessity"]
         },
         {
           "externalKey": "glossary:had-to",
@@ -7322,12 +7462,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
-          "distractorKeys": [
-            "glossary:will-have-to",
-            "glossary:military-training",
-            "glossary:rifleman"
-          ]
+          "lessonSlug": "supplemental-21",
+          "distractorKeys": ["glossary:will-have-to", "glossary:necessity", "glossary:warning"]
         },
         {
           "externalKey": "glossary:will-have-to",
@@ -7355,32 +7491,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-13",
-          "distractorKeys": [
-            "glossary:military-training",
-            "glossary:rifleman",
-            "glossary:signaller"
-          ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 13",
-        "titleEn": "How context works: core vocabulary 13",
-        "bodyUk": "Терміни «військова підготовка», «стрілець», «зв’язківець» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “military training”, “rifleman”, “signaller” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Military Career",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Career",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-14",
-      "titleUk": "Базова лексика 14",
-      "titleEn": "Core vocabulary 14",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-21",
+          "distractorKeys": ["glossary:necessity", "glossary:warning", "glossary:make-ready"]
+        },
         {
           "externalKey": "glossary:necessity",
           "slug": "glossary-necessity",
@@ -7407,8 +7520,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
-          "distractorKeys": ["glossary:warning", "glossary:make-ready", "glossary:make-safe"]
+          "lessonSlug": "supplemental-21",
+          "distractorKeys": ["glossary:warning", "glossary:make-ready", "glossary:do-not-have-to"]
         },
         {
           "externalKey": "glossary:warning",
@@ -7436,12 +7549,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
-          "distractorKeys": [
-            "glossary:make-ready",
-            "glossary:make-safe",
-            "glossary:action-stations"
-          ]
+          "lessonSlug": "supplemental-21",
+          "distractorKeys": ["glossary:make-ready", "glossary:do-not-have-to", "glossary:had-to"]
         },
         {
           "externalKey": "glossary:make-ready",
@@ -7469,13 +7578,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
-          "distractorKeys": [
-            "glossary:make-safe",
-            "glossary:action-stations",
-            "glossary:cease-fire"
-          ]
-        },
+          "lessonSlug": "supplemental-21",
+          "distractorKeys": ["glossary:do-not-have-to", "glossary:had-to", "glossary:will-have-to"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 21",
+        "titleEn": "How context works: core vocabulary 21",
+        "bodyUk": "Терміни «не обов’язково», «довелося», «доведеться» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “do not have to”, “had to”, “will have to” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Must and Have To",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Must%20and%20Have%20To",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-22",
+      "titleUk": "Базова лексика 22",
+      "titleEn": "Core vocabulary 22",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:make-safe",
           "slug": "glossary-make-safe",
@@ -7502,7 +7626,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
+          "lessonSlug": "supplemental-22",
           "distractorKeys": [
             "glossary:action-stations",
             "glossary:cease-fire",
@@ -7535,7 +7659,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
+          "lessonSlug": "supplemental-22",
           "distractorKeys": [
             "glossary:cease-fire",
             "glossary:passive-voice",
@@ -7568,7 +7692,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
+          "lessonSlug": "supplemental-22",
           "distractorKeys": ["glossary:passive-voice", "glossary:active-voice", "glossary:subject"]
         },
         {
@@ -7597,8 +7721,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
-          "distractorKeys": ["glossary:active-voice", "glossary:subject", "glossary:necessity"]
+          "lessonSlug": "supplemental-22",
+          "distractorKeys": ["glossary:active-voice", "glossary:subject", "glossary:make-safe"]
         },
         {
           "externalKey": "glossary:active-voice",
@@ -7626,8 +7750,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
-          "distractorKeys": ["glossary:subject", "glossary:necessity", "glossary:warning"]
+          "lessonSlug": "supplemental-22",
+          "distractorKeys": ["glossary:subject", "glossary:make-safe", "glossary:action-stations"]
         },
         {
           "externalKey": "glossary:subject",
@@ -7655,24 +7779,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-14",
-          "distractorKeys": ["glossary:necessity", "glossary:warning", "glossary:make-ready"]
+          "lessonSlug": "supplemental-22",
+          "distractorKeys": [
+            "glossary:make-safe",
+            "glossary:action-stations",
+            "glossary:cease-fire"
+          ]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: базова лексика 14",
-        "titleEn": "How context works: core vocabulary 14",
-        "bodyUk": "Терміни «необхідність», «застереження», «приготуватися» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “necessity”, “warning”, “make ready” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Must and Have To",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Must%20and%20Have%20To",
+        "titleUk": "Як працює контекст: базова лексика 22",
+        "titleEn": "How context works: core vocabulary 22",
+        "bodyUk": "Терміни «привести в безпечний стан», «бойова тривога», «припинити вогонь» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “make safe”, “action stations”, “cease fire” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Orders and Warnings",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Orders%20and%20Warnings",
         "isBeta": true
       }
     },
     {
-      "slug": "supplemental-15",
-      "titleUk": "Базова лексика 15",
-      "titleEn": "Core vocabulary 15",
+      "slug": "supplemental-23",
+      "titleUk": "Базова лексика 23",
+      "titleEn": "Core vocabulary 23",
       "difficulty": 2,
       "cefrLevel": "A2",
       "estimatedMinutes": 12,
@@ -7703,7 +7831,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
+          "lessonSlug": "supplemental-23",
           "distractorKeys": ["glossary:agent", "glossary:push-up", "glossary:sit-up"]
         },
         {
@@ -7732,7 +7860,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
+          "lessonSlug": "supplemental-23",
           "distractorKeys": ["glossary:push-up", "glossary:sit-up", "glossary:pull-up"]
         },
         {
@@ -7761,7 +7889,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
+          "lessonSlug": "supplemental-23",
           "distractorKeys": ["glossary:sit-up", "glossary:pull-up", "glossary:rowing"]
         },
         {
@@ -7790,8 +7918,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
-          "distractorKeys": ["glossary:pull-up", "glossary:rowing", "glossary:stationary-bike"]
+          "lessonSlug": "supplemental-23",
+          "distractorKeys": ["glossary:pull-up", "glossary:rowing", "glossary:past-participle"]
         },
         {
           "externalKey": "glossary:pull-up",
@@ -7819,8 +7947,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
-          "distractorKeys": ["glossary:rowing", "glossary:stationary-bike", "glossary:fitness-test"]
+          "lessonSlug": "supplemental-23",
+          "distractorKeys": ["glossary:rowing", "glossary:past-participle", "glossary:agent"]
         },
         {
           "externalKey": "glossary:rowing",
@@ -7848,13 +7976,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
-          "distractorKeys": [
-            "glossary:stationary-bike",
-            "glossary:fitness-test",
-            "glossary:present-simple"
-          ]
-        },
+          "lessonSlug": "supplemental-23",
+          "distractorKeys": ["glossary:past-participle", "glossary:agent", "glossary:push-up"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 23",
+        "titleEn": "How context works: core vocabulary 23",
+        "bodyUk": "Терміни «дієприкметник минулого часу», «виконавець дії», «відтискання» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “past participle”, “agent”, “push-up” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Passive Voice",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Passive%20Voice",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-24",
+      "titleUk": "Базова лексика 24",
+      "titleEn": "Core vocabulary 24",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:stationary-bike",
           "slug": "glossary-stationary-bike",
@@ -7881,11 +8024,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
+          "lessonSlug": "supplemental-24",
           "distractorKeys": [
             "glossary:fitness-test",
             "glossary:present-simple",
-            "glossary:past-participle"
+            "glossary:present-continuous"
           ]
         },
         {
@@ -7914,11 +8057,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
+          "lessonSlug": "supplemental-24",
           "distractorKeys": [
             "glossary:present-simple",
-            "glossary:past-participle",
-            "glossary:agent"
+            "glossary:present-continuous",
+            "glossary:state-verb"
           ]
         },
         {
@@ -7947,28 +8090,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-15",
-          "distractorKeys": ["glossary:past-participle", "glossary:agent", "glossary:push-up"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: базова лексика 15",
-        "titleEn": "How context works: core vocabulary 15",
-        "bodyUk": "Терміни «дієприкметник минулого часу», «виконавець дії», «відтискання» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “past participle”, “agent”, “push-up” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Passive Voice",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Passive%20Voice",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-16",
-      "titleUk": "Базова лексика 16",
-      "titleEn": "Core vocabulary 16",
-      "difficulty": 2,
-      "cefrLevel": "A2",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-24",
+          "distractorKeys": [
+            "glossary:present-continuous",
+            "glossary:state-verb",
+            "glossary:temporary-action"
+          ]
+        },
         {
           "externalKey": "glossary:present-continuous",
           "slug": "glossary-present-continuous",
@@ -7995,11 +8123,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-24",
           "distractorKeys": [
             "glossary:state-verb",
             "glossary:temporary-action",
-            "glossary:routine-action"
+            "glossary:stationary-bike"
           ]
         },
         {
@@ -8028,11 +8156,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-24",
           "distractorKeys": [
             "glossary:temporary-action",
-            "glossary:routine-action",
-            "glossary:support-forces"
+            "glossary:stationary-bike",
+            "glossary:fitness-test"
           ]
         },
         {
@@ -8061,13 +8189,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-24",
           "distractorKeys": [
-            "glossary:routine-action",
-            "glossary:support-forces",
-            "glossary:logistics-forces"
+            "glossary:stationary-bike",
+            "glossary:fitness-test",
+            "glossary:present-simple"
           ]
-        },
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: базова лексика 24",
+        "titleEn": "How context works: core vocabulary 24",
+        "bodyUk": "Терміни «велотренажер», «тест фізичної підготовленості», «теперішній простий час» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “stationary bike”, “fitness test”, “present simple” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Physical Training",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Physical%20Training",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-25",
+      "titleUk": "Базова лексика 25",
+      "titleEn": "Core vocabulary 25",
+      "difficulty": 2,
+      "cefrLevel": "A2",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:routine-action",
           "slug": "glossary-routine-action",
@@ -8094,7 +8241,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-25",
           "distractorKeys": [
             "glossary:support-forces",
             "glossary:logistics-forces",
@@ -8127,7 +8274,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-25",
           "distractorKeys": [
             "glossary:logistics-forces",
             "glossary:medical-forces",
@@ -8160,7 +8307,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-25",
           "distractorKeys": [
             "glossary:medical-forces",
             "glossary:communication-and-cybersecurity-forces",
@@ -8193,11 +8340,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-25",
           "distractorKeys": [
             "glossary:communication-and-cybersecurity-forces",
             "glossary:unmanned-systems-forces",
-            "glossary:present-continuous"
+            "glossary:routine-action"
           ]
         },
         {
@@ -8226,11 +8373,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-25",
           "distractorKeys": [
             "glossary:unmanned-systems-forces",
-            "glossary:present-continuous",
-            "glossary:state-verb"
+            "glossary:routine-action",
+            "glossary:support-forces"
           ]
         },
         {
@@ -8259,19 +8406,19 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-16",
+          "lessonSlug": "supplemental-25",
           "distractorKeys": [
-            "glossary:present-continuous",
-            "glossary:state-verb",
-            "glossary:temporary-action"
+            "glossary:routine-action",
+            "glossary:support-forces",
+            "glossary:logistics-forces"
           ]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: базова лексика 16",
-        "titleEn": "How context works: core vocabulary 16",
-        "bodyUk": "Терміни «теперішній тривалий час», «дієслово стану», «тимчасова дія» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “present continuous”, “state verb”, “temporary action” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "titleUk": "Як працює контекст: базова лексика 25",
+        "titleEn": "How context works: core vocabulary 25",
+        "bodyUk": "Терміни «регулярна дія», «Сили підтримки», «Сили логістики» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “routine action”, “Support Forces”, “Logistics Forces” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
         "sourceTitle": "Present Simple and Present Continuous",
         "sourceUrl": "https://www.youtube.com/results?search_query=Present%20Simple%20and%20Present%20Continuous",
         "isBeta": true

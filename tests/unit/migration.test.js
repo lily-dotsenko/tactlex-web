@@ -32,3 +32,23 @@ describe("initial migration", () => {
     }
   });
 });
+
+describe("contextual learning migration", () => {
+  test("adds contextual definitions and interaction groups without replacing global content", async () => {
+    const sql = await readFile(
+      path.join(
+        process.cwd(),
+        "prisma",
+        "migrations",
+        "20260822000000_contextual_learning_interactions",
+        "migration.sql",
+      ),
+      "utf8",
+    );
+
+    expect(sql).toContain('CREATE TABLE "term_context_definitions"');
+    expect(sql).toContain('ADD COLUMN "interaction_group_id" UUID');
+    expect(sql).toContain('INSERT INTO "term_context_definitions"');
+    expect(sql).not.toMatch(/DROP TABLE|DROP COLUMN/iu);
+  });
+});

@@ -509,6 +509,7 @@ model Category {
   createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt        DateTime          @updatedAt @map("updated_at") @db.Timestamptz(3)
   terms            TermCategory[]
+  contextDefinitions TermContextDefinition[]
   lessons          Lesson[]
   achievementRules AchievementRule[]
   learningNodes    LearningNode[]
@@ -543,6 +544,7 @@ model Term {
   categories       TermCategory[]
   variants         TermVariant[]
   definitions      TermDefinition[]
+  contextDefinitions TermContextDefinition[]
   sources          TermSource[]
   reviews          ContentReview[]
   revisions        ContentRevision[]
@@ -608,6 +610,24 @@ model TermDefinition {
 
   @@unique([termId, locale])
   @@map("term_definitions")
+}
+
+model TermContextDefinition {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  termId          String   @map("term_id") @db.Uuid
+  categoryId      String   @map("category_id") @db.Uuid
+  locale          Locale
+  shortDefinition String?  @map("short_definition") @db.Text
+  example         String?  @db.Text
+  contextNote     String?  @map("context_note") @db.Text
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  term            Term     @relation(fields: [termId], references: [id], onDelete: Cascade)
+  category        Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@unique([termId, categoryId, locale])
+  @@index([categoryId, locale])
+  @@map("term_context_definitions")
 }
 
 model Source {
@@ -914,6 +934,7 @@ model StudySessionItem {
   exerciseType          ExerciseType      @map("exercise_type")
   status                SessionItemStatus @default(PENDING)
   optionsSnapshot       Json?             @map("options_snapshot") @db.JsonB
+  interactionGroupId    String?           @map("interaction_group_id") @db.Uuid
   maxAttempts           Int               @default(1) @map("max_attempts") @db.SmallInt
   servedAt              DateTime?         @map("served_at") @db.Timestamptz(3)
   answeredAt            DateTime?         @map("answered_at") @db.Timestamptz(3)
@@ -925,6 +946,7 @@ model StudySessionItem {
 
   @@unique([studySessionId, position])
   @@index([termId])
+  @@index([studySessionId, interactionGroupId])
   @@map("study_session_items")
 }
 

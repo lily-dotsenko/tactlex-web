@@ -652,10 +652,30 @@ export function AdminTermScreen({ isNew = false, itemId }) {
             {
               locale: "EN",
               shortDefinition: String(form.get("definitionEn") || "").trim(),
+              example: String(form.get("exampleEn") || "").trim() || null,
+              contextNote: String(form.get("contextNoteEn") || "").trim() || null,
             },
             {
               locale: "UK",
               shortDefinition: String(form.get("definitionUk") || "").trim(),
+              example: String(form.get("exampleUk") || "").trim() || null,
+              contextNote: String(form.get("contextNoteUk") || "").trim() || null,
+            },
+          ],
+          contextDefinitions: [
+            {
+              categoryId: String(form.get("categoryId")),
+              locale: "EN",
+              shortDefinition: String(form.get("contextDefinitionEn") || "").trim(),
+              example: String(form.get("contextExampleEn") || "").trim() || null,
+              contextNote: String(form.get("contextNoteEn") || "").trim() || null,
+            },
+            {
+              categoryId: String(form.get("categoryId")),
+              locale: "UK",
+              shortDefinition: String(form.get("contextDefinitionUk") || "").trim(),
+              example: String(form.get("contextExampleUk") || "").trim() || null,
+              contextNote: String(form.get("contextNoteUk") || "").trim() || null,
             },
           ],
           categories: [{ categoryId: form.get("categoryId"), isPrimary: true }],
@@ -763,6 +783,14 @@ export function AdminTermScreen({ isNew = false, itemId }) {
             <Field label="Українське визначення">
               <textarea name="definitionUk" lang="uk" rows={3} required maxLength={2000} />
             </Field>
+            <div className="form-grid-two">
+              <Field label="English general example">
+                <textarea name="exampleEn" lang="en" rows={2} maxLength={2000} />
+              </Field>
+              <Field label="Загальний приклад українською">
+                <textarea name="exampleUk" lang="uk" rows={2} maxLength={2000} />
+              </Field>
+            </div>
           </Card>
           <Card className="editor-section">
             <SectionHeading title={t("categories")} />
@@ -786,6 +814,32 @@ export function AdminTermScreen({ isNew = false, itemId }) {
             {categoriesState.status === "error" ? (
               <p role="alert">{categoriesState.error}</p>
             ) : null}
+          </Card>
+          <Card className="editor-section">
+            <SectionHeading title="Context-specific meaning / Контекстне значення" />
+            <p className="muted-copy">
+              These verified fields belong to the selected category and power sentence exercises.
+            </p>
+            <div className="form-grid-two">
+              <Field label="English contextual definition">
+                <textarea name="contextDefinitionEn" lang="en" rows={3} required maxLength={2000} />
+              </Field>
+              <Field label="Контекстне визначення українською">
+                <textarea name="contextDefinitionUk" lang="uk" rows={3} required maxLength={2000} />
+              </Field>
+              <Field label="Verified English example">
+                <textarea name="contextExampleEn" lang="en" rows={3} required maxLength={2000} />
+              </Field>
+              <Field label="Перевірений приклад українською">
+                <textarea name="contextExampleUk" lang="uk" rows={3} required maxLength={2000} />
+              </Field>
+              <Field label="English context note">
+                <textarea name="contextNoteEn" lang="en" rows={2} maxLength={2000} />
+              </Field>
+              <Field label="Контекстна примітка українською">
+                <textarea name="contextNoteUk" lang="uk" rows={2} maxLength={2000} />
+              </Field>
+            </div>
           </Card>
           <Card className="editor-section">
             <SectionHeading title={t("source")} />
@@ -874,6 +928,45 @@ export function AdminTermScreen({ isNew = false, itemId }) {
               ) : (
                 <p>{copy.empty}</p>
               )}
+            </Card>
+            <Card className="editor-section">
+              <SectionHeading title="Context-specific meanings" />
+              {term.contextDefinitions?.length ? (
+                term.contextDefinitions.map((definition) => (
+                  <div key={definition.id} className="admin-context-definition">
+                    <strong>
+                      {definition.category?.nameEn || definition.category?.slug} ·{" "}
+                      {definition.locale}
+                    </strong>
+                    <p>{definition.shortDefinition || "—"}</p>
+                    {definition.example ? <blockquote>{definition.example}</blockquote> : null}
+                    {definition.contextNote ? <small>{definition.contextNote}</small> : null}
+                  </div>
+                ))
+              ) : (
+                <p>{copy.empty}</p>
+              )}
+              {term.categories?.flatMap(({ categoryId, category }) => {
+                const presentLocales = new Set(
+                  (term.contextDefinitions ?? [])
+                    .filter((definition) => definition.categoryId === categoryId)
+                    .map((definition) => definition.locale),
+                );
+                const missingLocales = ["EN", "UK"].filter(
+                  (requiredLocale) => !presentLocales.has(requiredLocale),
+                );
+                return missingLocales.length
+                  ? [
+                      <div className="notice notice-warning" key={`missing-${categoryId}`}>
+                        <AlertTriangle size={19} />
+                        <p>
+                          {category?.nameEn || category?.slug}: editorial fill required for{" "}
+                          {missingLocales.join(" / ")} context.
+                        </p>
+                      </div>,
+                    ]
+                  : [];
+              })}
             </Card>
             <Card className="editor-section">
               <SectionHeading title={copy.transition} />

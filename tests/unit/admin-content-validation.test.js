@@ -18,6 +18,14 @@ describe("admin content validation", () => {
       difficulty: 2,
       variants: [{ locale: "EN", kind: "PRIMARY", value: "medical evacuation", isPrimary: true }],
       categories: [{ categoryId, isPrimary: true }],
+      contextDefinitions: [
+        {
+          categoryId,
+          locale: "EN",
+          shortDefinition: "Movement for medical care",
+          example: "Medical evacuation moves a casualty to care.",
+        },
+      ],
       sources: [
         {
           exactUrl: "https://example.gov/medical-evacuation",
@@ -34,6 +42,7 @@ describe("admin content validation", () => {
       exactUrl: "https://example.gov/medical-evacuation",
       verificationStatus: "VERIFIED",
     });
+    expect(term.contextDefinitions[0]).toMatchObject({ categoryId, locale: "EN" });
     expect(() =>
       termCreateSchema.parse({
         slug: "unsafe",

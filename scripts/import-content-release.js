@@ -85,6 +85,22 @@ try {
             contextNote: term.contextNoteUk,
           },
         ],
+        contextDefinitions: [
+          {
+            categoryId: category.id,
+            locale: "EN",
+            shortDefinition: term.definitionEn,
+            example: term.exampleEn,
+            contextNote: term.contextNoteEn,
+          },
+          {
+            categoryId: category.id,
+            locale: "UK",
+            shortDefinition: term.definitionUk,
+            example: term.exampleUk,
+            contextNote: term.contextNoteUk,
+          },
+        ],
         categories: [{ categoryId: category.id, isPrimary: true }],
         sources: [{ ...term.source, isPrimary: true }],
       };

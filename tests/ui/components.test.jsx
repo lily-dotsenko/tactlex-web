@@ -7,8 +7,11 @@ import { hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { NextIntlClientProvider } from "next-intl";
 import { PwaProvider } from "@/components/providers";
+import { CustomAvatar } from "@/components/custom-avatar";
 import { Button, ProgressBar } from "@/components/ui";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
+import { AccessibleDialog } from "@/components/accessible-dialog";
+import { effectPreferences, setEffectPreference } from "@/components/effects";
 
 vi.mock("@/lib/i18n/navigation", () => ({
   Link: ({ children, href, ...props }) => (
@@ -51,6 +54,59 @@ describe("UI foundations", () => {
     expect(screen.getByRole("button", { name: "Continue" })).toHaveAttribute("type", "button");
   });
 
+  it("traps focus in the exit dialog and closes it with Escape", () => {
+    const onClose = vi.fn();
+    render(
+      <AccessibleDialog open title="Leave lesson?" onClose={onClose}>
+        <button type="button">Continue</button>
+        <button type="button">Leave</button>
+      </AccessibleDialog>,
+    );
+    screen.getByRole("button", { name: "Continue" });
+    const closeButton = screen.getByRole("button", { name: "Close" });
+    const leaveButton = screen.getByRole("button", { name: "Leave" });
+    leaveButton.focus();
+    fireEvent.keyDown(document, { key: "Tab" });
+    expect(closeButton).toHaveFocus();
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it("stores device-local sound and motion preferences", () => {
+    const values = new Map();
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      value: {
+        getItem: (key) => values.get(key) ?? null,
+        setItem: (key, value) => values.set(key, String(value)),
+      },
+    });
+    setEffectPreference("sound", false);
+    setEffectPreference("motion", false);
+    expect(effectPreferences()).toEqual({ sound: false, motion: false });
+    setEffectPreference("sound", true);
+    setEffectPreference("motion", true);
+  });
+
+  it("renders a labelled tactical cat avatar from allowlisted parts", () => {
+    render(
+      <CustomAvatar
+        title="Tactical cat preview"
+        config={{
+          catType: "maine-coon",
+          gender: "neutral",
+          coatColor: "ginger",
+          coatPattern: "tabby",
+          eyeColor: "green",
+          equipment: "tactical-vest",
+          weapon: "bow",
+          accessory: "headset",
+        }}
+      />,
+    );
+    expect(screen.getByRole("img", { name: "Tactical cat preview" })).toBeVisible();
+  });
+
   it("hydrates the PWA shell without replacing offline markup", async () => {
     Object.defineProperty(window.navigator, "onLine", { configurable: true, value: false });
     const view = (
@@ -75,6 +131,54 @@ describe("UI foundations", () => {
     await act(async () => root.unmount());
     consoleError.mockRestore();
     Object.defineProperty(window.navigator, "onLine", { configurable: true, value: true });
+  });
+
+  it("shows the install reminder no more than twice for the browser profile", async () => {
+    const values = new Map();
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      value: {
+        clear: () => values.clear(),
+        getItem: (key) => values.get(key) ?? null,
+        removeItem: (key) => values.delete(key),
+        setItem: (key, value) => values.set(key, String(value)),
+      },
+    });
+    window.localStorage.clear();
+    const view = (
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <PwaProvider>
+          <main>Application</main>
+        </PwaProvider>
+      </NextIntlClientProvider>
+    );
+    const dispatchInstallPrompt = async () => {
+      const event = new Event("beforeinstallprompt", { cancelable: true });
+      event.prompt = vi.fn();
+      await act(async () => window.dispatchEvent(event));
+    };
+
+    let rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
+    rendered.unmount();
+
+    rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.getByRole("complementary")).toBeVisible();
+    rendered.unmount();
+
+    rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.getByRole("complementary")).toBeVisible();
+    rendered.unmount();
+
+    rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
+    expect(window.localStorage.getItem("tactlex-install-prompt-shows")).toBe("2");
+    rendered.unmount();
+    window.localStorage.clear();
   });
 });
 

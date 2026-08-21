@@ -32,7 +32,9 @@
     "content:validate": "node scripts/validate-content-release.js",
     "content:validate:release": "node scripts/validate-content-release.js --release",
     "content:import": "node scripts/run-with-aliases.js scripts/import-content-release.js",
-    "content:release": "node scripts/run-with-aliases.js scripts/release-approved-content.js"
+    "content:release": "node scripts/run-with-aliases.js scripts/release-approved-content.js",
+    "assets:optimize": "node scripts/optimize-mascot-assets.js",
+    "assets:check": "node scripts/validate-mascot-assets.js"
   },
   "dependencies": {
     "@node-rs/argon2": "2.0.2",
@@ -58,6 +60,7 @@
     "postcss": "8.5.21",
     "prettier": "3.9.6",
     "prisma": "6.19.3",
+    "sharp": "0.34.5",
     "vitest": "4.1.10"
   }
 }
