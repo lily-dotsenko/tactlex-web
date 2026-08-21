@@ -256,10 +256,12 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
       accuracy: 75,
     });
     expect(completion.summary.xpAwarded).toBeGreaterThan(0);
+    expect(completion.returnTo).toBe("/categories/general-tactical-english");
 
     const replay = await study.completeSession(userId, session.id, completionKey);
     expect(replay.replayed).toBe(true);
     expect(replay.summary).toEqual(completion.summary);
+    expect(replay.returnTo).toBe(completion.returnTo);
 
     const [progressCount, reviewLogCount, answerCount, xpSources] = await Promise.all([
       prisma.userTermProgress.count({ where: { userId } }),

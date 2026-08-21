@@ -199,6 +199,12 @@ export function CustomAvatar({ config, size = 72, className, title = "" }) {
         ? "M39 48 48 27l17-8 18 8 8 22-5 34-21 17-21-16Z"
         : "M38 49c0-20 11-30 27-30s27 10 27 30v20c0 19-11 31-27 31S38 88 38 69Z";
   const torsoWidth = value.gender === "woman" ? 27 : value.gender === "man" ? 35 : 31;
+  const torsoPath = [
+    `M${64 - torsoWidth} 128`,
+    `C${66 - torsoWidth} 103 52 90 64 90`,
+    `C76 90 ${62 + torsoWidth} 103 ${64 + torsoWidth} 128`,
+    "Z",
+  ].join(" ");
   return (
     <svg
       className={clsx("custom-avatar", className)}
@@ -210,12 +216,7 @@ export function CustomAvatar({ config, size = 72, className, title = "" }) {
       aria-hidden={title ? undefined : "true"}
     >
       <rect width="128" height="128" rx="24" fill="#1c2927" />
-      <path
-        d={`M${64 - torsoWidth} 128c2-25 12-38 ${torsoWidth}c${torsoWidth - 12} 0 ${torsoWidth - 2} 13 ${torsoWidth} 38Z`}
-        fill={torsoColors[value.torso]}
-        stroke="#172026"
-        strokeWidth="3"
-      />
+      <path d={torsoPath} fill={torsoColors[value.torso]} stroke="#172026" strokeWidth="3" />
       <path d="M55 85h19v16H55Z" fill={skin} />
       <circle cx="36" cy="61" r="9" fill={skin} stroke="#172026" strokeWidth="2" />
       <circle cx="94" cy="61" r="9" fill={skin} stroke="#172026" strokeWidth="2" />

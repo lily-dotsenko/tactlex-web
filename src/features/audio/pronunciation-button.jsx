@@ -32,6 +32,20 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
     };
   }, []);
 
+  useEffect(() => {
+    if (!audioUrl) return undefined;
+    const controller = new AbortController();
+    void fetch(audioUrl, {
+      cache: "force-cache",
+      credentials: "same-origin",
+      signal: controller.signal,
+    }).catch(() => undefined);
+
+    return () => {
+      controller.abort();
+    };
+  }, [audioUrl]);
+
   function stopPlayback() {
     playbackTokenRef.current += 1;
     window.clearTimeout(startTimerRef.current);
@@ -111,6 +125,7 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
       setState("loading");
       const audio = new Audio(audioUrl);
       audio.preload = "auto";
+      audio.currentTime = 0;
       audioRef.current = audio;
       audio.onplay = () => {
         window.clearTimeout(humanFallbackRef.current);
@@ -130,7 +145,7 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
       audio.onerror = fallbackToTts;
       humanFallbackRef.current = window.setTimeout(() => {
         if (audioRef.current === audio && audio.paused) fallbackToTts();
-      }, 900);
+      }, 600);
       await audio.play();
       setMode("human");
     } catch {
