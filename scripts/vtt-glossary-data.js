@@ -1,6 +1,6 @@
 // Curated from the user-provided Ukrainian auto-generated VTT collection.
 // The captions frequently distort spoken English, so only unambiguous headwords
-// are retained. These entries are dictionary-only and are not lesson members.
+// are retained. The release builder groups these entries into supplemental lessons.
 
 export const vttGlossarySources = [
   {
