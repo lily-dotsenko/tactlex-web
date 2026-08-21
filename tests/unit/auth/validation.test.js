@@ -67,14 +67,13 @@ describe("auth validation", () => {
 
   it("accepts an allowlisted custom avatar and rejects unknown parts", () => {
     const avatarConfig = {
-      gender: "woman",
-      skin: "copper",
-      head: "round",
-      hair: "braid",
-      hairColor: "auburn",
-      facialHair: "none",
-      torso: "cossack-shirt",
-      equipment: "scarf",
+      catType: "maine-coon",
+      gender: "female",
+      coatColor: "ginger",
+      coatPattern: "tabby",
+      eyeColor: "green",
+      equipment: "cossack-harness",
+      weapon: "sabre",
       accessory: "headset",
     };
     expect(profileUpdateSchema.parse({ avatarConfig })).toEqual({ avatarConfig });

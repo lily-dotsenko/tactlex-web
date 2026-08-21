@@ -384,7 +384,7 @@ paths:
     post:
       security: [{ sessionCookie: [] }]
       responses:
-        "200": { description: Lesson status changed after 8–12-term validation }
+        "200": { description: Lesson status changed after 6–12-term validation }
   /admin/users:
     get:
       security: [{ sessionCookie: [] }]

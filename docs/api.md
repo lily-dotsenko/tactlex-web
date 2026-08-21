@@ -106,7 +106,7 @@ All routes require an explicit permission and return 403 to an authenticated USE
 | PATCH            | `/admin/categories/reorder`    | Reorder a bounded unique category set                 |
 | GET/POST         | `/admin/lessons`               | List/create lessons                                   |
 | PATCH            | `/admin/lessons/{id}`          | Edit composition and state                            |
-| POST             | `/admin/lessons/{id}/status`   | Publish/archive with the 8–12 invariant               |
+| POST             | `/admin/lessons/{id}/status`   | Publish/archive with the 6–12 invariant               |
 | GET              | `/admin/reviews`               | Content review queue                                  |
 | POST             | `/admin/reviews/{id}/decision` | Approve/request changes/reject current revision       |
 | GET              | `/admin/users`                 | Paginated safe user administration list               |

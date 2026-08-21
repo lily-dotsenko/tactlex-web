@@ -4,6 +4,7 @@ import {
   applyProgressReview,
   createStudyService,
   deriveEffectiveRating,
+  exercisePatternForItem,
 } from "@/server/services/study-service";
 
 const now = new Date("2026-07-21T12:00:00.000Z");
@@ -78,6 +79,20 @@ describe("study service", () => {
     expect(deriveEffectiveRating(true, "AGAIN")).toBe("GOOD");
     expect(deriveEffectiveRating(true, "HARD")).toBe("HARD");
     expect(deriveEffectiveRating(true)).toBe("GOOD");
+  });
+
+  it("uses choice-only onboarding lessons and introduces typing from lesson three", () => {
+    const firstLesson = Array.from({ length: 10 }, (_, index) =>
+      exercisePatternForItem({ kind: "LESSON", direction: "MIXED", index, lessonOrdinal: 1 }),
+    );
+    const thirdLesson = Array.from({ length: 10 }, (_, index) =>
+      exercisePatternForItem({ kind: "LESSON", direction: "MIXED", index, lessonOrdinal: 3 }),
+    );
+
+    expect(firstLesson.every(({ type }) => type === "MULTIPLE_CHOICE")).toBe(true);
+    expect(thirdLesson.filter(({ type }) => type === "MULTIPLE_CHOICE")).toHaveLength(6);
+    expect(thirdLesson.filter(({ type }) => type === "TYPE_ANSWER")).toHaveLength(2);
+    expect(thirdLesson.filter(({ type }) => type === "AUDIO")).toHaveLength(2);
   });
 
   it("derives a completed AAR from immutable answer and XP records", async () => {

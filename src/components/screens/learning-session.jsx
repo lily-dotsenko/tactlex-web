@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -366,6 +367,16 @@ export function SessionScreen({ sessionId }) {
         </header>
         {card ? (
           <Card className="introduction-card">
+            <div className="session-morkva session-morkva-intro" aria-hidden="true">
+              <Image
+                src="/brand/morkva-mark.png"
+                alt=""
+                width={112}
+                height={112}
+                loading="eager"
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
             <p className="eyebrow">{copy.introduction}</p>
             <h1 lang="en">{card.english}</h1>
             <p className="introduction-translation" lang="uk">
@@ -449,6 +460,16 @@ export function SessionScreen({ sessionId }) {
         <Badge tone="blue">{session?.kind || t("stage")}</Badge>
       </header>
       <Card className="session-card">
+        <div className="session-morkva session-morkva-practice" aria-hidden="true">
+          <Image
+            src="/brand/morkva-mark.png"
+            alt=""
+            width={92}
+            height={92}
+            loading="eager"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
         <div className="session-card-top">
           <Badge tone="olive">{locale === "uk" ? "Практика" : "Practice"}</Badge>
           {practicePronunciation && (
@@ -618,7 +639,16 @@ export function ResultLiveScreen({ sessionId }) {
   return (
     <div className="result-page">
       <div className="result-emblem">
-        <Trophy size={34} aria-hidden="true" />
+        <Image
+          src="/brand/morkva-anchor.png"
+          alt=""
+          width={92}
+          height={92}
+          style={{ width: "100%", height: "auto" }}
+        />
+        <span>
+          <Trophy size={28} aria-hidden="true" />
+        </span>
       </div>
       <PageHeader
         eyebrow={copy.summaryEyebrow}

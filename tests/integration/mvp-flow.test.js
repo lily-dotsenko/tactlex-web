@@ -216,7 +216,7 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
       acceptedAnswer: null,
       answeredItems: 1,
     });
-    expect(typedWrongResult.correctionChoices).toHaveLength(4);
+    expect(typedWrongResult.correctionChoices).toHaveLength(6);
     const typedVariants = acceptedAnswers.get(typedRetryItem.termId);
     const typedAnswer = typedRetryItem.promptLocale === "uk" ? typedVariants.EN : typedVariants.UK;
     const typedCorrectedResult = await study.submitAnswer(

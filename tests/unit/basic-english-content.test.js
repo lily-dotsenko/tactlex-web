@@ -17,7 +17,7 @@ describe("basic military English release", () => {
       return counts;
     }, {});
 
-    expect(content.lessons).toHaveLength(26);
+    expect(content.lessons).toHaveLength(35);
     expect(terms).toHaveLength(100);
     expect(new Set(terms.map(({ slug }) => slug)).size).toBe(100);
     expect(levelCounts).toEqual({ A1: 20, A2: 30, B1: 40, B2: 10 });

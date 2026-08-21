@@ -6,7 +6,7 @@ import { describe, expect, test } from "vitest";
 const releaseDirectory = path.join(process.cwd(), "prisma", "content", "v1");
 
 describe("supplemental VTT learning content", () => {
-  test("places all 556 terms in 57 lessons with 27 sourced facts", async () => {
+  test("places all 556 terms in 71 lessons with 41 sourced facts", async () => {
     const manifest = JSON.parse(
       await readFile(path.join(releaseDirectory, "manifest.json"), "utf8"),
     );
@@ -21,13 +21,13 @@ describe("supplemental VTT learning content", () => {
     const facts = bundles.flatMap(({ lessons }) => lessons.map(({ fact }) => fact).filter(Boolean));
     expect(lessonTerms).toHaveLength(556);
     expect(glossaryTerms).toHaveLength(0);
-    expect(facts).toHaveLength(27);
+    expect(facts).toHaveLength(41);
     expect(manifest.expected).toMatchObject({
       terms: 556,
       lessonTerms: 556,
       glossaryTerms: 0,
-      lessons: 57,
-      facts: 27,
+      lessons: 71,
+      facts: 41,
     });
     expect(new Set(lessonTerms.map(({ externalKey }) => externalKey)).size).toBe(556);
     expect(lessonTerms.every(({ distractorKeys }) => distractorKeys.length === 3)).toBe(true);

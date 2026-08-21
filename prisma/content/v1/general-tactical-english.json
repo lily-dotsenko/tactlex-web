@@ -2141,7 +2141,7 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:attack-aircraft", "glossary:withdraw", "glossary:withdrawal"]
+          "distractorKeys": ["glossary:attack-aircraft", "glossary:withdraw", "glossary:aircraft"]
         },
         {
           "externalKey": "glossary:attack-aircraft",
@@ -2170,7 +2170,11 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:withdraw", "glossary:withdrawal", "glossary:retreat"]
+          "distractorKeys": [
+            "glossary:withdraw",
+            "glossary:aircraft",
+            "glossary:fixed-wing-aircraft"
+          ]
         },
         {
           "externalKey": "glossary:withdraw",
@@ -2186,93 +2190,6 @@
           "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
           "exampleEn": "The learner reviews “withdraw” as a standalone dictionary entry.",
           "exampleUk": "Користувач переглядає «відступати» як окрему словникову статтю.",
-          "contextNoteEn": "Language reference only; no operational procedure is provided.",
-          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
-          "source": {
-            "exactUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
-            "title": "Withdraw, retreat, rout, flee",
-            "publisher": "ENG for UARMY",
-            "sourceType": "OTHER",
-            "verificationStatus": "UNVERIFIED",
-            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
-          },
-          "origin": "AI_ASSISTED",
-          "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:withdrawal", "glossary:retreat", "glossary:rout"]
-        },
-        {
-          "externalKey": "glossary:withdrawal",
-          "slug": "glossary-withdrawal",
-          "english": "withdrawal",
-          "ukrainian": "відведення",
-          "partOfSpeech": "NOUN",
-          "difficulty": 3,
-          "cefrLevel": "B1",
-          "aliasesEn": [],
-          "aliasesUk": ["відступ"],
-          "definitionEn": "A dictionary term from the “Withdraw, retreat, rout, flee” vocabulary collection.",
-          "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
-          "exampleEn": "The learner reviews “withdrawal” as a standalone dictionary entry.",
-          "exampleUk": "Користувач переглядає «відведення» як окрему словникову статтю.",
-          "contextNoteEn": "Language reference only; no operational procedure is provided.",
-          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
-          "source": {
-            "exactUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
-            "title": "Withdraw, retreat, rout, flee",
-            "publisher": "ENG for UARMY",
-            "sourceType": "OTHER",
-            "verificationStatus": "UNVERIFIED",
-            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
-          },
-          "origin": "AI_ASSISTED",
-          "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:retreat", "glossary:rout", "glossary:aircraft"]
-        },
-        {
-          "externalKey": "glossary:retreat",
-          "slug": "glossary-retreat",
-          "english": "retreat",
-          "ukrainian": "відступ",
-          "partOfSpeech": "VERB",
-          "difficulty": 3,
-          "cefrLevel": "B1",
-          "aliasesEn": [],
-          "aliasesUk": ["відступати"],
-          "definitionEn": "A dictionary term from the “Withdraw, retreat, rout, flee” vocabulary collection.",
-          "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
-          "exampleEn": "The learner reviews “retreat” as a standalone dictionary entry.",
-          "exampleUk": "Користувач переглядає «відступ» як окрему словникову статтю.",
-          "contextNoteEn": "Language reference only; no operational procedure is provided.",
-          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
-          "source": {
-            "exactUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
-            "title": "Withdraw, retreat, rout, flee",
-            "publisher": "ENG for UARMY",
-            "sourceType": "OTHER",
-            "verificationStatus": "UNVERIFIED",
-            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
-          },
-          "origin": "AI_ASSISTED",
-          "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-01",
-          "distractorKeys": ["glossary:rout", "glossary:aircraft", "glossary:fixed-wing-aircraft"]
-        },
-        {
-          "externalKey": "glossary:rout",
-          "slug": "glossary-rout",
-          "english": "rout",
-          "ukrainian": "розгром",
-          "partOfSpeech": "NOUN",
-          "difficulty": 3,
-          "cefrLevel": "B1",
-          "aliasesEn": [],
-          "aliasesUk": ["хаотичний відступ"],
-          "definitionEn": "A dictionary term from the “Withdraw, retreat, rout, flee” vocabulary collection.",
-          "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
-          "exampleEn": "The learner reviews “rout” as a standalone dictionary entry.",
-          "exampleUk": "Користувач переглядає «розгром» як окрему словникову статтю.",
           "contextNoteEn": "Language reference only; no operational procedure is provided.",
           "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
           "source": {
@@ -2312,6 +2229,97 @@
       "estimatedMinutes": 12,
       "terms": [
         {
+          "externalKey": "glossary:withdrawal",
+          "slug": "glossary-withdrawal",
+          "english": "withdrawal",
+          "ukrainian": "відведення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "cefrLevel": "B1",
+          "aliasesEn": [],
+          "aliasesUk": ["відступ"],
+          "definitionEn": "A dictionary term from the “Withdraw, retreat, rout, flee” vocabulary collection.",
+          "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
+          "exampleEn": "The learner reviews “withdrawal” as a standalone dictionary entry.",
+          "exampleUk": "Користувач переглядає «відведення» як окрему словникову статтю.",
+          "contextNoteEn": "Language reference only; no operational procedure is provided.",
+          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
+          "source": {
+            "exactUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
+            "title": "Withdraw, retreat, rout, flee",
+            "publisher": "ENG for UARMY",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED",
+            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "lessonSlug": "supplemental-02",
+          "distractorKeys": ["glossary:retreat", "glossary:rout", "glossary:flee"]
+        },
+        {
+          "externalKey": "glossary:retreat",
+          "slug": "glossary-retreat",
+          "english": "retreat",
+          "ukrainian": "відступ",
+          "partOfSpeech": "VERB",
+          "difficulty": 3,
+          "cefrLevel": "B1",
+          "aliasesEn": [],
+          "aliasesUk": ["відступати"],
+          "definitionEn": "A dictionary term from the “Withdraw, retreat, rout, flee” vocabulary collection.",
+          "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
+          "exampleEn": "The learner reviews “retreat” as a standalone dictionary entry.",
+          "exampleUk": "Користувач переглядає «відступ» як окрему словникову статтю.",
+          "contextNoteEn": "Language reference only; no operational procedure is provided.",
+          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
+          "source": {
+            "exactUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
+            "title": "Withdraw, retreat, rout, flee",
+            "publisher": "ENG for UARMY",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED",
+            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "lessonSlug": "supplemental-02",
+          "distractorKeys": ["glossary:rout", "glossary:flee", "glossary:radio-communication"]
+        },
+        {
+          "externalKey": "glossary:rout",
+          "slug": "glossary-rout",
+          "english": "rout",
+          "ukrainian": "розгром",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "cefrLevel": "B1",
+          "aliasesEn": [],
+          "aliasesUk": ["хаотичний відступ"],
+          "definitionEn": "A dictionary term from the “Withdraw, retreat, rout, flee” vocabulary collection.",
+          "definitionUk": "Словниковий термін із тематичної добірки «Withdraw, retreat, rout, flee».",
+          "exampleEn": "The learner reviews “rout” as a standalone dictionary entry.",
+          "exampleUk": "Користувач переглядає «розгром» як окрему словникову статтю.",
+          "contextNoteEn": "Language reference only; no operational procedure is provided.",
+          "contextNoteUk": "Лише мовна довідка без опису оперативних процедур.",
+          "source": {
+            "exactUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
+            "title": "Withdraw, retreat, rout, flee",
+            "publisher": "ENG for UARMY",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED",
+            "citationNote": "Curated from the user-provided Ukrainian auto-generated VTT transcript; caption distortions were excluded."
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "lessonSlug": "supplemental-02",
+          "distractorKeys": [
+            "glossary:flee",
+            "glossary:radio-communication",
+            "glossary:radio-traffic"
+          ]
+        },
+        {
           "externalKey": "glossary:flee",
           "slug": "glossary-flee",
           "english": "flee",
@@ -2341,7 +2349,7 @@
           "distractorKeys": [
             "glossary:radio-communication",
             "glossary:radio-traffic",
-            "glossary:transmit"
+            "glossary:withdrawal"
           ]
         },
         {
@@ -2371,7 +2379,7 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:radio-traffic", "glossary:transmit", "glossary:receive"]
+          "distractorKeys": ["glossary:radio-traffic", "glossary:withdrawal", "glossary:retreat"]
         },
         {
           "externalKey": "glossary:radio-traffic",
@@ -2400,8 +2408,27 @@
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
           "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:transmit", "glossary:receive", "glossary:receiver"]
-        },
+          "distractorKeys": ["glossary:withdrawal", "glossary:retreat", "glossary:rout"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 2",
+        "titleEn": "How context works: tactical vocabulary 2",
+        "bodyUk": "Терміни «відведення», «відступ», «розгром» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “withdrawal”, “retreat”, “rout” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Withdraw, retreat, rout, flee",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-03",
+      "titleUk": "Тактична лексика 3",
+      "titleEn": "Tactical vocabulary 3",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:transmit",
           "slug": "glossary-transmit",
@@ -2428,7 +2455,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
+          "lessonSlug": "supplemental-03",
           "distractorKeys": [
             "glossary:receive",
             "glossary:receiver",
@@ -2461,7 +2488,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
+          "lessonSlug": "supplemental-03",
           "distractorKeys": [
             "glossary:receiver",
             "glossary:security-classification",
@@ -2494,7 +2521,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
+          "lessonSlug": "supplemental-03",
           "distractorKeys": [
             "glossary:security-classification",
             "glossary:multirole-fighter",
@@ -2527,12 +2554,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": [
-            "glossary:multirole-fighter",
-            "glossary:wingspan",
-            "glossary:ejection-seat"
-          ]
+          "lessonSlug": "supplemental-03",
+          "distractorKeys": ["glossary:multirole-fighter", "glossary:wingspan", "glossary:transmit"]
         },
         {
           "externalKey": "glossary:multirole-fighter",
@@ -2560,8 +2583,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": ["glossary:wingspan", "glossary:ejection-seat", "glossary:flee"]
+          "lessonSlug": "supplemental-03",
+          "distractorKeys": ["glossary:wingspan", "glossary:transmit", "glossary:receive"]
         },
         {
           "externalKey": "glossary:wingspan",
@@ -2589,13 +2612,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": [
-            "glossary:ejection-seat",
-            "glossary:flee",
-            "glossary:radio-communication"
-          ]
-        },
+          "lessonSlug": "supplemental-03",
+          "distractorKeys": ["glossary:transmit", "glossary:receive", "glossary:receiver"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 3",
+        "titleEn": "How context works: tactical vocabulary 3",
+        "bodyUk": "Терміни «передавати», «приймати», «приймач» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “transmit”, “receive”, “receiver” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Military Radio Communications",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Radio%20Communications",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-04",
+      "titleUk": "Тактична лексика 4",
+      "titleEn": "Tactical vocabulary 4",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:ejection-seat",
           "slug": "glossary-ejection-seat",
@@ -2622,32 +2660,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-02",
-          "distractorKeys": [
-            "glossary:flee",
-            "glossary:radio-communication",
-            "glossary:radio-traffic"
-          ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 2",
-        "titleEn": "How context works: tactical vocabulary 2",
-        "bodyUk": "Терміни «тікати», «радіозв’язок», «радіообмін» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “flee”, “radio communication”, “radio traffic” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Withdraw, retreat, rout, flee",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Withdraw%2C%20retreat%2C%20rout%2C%20flee",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-03",
-      "titleUk": "Тактична лексика 3",
-      "titleEn": "Tactical vocabulary 3",
-      "difficulty": 3,
-      "cefrLevel": "B1",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-04",
+          "distractorKeys": ["glossary:bubble-canopy", "glossary:barrel", "glossary:muzzle"]
+        },
         {
           "externalKey": "glossary:bubble-canopy",
           "slug": "glossary-bubble-canopy",
@@ -2674,7 +2689,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-04",
           "distractorKeys": ["glossary:barrel", "glossary:muzzle", "glossary:stock"]
         },
         {
@@ -2703,7 +2718,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-04",
           "distractorKeys": ["glossary:muzzle", "glossary:stock", "glossary:handguard"]
         },
         {
@@ -2732,8 +2747,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": ["glossary:stock", "glossary:handguard", "glossary:trigger"]
+          "lessonSlug": "supplemental-04",
+          "distractorKeys": ["glossary:stock", "glossary:handguard", "glossary:ejection-seat"]
         },
         {
           "externalKey": "glossary:stock",
@@ -2761,8 +2776,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": ["glossary:handguard", "glossary:trigger", "glossary:fuselage"]
+          "lessonSlug": "supplemental-04",
+          "distractorKeys": [
+            "glossary:handguard",
+            "glossary:ejection-seat",
+            "glossary:bubble-canopy"
+          ]
         },
         {
           "externalKey": "glossary:handguard",
@@ -2790,9 +2809,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": ["glossary:trigger", "glossary:fuselage", "glossary:cockpit"]
-        },
+          "lessonSlug": "supplemental-04",
+          "distractorKeys": ["glossary:ejection-seat", "glossary:bubble-canopy", "glossary:barrel"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 4",
+        "titleEn": "How context works: tactical vocabulary 4",
+        "bodyUk": "Терміни «катапультне крісло», «краплеподібний ліхтар кабіни», «ствол» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “ejection seat”, “bubble canopy”, “barrel” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "F-16 Vocabulary",
+        "sourceUrl": "https://www.youtube.com/results?search_query=F-16%20Vocabulary",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-05",
+      "titleUk": "Тактична лексика 5",
+      "titleEn": "Tactical vocabulary 5",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:trigger",
           "slug": "glossary-trigger",
@@ -2819,7 +2857,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": ["glossary:fuselage", "glossary:cockpit", "glossary:aileron"]
         },
         {
@@ -2848,7 +2886,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
+          "lessonSlug": "supplemental-05",
           "distractorKeys": ["glossary:cockpit", "glossary:aileron", "glossary:elevator"]
         },
         {
@@ -2877,8 +2915,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": ["glossary:aileron", "glossary:elevator", "glossary:bubble-canopy"]
+          "lessonSlug": "supplemental-05",
+          "distractorKeys": ["glossary:aileron", "glossary:elevator", "glossary:rudder"]
         },
         {
           "externalKey": "glossary:aileron",
@@ -2906,8 +2944,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": ["glossary:elevator", "glossary:bubble-canopy", "glossary:barrel"]
+          "lessonSlug": "supplemental-05",
+          "distractorKeys": ["glossary:elevator", "glossary:rudder", "glossary:trigger"]
         },
         {
           "externalKey": "glossary:elevator",
@@ -2935,28 +2973,9 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-03",
-          "distractorKeys": ["glossary:bubble-canopy", "glossary:barrel", "glossary:muzzle"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 3",
-        "titleEn": "How context works: tactical vocabulary 3",
-        "bodyUk": "Терміни «краплеподібний ліхтар кабіни», «ствол», «дульний зріз» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “bubble canopy”, “barrel”, “muzzle” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "F-16 Vocabulary",
-        "sourceUrl": "https://www.youtube.com/results?search_query=F-16%20Vocabulary",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-04",
-      "titleUk": "Тактична лексика 4",
-      "titleEn": "Tactical vocabulary 4",
-      "difficulty": 3,
-      "cefrLevel": "B1",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-05",
+          "distractorKeys": ["glossary:rudder", "glossary:trigger", "glossary:fuselage"]
+        },
         {
           "externalKey": "glossary:rudder",
           "slug": "glossary-rudder",
@@ -2983,9 +3002,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": ["glossary:figures", "glossary:decimal", "glossary:punctuation-mark"]
-        },
+          "lessonSlug": "supplemental-05",
+          "distractorKeys": ["glossary:trigger", "glossary:fuselage", "glossary:cockpit"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 5",
+        "titleEn": "How context works: tactical vocabulary 5",
+        "bodyUk": "Терміни «спусковий гачок», «фюзеляж», «кабіна пілота» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “trigger”, “fuselage”, “cockpit” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Parts of a Rifle",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Parts%20of%20a%20Rifle",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-06",
+      "titleUk": "Тактична лексика 6",
+      "titleEn": "Tactical vocabulary 6",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:figures",
           "slug": "glossary-figures",
@@ -3012,7 +3050,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": [
             "glossary:decimal",
             "glossary:punctuation-mark",
@@ -3045,7 +3083,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": [
             "glossary:punctuation-mark",
             "glossary:date-time-group",
@@ -3078,7 +3116,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": [
             "glossary:date-time-group",
             "glossary:roman-numeral",
@@ -3111,11 +3149,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-06",
           "distractorKeys": [
             "glossary:roman-numeral",
             "glossary:transport-aircraft",
-            "glossary:reconnaissance-aircraft"
+            "glossary:figures"
           ]
         },
         {
@@ -3144,12 +3182,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": [
-            "glossary:transport-aircraft",
-            "glossary:reconnaissance-aircraft",
-            "glossary:attack-helicopter"
-          ]
+          "lessonSlug": "supplemental-06",
+          "distractorKeys": ["glossary:transport-aircraft", "glossary:figures", "glossary:decimal"]
         },
         {
           "externalKey": "glossary:transport-aircraft",
@@ -3177,13 +3211,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": [
-            "glossary:reconnaissance-aircraft",
-            "glossary:attack-helicopter",
-            "glossary:transport-helicopter"
-          ]
-        },
+          "lessonSlug": "supplemental-06",
+          "distractorKeys": ["glossary:figures", "glossary:decimal", "glossary:punctuation-mark"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 6",
+        "titleEn": "How context works: tactical vocabulary 6",
+        "bodyUk": "Терміни «цифри», «десяткова крапка», «розділовий знак» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “figures”, “decimal”, “punctuation mark” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Transmitting Data by Radio",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Transmitting%20Data%20by%20Radio",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-07",
+      "titleUk": "Тактична лексика 7",
+      "titleEn": "Tactical vocabulary 7",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:reconnaissance-aircraft",
           "slug": "glossary-reconnaissance-aircraft",
@@ -3210,11 +3259,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
+          "lessonSlug": "supplemental-07",
           "distractorKeys": [
             "glossary:attack-helicopter",
             "glossary:transport-helicopter",
-            "glossary:rudder"
+            "glossary:cargo-ramp"
           ]
         },
         {
@@ -3243,8 +3292,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": ["glossary:transport-helicopter", "glossary:rudder", "glossary:figures"]
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": [
+            "glossary:transport-helicopter",
+            "glossary:cargo-ramp",
+            "glossary:jet-engine"
+          ]
         },
         {
           "externalKey": "glossary:transport-helicopter",
@@ -3272,28 +3325,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-04",
-          "distractorKeys": ["glossary:rudder", "glossary:figures", "glossary:decimal"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 4",
-        "titleEn": "How context works: tactical vocabulary 4",
-        "bodyUk": "Терміни «кермо напрямку», «цифри», «десяткова крапка» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “rudder”, “figures”, “decimal” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Parts of a Military Aircraft",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Parts%20of%20a%20Military%20Aircraft",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-05",
-      "titleUk": "Тактична лексика 5",
-      "titleEn": "Tactical vocabulary 5",
-      "difficulty": 3,
-      "cefrLevel": "B1",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-07",
+          "distractorKeys": [
+            "glossary:cargo-ramp",
+            "glossary:jet-engine",
+            "glossary:self-propelled-artillery"
+          ]
+        },
         {
           "externalKey": "glossary:cargo-ramp",
           "slug": "glossary-cargo-ramp",
@@ -3320,11 +3358,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-07",
           "distractorKeys": [
             "glossary:jet-engine",
             "glossary:self-propelled-artillery",
-            "glossary:turret"
+            "glossary:reconnaissance-aircraft"
           ]
         },
         {
@@ -3353,11 +3391,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-07",
           "distractorKeys": [
             "glossary:self-propelled-artillery",
-            "glossary:turret",
-            "glossary:improvised-explosive-device"
+            "glossary:reconnaissance-aircraft",
+            "glossary:attack-helicopter"
           ]
         },
         {
@@ -3386,13 +3424,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-07",
           "distractorKeys": [
-            "glossary:turret",
-            "glossary:improvised-explosive-device",
-            "glossary:trigger-mechanism"
+            "glossary:reconnaissance-aircraft",
+            "glossary:attack-helicopter",
+            "glossary:transport-helicopter"
           ]
-        },
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 7",
+        "titleEn": "How context works: tactical vocabulary 7",
+        "bodyUk": "Терміни «розвідувальний літак», «ударний вертоліт», «транспортний вертоліт» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “reconnaissance aircraft”, “attack helicopter”, “transport helicopter” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Aircraft Recognition",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Aircraft%20Recognition",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-08",
+      "titleUk": "Тактична лексика 8",
+      "titleEn": "Tactical vocabulary 8",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:turret",
           "slug": "glossary-turret",
@@ -3419,7 +3476,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": [
             "glossary:improvised-explosive-device",
             "glossary:trigger-mechanism",
@@ -3452,7 +3509,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": [
             "glossary:trigger-mechanism",
             "glossary:delivery-mechanism",
@@ -3485,7 +3542,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": [
             "glossary:delivery-mechanism",
             "glossary:warhead",
@@ -3518,8 +3575,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:warhead", "glossary:radio-link", "glossary:cargo-ramp"]
+          "lessonSlug": "supplemental-08",
+          "distractorKeys": ["glossary:warhead", "glossary:radio-link", "glossary:turret"]
         },
         {
           "externalKey": "glossary:warhead",
@@ -3547,8 +3604,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
-          "distractorKeys": ["glossary:radio-link", "glossary:cargo-ramp", "glossary:jet-engine"]
+          "lessonSlug": "supplemental-08",
+          "distractorKeys": [
+            "glossary:radio-link",
+            "glossary:turret",
+            "glossary:improvised-explosive-device"
+          ]
         },
         {
           "externalKey": "glossary:radio-link",
@@ -3576,28 +3637,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-05",
+          "lessonSlug": "supplemental-08",
           "distractorKeys": [
-            "glossary:cargo-ramp",
-            "glossary:jet-engine",
-            "glossary:self-propelled-artillery"
+            "glossary:turret",
+            "glossary:improvised-explosive-device",
+            "glossary:trigger-mechanism"
           ]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 5",
-        "titleEn": "How context works: tactical vocabulary 5",
-        "bodyUk": "Терміни «вантажна рампа», «реактивний двигун», «самохідна артилерія» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “cargo ramp”, “jet engine”, “self-propelled artillery” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Aircraft Recognition",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Aircraft%20Recognition",
+        "titleUk": "Як працює контекст: тактична лексика 8",
+        "titleEn": "How context works: tactical vocabulary 8",
+        "bodyUk": "Терміни «башта», «саморобний вибуховий пристрій», «механізм приведення в дію» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “turret”, “improvised explosive device”, “trigger mechanism” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Armored Vehicle Recognition",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Armored%20Vehicle%20Recognition",
         "isBeta": true
       }
     },
     {
-      "slug": "supplemental-06",
-      "titleUk": "Тактична лексика 6",
-      "titleEn": "Tactical vocabulary 6",
+      "slug": "supplemental-09",
+      "titleUk": "Тактична лексика 9",
+      "titleEn": "Tactical vocabulary 9",
       "difficulty": 3,
       "cefrLevel": "B1",
       "estimatedMinutes": 12,
@@ -3628,7 +3689,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": [
             "glossary:grid-reference",
             "glossary:orientation",
@@ -3661,7 +3722,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": ["glossary:orientation", "glossary:prime-meridian", "glossary:latitude"]
         },
         {
@@ -3690,7 +3751,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": ["glossary:prime-meridian", "glossary:latitude", "glossary:longitude"]
         },
         {
@@ -3719,12 +3780,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
-          "distractorKeys": [
-            "glossary:latitude",
-            "glossary:longitude",
-            "glossary:military-demining"
-          ]
+          "lessonSlug": "supplemental-09",
+          "distractorKeys": ["glossary:latitude", "glossary:longitude", "glossary:map-reading"]
         },
         {
           "externalKey": "glossary:latitude",
@@ -3752,11 +3809,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": [
             "glossary:longitude",
-            "glossary:military-demining",
-            "glossary:minefield"
+            "glossary:map-reading",
+            "glossary:grid-reference"
           ]
         },
         {
@@ -3785,13 +3842,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-09",
           "distractorKeys": [
-            "glossary:military-demining",
-            "glossary:minefield",
-            "glossary:minefield-marking"
+            "glossary:map-reading",
+            "glossary:grid-reference",
+            "glossary:orientation"
           ]
-        },
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 9",
+        "titleEn": "How context works: tactical vocabulary 9",
+        "bodyUk": "Терміни «читання карти», «координати сітки», «орієнтування» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “map reading”, “grid reference”, “orientation” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Map Reading",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Map%20Reading",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-10",
+      "titleUk": "Тактична лексика 10",
+      "titleEn": "Tactical vocabulary 10",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:military-demining",
           "slug": "glossary-military-demining",
@@ -3818,11 +3894,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:minefield",
             "glossary:minefield-marking",
-            "glossary:map-reading"
+            "glossary:explosive-ordnance-disposal"
           ]
         },
         {
@@ -3851,11 +3927,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:minefield-marking",
-            "glossary:map-reading",
-            "glossary:grid-reference"
+            "glossary:explosive-ordnance-disposal",
+            "glossary:naval-vessel"
           ]
         },
         {
@@ -3884,32 +3960,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-06",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
-            "glossary:map-reading",
-            "glossary:grid-reference",
-            "glossary:orientation"
+            "glossary:explosive-ordnance-disposal",
+            "glossary:naval-vessel",
+            "glossary:aircraft-carrier"
           ]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 6",
-        "titleEn": "How context works: tactical vocabulary 6",
-        "bodyUk": "Терміни «читання карти», «координати сітки», «орієнтування» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “map reading”, “grid reference”, “orientation” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Map Reading",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Map%20Reading",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-07",
-      "titleUk": "Тактична лексика 7",
-      "titleEn": "Tactical vocabulary 7",
-      "difficulty": 3,
-      "cefrLevel": "B1",
-      "estimatedMinutes": 12,
-      "terms": [
+        },
         {
           "externalKey": "glossary:explosive-ordnance-disposal",
           "slug": "glossary-explosive-ordnance-disposal",
@@ -3936,11 +3993,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-10",
           "distractorKeys": [
             "glossary:naval-vessel",
             "glossary:aircraft-carrier",
-            "glossary:destroyer"
+            "glossary:military-demining"
           ]
         },
         {
@@ -3969,8 +4026,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": ["glossary:aircraft-carrier", "glossary:destroyer", "glossary:frigate"]
+          "lessonSlug": "supplemental-10",
+          "distractorKeys": [
+            "glossary:aircraft-carrier",
+            "glossary:military-demining",
+            "glossary:minefield"
+          ]
         },
         {
           "externalKey": "glossary:aircraft-carrier",
@@ -3998,9 +4059,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": ["glossary:destroyer", "glossary:frigate", "glossary:corvette"]
-        },
+          "lessonSlug": "supplemental-10",
+          "distractorKeys": [
+            "glossary:military-demining",
+            "glossary:minefield",
+            "glossary:minefield-marking"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 10",
+        "titleEn": "How context works: tactical vocabulary 10",
+        "bodyUk": "Терміни «військове розмінування», «мінне поле», «маркування мінного поля» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “military demining”, “minefield”, “minefield marking” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Military Demining",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Demining",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-11",
+      "titleUk": "Тактична лексика 11",
+      "titleEn": "Tactical vocabulary 11",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:destroyer",
           "slug": "glossary-destroyer",
@@ -4027,7 +4111,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-11",
           "distractorKeys": ["glossary:frigate", "glossary:corvette", "glossary:submarine"]
         },
         {
@@ -4056,7 +4140,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-11",
           "distractorKeys": ["glossary:corvette", "glossary:submarine", "glossary:procedure-word"]
         },
         {
@@ -4085,7 +4169,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
+          "lessonSlug": "supplemental-11",
           "distractorKeys": ["glossary:submarine", "glossary:procedure-word", "glossary:roger"]
         },
         {
@@ -4114,12 +4198,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": [
-            "glossary:procedure-word",
-            "glossary:roger",
-            "glossary:explosive-ordnance-disposal"
-          ]
+          "lessonSlug": "supplemental-11",
+          "distractorKeys": ["glossary:procedure-word", "glossary:roger", "glossary:destroyer"]
         },
         {
           "externalKey": "glossary:procedure-word",
@@ -4147,12 +4227,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": [
-            "glossary:roger",
-            "glossary:explosive-ordnance-disposal",
-            "glossary:naval-vessel"
-          ]
+          "lessonSlug": "supplemental-11",
+          "distractorKeys": ["glossary:roger", "glossary:destroyer", "glossary:frigate"]
         },
         {
           "externalKey": "glossary:roger",
@@ -4180,28 +4256,24 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-07",
-          "distractorKeys": [
-            "glossary:explosive-ordnance-disposal",
-            "glossary:naval-vessel",
-            "glossary:aircraft-carrier"
-          ]
+          "lessonSlug": "supplemental-11",
+          "distractorKeys": ["glossary:destroyer", "glossary:frigate", "glossary:corvette"]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 7",
-        "titleEn": "How context works: tactical vocabulary 7",
-        "bodyUk": "Терміни «знешкодження вибухонебезпечних предметів», «військовий корабель», «авіаносець» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “explosive ordnance disposal”, “naval vessel”, “aircraft carrier” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Military Demining",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Military%20Demining",
+        "titleUk": "Як працює контекст: тактична лексика 11",
+        "titleEn": "How context works: tactical vocabulary 11",
+        "bodyUk": "Терміни «есмінець», «фрегат», «корвет» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “destroyer”, “frigate”, “corvette” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Naval Vessels",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Naval%20Vessels",
         "isBeta": true
       }
     },
     {
-      "slug": "supplemental-08",
-      "titleUk": "Тактична лексика 8",
-      "titleEn": "Tactical vocabulary 8",
+      "slug": "supplemental-12",
+      "titleUk": "Тактична лексика 12",
+      "titleEn": "Tactical vocabulary 12",
       "difficulty": 3,
       "cefrLevel": "B1",
       "estimatedMinutes": 12,
@@ -4232,7 +4304,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-12",
           "distractorKeys": ["glossary:out", "glossary:say-again", "glossary:open-terrain"]
         },
         {
@@ -4261,7 +4333,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-12",
           "distractorKeys": [
             "glossary:say-again",
             "glossary:open-terrain",
@@ -4294,7 +4366,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-12",
           "distractorKeys": [
             "glossary:open-terrain",
             "glossary:wooded-terrain",
@@ -4327,11 +4399,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
+          "lessonSlug": "supplemental-12",
           "distractorKeys": [
             "glossary:wooded-terrain",
             "glossary:mountainous-terrain",
-            "glossary:marsh-terrain"
+            "glossary:over"
           ]
         },
         {
@@ -4360,12 +4432,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": [
-            "glossary:mountainous-terrain",
-            "glossary:marsh-terrain",
-            "glossary:urban-terrain"
-          ]
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:mountainous-terrain", "glossary:over", "glossary:out"]
         },
         {
           "externalKey": "glossary:mountainous-terrain",
@@ -4393,13 +4461,28 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": [
-            "glossary:marsh-terrain",
-            "glossary:urban-terrain",
-            "glossary:landmine"
-          ]
-        },
+          "lessonSlug": "supplemental-12",
+          "distractorKeys": ["glossary:over", "glossary:out", "glossary:say-again"]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 12",
+        "titleEn": "How context works: tactical vocabulary 12",
+        "bodyUk": "Терміни «прийом», «кінець зв’язку», «повторіть» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “over”, “out”, “say again” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Procedure Words for Radio Communication",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Procedure%20Words%20for%20Radio%20Communication",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-13",
+      "titleUk": "Тактична лексика 13",
+      "titleEn": "Tactical vocabulary 13",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:marsh-terrain",
           "slug": "glossary-marsh-terrain",
@@ -4426,8 +4509,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:urban-terrain", "glossary:landmine", "glossary:over"]
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": [
+            "glossary:urban-terrain",
+            "glossary:landmine",
+            "glossary:anti-personnel-mine"
+          ]
         },
         {
           "externalKey": "glossary:urban-terrain",
@@ -4455,8 +4542,12 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:landmine", "glossary:over", "glossary:out"]
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": [
+            "glossary:landmine",
+            "glossary:anti-personnel-mine",
+            "glossary:anti-vehicle-mine"
+          ]
         },
         {
           "externalKey": "glossary:landmine",
@@ -4484,28 +4575,13 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-08",
-          "distractorKeys": ["glossary:over", "glossary:out", "glossary:say-again"]
-        }
-      ],
-      "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 8",
-        "titleEn": "How context works: tactical vocabulary 8",
-        "bodyUk": "Терміни «прийом», «кінець зв’язку», «повторіть» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “over”, “out”, “say again” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
-        "sourceTitle": "Procedure Words for Radio Communication",
-        "sourceUrl": "https://www.youtube.com/results?search_query=Procedure%20Words%20for%20Radio%20Communication",
-        "isBeta": true
-      }
-    },
-    {
-      "slug": "supplemental-09",
-      "titleUk": "Тактична лексика 9",
-      "titleEn": "Tactical vocabulary 9",
-      "difficulty": 3,
-      "cefrLevel": "B1",
-      "estimatedMinutes": 12,
-      "terms": [
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": [
+            "glossary:anti-personnel-mine",
+            "glossary:anti-vehicle-mine",
+            "glossary:mine-clearance"
+          ]
+        },
         {
           "externalKey": "glossary:anti-personnel-mine",
           "slug": "glossary-anti-personnel-mine",
@@ -4532,11 +4608,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-13",
           "distractorKeys": [
             "glossary:anti-vehicle-mine",
             "glossary:mine-clearance",
-            "glossary:remote-control"
+            "glossary:marsh-terrain"
           ]
         },
         {
@@ -4565,11 +4641,11 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-13",
           "distractorKeys": [
             "glossary:mine-clearance",
-            "glossary:remote-control",
-            "glossary:weapon"
+            "glossary:marsh-terrain",
+            "glossary:urban-terrain"
           ]
         },
         {
@@ -4598,9 +4674,32 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": ["glossary:remote-control", "glossary:weapon", "glossary:firearm"]
-        },
+          "lessonSlug": "supplemental-13",
+          "distractorKeys": [
+            "glossary:marsh-terrain",
+            "glossary:urban-terrain",
+            "glossary:landmine"
+          ]
+        }
+      ],
+      "fact": {
+        "titleUk": "Як працює контекст: тактична лексика 13",
+        "titleEn": "How context works: tactical vocabulary 13",
+        "bodyUk": "Терміни «болотиста місцевість», «міська місцевість», «наземна міна» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “marsh terrain”, “urban terrain”, “landmine” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "sourceTitle": "Terrain Types",
+        "sourceUrl": "https://www.youtube.com/results?search_query=Terrain%20Types",
+        "isBeta": true
+      }
+    },
+    {
+      "slug": "supplemental-14",
+      "titleUk": "Тактична лексика 14",
+      "titleEn": "Tactical vocabulary 14",
+      "difficulty": 3,
+      "cefrLevel": "B1",
+      "estimatedMinutes": 12,
+      "terms": [
         {
           "externalKey": "glossary:remote-control",
           "slug": "glossary-remote-control",
@@ -4627,7 +4726,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-14",
           "distractorKeys": ["glossary:weapon", "glossary:firearm", "glossary:arms"]
         },
         {
@@ -4656,7 +4755,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-14",
           "distractorKeys": ["glossary:firearm", "glossary:arms", "glossary:armament"]
         },
         {
@@ -4685,7 +4784,7 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
+          "lessonSlug": "supplemental-14",
           "distractorKeys": ["glossary:arms", "glossary:armament", "glossary:munitions"]
         },
         {
@@ -4714,12 +4813,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": [
-            "glossary:armament",
-            "glossary:munitions",
-            "glossary:anti-personnel-mine"
-          ]
+          "lessonSlug": "supplemental-14",
+          "distractorKeys": ["glossary:armament", "glossary:munitions", "glossary:remote-control"]
         },
         {
           "externalKey": "glossary:armament",
@@ -4747,12 +4842,8 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": [
-            "glossary:munitions",
-            "glossary:anti-personnel-mine",
-            "glossary:anti-vehicle-mine"
-          ]
+          "lessonSlug": "supplemental-14",
+          "distractorKeys": ["glossary:munitions", "glossary:remote-control", "glossary:weapon"]
         },
         {
           "externalKey": "glossary:munitions",
@@ -4780,19 +4871,15 @@
           },
           "origin": "AI_ASSISTED",
           "audioState": "TTS_FALLBACK",
-          "lessonSlug": "supplemental-09",
-          "distractorKeys": [
-            "glossary:anti-personnel-mine",
-            "glossary:anti-vehicle-mine",
-            "glossary:mine-clearance"
-          ]
+          "lessonSlug": "supplemental-14",
+          "distractorKeys": ["glossary:remote-control", "glossary:weapon", "glossary:firearm"]
         }
       ],
       "fact": {
-        "titleUk": "Як працює контекст: тактична лексика 9",
-        "titleEn": "How context works: tactical vocabulary 9",
-        "bodyUk": "Терміни «протипіхотна міна», «протитранспортна міна», «розмінування» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
-        "bodyEn": "The terms “anti-personnel mine”, “anti-vehicle mine”, “mine clearance” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        "titleUk": "Як працює контекст: тактична лексика 14",
+        "titleEn": "How context works: tactical vocabulary 14",
+        "bodyUk": "Терміни «дистанційне керування», «зброя», «вогнепальна зброя» походять з однієї тематичної добірки. Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        "bodyEn": "The terms “remote control”, “weapon”, “firearm” come from the same vocabulary collection. Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
         "sourceTitle": "Types of Landmines",
         "sourceUrl": "https://www.youtube.com/results?search_query=Types%20of%20Landmines",
         "isBeta": true

@@ -39,7 +39,7 @@ export async function UserShell({ children, user }) {
       <UserSidebar user={user} />
       <div className="app-stage">
         <header className="app-topbar">
-          <Brand compact />
+          <Brand compact href="/dashboard" />
           <GameResourceBar />
           <div className="topbar-actions">
             <LocaleSwitcher />

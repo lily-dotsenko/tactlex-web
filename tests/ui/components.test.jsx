@@ -7,6 +7,7 @@ import { hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { NextIntlClientProvider } from "next-intl";
 import { PwaProvider } from "@/components/providers";
+import { CustomAvatar } from "@/components/custom-avatar";
 import { Button, ProgressBar } from "@/components/ui";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
 
@@ -51,6 +52,25 @@ describe("UI foundations", () => {
     expect(screen.getByRole("button", { name: "Continue" })).toHaveAttribute("type", "button");
   });
 
+  it("renders a labelled tactical cat avatar from allowlisted parts", () => {
+    render(
+      <CustomAvatar
+        title="Tactical cat preview"
+        config={{
+          catType: "maine-coon",
+          gender: "neutral",
+          coatColor: "ginger",
+          coatPattern: "tabby",
+          eyeColor: "green",
+          equipment: "tactical-vest",
+          weapon: "bow",
+          accessory: "headset",
+        }}
+      />,
+    );
+    expect(screen.getByRole("img", { name: "Tactical cat preview" })).toBeVisible();
+  });
+
   it("hydrates the PWA shell without replacing offline markup", async () => {
     Object.defineProperty(window.navigator, "onLine", { configurable: true, value: false });
     const view = (
@@ -75,6 +95,54 @@ describe("UI foundations", () => {
     await act(async () => root.unmount());
     consoleError.mockRestore();
     Object.defineProperty(window.navigator, "onLine", { configurable: true, value: true });
+  });
+
+  it("shows the install reminder no more than twice for the browser profile", async () => {
+    const values = new Map();
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      value: {
+        clear: () => values.clear(),
+        getItem: (key) => values.get(key) ?? null,
+        removeItem: (key) => values.delete(key),
+        setItem: (key, value) => values.set(key, String(value)),
+      },
+    });
+    window.localStorage.clear();
+    const view = (
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <PwaProvider>
+          <main>Application</main>
+        </PwaProvider>
+      </NextIntlClientProvider>
+    );
+    const dispatchInstallPrompt = async () => {
+      const event = new Event("beforeinstallprompt", { cancelable: true });
+      event.prompt = vi.fn();
+      await act(async () => window.dispatchEvent(event));
+    };
+
+    let rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
+    rendered.unmount();
+
+    rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.getByRole("complementary")).toBeVisible();
+    rendered.unmount();
+
+    rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.getByRole("complementary")).toBeVisible();
+    rendered.unmount();
+
+    rendered = render(view);
+    await dispatchInstallPrompt();
+    expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
+    expect(window.localStorage.getItem("tactlex-install-prompt-shows")).toBe("2");
+    rendered.unmount();
+    window.localStorage.clear();
   });
 });
 

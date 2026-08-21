@@ -927,10 +927,10 @@ const manifest = {
     terms: 0,
     lessonTerms: 556,
     glossaryTerms: 0,
-    lessons: 57,
-    lessonTermsMin: 9,
+    lessons: 71,
+    lessonTermsMin: 6,
     lessonTermsMax: 10,
-    facts: 27,
+    facts: 41,
   },
   files: [],
 };
@@ -955,8 +955,8 @@ for (const sourceGroup of [...vttGlossarySources, tcccGlossarySource]) {
 }
 
 const supplementalLessonCounts = {
-  "basic-military-english": 16,
-  "general-tactical-english": 9,
+  "basic-military-english": 25,
+  "general-tactical-english": 14,
   "tactical-medicine": 1,
   "drones-uas": 1,
   "sniper-terminology": 0,

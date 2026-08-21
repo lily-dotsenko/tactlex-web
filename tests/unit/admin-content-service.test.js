@@ -202,12 +202,12 @@ describe("admin content service", () => {
     });
   });
 
-  it("enforces the 8–12 term lesson publication boundary", async () => {
+  it("enforces the 6–12 term lesson publication boundary", async () => {
     const db = transactionDb();
     db.lesson.findUnique.mockResolvedValue({
       id: "lesson-1",
       status: "DRAFT",
-      terms: Array.from({ length: 7 }, (_, index) => ({ termId: `term-${index}` })),
+      terms: Array.from({ length: 5 }, (_, index) => ({ termId: `term-${index}` })),
     });
     const service = createAdminContentService(db, { clock: () => now });
 

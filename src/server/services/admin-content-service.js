@@ -854,10 +854,10 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
     }
     if (status === "PUBLISHED") {
       const termIds = lesson.terms.map(({ termId }) => termId);
-      if (termIds.length < 8 || termIds.length > 12) {
+      if (termIds.length < 6 || termIds.length > 12) {
         throw new DomainError(
           "INVALID_LESSON_SIZE",
-          "Опублікований урок повинен містити від 8 до 12 термінів.",
+          "Опублікований урок повинен містити від 6 до 12 термінів.",
           422,
         );
       }

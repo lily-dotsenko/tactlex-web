@@ -133,15 +133,30 @@ function itemTargetLocale(item) {
 const MIXED_EXERCISES = Object.freeze([
   { source: "EN", type: "MULTIPLE_CHOICE" },
   { source: "UK", type: "MULTIPLE_CHOICE" },
-  { source: "EN", type: "TYPE_ANSWER" },
+  { source: "EN", type: "MULTIPLE_CHOICE" },
   { source: "UK", type: "TYPE_ANSWER" },
   { source: "EN", type: "AUDIO" },
   { source: "EN", type: "MULTIPLE_CHOICE" },
   { source: "UK", type: "MULTIPLE_CHOICE" },
+  { source: "UK", type: "MULTIPLE_CHOICE" },
   { source: "EN", type: "TYPE_ANSWER" },
-  { source: "UK", type: "TYPE_ANSWER" },
   { source: "EN", type: "AUDIO" },
 ]);
+
+export function exercisePatternForItem({ kind, direction, index, lessonOrdinal = null }) {
+  const choiceOnly =
+    kind === "QUIZ" ||
+    kind === "CHECKPOINT" ||
+    (kind === "LESSON" && lessonOrdinal !== null && lessonOrdinal <= 2);
+  if (choiceOnly) {
+    return { source: index % 2 === 0 ? "EN" : "UK", type: "MULTIPLE_CHOICE" };
+  }
+  if (direction === "MIXED") return MIXED_EXERCISES[index % MIXED_EXERCISES.length];
+  return {
+    source: sourceLocale(direction),
+    type: direction === "UK_TO_EN" ? "UA_TO_EN" : "EN_TO_UA",
+  };
+}
 
 function shuffled(items) {
   const copy = [...items];
@@ -166,7 +181,7 @@ function choiceSnapshot(term, allTerms, source) {
   const unique = new Map(
     [correct, ...explicit, ...fallback].filter(Boolean).map((variant) => [variant.value, variant]),
   );
-  return shuffled([...unique.values()].slice(0, 4)).map(({ value }) => ({ value, label: value }));
+  return shuffled([...unique.values()].slice(0, 6)).map(({ value }) => ({ value, label: value }));
 }
 
 function mapProgress(progress) {
@@ -418,10 +433,10 @@ async function sessionTerms(db, input) {
     const terms = lesson.terms
       .map(({ term }) => term)
       .filter((term) => term.status === "PUBLISHED");
-    if (terms.length < 8 || terms.length > 12) {
+    if (terms.length < 6 || terms.length > 12) {
       throw conflict(
         "LESSON_NOT_READY",
-        "Урок повинен містити від 8 до 12 опублікованих термінів.",
+        "Урок повинен містити від 6 до 12 опублікованих термінів.",
       );
     }
     return { lesson, terms, kind: node?.type ?? "LESSON", node };
@@ -461,16 +476,35 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
     const now = clock();
     const direction = databaseDirection(input.direction ?? input.mode);
     const selected = await sessionTerms(db, input);
+    let lessonOrdinal = null;
+    if (selected.kind === "LESSON" && selected.lesson) {
+      const lessonNode =
+        selected.node?.type === "LESSON"
+          ? selected.node
+          : await db.learningNode.findFirst({
+              where: { lessonId: selected.lesson.id, type: "LESSON", active: true },
+              select: { categoryId: true, position: true },
+            });
+      if (lessonNode) {
+        lessonOrdinal =
+          (await db.learningNode.count({
+            where: {
+              categoryId: lessonNode.categoryId,
+              type: "LESSON",
+              active: true,
+              position: { lt: lessonNode.position },
+            },
+          })) + 1;
+      }
+    }
     const items = selected.terms.map((term, index) => {
       const isTextQuiz = selected.kind === "QUIZ" || selected.kind === "CHECKPOINT";
-      const pattern = isTextQuiz
-        ? { source: index % 2 === 0 ? "EN" : "UK", type: "MULTIPLE_CHOICE" }
-        : direction === "MIXED"
-          ? MIXED_EXERCISES[index % MIXED_EXERCISES.length]
-          : {
-              source: sourceLocale(direction),
-              type: direction === "UK_TO_EN" ? "UA_TO_EN" : "EN_TO_UA",
-            };
+      const pattern = exercisePatternForItem({
+        kind: selected.kind,
+        direction,
+        index,
+        lessonOrdinal,
+      });
       const prompt = primaryVariant(term, pattern.source);
       const accepted = acceptedVariants(term, pattern.source === "EN" ? "UK" : "EN");
       if (!prompt || accepted.length === 0) {
