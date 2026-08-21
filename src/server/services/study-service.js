@@ -13,7 +13,7 @@ const MAX_TRANSACTION_RETRIES = 3;
 
 const sessionInclude = {
   node: {
-    select: { id: true, slug: true, type: true, titleUk: true, titleEn: true },
+    select: { id: true, slug: true, type: true, titleUk: true, titleEn: true, categoryId: true },
   },
   lesson: {
     select: {
@@ -21,7 +21,7 @@ const sessionInclude = {
       slug: true,
       titleUk: true,
       titleEn: true,
-      category: { select: { slug: true } },
+      category: { select: { id: true, slug: true } },
     },
   },
   items: {
@@ -44,6 +44,15 @@ const sessionInclude = {
           },
           definitions: {
             select: { locale: true, shortDefinition: true },
+          },
+          contextDefinitions: {
+            select: {
+              categoryId: true,
+              locale: true,
+              shortDefinition: true,
+              example: true,
+              contextNote: true,
+            },
           },
           audioAssets: {
             where: { archivedAt: null, isPrimary: true, locale: "EN" },
@@ -158,6 +167,32 @@ export function exercisePatternForItem({ kind, direction, index, lessonOrdinal =
   };
 }
 
+function escapedPattern(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+}
+
+function isEditorialPlaceholderExample(example) {
+  return /(?:користувач опрацьовує термін|the learner reviews the term).*(?:нейтральн|neutral language exercise)/iu.test(
+    example ?? "",
+  );
+}
+
+export function sentencePrompt(term, contextDefinition, source) {
+  const example = contextDefinition?.example?.trim();
+  if (!example) return null;
+  if (isEditorialPlaceholderExample(example)) return null;
+  const candidates = term.variants
+    .filter((variant) => variant.locale === source && variant.isAcceptedAnswer)
+    .map((variant) => variant.value.trim())
+    .filter(Boolean)
+    .sort((left, right) => right.length - left.length);
+  for (const value of candidates) {
+    const pattern = new RegExp(`(?<!\\p{L})${escapedPattern(value)}(?!\\p{L})`, "iu");
+    if (pattern.test(example)) return example.replace(pattern, "_____");
+  }
+  return null;
+}
+
 function shuffled(items) {
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {
@@ -184,6 +219,55 @@ function choiceSnapshot(term, allTerms, source) {
   return shuffled([...unique.values()].slice(0, 6)).map(({ value }) => ({ value, label: value }));
 }
 
+function matchingSnapshot(terms, source) {
+  const target = source === "EN" ? "UK" : "EN";
+  return shuffled(terms.map((term) => primaryVariant(term, target)).filter(Boolean)).map(
+    ({ value }) => ({ value, label: value }),
+  );
+}
+
+export function exercisePlan({ terms, kind, direction, lessonOrdinal, categoryId }) {
+  const plan = terms.map((term, index) => ({
+    ...exercisePatternForItem({ kind, direction, index, lessonOrdinal }),
+    interactionGroupId: null,
+    promptSnapshot: null,
+  }));
+
+  if (terms.length >= 4) {
+    const source = direction === "UK_TO_EN" ? "UK" : "EN";
+    const matchTerms = terms.slice(0, 4);
+    const ready = matchTerms.every(
+      (term) => primaryVariant(term, source) && primaryVariant(term, source === "EN" ? "UK" : "EN"),
+    );
+    if (ready) {
+      const interactionGroupId = randomUUID();
+      matchTerms.forEach((_term, index) => {
+        plan[index] = { source, type: "MATCH_PAIRS", interactionGroupId, promptSnapshot: null };
+      });
+    }
+  }
+
+  let sentenceCount = 0;
+  for (let index = 4; index < terms.length && sentenceCount < 2; index += 1) {
+    const term = terms[index];
+    const source = direction === "UK_TO_EN" ? "UK" : "EN";
+    const target = source === "EN" ? "UK" : "EN";
+    const contextual = term.contextDefinitions?.find(
+      (definition) => definition.categoryId === categoryId && definition.locale === target,
+    );
+    const promptSnapshot = sentencePrompt(term, contextual, target);
+    if (!promptSnapshot) continue;
+    plan[index] = {
+      source,
+      type: "CONTEXT_SENTENCE",
+      interactionGroupId: null,
+      promptSnapshot,
+    };
+    sentenceCount += 1;
+  }
+  return plan;
+}
+
 function mapProgress(progress) {
   return {
     state: progress.state,
@@ -199,6 +283,7 @@ function mapProgress(progress) {
 }
 
 function mapSession(session, summary = null) {
+  const categoryId = session.lesson?.category?.id ?? session.node?.categoryId ?? null;
   const introduction =
     session.currentStage === "INTRODUCTION" && session.kind === "LESSON"
       ? session.items.map((item) => ({
@@ -214,6 +299,91 @@ function mapSession(session, summary = null) {
             : null,
         }))
       : [];
+  const mappedItems = session.items.map((item) => {
+    const target = itemTargetLocale(item);
+    const source = itemSourceLocale(item);
+    const answer = item.answers?.[0] ?? null;
+    const accepted =
+      answer && item.status === "ANSWERED" ? primaryVariant(item.term, target) : null;
+    const contextualDefinition = item.term.contextDefinitions?.find(
+      (entry) => entry.categoryId === categoryId && entry.locale === source,
+    );
+    const definition =
+      contextualDefinition ?? item.term.definitions.find((entry) => entry.locale === source);
+    const audioAsset = source === "EN" ? item.term.audioAssets?.[0] : null;
+    const contextOptions =
+      item.exerciseType === "CONTEXT_SENTENCE" && !Array.isArray(item.optionsSnapshot)
+        ? item.optionsSnapshot
+        : null;
+    const placeholderContext = isEditorialPlaceholderExample(contextOptions?.prompt);
+    const choices = Array.isArray(item.optionsSnapshot)
+      ? item.optionsSnapshot
+      : Array.isArray(contextOptions?.choices)
+        ? contextOptions.choices
+        : [];
+    return {
+      id: item.id,
+      termId: item.termId,
+      position: item.position,
+      stage: item.stage,
+      exerciseType: placeholderContext ? "MULTIPLE_CHOICE" : item.exerciseType,
+      interactionGroupId: item.interactionGroupId,
+      status: item.status,
+      prompt:
+        item.exerciseType === "CONTEXT_SENTENCE" && !placeholderContext
+          ? (contextOptions?.prompt ?? item.promptVariant?.value ?? null)
+          : (item.promptVariant?.value ?? null),
+      promptLocale:
+        item.exerciseType === "CONTEXT_SENTENCE" && !placeholderContext
+          ? apiLocale(target)
+          : item.promptVariant
+            ? apiLocale(item.promptVariant.locale)
+            : null,
+      answerLocale: apiLocale(target),
+      definition: definition?.shortDefinition ?? null,
+      contextNote: contextualDefinition?.contextNote ?? null,
+      choices:
+        ["MULTIPLE_CHOICE", "MATCH_PAIRS", "CONTEXT_SENTENCE"].includes(item.exerciseType) ||
+        (answer && !answer.isCorrect)
+          ? choices
+          : [],
+      attemptedAnswers: item.answers
+        .filter((attempt) => !attempt.isCorrect)
+        .map((attempt) => attempt.submittedAnswer),
+      audio:
+        audioAsset && session.kind !== "QUIZ" && session.kind !== "CHECKPOINT"
+          ? {
+              id: audioAsset.id,
+              kind: audioAsset.kind,
+              provider: audioAsset.provider,
+              url: `/api/v1/audio/${audioAsset.id}`,
+            }
+          : null,
+      result: answer
+        ? {
+            id: answer.id,
+            submittedAnswer: answer.submittedAnswer,
+            normalizedAnswer: answer.normalizedAnswer,
+            isCorrect: answer.isCorrect,
+            rating: answer.rating,
+            responseTimeMs: answer.responseTimeMs,
+            awardedXp: answer.awardedXp,
+            acceptedAnswer: accepted?.value ?? null,
+            answeredAt: answer.createdAt,
+          }
+        : null,
+    };
+  });
+  const firstPending = mappedItems.find((item) => item.status !== "ANSWERED");
+  const currentInteraction = firstPending?.interactionGroupId
+    ? {
+        id: firstPending.interactionGroupId,
+        type: "MATCH_PAIRS",
+        items: mappedItems.filter(
+          (item) => item.interactionGroupId === firstPending.interactionGroupId,
+        ),
+      }
+    : null;
   return {
     id: session.id,
     kind: session.kind,
@@ -235,57 +405,9 @@ function mapSession(session, summary = null) {
       0,
       session.items.findIndex((item) => item.status !== "ANSWERED"),
     ),
-    items: session.items.map((item) => {
-      const target = itemTargetLocale(item);
-      const source = itemSourceLocale(item);
-      const answer = item.answers?.[0] ?? null;
-      const accepted =
-        answer && item.status === "ANSWERED" ? primaryVariant(item.term, target) : null;
-      const definition = item.term.definitions.find((entry) => entry.locale === source);
-      const audioAsset = source === "EN" ? item.term.audioAssets?.[0] : null;
-      return {
-        id: item.id,
-        termId: item.termId,
-        position: item.position,
-        stage: item.stage,
-        exerciseType: item.exerciseType,
-        status: item.status,
-        prompt: item.promptVariant?.value ?? null,
-        promptLocale: item.promptVariant ? apiLocale(item.promptVariant.locale) : null,
-        definition: definition?.shortDefinition ?? null,
-        choices:
-          item.exerciseType === "MULTIPLE_CHOICE" || (answer && !answer.isCorrect)
-            ? Array.isArray(item.optionsSnapshot)
-              ? item.optionsSnapshot
-              : []
-            : [],
-        attemptedAnswers: item.answers
-          .filter((attempt) => !attempt.isCorrect)
-          .map((attempt) => attempt.submittedAnswer),
-        audio:
-          audioAsset && session.kind !== "QUIZ" && session.kind !== "CHECKPOINT"
-            ? {
-                id: audioAsset.id,
-                kind: audioAsset.kind,
-                provider: audioAsset.provider,
-                url: `/api/v1/audio/${audioAsset.id}`,
-              }
-            : null,
-        result: answer
-          ? {
-              id: answer.id,
-              submittedAnswer: answer.submittedAnswer,
-              normalizedAnswer: answer.normalizedAnswer,
-              isCorrect: answer.isCorrect,
-              rating: answer.rating,
-              responseTimeMs: answer.responseTimeMs,
-              awardedXp: answer.awardedXp,
-              acceptedAnswer: accepted?.value ?? null,
-              answeredAt: answer.createdAt,
-            }
-          : null,
-      };
-    }),
+    currentItem: firstPending ?? null,
+    currentInteraction,
+    items: mappedItems,
   };
 }
 
@@ -397,7 +519,19 @@ export function deriveEffectiveRating(isCorrect, requestedRating) {
   return !requestedRating || requestedRating === "AGAIN" ? "GOOD" : requestedRating;
 }
 
-async function sessionTerms(db, input) {
+export function checkpointTermPriority(progress, now = new Date()) {
+  if (!progress) return 500_000_000;
+  const dueAt = new Date(progress.dueAt).getTime();
+  const overdueMs = Math.max(0, now.getTime() - dueAt);
+  const overdue = overdueMs > 0 ? 1_000_000_000_000 + Math.min(overdueMs, 999_999_999_999) : 0;
+  const weakness =
+    Number(progress.lapses ?? 0) * 10_000_000 +
+    Number(progress.incorrectCount ?? 0) * 1_000_000 +
+    Number(progress.difficulty ?? 0) * 10_000;
+  return overdue + weakness;
+}
+
+async function sessionTerms(db, userId, input, now = new Date()) {
   const node = input.nodeId
     ? await db.learningNode.findFirst({
         where: { id: input.nodeId, active: true },
@@ -420,6 +554,7 @@ async function sessionTerms(db, input) {
               include: {
                 variants: true,
                 definitions: true,
+                contextDefinitions: true,
                 distractors: {
                   include: { distractorTerm: { include: { variants: true } } },
                 },
@@ -439,7 +574,13 @@ async function sessionTerms(db, input) {
         "Урок повинен містити від 6 до 12 опублікованих термінів.",
       );
     }
-    return { lesson, terms, kind: node?.type ?? "LESSON", node };
+    return {
+      lesson,
+      terms,
+      kind: node?.type ?? "LESSON",
+      node,
+      categoryId: lesson.categoryId ?? node?.categoryId ?? null,
+    };
   }
 
   const categoryId = node?.categoryId ?? input.categoryId;
@@ -450,22 +591,37 @@ async function sessionTerms(db, input) {
     });
     if (!category) throw notFound("Категорію не знайдено.");
   }
-  const terms = await db.term.findMany({
+  const isCheckpoint = node?.type === "CHECKPOINT";
+  const availableTerms = await db.term.findMany({
     where: {
       status: "PUBLISHED",
       archivedAt: null,
       ...(categoryId ? { categories: { some: { categoryId } } } : {}),
     },
     orderBy: { id: "asc" },
-    take: 10,
+    ...(isCheckpoint ? {} : { take: 10 }),
     include: {
       variants: true,
       definitions: true,
+      contextDefinitions: true,
       distractors: { include: { distractorTerm: { include: { variants: true } } } },
+      ...(isCheckpoint
+        ? { userProgress: { where: { userId }, orderBy: { updatedAt: "desc" }, take: 1 } }
+        : {}),
     },
   });
+  const terms = isCheckpoint
+    ? availableTerms
+        .toSorted((left, right) => {
+          const priority =
+            checkpointTermPriority(right.userProgress?.[0], now) -
+            checkpointTermPriority(left.userProgress?.[0], now);
+          return priority || left.id.localeCompare(right.id);
+        })
+        .slice(0, 10)
+    : availableTerms;
   if (terms.length === 0) throw notFound("Немає доступних опублікованих термінів.");
-  return { lesson: null, terms, kind: node?.type ?? "PRACTICE", node };
+  return { lesson: null, terms, kind: node?.type ?? "PRACTICE", node, categoryId };
 }
 
 export function createStudyService(db, { clock = () => new Date() } = {}) {
@@ -475,7 +631,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
   async function createSession(userId, input, requestKey) {
     const now = clock();
     const direction = databaseDirection(input.direction ?? input.mode);
-    const selected = await sessionTerms(db, input);
+    const selected = await sessionTerms(db, userId, input, now);
     let lessonOrdinal = null;
     if (selected.kind === "LESSON" && selected.lesson) {
       const lessonNode =
@@ -497,14 +653,25 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
           })) + 1;
       }
     }
+    const plannedExercises = exercisePlan({
+      terms: selected.terms,
+      kind: selected.kind,
+      direction,
+      lessonOrdinal,
+      categoryId: selected.categoryId,
+    });
+    const matchingOptions = new Map();
+    for (const entry of plannedExercises.filter((entry) => entry.interactionGroupId)) {
+      if (!matchingOptions.has(entry.interactionGroupId)) {
+        matchingOptions.set(
+          entry.interactionGroupId,
+          matchingSnapshot(selected.terms.slice(0, 4), entry.source),
+        );
+      }
+    }
     const items = selected.terms.map((term, index) => {
       const isTextQuiz = selected.kind === "QUIZ" || selected.kind === "CHECKPOINT";
-      const pattern = exercisePatternForItem({
-        kind: selected.kind,
-        direction,
-        index,
-        lessonOrdinal,
-      });
+      const pattern = plannedExercises[index];
       const prompt = primaryVariant(term, pattern.source);
       const accepted = acceptedVariants(term, pattern.source === "EN" ? "UK" : "EN");
       if (!prompt || accepted.length === 0) {
@@ -520,7 +687,16 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
         position: index + 1,
         stage: "PRACTICE",
         exerciseType: pattern.type,
-        optionsSnapshot: choiceSnapshot(term, selected.terms, pattern.source),
+        optionsSnapshot:
+          pattern.type === "MATCH_PAIRS"
+            ? matchingOptions.get(pattern.interactionGroupId)
+            : pattern.type === "CONTEXT_SENTENCE"
+              ? {
+                  prompt: pattern.promptSnapshot,
+                  choices: choiceSnapshot(term, selected.terms, pattern.source),
+                }
+              : choiceSnapshot(term, selected.terms, pattern.source),
+        interactionGroupId: pattern.interactionGroupId,
         maxAttempts: isTextQuiz ? 1 : 4,
         servedAt: now,
       };
@@ -602,6 +778,10 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
           ...(answerXp > 0 ? [{ reason: "CORRECT_ANSWERS", amount: answerXp }] : []),
           ...completionXp,
         ],
+        isFirstNodeCompletion: false,
+        isPerfect: session.maxScore > 0 && session.score === session.maxScore,
+        celebrationTier:
+          session.maxScore > 0 && session.score === session.maxScore ? "major" : "minor",
       };
     }
     return mapSession(session, summary);
@@ -682,7 +862,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
             });
             if (recordedAnswer) {
               const retryAllowed =
-                recordedAnswer.sessionItem.exerciseType === "MULTIPLE_CHOICE" &&
+                ["MULTIPLE_CHOICE", "MATCH_PAIRS", "CONTEXT_SENTENCE"].includes(
+                  recordedAnswer.sessionItem.exerciseType,
+                ) &&
                 !recordedAnswer.isCorrect &&
                 recordedAnswer.sessionItem.status !== "ANSWERED";
               const [progress, answeredItems, primary, awards] = await Promise.all([
@@ -993,6 +1175,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 awardedAt,
                 rewardXp: achievement.rewardXp,
               }));
+              const isPerfect = session.maxScore > 0 && session.score === session.maxScore;
               return {
                 id: session.id,
                 status: session.status,
@@ -1009,6 +1192,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                   totalItems: session.maxScore,
                   xpAwarded: answerXp + completionXpTotal,
                   awards,
+                  isFirstNodeCompletion: false,
+                  isPerfect,
+                  celebrationTier: isPerfect ? "major" : "minor",
                 },
                 rewards: { xpAwarded: completionXpTotal, achievements },
                 progress: profile
@@ -1051,6 +1237,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
             }
 
             let firstCompletion = false;
+            let firstNodeCompletion = false;
             if (session.kind === "LESSON" && session.lessonId) {
               const existing = await transaction.userLessonProgress.findUnique({
                 where: { userId_lessonId: { userId, lessonId: session.lessonId } },
@@ -1079,6 +1266,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               const existingNodeProgress = await transaction.userLearningNodeProgress.findUnique({
                 where: { userId_nodeId: { userId, nodeId: session.nodeId } },
               });
+              firstNodeCompletion = !existingNodeProgress?.firstCompletedAt;
               const accuracy = Math.round((correct / session.items.length) * 100);
               const stars = accuracy === 100 ? 3 : accuracy >= 80 ? 2 : accuracy >= 60 ? 1 : 0;
               await transaction.userLearningNodeProgress.upsert({
@@ -1150,6 +1338,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
             const profile = await transaction.userProfile.findUnique({ where: { userId } });
             const answerXp = session.answers.reduce((sum, answer) => sum + answer.awardedXp, 0);
             if (answerXp > 0) awards.unshift({ reason: "CORRECT_ANSWERS", amount: answerXp });
+            const isPerfect = correct === session.items.length;
             return {
               id: session.id,
               status: "COMPLETED",
@@ -1164,6 +1353,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 totalItems: session.items.length,
                 xpAwarded: answerXp + xpAwarded,
                 awards,
+                isFirstNodeCompletion: firstNodeCompletion,
+                isPerfect,
+                celebrationTier: firstNodeCompletion || isPerfect ? "major" : "minor",
               },
               rewards: { xpAwarded, achievements },
               progress: profile

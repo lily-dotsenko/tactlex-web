@@ -10,6 +10,8 @@ import { PwaProvider } from "@/components/providers";
 import { CustomAvatar } from "@/components/custom-avatar";
 import { Button, ProgressBar } from "@/components/ui";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
+import { AccessibleDialog } from "@/components/accessible-dialog";
+import { effectPreferences, setEffectPreference } from "@/components/effects";
 
 vi.mock("@/lib/i18n/navigation", () => ({
   Link: ({ children, href, ...props }) => (
@@ -50,6 +52,40 @@ describe("UI foundations", () => {
   it("keeps the default button type safe for forms", () => {
     render(<Button>Continue</Button>);
     expect(screen.getByRole("button", { name: "Continue" })).toHaveAttribute("type", "button");
+  });
+
+  it("traps focus in the exit dialog and closes it with Escape", () => {
+    const onClose = vi.fn();
+    render(
+      <AccessibleDialog open title="Leave lesson?" onClose={onClose}>
+        <button type="button">Continue</button>
+        <button type="button">Leave</button>
+      </AccessibleDialog>,
+    );
+    screen.getByRole("button", { name: "Continue" });
+    const closeButton = screen.getByRole("button", { name: "Close" });
+    const leaveButton = screen.getByRole("button", { name: "Leave" });
+    leaveButton.focus();
+    fireEvent.keyDown(document, { key: "Tab" });
+    expect(closeButton).toHaveFocus();
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it("stores device-local sound and motion preferences", () => {
+    const values = new Map();
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      value: {
+        getItem: (key) => values.get(key) ?? null,
+        setItem: (key, value) => values.set(key, String(value)),
+      },
+    });
+    setEffectPreference("sound", false);
+    setEffectPreference("motion", false);
+    expect(effectPreferences()).toEqual({ sound: false, motion: false });
+    setEffectPreference("sound", true);
+    setEffectPreference("motion", true);
   });
 
   it("renders a labelled tactical cat avatar from allowlisted parts", () => {

@@ -21,6 +21,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { apiRequest } from "@/components/learning-api";
+import { Mascot } from "@/components/mascot";
 import { PatchBoard } from "@/components/screens/game-screens";
 import { avatarByKey } from "@/lib/avatars/catalog";
 import { CustomAvatar } from "@/components/custom-avatar";
@@ -420,7 +421,11 @@ export function LiveDashboardScreen() {
 
   return (
     <div className="page-stack">
-      <PageHeader eyebrow="TactLex" title={copy.dashboard} />
+      <PageHeader
+        eyebrow="TactLex"
+        title={copy.dashboard}
+        actions={<Mascot pose="point" motion="nod" size={108} priority />}
+      />
       {progress.status !== "ready" && <LiveState state={progress} copy={copy} />}
       {progress.status === "ready" && data && (
         <>
@@ -594,7 +599,11 @@ export function LiveAchievementsScreen() {
   const items = Array.isArray(state.data) ? state.data : [];
   return (
     <div className="page-stack">
-      <PageHeader eyebrow={copy.earned} title={locale === "uk" ? "Досягнення" : "Achievements"} />
+      <PageHeader
+        eyebrow={copy.earned}
+        title={locale === "uk" ? "Досягнення" : "Achievements"}
+        actions={<Mascot pose="victory" motion="bounce" size={108} />}
+      />
       {state.status !== "ready" && <LiveState state={state} copy={copy} />}
       {state.status === "ready" && items.length === 0 && (
         <LiveState state={state} copy={copy} emptyText={copy.achievementsEmpty} />

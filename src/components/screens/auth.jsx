@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowLeft, Check, Eye, EyeOff, LockKeyhole, Mail, UserRound } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Brand } from "@/components/brand";
+import { Mascot } from "@/components/mascot";
 import { Button, ButtonLink, Card, Field } from "@/components/ui";
 import { Link, useRouter } from "@/lib/i18n/navigation";
 
@@ -189,6 +190,7 @@ export function OnboardingScreen() {
       <Brand />
       <div className="onboarding-layout">
         <header className="onboarding-header">
+          <Mascot pose="coach" motion="peek" size={118} priority />
           <p className="eyebrow">{t("eyebrow")}</p>
           <h1>{t("title")}</h1>
           <p>{t("lead")}</p>

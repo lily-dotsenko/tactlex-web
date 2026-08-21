@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Globe2, Moon, ShieldCheck, Sun, Target } from "lucide-react";
+import { Check, Globe2, Moon, ShieldCheck, Sparkles, Sun, Target, Volume2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Button, Card, Field } from "@/components/ui";
 import { apiRequest } from "@/components/learning-api";
 import { useRouter } from "@/lib/i18n/navigation";
+import { effectPreferences, playEffect, setEffectPreference } from "@/components/effects";
 
 export function SettingsForm() {
   const t = useTranslations("Settings");
@@ -17,8 +18,15 @@ export function SettingsForm() {
   const [error, setError] = useState("");
   const [dailyGoalXp, setDailyGoalXp] = useState(20);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
+  const [soundEffects, setSoundEffects] = useState(true);
+  const [motionEffects, setMotionEffects] = useState(true);
 
   useEffect(() => {
+    const effects = effectPreferences();
+    const effectsTimer = window.setTimeout(() => {
+      setSoundEffects(effects.sound);
+      setMotionEffects(effects.motion);
+    }, 0);
     let active = true;
     apiRequest("/profile")
       .then((data) => {
@@ -31,6 +39,7 @@ export function SettingsForm() {
       });
     return () => {
       active = false;
+      window.clearTimeout(effectsTimer);
     };
   }, []);
 
@@ -46,6 +55,8 @@ export function SettingsForm() {
       "tactlex-learning-direction",
       data.direction === "UA_TO_EN" ? "UA_TO_EN" : "EN_TO_UA",
     );
+    setEffectPreference("sound", soundEffects);
+    setEffectPreference("motion", motionEffects);
     if (data.theme !== "system") {
       document.documentElement.dataset.theme = data.theme;
       document.documentElement.style.colorScheme = data.theme;
@@ -101,6 +112,45 @@ export function SettingsForm() {
             <option value="en">English</option>
           </select>
         </Field>
+      </Card>
+      <Card className="settings-card">
+        <div className="settings-section-title">
+          <Sparkles size={22} />
+          <div>
+            <h2>{locale === "uk" ? "Ефекти" : "Effects"}</h2>
+            <p>
+              {locale === "uk"
+                ? "Звуки, анімації Морковочки та святкування"
+                : "Sounds, Morkva animations and celebrations"}
+            </p>
+          </div>
+        </div>
+        <label className="check-control">
+          <input
+            type="checkbox"
+            checked={soundEffects}
+            onChange={(event) => {
+              const enabled = event.target.checked;
+              setSoundEffects(enabled);
+              setEffectPreference("sound", enabled);
+              if (enabled) playEffect("correct");
+            }}
+          />
+          <Volume2 size={18} aria-hidden="true" />
+          <span>{locale === "uk" ? "Звукові ефекти" : "Sound effects"}</span>
+        </label>
+        <label className="check-control">
+          <input
+            type="checkbox"
+            checked={motionEffects}
+            onChange={(event) => {
+              setMotionEffects(event.target.checked);
+              setEffectPreference("motion", event.target.checked);
+            }}
+          />
+          <Sparkles size={18} aria-hidden="true" />
+          <span>{locale === "uk" ? "Анімації й святкування" : "Animations and celebrations"}</span>
+        </label>
       </Card>
       <Card className="settings-card">
         <div className="settings-section-title">

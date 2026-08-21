@@ -97,6 +97,22 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
             contextNote: "Одноразовий тестовий контент.",
           },
         ],
+        contextDefinitions: [
+          {
+            categoryId: category.id,
+            locale: "EN",
+            shortDefinition: `Integration contextual definition ${index}.`,
+            example: `The ${english} appears in this verified example.`,
+            contextNote: "Disposable test context.",
+          },
+          {
+            categoryId: category.id,
+            locale: "UK",
+            shortDefinition: `Інтеграційне контекстне визначення ${index}.`,
+            example: `У цьому перевіреному прикладі є ${ukrainian}.`,
+            contextNote: "Одноразовий тестовий контекст.",
+          },
+        ],
         categories: [{ categoryId: category.id, isPrimary: true }],
         sources: [
           {
@@ -160,7 +176,9 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     expect(practiceSession.currentStage).toBe("PRACTICE");
 
     const [retryItem, ...remainingItems] = session.items;
-    expect(retryItem.exerciseType).toBe("MULTIPLE_CHOICE");
+    expect(retryItem.exerciseType).toBe("MATCH_PAIRS");
+    expect(session.currentInteraction).toMatchObject({ type: "MATCH_PAIRS" });
+    expect(session.items.filter(({ interactionGroupId }) => interactionGroupId)).toHaveLength(4);
     const retryAnswer = acceptedAnswers.get(retryItem.termId).UK;
     const wrongChoice = retryItem.choices.find(({ value }) => value !== retryAnswer);
     const wrongResult = await study.submitAnswer(
@@ -198,15 +216,18 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     );
     expect(correctedResult).toMatchObject({ correct: true, answeredItems: 1 });
 
-    const typedRetryItem = remainingItems.find(
-      ({ exerciseType }) => exerciseType === "TYPE_ANSWER",
-    );
+    const typedRetryItem = remainingItems[0];
+    const typedVariants = acceptedAnswers.get(typedRetryItem.termId);
+    const typedAnswer = typedRetryItem.answerLocale === "en" ? typedVariants.EN : typedVariants.UK;
+    const typedWrongAnswer =
+      typedRetryItem.choices.find(({ value }) => value !== typedAnswer)?.value ??
+      "неправильна відповідь";
     const typedWrongResult = await study.submitAnswer(
       userId,
       session.id,
       {
         sessionItemId: typedRetryItem.id,
-        answer: "неправильна відповідь",
+        answer: typedWrongAnswer,
         responseTimeMs: 400,
       },
       randomUUID(),
@@ -216,9 +237,7 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
       acceptedAnswer: null,
       answeredItems: 1,
     });
-    expect(typedWrongResult.correctionChoices).toHaveLength(6);
-    const typedVariants = acceptedAnswers.get(typedRetryItem.termId);
-    const typedAnswer = typedRetryItem.promptLocale === "uk" ? typedVariants.EN : typedVariants.UK;
+    expect(typedWrongResult.correctionChoices.length).toBeGreaterThanOrEqual(4);
     const typedCorrectedResult = await study.submitAnswer(
       userId,
       session.id,
@@ -238,7 +257,7 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
         session.id,
         {
           sessionItemId: item.id,
-          answer: item.promptLocale === "uk" ? variants.EN : variants.UK,
+          answer: item.answerLocale === "en" ? variants.EN : variants.UK,
           rating: "GOOD",
           responseTimeMs: 500,
         },

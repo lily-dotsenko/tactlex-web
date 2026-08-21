@@ -19,6 +19,18 @@ function completeTerm(status = "DRAFT") {
       { locale: "UK", shortDefinition: "Коротке визначення" },
     ],
     categories: [{ categoryId: "category-1", isPrimary: true }],
+    contextDefinitions: [
+      {
+        categoryId: "category-1",
+        locale: "EN",
+        shortDefinition: "A contextual definition",
+      },
+      {
+        categoryId: "category-1",
+        locale: "UK",
+        shortDefinition: "Контекстне визначення",
+      },
+    ],
     sources: [
       {
         sourceId: "source-1",

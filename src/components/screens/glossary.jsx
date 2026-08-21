@@ -27,6 +27,7 @@ import {
 import { apiRequest, apiRequestPage } from "@/components/learning-api";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
 import { cefrForDifficulty } from "@/lib/learning/cefr";
+import { Mascot } from "@/components/mascot";
 
 function liveCopy(locale) {
   return locale === "uk"
@@ -217,7 +218,12 @@ export function GlossaryScreen() {
 
   return (
     <div className="page-stack">
-      <PageHeader eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
+      <PageHeader
+        eyebrow={t("eyebrow")}
+        title={t("title")}
+        lead={t("lead")}
+        actions={<Mascot pose="reader" motion="breathe" size={104} priority />}
+      />
       <form className="glossary-toolbar" role="search" onSubmit={submit}>
         <label className="search-field">
           <Search size={20} aria-hidden="true" />
@@ -327,10 +333,18 @@ export function GlossaryScreen() {
       />
       {state.status === "loading" ? <Card>{copy.loading}</Card> : null}
       {state.status === "error" ? (
-        <EmptyState icon={<ShieldAlert />} title={copy.unavailable} text={state.error} />
+        <EmptyState
+          icon={<Mascot pose="encourage" motion="tilt" size={104} />}
+          title={copy.unavailable}
+          text={state.error}
+        />
       ) : null}
       {state.status === "ready" && state.items.length === 0 ? (
-        <EmptyState icon={<BookOpen />} title={t("results")} text={copy.empty} />
+        <EmptyState
+          icon={<Mascot pose="rest" motion="breathe" size={104} />}
+          title={t("results")}
+          text={copy.empty}
+        />
       ) : null}
       {["ready", "loading-more"].includes(state.status) && state.items.length > 0 ? (
         <>
@@ -419,7 +433,11 @@ export function TermScreen({ termId }) {
   if (state.status === "loading") return <Card>{copy.loading}</Card>;
   if (!state.term) {
     return (
-      <EmptyState icon={<BookOpen />} title={copy.unavailable} text={state.error || copy.empty} />
+      <EmptyState
+        icon={<Mascot pose="encourage" motion="tilt" size={104} />}
+        title={copy.unavailable}
+        text={state.error || copy.empty}
+      />
     );
   }
 
@@ -436,6 +454,7 @@ export function TermScreen({ termId }) {
         <ArrowLeft size={18} /> {common("back")}
       </ButtonLink>
       <Card className="term-hero-card">
+        <Mascot pose="listen" motion="listen" size={105} className="term-mascot" />
         <div className="term-hero-top">
           <div>
             <p className="eyebrow">{t("eyebrow")}</p>
@@ -494,6 +513,53 @@ export function TermScreen({ termId }) {
             <h2>{locale === "uk" ? "Контекст" : "Context"}</h2>
             <p lang="en">{enDefinition?.contextNote || copy.noDefinition}</p>
             <p lang="uk">{ukDefinition?.contextNote || copy.noDefinition}</p>
+          </Card>
+          <Card className="term-context-card">
+            <h2>{locale === "uk" ? "Значення за категоріями" : "Meanings by category"}</h2>
+            {term.contextDefinitions?.length ? (
+              term.categories.map((category) => {
+                const definitions = term.contextDefinitions.filter(
+                  (definition) => definition.categoryId === category.id,
+                );
+                if (!definitions.length) return null;
+                return (
+                  <section key={category.id}>
+                    <h3>{category.name}</h3>
+                    {definitions.map((definition) => (
+                      <div key={`${category.id}-${definition.locale}`}>
+                        <Badge tone="neutral">{definition.locale}</Badge>
+                        <p>{definition.shortDefinition || copy.noDefinition}</p>
+                        {definition.example ? <blockquote>{definition.example}</blockquote> : null}
+                        {definition.contextNote ? <small>{definition.contextNote}</small> : null}
+                      </div>
+                    ))}
+                  </section>
+                );
+              })
+            ) : (
+              <p>{copy.noDefinition}</p>
+            )}
+          </Card>
+          <Card>
+            <h2>{locale === "uk" ? "Не плутати з…" : "Do not confuse with…"}</h2>
+            {term.distractors?.length ? (
+              <div className="term-tags">
+                {term.distractors.map((distractor) => (
+                  <ButtonLink
+                    key={distractor.id}
+                    href={`/glossary/${distractor.id}`}
+                    variant="ghost"
+                    size="small"
+                  >
+                    {locale === "uk" ? distractor.ukrainian : distractor.english}
+                  </ButtonLink>
+                ))}
+              </div>
+            ) : (
+              <p>
+                {locale === "uk" ? "Схожих термінів не зазначено." : "No similar terms listed."}
+              </p>
+            )}
           </Card>
         </section>
         <aside className="term-detail-aside">

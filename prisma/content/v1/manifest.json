@@ -1,13 +1,13 @@
 {
   "version": "2.0.0-beta",
   "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
-  "generatedAt": "2026-08-21T14:47:14.932Z",
+  "generatedAt": "2026-08-21T16:55:29.604Z",
   "expected": {
     "categories": 5,
-    "terms": 556,
-    "lessonTerms": 556,
+    "terms": 616,
+    "lessonTerms": 616,
     "glossaryTerms": 0,
-    "lessons": 71,
+    "lessons": 77,
     "lessonTermsMin": 6,
     "lessonTermsMax": 10,
     "facts": 41
@@ -32,10 +32,10 @@
     {
       "file": "tactical-medicine.json",
       "categorySlug": "tactical-medicine",
-      "termCount": 60,
-      "lessonTermCount": 60,
+      "termCount": 120,
+      "lessonTermCount": 120,
       "glossaryTermCount": 0,
-      "lessonCount": 6
+      "lessonCount": 12
     },
     {
       "file": "drones-uas.json",

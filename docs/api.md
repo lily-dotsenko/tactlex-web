@@ -48,15 +48,15 @@ Register body: `email`, `password`, `nickname`, `locale?`. Login body: `email`, 
 
 ## Published catalog
 
-| Method | Route                                        | Purpose                                                       |
-| ------ | -------------------------------------------- | ------------------------------------------------------------- |
-| GET    | `/categories`                                | Active categories with published/progress counts              |
-| GET    | `/categories/{slug}`                         | Category detail and available lessons                         |
-| GET    | `/terms?q=&category=&locale=&cursor=&limit=` | Published glossary search                                     |
-| GET    | `/terms/{id}`                                | Published bilingual detail, sources and audio state           |
-| GET    | `/lessons?category=`                         | Available lessons                                             |
-| GET    | `/lessons/{id}`                              | Lesson overview without answer keys                           |
-| GET    | `/audio/{id}`                                | Stream a non-archived human audio asset for published content |
+| Method | Route                                        | Purpose                                                                             |
+| ------ | -------------------------------------------- | ----------------------------------------------------------------------------------- |
+| GET    | `/categories`                                | Active categories with published/progress counts                                    |
+| GET    | `/categories/{slug}`                         | Category detail and available lessons                                               |
+| GET    | `/terms?q=&category=&locale=&cursor=&limit=` | Published glossary search                                                           |
+| GET    | `/terms/{id}`                                | Published bilingual detail, category meanings, distractors, sources and audio state |
+| GET    | `/lessons?category=`                         | Available lessons                                                                   |
+| GET    | `/lessons/{id}`                              | Lesson overview without answer keys                                                 |
+| GET    | `/audio/{id}`                                | Stream a non-archived human audio asset for published content                       |
 
 Glossary pagination is cursor-based and capped. Search uses normalized variants and PostgreSQL trigram matching only for retrieval, not answer correctness.
 
@@ -65,11 +65,13 @@ Glossary pagination is cursor-based and capped. Search uses normalized variants 
 | Method | Route | Purpose |
 | --- | --- |
 | POST | `/study-sessions` | Create session from `lessonId`/`categoryId` and product direction |
-| GET | `/study-sessions/{id}` | Resume own active session, answer keys omitted |
-| POST | `/study-sessions/{id}/answers` | Submit `sessionItemId`, answer, optional rating/timing and idempotency key |
+| GET | `/study-sessions/{id}` | Resume own active session; returns `currentItem` and grouped `currentInteraction` without answer keys |
+| POST | `/study-sessions/{id}/answers` | Submit any active `sessionItemId` (including a matching-group item), answer, optional rating/timing and idempotency key |
 | POST | `/study-sessions/{id}/complete` | Finalize once and return AAR/rewards |
 
 Answer response reveals correctness, accepted primary answer, short feedback and the server-awarded session delta only after evaluation. Completion derives total XP; request body cannot set XP.
+
+Matching interactions contain four independent session items. Each item is evaluated and scheduled independently. Items expose `answerLocale`; for a contextual sentence it may match `promptLocale` because the blank is filled in place. Completion summaries expose `isFirstNodeCompletion`, `isPerfect` and `celebrationTier`; clients must suppress celebration for replayed or recovered completion responses.
 
 ## Scheduled reviews and progress
 

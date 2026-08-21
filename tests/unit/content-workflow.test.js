@@ -19,6 +19,10 @@ function completeTerm(status = "DRAFT") {
       { locale: "UK", shortDefinition: "Коротке визначення" },
     ],
     categories: [{ categoryId: "category", isPrimary: true }],
+    contextDefinitions: [
+      { categoryId: "category", locale: "EN", shortDefinition: "A contextual definition" },
+      { categoryId: "category", locale: "UK", shortDefinition: "Контекстне визначення" },
+    ],
     sources: [
       {
         verificationStatus: "VERIFIED",
@@ -34,6 +38,15 @@ function completeTerm(status = "DRAFT") {
 describe("content workflow", () => {
   it("reports publication completeness", () => {
     expect(contentCompleteness(completeTerm()).complete).toBe(true);
+  });
+
+  it("requires bilingual contextual meanings for every assigned category", () => {
+    const term = completeTerm();
+    term.categories.push({ categoryId: "second-category", isPrimary: false });
+    expect(contentCompleteness(term)).toMatchObject({
+      complete: false,
+      checks: { categoryContexts: false },
+    });
   });
 
   it("uses the persisted isPrimary flags rather than kind alone", () => {

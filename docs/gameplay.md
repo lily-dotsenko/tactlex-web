@@ -4,11 +4,11 @@ TactLex is a mobile-first language-learning PWA with an open recommended path. E
 
 ## Content release 2.0 beta
 
-- 556 term records in 71 lessons across five categories.
-- 71 lesson nodes and 71 text-only quiz nodes.
+- 616 term records in 77 lessons across five categories.
+- 77 lesson nodes and 77 text-only quiz nodes.
 - 27 optional sourced fact nodes.
 - 12 reward chests, five category checkpoints, and five category patch nodes.
-- 205 learning-path nodes in total.
+- 217 learning-path nodes in total.
 - Beta facts and AI-assisted terminology remain explicitly labelled pending subject-matter review.
 
 Quiz sessions use one question per lesson term, exactly four snapshotted text choices, alternating EN→UK and UK→EN directions, and one assessed answer per question. The correct answer is returned only after assessment. Quiz and checkpoint sessions do not expose audio, TTS controls, or typed-answer inputs.
@@ -26,6 +26,9 @@ League participation requires the existing leaderboard opt-in. Weekly groups con
 - `POST /api/v1/study-sessions` with `nodeId`
 - `POST /api/v1/path-nodes/{id}/complete`
 - `POST /api/v1/path-nodes/{id}/claim`
+
+Active path nodes include `activeSessionId`, `answeredItems`, `totalItems`, and `progressPercent`, allowing the node ring to resume the existing TTL-bound session. Practice sessions may expose a four-item matching `currentInteraction`; the ordinary `currentItem` remains available for single-item clients.
+
 - `GET /api/v1/quests`
 - `POST /api/v1/quests/{id}/claim`
 - `GET /api/v1/rewards`
