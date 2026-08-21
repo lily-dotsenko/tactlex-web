@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  transactionOptions: {
+    maxWait: 10_000,
+    timeout: 120_000,
+  },
+});
 
 const permissions = [
   ["profile.read_self", "Читати власний профіль", "Read own profile"],
