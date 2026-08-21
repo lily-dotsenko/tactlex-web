@@ -1956,6 +1956,18 @@ a.list-link:hover {
   border-color: var(--danger);
   background: var(--danger-soft);
 }
+.answer-option.is-wrong:disabled {
+  cursor: default;
+  opacity: 1;
+}
+.session-typed-answer.is-correct input {
+  border-color: var(--success);
+  background: var(--success-soft);
+}
+.session-typed-answer.is-wrong input {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
 .answer-feedback {
   margin-top: 18px;
   border-radius: 10px;

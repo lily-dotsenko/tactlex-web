@@ -18,6 +18,7 @@ import clsx from "clsx";
 import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
 import { useRouter } from "@/lib/i18n/navigation";
+import { pronunciationForItem } from "@/lib/learning/session-presentation";
 import {
   Badge,
   Button,
@@ -38,15 +39,11 @@ function sessionCopy(locale) {
         retry: "Спробувати знову",
         submit: "Надіслати на перевірку",
         submitting: "Перевіряємо на сервері…",
-        correct: "Сервер підтвердив правильну відповідь",
-        incorrect: "Сервер визначив, що відповідь потребує виправлення",
-        accepted: "Прийнята відповідь",
-        feedback: "Пояснення",
         next: "Наступне завдання",
         completing: "Завершуємо сесію…",
         answerLabel: "Ваша відповідь",
         answerPlaceholder: "Введіть відповідь",
-        noClientScoring: "Правильність і XP визначаються лише сервером.",
+        noClientScoring: "У цій сесії немає доступних завдань.",
         resultUnavailable: "Підсумок цієї сесії недоступний",
         resultUnavailableText:
           "Сервер не повернув підсумкові показники. Жодних результатів не було вигадано в браузері.",
@@ -72,15 +69,11 @@ function sessionCopy(locale) {
         retry: "Try again",
         submit: "Send for evaluation",
         submitting: "Checking on the server…",
-        correct: "The server confirmed a correct answer",
-        incorrect: "The server determined that the answer needs correction",
-        accepted: "Accepted answer",
-        feedback: "Feedback",
         next: "Next task",
         completing: "Completing session…",
         answerLabel: "Your answer",
         answerPlaceholder: "Type your answer",
-        noClientScoring: "Correctness and XP are determined by the server only.",
+        noClientScoring: "This session has no available tasks.",
         resultUnavailable: "This session summary is unavailable",
         resultUnavailableText:
           "The server did not return summary metrics. No results were invented in the browser.",
@@ -121,6 +114,7 @@ export function SessionScreen({ sessionId }) {
   const router = useRouter();
   const copy = sessionCopy(locale);
   const submissionKey = useRef(null);
+  const submittingRef = useRef(false);
   const completionKey = useRef(null);
   const itemStartedAt = useRef(0);
   const [state, setState] = useState({ status: "loading", session: null, item: null });
@@ -128,6 +122,8 @@ export function SessionScreen({ sessionId }) {
   const [result, setResult] = useState(null);
   const [requestError, setRequestError] = useState("");
   const [introIndex, setIntroIndex] = useState(0);
+  const [wrongChoices, setWrongChoices] = useState([]);
+  const [revealedChoices, setRevealedChoices] = useState([]);
 
   const loadSession = useCallback(async () => {
     setState((current) => ({ ...current, status: "loading" }));
@@ -142,6 +138,8 @@ export function SessionScreen({ sessionId }) {
       setState({ status: item ? "ready" : "empty", session, item });
       setAnswer("");
       setResult(null);
+      setWrongChoices(item?.attemptedAnswers ?? []);
+      setRevealedChoices(item?.choices ?? []);
       submissionKey.current = null;
       itemStartedAt.current = performance.now();
     } catch (error) {
@@ -160,6 +158,8 @@ export function SessionScreen({ sessionId }) {
         }
         const item = currentSessionItem(session);
         setState({ status: item ? "ready" : "empty", session, item });
+        setWrongChoices(item?.attemptedAnswers ?? []);
+        setRevealedChoices(item?.choices ?? []);
         itemStartedAt.current = performance.now();
       })
       .catch((error) => {
@@ -170,9 +170,19 @@ export function SessionScreen({ sessionId }) {
     };
   }, [router, sessionId]);
 
-  async function submitAnswer() {
-    if (!state.item || !answer.trim() || result || state.status === "submitting") return;
+  async function submitAnswer(candidateAnswer = answer, responseTimeMs = 0) {
+    const submittedAnswer = candidateAnswer.trim();
+    if (
+      !state.item ||
+      !submittedAnswer ||
+      result?.correct ||
+      state.status === "submitting" ||
+      submittingRef.current
+    )
+      return;
+    submittingRef.current = true;
     submissionKey.current ||= createIdempotencyKey();
+    setResult(null);
     setState((current) => ({ ...current, status: "submitting" }));
     setRequestError("");
     try {
@@ -183,17 +193,25 @@ export function SessionScreen({ sessionId }) {
           headers: { "Idempotency-Key": submissionKey.current },
           body: JSON.stringify({
             sessionItemId: state.item.id,
-            answer,
-            responseTimeMs: Math.max(0, Math.round(performance.now() - itemStartedAt.current)),
+            answer: submittedAnswer,
+            responseTimeMs,
           }),
         },
       );
       setResult(answerResult);
+      if (!answerResult.correct) {
+        setWrongChoices((current) => [...new Set([...current, submittedAnswer])]);
+        if (Array.isArray(answerResult.correctionChoices)) {
+          setRevealedChoices(answerResult.correctionChoices);
+        }
+      }
       setState((current) => ({ ...current, status: "answered" }));
       submissionKey.current = null;
     } catch (error) {
       setRequestError(error.message);
       setState((current) => ({ ...current, status: "ready" }));
+    } finally {
+      submittingRef.current = false;
     }
   }
 
@@ -207,6 +225,8 @@ export function SessionScreen({ sessionId }) {
       );
       const item = currentSessionItem(session);
       setState({ status: item ? "ready" : "empty", session, item });
+      setWrongChoices(item?.attemptedAnswers ?? []);
+      setRevealedChoices(item?.choices ?? []);
       itemStartedAt.current = performance.now();
     } catch (error) {
       setRequestError(error.message);
@@ -250,13 +270,31 @@ export function SessionScreen({ sessionId }) {
     loadSession();
   }
 
+  function chooseAnswer(value, eventTimestamp) {
+    if (
+      state.status === "submitting" ||
+      submittingRef.current ||
+      result?.correct ||
+      wrongChoices.includes(value)
+    )
+      return;
+    setAnswer(value);
+    submissionKey.current = null;
+    submitAnswer(value, Math.max(0, Math.round(eventTimestamp - itemStartedAt.current)));
+  }
+
+  function submitTypedAnswer(event) {
+    submitAnswer(answer, Math.max(0, Math.round(event.timeStamp - itemStartedAt.current)));
+  }
+
   const session = state.session;
   const item = state.item;
-  const choices = Array.isArray(item?.choices) ? item.choices.map(normalizeChoice) : [];
+  const choices = Array.isArray(revealedChoices) ? revealedChoices.map(normalizeChoice) : [];
   const answered = Number(result?.answeredItems ?? session?.answeredItems ?? 0);
   const total = Number(result?.totalItems ?? session?.totalItems ?? 0);
   const current = Math.min(total || 1, answered + (result ? 0 : 1));
   const progress = total ? Math.round((answered / total) * 100) : 0;
+  const practicePronunciation = pronunciationForItem(item);
 
   if (state.status === "loading" && !session) {
     return (
@@ -313,7 +351,7 @@ export function SessionScreen({ sessionId }) {
             <p className="introduction-translation" lang="uk">
               {card.ukrainian}
             </p>
-            <PronunciationButton term={card.english} audioUrl={card.audioUrl} />
+            <PronunciationButton key={card.english} term={card.english} audioUrl={card.audioUrl} />
             <div className="introduction-definitions">
               <p lang="en">{card.definitionEn}</p>
               <p lang="uk">{card.definitionUk}</p>
@@ -392,11 +430,11 @@ export function SessionScreen({ sessionId }) {
       </header>
       <Card className="session-card">
         <div className="session-card-top">
-          <Badge tone="olive">{locale === "uk" ? "Серверна перевірка" : "Server evaluated"}</Badge>
-          {(item.audio || item.exerciseType === "AUDIO") && (
+          <Badge tone="olive">{locale === "uk" ? "Практика" : "Practice"}</Badge>
+          {practicePronunciation && (
             <PronunciationButton
-              term={String(item.prompt || "")}
-              audioUrl={item.audio.url || null}
+              key={`${item.id}:${item.prompt}`}
+              {...practicePronunciation}
               compact
             />
           )}
@@ -408,6 +446,7 @@ export function SessionScreen({ sessionId }) {
           <div className="answer-grid" role="radiogroup" aria-label={String(item.prompt)}>
             {choices.map((choice, index) => {
               const selected = answer === choice.value;
+              const wrong = wrongChoices.includes(choice.value);
               return (
                 <button
                   key={`${choice.value}-${index}`}
@@ -416,12 +455,12 @@ export function SessionScreen({ sessionId }) {
                     "answer-option",
                     selected && "is-selected",
                     selected && result?.correct === true && "is-correct",
-                    selected && result?.correct === false && "is-wrong",
+                    wrong && "is-wrong",
                   )}
                   role="radio"
                   aria-checked={selected}
-                  disabled={Boolean(result) || state.status === "submitting"}
-                  onClick={() => setAnswer(choice.value)}
+                  disabled={wrong || result?.correct === true || state.status === "submitting"}
+                  onClick={(event) => chooseAnswer(choice.value, event.timeStamp)}
                 >
                   <span>{index + 1}</span>
                   <strong>{choice.label}</strong>
@@ -431,7 +470,13 @@ export function SessionScreen({ sessionId }) {
             })}
           </div>
         ) : (
-          <label className="field session-typed-answer">
+          <label
+            className={clsx(
+              "field session-typed-answer",
+              result?.correct === true && "is-correct",
+              result?.correct === false && "is-wrong",
+            )}
+          >
             <span className="field-label">{copy.answerLabel}</span>
             <input
               value={answer}
@@ -449,48 +494,21 @@ export function SessionScreen({ sessionId }) {
             {requestError}
           </div>
         )}
-        {result && (
-          <div
-            className={clsx(
-              "answer-feedback",
-              result.correct ? "feedback-correct" : "feedback-wrong",
-            )}
-            role="status"
-          >
-            <div>
-              <strong>{result.correct ? copy.correct : copy.incorrect}</strong>
-              {result.acceptedAnswer && (
-                <p>
-                  {copy.accepted}: <b>{result.acceptedAnswer}</b>
-                </p>
-              )}
-              {result.feedback && (
-                <p>
-                  {copy.feedback}: {result.feedback}
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-
-        <p className="server-authority-note">
-          <ShieldCheck size={17} /> {copy.noClientScoring}
-        </p>
         <div className="session-action-row">
-          {!result ? (
+          {choices.length === 0 && !result ? (
             <Button
               size="large"
-              onClick={submitAnswer}
+              onClick={submitTypedAnswer}
               disabled={!answer.trim() || state.status === "submitting"}
             >
               {state.status === "submitting" ? copy.submitting : copy.submit}
             </Button>
-          ) : (
+          ) : result?.correct || (choices.length === 0 && result) ? (
             <Button size="large" onClick={continueSession} disabled={state.status === "completing"}>
               {state.status === "completing" ? copy.completing : copy.next}{" "}
               <ChevronRight size={20} />
             </Button>
-          )}
+          ) : null}
         </div>
       </Card>
     </main>

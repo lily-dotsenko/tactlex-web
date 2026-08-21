@@ -45,9 +45,9 @@ const sessionInclude = {
       },
       answers: {
         orderBy: { attemptNumber: "desc" },
-        take: 1,
         select: {
           id: true,
+          attemptNumber: true,
           submittedAnswer: true,
           normalizedAnswer: true,
           isCorrect: true,
@@ -214,7 +214,8 @@ function mapSession(session, summary = null) {
       const target = itemTargetLocale(item);
       const source = itemSourceLocale(item);
       const answer = item.answers?.[0] ?? null;
-      const accepted = answer ? primaryVariant(item.term, target) : null;
+      const accepted =
+        answer && item.status === "ANSWERED" ? primaryVariant(item.term, target) : null;
       const definition = item.term.definitions.find((entry) => entry.locale === source);
       const audioAsset = source === "EN" ? item.term.audioAssets?.[0] : null;
       return {
@@ -227,7 +228,15 @@ function mapSession(session, summary = null) {
         prompt: item.promptVariant?.value ?? null,
         promptLocale: item.promptVariant ? apiLocale(item.promptVariant.locale) : null,
         definition: definition?.shortDefinition ?? null,
-        choices: Array.isArray(item.optionsSnapshot) ? item.optionsSnapshot : [],
+        choices:
+          item.exerciseType === "MULTIPLE_CHOICE" || (answer && !answer.isCorrect)
+            ? Array.isArray(item.optionsSnapshot)
+              ? item.optionsSnapshot
+              : []
+            : [],
+        attemptedAnswers: item.answers
+          .filter((attempt) => !attempt.isCorrect)
+          .map((attempt) => attempt.submittedAnswer),
         audio: audioAsset
           ? {
               id: audioAsset.id,
@@ -452,10 +461,8 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
         position: index + 1,
         stage: "PRACTICE",
         exerciseType: pattern.type,
-        optionsSnapshot:
-          pattern.type === "MULTIPLE_CHOICE"
-            ? choiceSnapshot(term, selected.terms, pattern.source)
-            : undefined,
+        optionsSnapshot: choiceSnapshot(term, selected.terms, pattern.source),
+        maxAttempts: 4,
         servedAt: now,
       };
     });
@@ -601,11 +608,22 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               include: {
                 acceptedVariant: { select: { value: true } },
                 sessionItem: {
-                  select: { id: true, termId: true, promptVariant: { select: { locale: true } } },
+                  select: {
+                    id: true,
+                    termId: true,
+                    status: true,
+                    exerciseType: true,
+                    optionsSnapshot: true,
+                    promptVariant: { select: { locale: true } },
+                  },
                 },
               },
             });
             if (recordedAnswer) {
+              const retryAllowed =
+                recordedAnswer.sessionItem.exerciseType === "MULTIPLE_CHOICE" &&
+                !recordedAnswer.isCorrect &&
+                recordedAnswer.sessionItem.status !== "ANSWERED";
               const [progress, answeredItems, primary, awards] = await Promise.all([
                 transaction.userTermProgress.findUnique({
                   where: {
@@ -638,7 +656,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                   sessionItemId: recordedAnswer.sessionItemId,
                   isCorrect: recordedAnswer.isCorrect,
                   normalizedAnswer: recordedAnswer.normalizedAnswer,
-                  acceptedAnswer: recordedAnswer.acceptedVariant?.value ?? primary?.value ?? null,
+                  acceptedAnswer: retryAllowed
+                    ? null
+                    : (recordedAnswer.acceptedVariant?.value ?? primary?.value ?? null),
                   rating: recordedAnswer.rating,
                   responseTimeMs: recordedAnswer.responseTimeMs,
                   awardedXp: recordedAnswer.awardedXp,
@@ -658,10 +678,11 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                   rewardXp: achievement.rewardXp,
                 })),
                 correct: recordedAnswer.isCorrect,
-                acceptedAnswer: recordedAnswer.acceptedVariant?.value ?? primary?.value ?? null,
-                feedback: recordedAnswer.isCorrect
-                  ? "Відповідь зараховано сервером."
-                  : "Перевірте затверджений варіант і повторіть термін за розкладом.",
+                acceptedAnswer: retryAllowed
+                  ? null
+                  : (recordedAnswer.acceptedVariant?.value ?? primary?.value ?? null),
+                feedback: null,
+                correctionChoices: retryAllowed ? recordedAnswer.sessionItem.optionsSnapshot : null,
                 xpAwarded: recordedAnswer.awardedXp,
                 answeredItems,
                 totalItems: session.maxScore,
@@ -682,6 +703,10 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               where: { id: input.sessionItemId, studySessionId: session.id },
               include: {
                 promptVariant: { select: { locale: true } },
+                answers: {
+                  orderBy: { attemptNumber: "desc" },
+                  select: { attemptNumber: true, normalizedAnswer: true },
+                },
                 term: {
                   select: {
                     id: true,
@@ -706,12 +731,26 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               acceptedVariants: accepted,
               locale: apiLocale(target),
             });
-            const rating = deriveEffectiveRating(evaluation.correct, input.rating);
+            if (
+              item.answers.some(
+                (previous) => previous.normalizedAnswer === evaluation.normalizedAnswer,
+              )
+            ) {
+              throw conflict("ANSWER_ALREADY_TRIED", "Цей варіант уже перевірено.");
+            }
+            const attemptNumber = (item.answers[0]?.attemptNumber ?? 0) + 1;
+            const attemptLimit = Math.max(
+              item.maxAttempts,
+              Array.isArray(item.optionsSnapshot) ? item.optionsSnapshot.length : 1,
+            );
+            const retryAllowed = !evaluation.correct && attemptNumber < attemptLimit;
+            const firstAttemptCorrect = evaluation.correct && attemptNumber === 1;
+            const rating = deriveEffectiveRating(firstAttemptCorrect, input.rating);
             const responseTimeMs = responseTime(item, input.responseTimeMs, now);
             const answerId = randomUUID();
             const gamification = createGamificationService(transaction, { clock: () => now });
             let xp = { amount: 0 };
-            if (evaluation.correct && session.kind === "LESSON" && session.lessonId) {
+            if (firstAttemptCorrect && session.kind === "LESSON" && session.lessonId) {
               xp = await gamification.awardXp({
                 userId,
                 amount: XP_AWARDS.FIRST_ATTEMPT_CORRECT,
@@ -721,7 +760,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 dedupeKey: `lesson-term:${userId}:${session.lessonId}:${item.termId}`,
                 metadata: { sessionId: session.id },
               });
-            } else if (evaluation.correct && session.kind === "REVIEW") {
+            } else if (firstAttemptCorrect && session.kind === "REVIEW") {
               xp = await gamification.awardXp({
                 userId,
                 amount: XP_AWARDS.SCHEDULED_REVIEW_CORRECT,
@@ -740,7 +779,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 termId: item.termId,
                 acceptedVariantId: evaluation.matchedVariantId,
                 clientAnswerId: idempotencyKey,
-                attemptNumber: 1,
+                attemptNumber,
                 submittedAnswer: input.answer,
                 normalizedAnswer: evaluation.normalizedAnswer,
                 isCorrect: evaluation.correct,
@@ -751,28 +790,34 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 createdAt: now,
               },
             });
-            const progress = await applyProgressReview(transaction, {
-              userId,
-              termId: item.termId,
-              sessionAnswerId: answer.id,
-              rating,
-              isCorrect: evaluation.correct,
-              responseTimeMs,
-              now,
-            });
-            await transaction.studySessionItem.update({
-              where: { id: item.id },
-              data: { status: "ANSWERED", answeredAt: now },
-            });
-            await transaction.studySession.update({
-              where: { id: session.id },
-              data: { score: { increment: evaluation.correct ? 1 : 0 } },
-            });
+            const progress = retryAllowed
+              ? null
+              : await applyProgressReview(transaction, {
+                  userId,
+                  termId: item.termId,
+                  sessionAnswerId: answer.id,
+                  rating,
+                  isCorrect: firstAttemptCorrect,
+                  responseTimeMs,
+                  now,
+                });
+            if (!retryAllowed) {
+              await transaction.studySessionItem.update({
+                where: { id: item.id },
+                data: { status: "ANSWERED", answeredAt: now },
+              });
+            }
+            if (firstAttemptCorrect) {
+              await transaction.studySession.update({
+                where: { id: session.id },
+                data: { score: { increment: 1 } },
+              });
+            }
             await gamification.recordActivity({
               userId,
               xpEarned: xp.amount,
               answersSubmitted: 1,
-              correctAnswers: evaluation.correct ? 1 : 0,
+              correctAnswers: firstAttemptCorrect ? 1 : 0,
               reviewsCompleted: session.kind === "REVIEW" ? 1 : 0,
             });
             const achievements = await gamification.evaluateAchievements({
@@ -789,27 +834,27 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 sessionItemId: item.id,
                 isCorrect: evaluation.correct,
                 normalizedAnswer: evaluation.normalizedAnswer,
-                acceptedAnswer: evaluation.acceptedValue,
+                acceptedAnswer: retryAllowed ? null : evaluation.acceptedValue,
                 rating,
                 responseTimeMs,
                 awardedXp: xp.amount,
               },
-              progress: mapProgress(progress),
+              progress: progress ? mapProgress(progress) : null,
               session: {
                 id: session.id,
-                score: session.score + (evaluation.correct ? 1 : 0),
+                score: session.score + (firstAttemptCorrect ? 1 : 0),
                 maxScore: session.maxScore,
               },
               achievements,
               correct: evaluation.correct,
-              acceptedAnswer: evaluation.acceptedValue,
-              feedback: evaluation.correct
-                ? "Відповідь зараховано сервером."
-                : "Перевірте затверджений варіант і повторіть термін за розкладом.",
+              acceptedAnswer: retryAllowed ? null : evaluation.acceptedValue,
+              feedback: null,
+              correctionChoices: retryAllowed ? item.optionsSnapshot : null,
               xpAwarded: xp.amount,
               answeredItems,
               totalItems: session.maxScore,
-              nextItem: answeredItems < session.maxScore ? { available: true } : null,
+              nextItem:
+                !retryAllowed && answeredItems < session.maxScore ? { available: true } : null,
             };
             return result;
           }),
@@ -837,7 +882,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               where: { id: sessionId, userId },
               include: {
                 items: { select: { id: true, status: true } },
-                answers: { select: { isCorrect: true, awardedXp: true } },
+                answers: {
+                  select: { isCorrect: true, awardedXp: true, attemptNumber: true },
+                },
               },
             });
             if (!session) throw notFound("Навчальну сесію не знайдено.");
@@ -919,7 +966,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
             ) {
               throw conflict("SESSION_INCOMPLETE", "Спочатку завершіть усі вправи сесії.");
             }
-            const correct = session.answers.filter((answer) => answer.isCorrect).length;
+            const correct = session.answers.filter(
+              (answer) => answer.isCorrect && answer.attemptNumber === 1,
+            ).length;
             const claimed = await transaction.studySession.updateMany({
               where: { id: session.id, status: "ACTIVE", completedAt: null },
               data: {

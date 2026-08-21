@@ -130,7 +130,7 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
       const published = await admin.transitionTerm(userId, draft.id, "PUBLISHED");
       expect(published.status).toBe("PUBLISHED");
       termIds.push(draft.id);
-      acceptedAnswers.set(draft.id, ukrainian);
+      acceptedAnswers.set(draft.id, { EN: english, UK: ukrainian });
     }
 
     const lesson = await admin.createLesson(userId, {
@@ -150,7 +150,7 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     const study = createStudyService(prisma);
     const session = await study.createSession(
       userId,
-      { lessonId: lesson.id, direction: "EN_TO_UA" },
+      { lessonId: lesson.id, direction: "MIXED" },
       randomUUID(),
     );
     expect(session.items).toHaveLength(8);
@@ -159,13 +159,86 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     const practiceSession = await study.beginPractice(userId, session.id);
     expect(practiceSession.currentStage).toBe("PRACTICE");
 
-    for (const item of session.items) {
+    const [retryItem, ...remainingItems] = session.items;
+    expect(retryItem.exerciseType).toBe("MULTIPLE_CHOICE");
+    const retryAnswer = acceptedAnswers.get(retryItem.termId).UK;
+    const wrongChoice = retryItem.choices.find(({ value }) => value !== retryAnswer);
+    const wrongResult = await study.submitAnswer(
+      userId,
+      session.id,
+      {
+        sessionItemId: retryItem.id,
+        answer: wrongChoice.value,
+        responseTimeMs: 300,
+      },
+      randomUUID(),
+    );
+    expect(wrongResult).toMatchObject({
+      correct: false,
+      acceptedAnswer: null,
+      answeredItems: 0,
+      nextItem: null,
+    });
+    expect(
+      await prisma.studySessionItem.findUnique({
+        where: { id: retryItem.id },
+        select: { status: true },
+      }),
+    ).toEqual({ status: "PENDING" });
+
+    const correctedResult = await study.submitAnswer(
+      userId,
+      session.id,
+      {
+        sessionItemId: retryItem.id,
+        answer: retryAnswer,
+        responseTimeMs: 500,
+      },
+      randomUUID(),
+    );
+    expect(correctedResult).toMatchObject({ correct: true, answeredItems: 1 });
+
+    const typedRetryItem = remainingItems.find(
+      ({ exerciseType }) => exerciseType === "TYPE_ANSWER",
+    );
+    const typedWrongResult = await study.submitAnswer(
+      userId,
+      session.id,
+      {
+        sessionItemId: typedRetryItem.id,
+        answer: "неправильна відповідь",
+        responseTimeMs: 400,
+      },
+      randomUUID(),
+    );
+    expect(typedWrongResult).toMatchObject({
+      correct: false,
+      acceptedAnswer: null,
+      answeredItems: 1,
+    });
+    expect(typedWrongResult.correctionChoices).toHaveLength(4);
+    const typedVariants = acceptedAnswers.get(typedRetryItem.termId);
+    const typedAnswer = typedRetryItem.promptLocale === "uk" ? typedVariants.EN : typedVariants.UK;
+    const typedCorrectedResult = await study.submitAnswer(
+      userId,
+      session.id,
+      {
+        sessionItemId: typedRetryItem.id,
+        answer: typedAnswer,
+        responseTimeMs: 600,
+      },
+      randomUUID(),
+    );
+    expect(typedCorrectedResult).toMatchObject({ correct: true, answeredItems: 2 });
+
+    for (const item of remainingItems.filter(({ id }) => id !== typedRetryItem.id)) {
+      const variants = acceptedAnswers.get(item.termId);
       const result = await study.submitAnswer(
         userId,
         session.id,
         {
           sessionItemId: item.id,
-          answer: acceptedAnswers.get(item.termId),
+          answer: item.promptLocale === "uk" ? variants.EN : variants.UK,
           rating: "GOOD",
           responseTimeMs: 500,
         },
@@ -178,9 +251,9 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     const completion = await study.completeSession(userId, session.id, completionKey);
     expect(completion.status).toBe("COMPLETED");
     expect(completion.summary).toMatchObject({
-      correctItems: 8,
+      correctItems: 6,
       totalItems: 8,
-      accuracy: 100,
+      accuracy: 75,
     });
     expect(completion.summary.xpAwarded).toBeGreaterThan(0);
 
@@ -199,12 +272,12 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     ]);
     expect(progressCount).toBe(8);
     expect(reviewLogCount).toBe(8);
-    expect(answerCount).toBe(8);
+    expect(answerCount).toBe(10);
     const sourceKeys = xpSources.map(({ sourceType, sourceId }) => `${sourceType}:${sourceId}`);
     expect(new Set(sourceKeys).size).toBe(sourceKeys.length);
 
     const completedSession = await study.getSession(userId, session.id);
-    expect(completedSession.summary).toMatchObject({ accuracy: 100, totalItems: 8 });
+    expect(completedSession.summary).toMatchObject({ accuracy: 75, totalItems: 8 });
 
     const progress = await createProgressService(prisma).summary(userId);
     expect(progress.totalXp).toBeGreaterThan(0);
