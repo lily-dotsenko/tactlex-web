@@ -1,9 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Download, RefreshCw, WifiOff, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button, IconButton } from "./ui";
+
+function subscribeToConnectivity(onStoreChange) {
+  window.addEventListener("online", onStoreChange);
+  window.addEventListener("offline", onStoreChange);
+  return () => {
+    window.removeEventListener("online", onStoreChange);
+    window.removeEventListener("offline", onStoreChange);
+  };
+}
+
+function browserIsOnline() {
+  return navigator.onLine;
+}
+
+function serverIsOnline() {
+  return true;
+}
 
 export function LocaleDocument({ locale }) {
   useEffect(() => {
@@ -26,16 +43,14 @@ export function ThemeProvider({ children }) {
 
 export function PwaProvider({ children }) {
   const t = useTranslations("Offline");
-  const [online, setOnline] = useState(() =>
-    typeof navigator === "undefined" ? true : navigator.onLine,
-  );
+  // The server snapshot is stable while the browser snapshot updates immediately
+  // after hydration without forcing React to replace the rendered page.
+  const online = useSyncExternalStore(subscribeToConnectivity, browserIsOnline, serverIsOnline);
   const [installEvent, setInstallEvent] = useState(null);
   const [showInstall, setShowInstall] = useState(false);
   const [waitingWorker, setWaitingWorker] = useState(null);
 
   useEffect(() => {
-    const handleOnline = () => setOnline(true);
-    const handleOffline = () => setOnline(false);
     const handleInstall = (event) => {
       event.preventDefault();
       setInstallEvent(event);
@@ -44,28 +59,44 @@ export function PwaProvider({ children }) {
       setShowInstall(visits > 1);
     };
 
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
     window.addEventListener("beforeinstallprompt", handleInstall);
 
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").then((registration) => {
-        if (registration.waiting) setWaitingWorker(registration.waiting);
-        registration.addEventListener("updatefound", () => {
-          const worker = registration.installing;
-          if (!worker) return;
-          worker.addEventListener("statechange", () => {
-            if (worker.state === "installed" && navigator.serviceWorker.controller) {
-              setWaitingWorker(worker);
-            }
+    if ("serviceWorker" in navigator && process.env.NODE_ENV !== "production") {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((registrations) => Promise.all(registrations.map((item) => item.unregister())))
+        .catch(() => {});
+      if ("caches" in window) {
+        window.caches
+          .keys()
+          .then((keys) =>
+            Promise.all(
+              keys.filter((key) => key.startsWith("tactlex-")).map((key) => caches.delete(key)),
+            ),
+          )
+          .catch(() => {});
+      }
+    } else if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          if (registration.waiting) setWaitingWorker(registration.waiting);
+          registration.addEventListener("updatefound", () => {
+            const worker = registration.installing;
+            if (!worker) return;
+            worker.addEventListener("statechange", () => {
+              if (worker.state === "installed" && navigator.serviceWorker.controller) {
+                setWaitingWorker(worker);
+              }
+            });
           });
+        })
+        .catch(() => {
+          // The application remains usable when service workers are unavailable.
         });
-      });
     }
 
     return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
       window.removeEventListener("beforeinstallprompt", handleInstall);
     };
   }, []);

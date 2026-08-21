@@ -156,6 +156,9 @@ databaseSuite("complete PostgreSQL MVP flow", () => {
     expect(session.items).toHaveLength(8);
     expect(session.items.every(({ result }) => result === null)).toBe(true);
 
+    const practiceSession = await study.beginPractice(userId, session.id);
+    expect(practiceSession.currentStage).toBe("PRACTICE");
+
     for (const item of session.items) {
       const result = await study.submitAnswer(
         userId,

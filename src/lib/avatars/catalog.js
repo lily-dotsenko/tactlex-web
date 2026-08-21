@@ -1,0 +1,67 @@
+export const DEFAULT_AVATAR_KEY = "atlas-olive";
+
+export const AVATARS = Object.freeze(
+  [
+    ["atlas-olive", "Атлас", "Atlas"],
+    ["echo-navy", "Ехо", "Echo"],
+    ["nova-blue", "Нова", "Nova"],
+    ["vector-graphite", "Вектор", "Vector"],
+    ["scout-sand", "Скаут", "Scout"],
+    ["mira-night", "Міра", "Mira"],
+    ["fox-olive", "Фокс", "Fox"],
+    ["amber-yellow", "Ембер", "Amber"],
+    ["pixel-violet", "Піксель", "Pixel"],
+    ["ranger-gray", "Рейнджер", "Ranger"],
+    ["sage-yellow", "Сейдж", "Sage"],
+    ["sky-blue", "Скай", "Sky"],
+    ["onyx-blue", "Онікс", "Onyx"],
+    ["willow-olive", "Віллоу", "Willow"],
+    ["comet-navy", "Комета", "Comet"],
+    ["sunny-yellow", "Санні", "Sunny"],
+    ["zone-ember", "Ембер Зони", "Zone Ember"],
+    ["zone-lamp", "Ліхтар", "Headlamp"],
+    ["zone-hood", "Каптур", "Hood"],
+    ["zone-spark", "Іскра", "Spark"],
+    ["zone-veteran", "Ветеран", "Veteran"],
+    ["zone-goggle", "Окуляр", "Goggle"],
+    ["zone-orbit", "Орбіта", "Orbit"],
+    ["zone-teal", "Бірюза", "Teal"],
+    ["zone-canary", "Канарка", "Canary"],
+    ["zone-moss", "Мох", "Moss"],
+    ["zone-braid", "Коса", "Braid"],
+    ["zone-rust", "Іржа", "Rust"],
+    ["zone-glass", "Скло", "Glass"],
+    ["zone-violet", "Фіалка", "Violet"],
+    ["zone-frost", "Мороз", "Frost"],
+    ["zone-wanderer", "Мандрівниця", "Wanderer"],
+    ["cossack-blue", "Синій Оселедець", "Blue Forelock"],
+    ["cossack-sunflower", "Сонях", "Sunflower"],
+    ["cossack-gray", "Сивий Отаман", "Silver Otaman"],
+    ["cossack-ribbon", "Стрічка", "Ribbon"],
+    ["cossack-snow", "Сніговий Козак", "Snow Cossack"],
+    ["cossack-olive", "Оливковий Джура", "Olive Dzhura"],
+    ["cossack-viburnum", "Калина", "Viburnum"],
+    ["cossack-rust", "Рудий Вус", "Rust Moustache"],
+    ["cossack-scarf", "Синя Хустка", "Blue Scarf"],
+    ["cossack-silver", "Срібний Вус", "Silver Moustache"],
+    ["cossack-bloom", "Квітка Степу", "Steppe Bloom"],
+    ["cossack-steppe", "Степовий Джура", "Steppe Dzhura"],
+    ["cossack-fur", "Хутряний Козак", "Fur Cossack"],
+    ["cossack-coral", "Коралова Стрічка", "Coral Ribbon"],
+    ["cossack-sky", "Небесний Оселедець", "Sky Forelock"],
+    ["cossack-night", "Нічна Козачка", "Night Cossack"],
+  ].map(([key, nameUk, nameEn]) => ({
+    key,
+    nameUk,
+    nameEn,
+    src: `/avatars/${key}.webp`,
+    altUk: `Піксельний аватар «${nameUk}»`,
+    altEn: `${nameEn} pixel avatar`,
+  })),
+);
+
+export const AVATAR_KEYS = Object.freeze(AVATARS.map(({ key }) => key));
+
+export function avatarByKey(key) {
+  return AVATARS.find((avatar) => avatar.key === key) ?? AVATARS[0];
+}

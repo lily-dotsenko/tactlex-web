@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { randomInt, randomUUID } from "node:crypto";
 
 import { evaluateAnswer } from "@/lib/validation/answer";
 import { SCHEDULER_VERSION, scheduleReview } from "@/lib/scheduling/fsrs";
@@ -84,10 +84,12 @@ export async function runSerializable(db, operation) {
 
 function databaseDirection(mode) {
   const normalized = mode?.toString().trim().toUpperCase().replaceAll("-", "_");
+  if (normalized === "MIXED") return "MIXED";
   return normalized === "UK_TO_EN" || normalized === "UA_TO_EN" ? "UK_TO_EN" : "EN_TO_UK";
 }
 
 function apiDirection(direction) {
+  if (direction === "MIXED") return "MIXED";
   return direction === "UK_TO_EN" ? "UA_TO_EN" : "EN_TO_UA";
 }
 
@@ -111,6 +113,53 @@ function acceptedVariants(term, locale) {
   return term.variants.filter((variant) => variant.locale === locale && variant.isAcceptedAnswer);
 }
 
+function itemSourceLocale(item) {
+  return item.promptVariant?.locale ?? "EN";
+}
+
+function itemTargetLocale(item) {
+  return itemSourceLocale(item) === "UK" ? "EN" : "UK";
+}
+
+const MIXED_EXERCISES = Object.freeze([
+  { source: "EN", type: "MULTIPLE_CHOICE" },
+  { source: "UK", type: "MULTIPLE_CHOICE" },
+  { source: "EN", type: "TYPE_ANSWER" },
+  { source: "UK", type: "TYPE_ANSWER" },
+  { source: "EN", type: "AUDIO" },
+  { source: "EN", type: "MULTIPLE_CHOICE" },
+  { source: "UK", type: "MULTIPLE_CHOICE" },
+  { source: "EN", type: "TYPE_ANSWER" },
+  { source: "UK", type: "TYPE_ANSWER" },
+  { source: "EN", type: "AUDIO" },
+]);
+
+function shuffled(items) {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const swap = randomInt(index + 1);
+    [copy[index], copy[swap]] = [copy[swap], copy[index]];
+  }
+  return copy;
+}
+
+function choiceSnapshot(term, allTerms, source) {
+  const target = source === "EN" ? "UK" : "EN";
+  const correct = primaryVariant(term, target);
+  const explicit = (term.distractors ?? [])
+    .filter(({ direction }) => direction === (source === "EN" ? "EN_TO_UK" : "UK_TO_EN"))
+    .map(({ distractorTerm }) => primaryVariant(distractorTerm, target))
+    .filter(Boolean);
+  const fallback = allTerms
+    .filter((candidate) => candidate.id !== term.id)
+    .map((candidate) => primaryVariant(candidate, target))
+    .filter(Boolean);
+  const unique = new Map(
+    [correct, ...explicit, ...fallback].filter(Boolean).map((variant) => [variant.value, variant]),
+  );
+  return shuffled([...unique.values()].slice(0, 4)).map(({ value }) => ({ value, label: value }));
+}
+
 function mapProgress(progress) {
   return {
     state: progress.state,
@@ -126,8 +175,21 @@ function mapProgress(progress) {
 }
 
 function mapSession(session, summary = null) {
-  const target = targetLocale(session.direction);
-  const source = sourceLocale(session.direction);
+  const introduction =
+    session.currentStage === "INTRODUCTION"
+      ? session.items.map((item) => ({
+          termId: item.termId,
+          english: primaryVariant(item.term, "EN")?.value ?? null,
+          ukrainian: primaryVariant(item.term, "UK")?.value ?? null,
+          definitionEn:
+            item.term.definitions.find((entry) => entry.locale === "EN")?.shortDefinition ?? null,
+          definitionUk:
+            item.term.definitions.find((entry) => entry.locale === "UK")?.shortDefinition ?? null,
+          audioUrl: item.term.audioAssets?.[0]?.id
+            ? `/api/v1/audio/${item.term.audioAssets[0].id}`
+            : null,
+        }))
+      : [];
   return {
     id: session.id,
     kind: session.kind,
@@ -141,6 +203,7 @@ function mapSession(session, summary = null) {
     completedAt: session.completedAt,
     summary,
     lesson: session.lesson,
+    introduction,
     answeredItems: session.items.filter((item) => item.status === "ANSWERED").length,
     totalItems: session.items.length,
     currentIndex: Math.max(
@@ -148,6 +211,8 @@ function mapSession(session, summary = null) {
       session.items.findIndex((item) => item.status !== "ANSWERED"),
     ),
     items: session.items.map((item) => {
+      const target = itemTargetLocale(item);
+      const source = itemSourceLocale(item);
       const answer = item.answers?.[0] ?? null;
       const accepted = answer ? primaryVariant(item.term, target) : null;
       const definition = item.term.definitions.find((entry) => entry.locale === source);
@@ -162,7 +227,7 @@ function mapSession(session, summary = null) {
         prompt: item.promptVariant?.value ?? null,
         promptLocale: item.promptVariant ? apiLocale(item.promptVariant.locale) : null,
         definition: definition?.shortDefinition ?? null,
-        choices: [],
+        choices: Array.isArray(item.optionsSnapshot) ? item.optionsSnapshot : [],
         audio: audioAsset
           ? {
               id: audioAsset.id,
@@ -304,7 +369,17 @@ async function sessionTerms(db, input) {
       include: {
         terms: {
           orderBy: { position: "asc" },
-          include: { term: { include: { variants: true, definitions: true } } },
+          include: {
+            term: {
+              include: {
+                variants: true,
+                definitions: true,
+                distractors: {
+                  include: { distractorTerm: { include: { variants: true } } },
+                },
+              },
+            },
+          },
         },
       },
     });
@@ -336,7 +411,11 @@ async function sessionTerms(db, input) {
     },
     orderBy: { id: "asc" },
     take: 10,
-    include: { variants: true, definitions: true },
+    include: {
+      variants: true,
+      definitions: true,
+      distractors: { include: { distractorTerm: { include: { variants: true } } } },
+    },
   });
   if (terms.length === 0) throw notFound("Немає доступних опублікованих термінів.");
   return { lesson: null, terms, kind: "PRACTICE" };
@@ -351,8 +430,15 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
     const direction = databaseDirection(input.direction ?? input.mode);
     const selected = await sessionTerms(db, input);
     const items = selected.terms.map((term, index) => {
-      const prompt = primaryVariant(term, sourceLocale(direction));
-      const accepted = acceptedVariants(term, targetLocale(direction));
+      const pattern =
+        direction === "MIXED"
+          ? MIXED_EXERCISES[index % MIXED_EXERCISES.length]
+          : {
+              source: sourceLocale(direction),
+              type: direction === "UK_TO_EN" ? "UA_TO_EN" : "EN_TO_UA",
+            };
+      const prompt = primaryVariant(term, pattern.source);
+      const accepted = acceptedVariants(term, pattern.source === "EN" ? "UK" : "EN");
       if (!prompt || accepted.length === 0) {
         throw conflict(
           "TERM_NOT_STUDY_READY",
@@ -365,7 +451,11 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
         contentRevisionNumber: term.currentRevision,
         position: index + 1,
         stage: "PRACTICE",
-        exerciseType: direction === "UK_TO_EN" ? "UA_TO_EN" : "EN_TO_UA",
+        exerciseType: pattern.type,
+        optionsSnapshot:
+          pattern.type === "MULTIPLE_CHOICE"
+            ? choiceSnapshot(term, selected.terms, pattern.source)
+            : undefined,
         servedAt: now,
       };
     });
@@ -379,7 +469,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
           kind: selected.kind,
           direction,
           status: "ACTIVE",
-          currentStage: "PRACTICE",
+          currentStage: selected.kind === "LESSON" ? "INTRODUCTION" : "PRACTICE",
           idempotencyKey,
           xpPolicyVersion: XP_POLICY_VERSION,
           schedulerVersion: SCHEDULER_VERSION,
@@ -450,6 +540,25 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
     return mapSession(session, summary);
   }
 
+  async function beginPractice(userId, sessionId) {
+    const now = clock();
+    const session = await db.studySession.findFirst({
+      where: { id: sessionId, userId },
+      select: { id: true, status: true, currentStage: true, expiresAt: true },
+    });
+    if (!session) throw notFound("Навчальну сесію не знайдено.");
+    if (session.status !== "ACTIVE" || session.expiresAt <= now) {
+      throw conflict("SESSION_NOT_ACTIVE", "Ця навчальна сесія вже не активна.");
+    }
+    if (session.currentStage === "INTRODUCTION") {
+      await db.studySession.updateMany({
+        where: { id: sessionId, userId, currentStage: "INTRODUCTION" },
+        data: { currentStage: "PRACTICE" },
+      });
+    }
+    return getSession(userId, sessionId);
+  }
+
   async function submitAnswer(userId, sessionId, input, idempotencyKey) {
     return idempotency
       .execute(
@@ -478,6 +587,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 expiresAt: true,
                 score: true,
                 maxScore: true,
+                currentStage: true,
               },
             });
             if (!session) throw notFound("Навчальну сесію не знайдено.");
@@ -490,7 +600,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               },
               include: {
                 acceptedVariant: { select: { value: true } },
-                sessionItem: { select: { id: true, termId: true } },
+                sessionItem: {
+                  select: { id: true, termId: true, promptVariant: { select: { locale: true } } },
+                },
               },
             });
             if (recordedAnswer) {
@@ -506,7 +618,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 transaction.termVariant.findFirst({
                   where: {
                     termId: recordedAnswer.sessionItem.termId,
-                    locale: targetLocale(session.direction),
+                    locale: itemTargetLocale(recordedAnswer.sessionItem),
                     isPrimary: true,
                   },
                   select: { value: true },
@@ -560,20 +672,21 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
             if (session.status !== "ACTIVE") {
               throw conflict("SESSION_NOT_ACTIVE", "Ця навчальна сесія вже не активна.");
             }
+            if (session.currentStage !== "PRACTICE") {
+              throw conflict("SESSION_NOT_IN_PRACTICE", "Спочатку завершіть ознайомлення.");
+            }
             if (session.expiresAt <= now) {
               throw new DomainError("SESSION_EXPIRED", "Час навчальної сесії минув.", 409);
             }
             const item = await transaction.studySessionItem.findFirst({
               where: { id: input.sessionItemId, studySessionId: session.id },
               include: {
+                promptVariant: { select: { locale: true } },
                 term: {
                   select: {
                     id: true,
                     variants: {
-                      where: {
-                        locale: targetLocale(session.direction),
-                        isAcceptedAnswer: true,
-                      },
+                      where: { isAcceptedAnswer: true },
                       orderBy: [{ isPrimary: "desc" }, { value: "asc" }],
                     },
                   },
@@ -585,10 +698,13 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               throw conflict("ANSWER_ALREADY_RECORDED", "Відповідь на цю вправу вже записано.");
             }
 
+            const target = itemTargetLocale(item);
+            const accepted = item.term.variants.filter((variant) => variant.locale === target);
+
             const evaluation = evaluateAnswer({
               answer: input.answer,
-              acceptedVariants: item.term.variants,
-              locale: apiLocale(targetLocale(session.direction)),
+              acceptedVariants: accepted,
+              locale: apiLocale(target),
             });
             const rating = deriveEffectiveRating(evaluation.correct, input.rating);
             const responseTimeMs = responseTime(item, input.responseTimeMs, now);
@@ -918,5 +1034,5 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
       .then(({ data, replayed }) => ({ ...data, replayed }));
   }
 
-  return { createSession, getSession, submitAnswer, completeSession };
+  return { createSession, getSession, beginPractice, submitAnswer, completeSession };
 }

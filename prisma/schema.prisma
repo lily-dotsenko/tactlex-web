@@ -104,6 +104,7 @@ enum PublicationStatus {
 enum Direction {
   EN_TO_UK
   UK_TO_EN
+  MIXED
 }
 
 enum ExerciseType {
@@ -281,6 +282,7 @@ model UserProfile {
   timezone           String        @default("Europe/Kyiv") @db.VarChar(64)
   dailyGoalXp        Int           @default(20) @map("daily_goal_xp")
   leaderboardVisible Boolean       @default(false) @map("leaderboard_visible")
+  avatarKey          String        @default("atlas-olive") @map("avatar_key") @db.VarChar(40)
   totalXp            Int           @default(0) @map("total_xp")
   level              Int           @default(1)
   currentStreak      Int           @default(0) @map("current_streak")
@@ -456,6 +458,7 @@ model Term {
   status           ContentStatus      @default(DRAFT)
   origin           ContentOrigin      @default(HUMAN)
   isDemo           Boolean            @default(false) @map("is_demo")
+  isBeta           Boolean            @default(false) @map("is_beta")
   currentRevision  Int                @default(1) @map("current_revision")
   createdById      String             @map("created_by_id") @db.Uuid
   updatedById      String             @map("updated_by_id") @db.Uuid

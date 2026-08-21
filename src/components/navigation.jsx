@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import {
@@ -29,6 +30,7 @@ import clsx from "clsx";
 import { Link, useRouter } from "@/lib/i18n/navigation";
 import { Brand } from "./brand";
 import { IconButton } from "./ui";
+import { avatarByKey } from "@/lib/avatars/catalog";
 
 export const primaryNav = [
   { href: "/dashboard", label: "home", icon: Home },
@@ -127,6 +129,7 @@ export function UserSidebar({ user }) {
   const t = useTranslations("Nav");
   const locale = useLocale();
   const nickname = user?.nickname || (locale === "uk" ? "Користувач" : "Learner");
+  const avatar = avatarByKey(user?.avatarKey);
   const totalXp = Number.isFinite(user?.totalXp) ? user.totalXp : 0;
   return (
     <aside className="user-sidebar">
@@ -148,7 +151,7 @@ export function UserSidebar({ user }) {
         ) : null}
       </nav>
       <div className="sidebar-profile">
-        <span className="avatar">{nickname.slice(0, 1)}</span>
+        <Image className="avatar avatar-image" src={avatar.src} alt="" width={38} height={38} />
         <span>
           <strong>{nickname}</strong>
           <small>{totalXp} XP</small>

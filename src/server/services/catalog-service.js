@@ -42,6 +42,8 @@ function mapTerm(term, locale) {
     ukrainian: primary("UK"),
     partOfSpeech: term.partOfSpeech.toLocaleLowerCase("en-US"),
     difficulty: term.difficulty,
+    origin: term.origin,
+    isBeta: term.isBeta,
     status: term.status,
     publishedAt: term.publishedAt,
     variants: term.variants.map((variant) => ({
@@ -83,12 +85,41 @@ const termInclude = {
   definitions: true,
   categories: { include: { category: true }, orderBy: { isPrimary: "desc" } },
   sources: {
-    where: { verificationStatus: "VERIFIED" },
     include: { source: true },
     orderBy: { isPrimary: "desc" },
   },
   audioAssets: { where: { archivedAt: null, isPrimary: true } },
 };
+
+function termOrderBy(sort) {
+  return sort === "difficulty"
+    ? [{ difficulty: "asc" }, { slug: "asc" }, { id: "asc" }]
+    : sort === "recent"
+      ? [{ publishedAt: "desc" }, { id: "asc" }]
+      : [{ slug: "asc" }, { id: "asc" }];
+}
+
+function publishedTermWhere({ locale = "uk", query, category, partOfSpeech, difficulty } = {}) {
+  return {
+    status: "PUBLISHED",
+    archivedAt: null,
+    ...(category ? { categories: { some: { category: { slug: category } } } } : {}),
+    ...(partOfSpeech ? { partOfSpeech } : {}),
+    ...(difficulty ? { difficulty } : {}),
+    ...(query
+      ? {
+          variants: {
+            some: {
+              normalizedValue: {
+                contains: normalizeAnswer(query, locale),
+                mode: "insensitive",
+              },
+            },
+          },
+        }
+      : {}),
+  };
+}
 
 export function createCatalogService(db) {
   async function listCategories({ locale = "uk" } = {}) {
@@ -139,26 +170,19 @@ export function createCatalogService(db) {
     };
   }
 
-  async function listTerms({ locale = "uk", query, category, cursor, limit = 20 } = {}) {
+  async function listTerms({
+    locale = "uk",
+    query,
+    category,
+    partOfSpeech,
+    difficulty,
+    sort = "alphabetical",
+    cursor,
+    limit = 20,
+  } = {}) {
     const terms = await db.term.findMany({
-      where: {
-        status: "PUBLISHED",
-        archivedAt: null,
-        ...(category ? { categories: { some: { category: { slug: category } } } } : {}),
-        ...(query
-          ? {
-              variants: {
-                some: {
-                  normalizedValue: {
-                    contains: normalizeAnswer(query, locale),
-                    mode: "insensitive",
-                  },
-                },
-              },
-            }
-          : {}),
-      },
-      orderBy: { id: "asc" },
+      where: publishedTermWhere({ locale, query, category, partOfSpeech, difficulty }),
+      orderBy: termOrderBy(sort),
       take: limit + 1,
       ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
       include: termInclude,
@@ -171,7 +195,8 @@ export function createCatalogService(db) {
     };
   }
 
-  async function getTerm(identifier, { locale = "uk" } = {}) {
+  async function getTerm(identifier, options = {}) {
+    const { locale = "uk", sort = "alphabetical" } = options;
     const term = await db.term.findFirst({
       where: {
         status: "PUBLISHED",
@@ -181,7 +206,22 @@ export function createCatalogService(db) {
       include: termInclude,
     });
     if (!term) throw notFound("Термін не знайдено.");
-    return mapTerm(term, locale);
+    const context = await db.term.findMany({
+      where: publishedTermWhere(options),
+      orderBy: termOrderBy(sort),
+      select: { id: true },
+    });
+    const position = context.findIndex(({ id }) => id === term.id);
+    return {
+      ...mapTerm(term, locale),
+      neighbors:
+        position === -1
+          ? { previous: null, next: null }
+          : {
+              previous: context[position - 1]?.id ?? null,
+              next: context[position + 1]?.id ?? null,
+            },
+    };
   }
 
   async function listLessons({ locale = "uk", category } = {}) {
@@ -213,7 +253,14 @@ export function createCatalogService(db) {
         archivedAt: null,
         ...identifierWhere(identifier),
       },
-      include: { category: true, _count: { select: { terms: true } } },
+      include: {
+        category: true,
+        _count: { select: { terms: true } },
+        terms: {
+          orderBy: { position: "asc" },
+          include: { term: { include: termInclude } },
+        },
+      },
     });
     if (!lesson) throw notFound("Урок не знайдено.");
     return {
@@ -225,6 +272,9 @@ export function createCatalogService(db) {
       difficulty: lesson.difficulty,
       estimatedMinutes: lesson.estimatedMinutes,
       termCount: lesson._count.terms,
+      terms: lesson.terms
+        .filter(({ term }) => term.status === "PUBLISHED" && !term.archivedAt)
+        .map(({ term }) => mapTerm(term, locale)),
     };
   }
 

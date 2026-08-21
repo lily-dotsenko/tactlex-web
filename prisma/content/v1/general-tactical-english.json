@@ -1,0 +1,1804 @@
+{
+  "version": "1.0.0-draft",
+  "category": {
+    "slug": "general-tactical-english",
+    "nameUk": "Загальна тактична англійська",
+    "nameEn": "General tactical English"
+  },
+  "lessons": [
+    {
+      "slug": "orientation-labels",
+      "titleUk": "Орієнтація й позначення",
+      "titleEn": "Orientation and labels",
+      "difficulty": 1,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "general-tactical-english:orientation-labels:1",
+          "slug": "general-tactical-english-north",
+          "lessonSlug": "orientation-labels",
+          "english": "north",
+          "ukrainian": "північ",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “north” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «північ» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “north” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «північ» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:2",
+            "general-tactical-english:orientation-labels:3",
+            "general-tactical-english:orientation-labels:4"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:2",
+          "slug": "general-tactical-english-south",
+          "lessonSlug": "orientation-labels",
+          "english": "south",
+          "ukrainian": "південь",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “south” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «південь» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “south” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «південь» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:3",
+            "general-tactical-english:orientation-labels:4",
+            "general-tactical-english:orientation-labels:5"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:3",
+          "slug": "general-tactical-english-east",
+          "lessonSlug": "orientation-labels",
+          "english": "east",
+          "ukrainian": "схід",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “east” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «схід» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “east” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «схід» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:4",
+            "general-tactical-english:orientation-labels:5",
+            "general-tactical-english:orientation-labels:6"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:4",
+          "slug": "general-tactical-english-west",
+          "lessonSlug": "orientation-labels",
+          "english": "west",
+          "ukrainian": "захід",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “west” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «захід» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “west” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «захід» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:5",
+            "general-tactical-english:orientation-labels:6",
+            "general-tactical-english:orientation-labels:7"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:5",
+          "slug": "general-tactical-english-left",
+          "lessonSlug": "orientation-labels",
+          "english": "left",
+          "ukrainian": "ліворуч",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “left” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «ліворуч» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “left” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «ліворуч» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:6",
+            "general-tactical-english:orientation-labels:7",
+            "general-tactical-english:orientation-labels:8"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:6",
+          "slug": "general-tactical-english-right",
+          "lessonSlug": "orientation-labels",
+          "english": "right",
+          "ukrainian": "праворуч",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “right” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «праворуч» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “right” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «праворуч» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:7",
+            "general-tactical-english:orientation-labels:8",
+            "general-tactical-english:orientation-labels:9"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:7",
+          "slug": "general-tactical-english-forward",
+          "lessonSlug": "orientation-labels",
+          "english": "forward",
+          "ukrainian": "уперед",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “forward” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «уперед» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “forward” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «уперед» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:8",
+            "general-tactical-english:orientation-labels:9",
+            "general-tactical-english:orientation-labels:10"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:8",
+          "slug": "general-tactical-english-rear",
+          "lessonSlug": "orientation-labels",
+          "english": "rear",
+          "ukrainian": "тил",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “rear” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «тил» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “rear” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «тил» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:9",
+            "general-tactical-english:orientation-labels:10",
+            "general-tactical-english:orientation-labels:1"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:9",
+          "slug": "general-tactical-english-map",
+          "lessonSlug": "orientation-labels",
+          "english": "map",
+          "ukrainian": "мапа",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “map” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «мапа» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “map” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «мапа» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:10",
+            "general-tactical-english:orientation-labels:1",
+            "general-tactical-english:orientation-labels:2"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:orientation-labels:10",
+          "slug": "general-tactical-english-grid",
+          "lessonSlug": "orientation-labels",
+          "english": "grid",
+          "ukrainian": "координатна сітка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “grid” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «координатна сітка» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “grid” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «координатна сітка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:orientation-labels:1",
+            "general-tactical-english:orientation-labels:2",
+            "general-tactical-english:orientation-labels:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "people-units",
+      "titleUk": "Люди, ролі та підрозділи",
+      "titleEn": "People, roles and units",
+      "difficulty": 2,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "general-tactical-english:people-units:1",
+          "slug": "general-tactical-english-team",
+          "lessonSlug": "people-units",
+          "english": "team",
+          "ukrainian": "команда",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “team” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «команда» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “team” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «команда» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:2",
+            "general-tactical-english:people-units:3",
+            "general-tactical-english:people-units:4"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:2",
+          "slug": "general-tactical-english-squad",
+          "lessonSlug": "people-units",
+          "english": "squad",
+          "ukrainian": "відділення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “squad” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «відділення» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “squad” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «відділення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:3",
+            "general-tactical-english:people-units:4",
+            "general-tactical-english:people-units:5"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:3",
+          "slug": "general-tactical-english-platoon",
+          "lessonSlug": "people-units",
+          "english": "platoon",
+          "ukrainian": "взвод",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “platoon” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «взвод» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “platoon” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «взвод» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:4",
+            "general-tactical-english:people-units:5",
+            "general-tactical-english:people-units:6"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:4",
+          "slug": "general-tactical-english-commander",
+          "lessonSlug": "people-units",
+          "english": "commander",
+          "ukrainian": "командир",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “commander” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «командир» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “commander” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «командир» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:5",
+            "general-tactical-english:people-units:6",
+            "general-tactical-english:people-units:7"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:5",
+          "slug": "general-tactical-english-leader",
+          "lessonSlug": "people-units",
+          "english": "leader",
+          "ukrainian": "керівник",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “leader” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «керівник» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “leader” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «керівник» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:6",
+            "general-tactical-english:people-units:7",
+            "general-tactical-english:people-units:8"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:6",
+          "slug": "general-tactical-english-operator",
+          "lessonSlug": "people-units",
+          "english": "operator",
+          "ukrainian": "оператор",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “operator” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «оператор» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “operator” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «оператор» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:7",
+            "general-tactical-english:people-units:8",
+            "general-tactical-english:people-units:9"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:7",
+          "slug": "general-tactical-english-medic",
+          "lessonSlug": "people-units",
+          "english": "medic",
+          "ukrainian": "медик",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “medic” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «медик» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “medic” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «медик» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:8",
+            "general-tactical-english:people-units:9",
+            "general-tactical-english:people-units:10"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:8",
+          "slug": "general-tactical-english-observer",
+          "lessonSlug": "people-units",
+          "english": "observer",
+          "ukrainian": "спостерігач",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “observer” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «спостерігач» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “observer” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «спостерігач» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:9",
+            "general-tactical-english:people-units:10",
+            "general-tactical-english:people-units:1"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:9",
+          "slug": "general-tactical-english-driver",
+          "lessonSlug": "people-units",
+          "english": "driver",
+          "ukrainian": "водій",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “driver” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «водій» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “driver” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «водій» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:10",
+            "general-tactical-english:people-units:1",
+            "general-tactical-english:people-units:2"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:people-units:10",
+          "slug": "general-tactical-english-crew",
+          "lessonSlug": "people-units",
+          "english": "crew",
+          "ukrainian": "екіпаж",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “crew” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «екіпаж» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “crew” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «екіпаж» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:people-units:1",
+            "general-tactical-english:people-units:2",
+            "general-tactical-english:people-units:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "directions-terrain",
+      "titleUk": "Напрямки й місцевість",
+      "titleEn": "Directions and terrain",
+      "difficulty": 3,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "general-tactical-english:directions-terrain:1",
+          "slug": "general-tactical-english-road",
+          "lessonSlug": "directions-terrain",
+          "english": "road",
+          "ukrainian": "дорога",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “road” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «дорога» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “road” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «дорога» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:2",
+            "general-tactical-english:directions-terrain:3",
+            "general-tactical-english:directions-terrain:4"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:2",
+          "slug": "general-tactical-english-bridge",
+          "lessonSlug": "directions-terrain",
+          "english": "bridge",
+          "ukrainian": "міст",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “bridge” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «міст» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “bridge” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «міст» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:3",
+            "general-tactical-english:directions-terrain:4",
+            "general-tactical-english:directions-terrain:5"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:3",
+          "slug": "general-tactical-english-building",
+          "lessonSlug": "directions-terrain",
+          "english": "building",
+          "ukrainian": "будівля",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “building” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «будівля» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “building” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «будівля» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:4",
+            "general-tactical-english:directions-terrain:5",
+            "general-tactical-english:directions-terrain:6"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:4",
+          "slug": "general-tactical-english-entrance",
+          "lessonSlug": "directions-terrain",
+          "english": "entrance",
+          "ukrainian": "вхід",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “entrance” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вхід» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “entrance” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вхід» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:5",
+            "general-tactical-english:directions-terrain:6",
+            "general-tactical-english:directions-terrain:7"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:5",
+          "slug": "general-tactical-english-exit",
+          "lessonSlug": "directions-terrain",
+          "english": "exit",
+          "ukrainian": "вихід",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “exit” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вихід» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “exit” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вихід» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:6",
+            "general-tactical-english:directions-terrain:7",
+            "general-tactical-english:directions-terrain:8"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:6",
+          "slug": "general-tactical-english-checkpoint",
+          "lessonSlug": "directions-terrain",
+          "english": "checkpoint",
+          "ukrainian": "контрольний пункт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “checkpoint” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «контрольний пункт» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “checkpoint” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «контрольний пункт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:7",
+            "general-tactical-english:directions-terrain:8",
+            "general-tactical-english:directions-terrain:9"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:7",
+          "slug": "general-tactical-english-boundary",
+          "lessonSlug": "directions-terrain",
+          "english": "boundary",
+          "ukrainian": "межа",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “boundary” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «межа» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “boundary” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «межа» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:8",
+            "general-tactical-english:directions-terrain:9",
+            "general-tactical-english:directions-terrain:10"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:8",
+          "slug": "general-tactical-english-route",
+          "lessonSlug": "directions-terrain",
+          "english": "route",
+          "ukrainian": "маршрут",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “route” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «маршрут» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “route” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «маршрут» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:9",
+            "general-tactical-english:directions-terrain:10",
+            "general-tactical-english:directions-terrain:1"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:9",
+          "slug": "general-tactical-english-location",
+          "lessonSlug": "directions-terrain",
+          "english": "location",
+          "ukrainian": "місце розташування",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “location” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «місце розташування» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “location” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «місце розташування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:10",
+            "general-tactical-english:directions-terrain:1",
+            "general-tactical-english:directions-terrain:2"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:directions-terrain:10",
+          "slug": "general-tactical-english-distance",
+          "lessonSlug": "directions-terrain",
+          "english": "distance",
+          "ukrainian": "відстань",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “distance” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «відстань» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “distance” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «відстань» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:directions-terrain:1",
+            "general-tactical-english:directions-terrain:2",
+            "general-tactical-english:directions-terrain:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "radio-messages",
+      "titleUk": "Радіообмін і повідомлення",
+      "titleEn": "Radio communication and messages",
+      "difficulty": 4,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "general-tactical-english:radio-messages:1",
+          "slug": "general-tactical-english-radio",
+          "lessonSlug": "radio-messages",
+          "english": "radio",
+          "ukrainian": "радіостанція",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “radio” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «радіостанція» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “radio” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «радіостанція» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:2",
+            "general-tactical-english:radio-messages:3",
+            "general-tactical-english:radio-messages:4"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:2",
+          "slug": "general-tactical-english-channel",
+          "lessonSlug": "radio-messages",
+          "english": "channel",
+          "ukrainian": "канал",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “channel” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «канал» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “channel” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «канал» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:3",
+            "general-tactical-english:radio-messages:4",
+            "general-tactical-english:radio-messages:5"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:3",
+          "slug": "general-tactical-english-frequency",
+          "lessonSlug": "radio-messages",
+          "english": "frequency",
+          "ukrainian": "частота",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “frequency” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «частота» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “frequency” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «частота» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:4",
+            "general-tactical-english:radio-messages:5",
+            "general-tactical-english:radio-messages:6"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:4",
+          "slug": "general-tactical-english-call-sign",
+          "lessonSlug": "radio-messages",
+          "english": "call sign",
+          "ukrainian": "позивний",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “call sign” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «позивний» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “call sign” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «позивний» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:5",
+            "general-tactical-english:radio-messages:6",
+            "general-tactical-english:radio-messages:7"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:5",
+          "slug": "general-tactical-english-message",
+          "lessonSlug": "radio-messages",
+          "english": "message",
+          "ukrainian": "повідомлення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “message” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «повідомлення» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “message” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «повідомлення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:6",
+            "general-tactical-english:radio-messages:7",
+            "general-tactical-english:radio-messages:8"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:6",
+          "slug": "general-tactical-english-repeat",
+          "lessonSlug": "radio-messages",
+          "english": "repeat",
+          "ukrainian": "повторити",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “repeat” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «повторити» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “repeat” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «повторити» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:7",
+            "general-tactical-english:radio-messages:8",
+            "general-tactical-english:radio-messages:9"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:7",
+          "slug": "general-tactical-english-confirm",
+          "lessonSlug": "radio-messages",
+          "english": "confirm",
+          "ukrainian": "підтвердити",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “confirm” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «підтвердити» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “confirm” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «підтвердити» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:8",
+            "general-tactical-english:radio-messages:9",
+            "general-tactical-english:radio-messages:10"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:8",
+          "slug": "general-tactical-english-stand-by",
+          "lessonSlug": "radio-messages",
+          "english": "stand by",
+          "ukrainian": "очікувати",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “stand by” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «очікувати» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “stand by” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «очікувати» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:9",
+            "general-tactical-english:radio-messages:10",
+            "general-tactical-english:radio-messages:1"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:9",
+          "slug": "general-tactical-english-signal",
+          "lessonSlug": "radio-messages",
+          "english": "signal",
+          "ukrainian": "сигнал",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “signal” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «сигнал» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “signal” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «сигнал» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:10",
+            "general-tactical-english:radio-messages:1",
+            "general-tactical-english:radio-messages:2"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:radio-messages:10",
+          "slug": "general-tactical-english-communication",
+          "lessonSlug": "radio-messages",
+          "english": "communication",
+          "ukrainian": "зв’язок",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “communication” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зв’язок» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “communication” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зв’язок» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:radio-messages:1",
+            "general-tactical-english:radio-messages:2",
+            "general-tactical-english:radio-messages:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "equipment-logistics",
+      "titleUk": "Спорядження й логістика",
+      "titleEn": "Equipment and logistics",
+      "difficulty": 5,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:1",
+          "slug": "general-tactical-english-vehicle",
+          "lessonSlug": "equipment-logistics",
+          "english": "vehicle",
+          "ukrainian": "транспортний засіб",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “vehicle” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «транспортний засіб» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “vehicle” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «транспортний засіб» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:2",
+            "general-tactical-english:equipment-logistics:3",
+            "general-tactical-english:equipment-logistics:4"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:2",
+          "slug": "general-tactical-english-fuel",
+          "lessonSlug": "equipment-logistics",
+          "english": "fuel",
+          "ukrainian": "пальне",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “fuel” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «пальне» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “fuel” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «пальне» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:3",
+            "general-tactical-english:equipment-logistics:4",
+            "general-tactical-english:equipment-logistics:5"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:3",
+          "slug": "general-tactical-english-battery",
+          "lessonSlug": "equipment-logistics",
+          "english": "battery",
+          "ukrainian": "акумулятор",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “battery” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «акумулятор» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “battery” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «акумулятор» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:4",
+            "general-tactical-english:equipment-logistics:5",
+            "general-tactical-english:equipment-logistics:6"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:4",
+          "slug": "general-tactical-english-equipment",
+          "lessonSlug": "equipment-logistics",
+          "english": "equipment",
+          "ukrainian": "спорядження",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “equipment” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «спорядження» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “equipment” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «спорядження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:5",
+            "general-tactical-english:equipment-logistics:6",
+            "general-tactical-english:equipment-logistics:7"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:5",
+          "slug": "general-tactical-english-supply",
+          "lessonSlug": "equipment-logistics",
+          "english": "supply",
+          "ukrainian": "постачання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “supply” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «постачання» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “supply” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «постачання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:6",
+            "general-tactical-english:equipment-logistics:7",
+            "general-tactical-english:equipment-logistics:8"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:6",
+          "slug": "general-tactical-english-repair",
+          "lessonSlug": "equipment-logistics",
+          "english": "repair",
+          "ukrainian": "ремонт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “repair” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «ремонт» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “repair” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «ремонт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:7",
+            "general-tactical-english:equipment-logistics:8",
+            "general-tactical-english:equipment-logistics:9"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:7",
+          "slug": "general-tactical-english-maintenance",
+          "lessonSlug": "equipment-logistics",
+          "english": "maintenance",
+          "ukrainian": "технічне обслуговування",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “maintenance” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «технічне обслуговування» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “maintenance” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «технічне обслуговування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:8",
+            "general-tactical-english:equipment-logistics:9",
+            "general-tactical-english:equipment-logistics:10"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:8",
+          "slug": "general-tactical-english-transport",
+          "lessonSlug": "equipment-logistics",
+          "english": "transport",
+          "ukrainian": "транспорт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “transport” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «транспорт» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “transport” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «транспорт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:9",
+            "general-tactical-english:equipment-logistics:10",
+            "general-tactical-english:equipment-logistics:1"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:9",
+          "slug": "general-tactical-english-cargo",
+          "lessonSlug": "equipment-logistics",
+          "english": "cargo",
+          "ukrainian": "вантаж",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “cargo” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вантаж» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “cargo” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вантаж» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:10",
+            "general-tactical-english:equipment-logistics:1",
+            "general-tactical-english:equipment-logistics:2"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:equipment-logistics:10",
+          "slug": "general-tactical-english-inventory",
+          "lessonSlug": "equipment-logistics",
+          "english": "inventory",
+          "ukrainian": "майно за описом",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “inventory” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «майно за описом» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “inventory” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «майно за описом» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:equipment-logistics:1",
+            "general-tactical-english:equipment-logistics:2",
+            "general-tactical-english:equipment-logistics:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "planning-reporting",
+      "titleUk": "Планування, звітність і взаємодія",
+      "titleEn": "Planning, reporting and coordination",
+      "difficulty": 5,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "general-tactical-english:planning-reporting:1",
+          "slug": "general-tactical-english-task",
+          "lessonSlug": "planning-reporting",
+          "english": "task",
+          "ukrainian": "завдання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “task” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «завдання» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “task” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «завдання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:2",
+            "general-tactical-english:planning-reporting:3",
+            "general-tactical-english:planning-reporting:4"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:2",
+          "slug": "general-tactical-english-objective",
+          "lessonSlug": "planning-reporting",
+          "english": "objective",
+          "ukrainian": "мета",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “objective” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «мета» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “objective” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «мета» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:3",
+            "general-tactical-english:planning-reporting:4",
+            "general-tactical-english:planning-reporting:5"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:3",
+          "slug": "general-tactical-english-priority",
+          "lessonSlug": "planning-reporting",
+          "english": "priority",
+          "ukrainian": "пріоритет",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “priority” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «пріоритет» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “priority” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «пріоритет» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:4",
+            "general-tactical-english:planning-reporting:5",
+            "general-tactical-english:planning-reporting:6"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:4",
+          "slug": "general-tactical-english-status",
+          "lessonSlug": "planning-reporting",
+          "english": "status",
+          "ukrainian": "стан",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “status” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «стан» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “status” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «стан» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:5",
+            "general-tactical-english:planning-reporting:6",
+            "general-tactical-english:planning-reporting:7"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:5",
+          "slug": "general-tactical-english-report",
+          "lessonSlug": "planning-reporting",
+          "english": "report",
+          "ukrainian": "звіт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “report” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «звіт» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “report” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «звіт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:6",
+            "general-tactical-english:planning-reporting:7",
+            "general-tactical-english:planning-reporting:8"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:6",
+          "slug": "general-tactical-english-schedule",
+          "lessonSlug": "planning-reporting",
+          "english": "schedule",
+          "ukrainian": "розклад",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “schedule” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «розклад» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “schedule” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «розклад» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:7",
+            "general-tactical-english:planning-reporting:8",
+            "general-tactical-english:planning-reporting:9"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:7",
+          "slug": "general-tactical-english-coordination",
+          "lessonSlug": "planning-reporting",
+          "english": "coordination",
+          "ukrainian": "координація",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “coordination” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «координація» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “coordination” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «координація» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:8",
+            "general-tactical-english:planning-reporting:9",
+            "general-tactical-english:planning-reporting:10"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:8",
+          "slug": "general-tactical-english-support",
+          "lessonSlug": "planning-reporting",
+          "english": "support",
+          "ukrainian": "підтримка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “support” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «підтримка» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “support” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «підтримка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:9",
+            "general-tactical-english:planning-reporting:10",
+            "general-tactical-english:planning-reporting:1"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:9",
+          "slug": "general-tactical-english-request",
+          "lessonSlug": "planning-reporting",
+          "english": "request",
+          "ukrainian": "запит",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “request” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «запит» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “request” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «запит» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:10",
+            "general-tactical-english:planning-reporting:1",
+            "general-tactical-english:planning-reporting:2"
+          ]
+        },
+        {
+          "externalKey": "general-tactical-english:planning-reporting:10",
+          "slug": "general-tactical-english-briefing",
+          "lessonSlug": "planning-reporting",
+          "english": "briefing",
+          "ukrainian": "інструктаж",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “briefing” in the General tactical English vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «інструктаж» у словнику напряму «Загальна тактична англійська».",
+          "exampleEn": "The learner reviews the term “briefing” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «інструктаж» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://nso.nato.int/natoterm/content/nato/pages/home.html",
+            "title": "NATOTerm — The Official NATO Terminology Database",
+            "publisher": "NATO Standardization Office",
+            "sourceType": "NATO",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "general-tactical-english:planning-reporting:1",
+            "general-tactical-english:planning-reporting:2",
+            "general-tactical-english:planning-reporting:3"
+          ]
+        }
+      ]
+    }
+  ]
+}

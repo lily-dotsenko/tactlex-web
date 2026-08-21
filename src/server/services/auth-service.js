@@ -64,6 +64,7 @@ function mapProfile(profile) {
     timezone: profile.timezone,
     dailyGoalXp: profile.dailyGoalXp,
     leaderboardVisible: profile.leaderboardVisible,
+    avatarKey: profile.avatarKey,
     totalXp: profile.totalXp,
     level: profile.level,
     currentStreak: profile.currentStreak,
@@ -370,6 +371,7 @@ export function createAuthService({
       ...(Object.hasOwn(input, "leaderboardVisible")
         ? { leaderboardVisible: input.leaderboardVisible }
         : {}),
+      ...(input.avatarKey ? { avatarKey: input.avatarKey } : {}),
       ...(input.dailyGoalXp ? { dailyGoalXp: input.dailyGoalXp } : {}),
       ...(input.timezone ? { timezone: input.timezone } : {}),
     };

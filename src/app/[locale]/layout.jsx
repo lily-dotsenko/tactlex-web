@@ -6,6 +6,10 @@ import { LiveUiStyles } from "@/components/live-ui-styles";
 import { routing } from "@/lib/i18n/routing";
 
 export function generateStaticParams() {
+  // Next.js 16.2 dev can corrupt its prerender manifest when several pages
+  // beneath the same dynamic segment resolve static params concurrently.
+  // Development does not need pre-generation; production still emits uk/en.
+  if (process.env.NODE_ENV === "development") return [];
   return routing.locales.map((locale) => ({ locale }));
 }
 

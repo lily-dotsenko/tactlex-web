@@ -1,0 +1,1206 @@
+{
+  "version": "1.0.0-draft",
+  "category": {
+    "slug": "sniper-terminology",
+    "nameUk": "Снайперська термінологія",
+    "nameEn": "Sniper terminology"
+  },
+  "lessons": [
+    {
+      "slug": "roles-equipment",
+      "titleUk": "Ролі та обладнання",
+      "titleEn": "Roles and equipment",
+      "difficulty": 1,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "sniper-terminology:roles-equipment:1",
+          "slug": "sniper-terminology-sniper",
+          "lessonSlug": "roles-equipment",
+          "english": "sniper",
+          "ukrainian": "снайпер",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “sniper” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «снайпер» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “sniper” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «снайпер» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:2",
+            "sniper-terminology:roles-equipment:3",
+            "sniper-terminology:roles-equipment:4"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:2",
+          "slug": "sniper-terminology-spotter",
+          "lessonSlug": "roles-equipment",
+          "english": "spotter",
+          "ukrainian": "спостерігач",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “spotter” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «спостерігач» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “spotter” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «спостерігач» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:3",
+            "sniper-terminology:roles-equipment:4",
+            "sniper-terminology:roles-equipment:5"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:3",
+          "slug": "sniper-terminology-sniper-team",
+          "lessonSlug": "roles-equipment",
+          "english": "sniper team",
+          "ukrainian": "снайперська група",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “sniper team” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «снайперська група» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “sniper team” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «снайперська група» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:4",
+            "sniper-terminology:roles-equipment:5",
+            "sniper-terminology:roles-equipment:6"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:4",
+          "slug": "sniper-terminology-rifle",
+          "lessonSlug": "roles-equipment",
+          "english": "rifle",
+          "ukrainian": "гвинтівка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “rifle” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «гвинтівка» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “rifle” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «гвинтівка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:5",
+            "sniper-terminology:roles-equipment:6",
+            "sniper-terminology:roles-equipment:7"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:5",
+          "slug": "sniper-terminology-optic",
+          "lessonSlug": "roles-equipment",
+          "english": "optic",
+          "ukrainian": "оптичний прилад",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “optic” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «оптичний прилад» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “optic” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «оптичний прилад» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:6",
+            "sniper-terminology:roles-equipment:7",
+            "sniper-terminology:roles-equipment:8"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:6",
+          "slug": "sniper-terminology-bipod",
+          "lessonSlug": "roles-equipment",
+          "english": "bipod",
+          "ukrainian": "сошки",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “bipod” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «сошки» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “bipod” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «сошки» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:7",
+            "sniper-terminology:roles-equipment:8",
+            "sniper-terminology:roles-equipment:9"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:7",
+          "slug": "sniper-terminology-sling",
+          "lessonSlug": "roles-equipment",
+          "english": "sling",
+          "ukrainian": "ремінь",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “sling” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «ремінь» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “sling” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «ремінь» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:8",
+            "sniper-terminology:roles-equipment:9",
+            "sniper-terminology:roles-equipment:10"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:8",
+          "slug": "sniper-terminology-magazine",
+          "lessonSlug": "roles-equipment",
+          "english": "magazine",
+          "ukrainian": "магазин",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “magazine” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «магазин» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “magazine” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «магазин» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:9",
+            "sniper-terminology:roles-equipment:10",
+            "sniper-terminology:roles-equipment:1"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:9",
+          "slug": "sniper-terminology-ammunition",
+          "lessonSlug": "roles-equipment",
+          "english": "ammunition",
+          "ukrainian": "боєприпаси",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “ammunition” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «боєприпаси» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “ammunition” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «боєприпаси» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:10",
+            "sniper-terminology:roles-equipment:1",
+            "sniper-terminology:roles-equipment:2"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:roles-equipment:10",
+          "slug": "sniper-terminology-equipment-case",
+          "lessonSlug": "roles-equipment",
+          "english": "equipment case",
+          "ukrainian": "футляр для спорядження",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “equipment case” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «футляр для спорядження» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “equipment case” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «футляр для спорядження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:roles-equipment:1",
+            "sniper-terminology:roles-equipment:2",
+            "sniper-terminology:roles-equipment:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "optics-observation",
+      "titleUk": "Оптика й спостереження",
+      "titleEn": "Optics and observation",
+      "difficulty": 2,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "sniper-terminology:optics-observation:1",
+          "slug": "sniper-terminology-observation",
+          "lessonSlug": "optics-observation",
+          "english": "observation",
+          "ukrainian": "спостереження",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “observation” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «спостереження» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “observation” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «спостереження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:2",
+            "sniper-terminology:optics-observation:3",
+            "sniper-terminology:optics-observation:4"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:2",
+          "slug": "sniper-terminology-binoculars",
+          "lessonSlug": "optics-observation",
+          "english": "binoculars",
+          "ukrainian": "бінокль",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “binoculars” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «бінокль» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “binoculars” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «бінокль» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:3",
+            "sniper-terminology:optics-observation:4",
+            "sniper-terminology:optics-observation:5"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:3",
+          "slug": "sniper-terminology-spotting-scope",
+          "lessonSlug": "optics-observation",
+          "english": "spotting scope",
+          "ukrainian": "зорова труба",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “spotting scope” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зорова труба» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “spotting scope” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зорова труба» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:4",
+            "sniper-terminology:optics-observation:5",
+            "sniper-terminology:optics-observation:6"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:4",
+          "slug": "sniper-terminology-reticle",
+          "lessonSlug": "optics-observation",
+          "english": "reticle",
+          "ukrainian": "прицільна сітка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “reticle” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «прицільна сітка» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “reticle” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «прицільна сітка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:5",
+            "sniper-terminology:optics-observation:6",
+            "sniper-terminology:optics-observation:7"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:5",
+          "slug": "sniper-terminology-magnification",
+          "lessonSlug": "optics-observation",
+          "english": "magnification",
+          "ukrainian": "збільшення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “magnification” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «збільшення» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “magnification” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «збільшення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:6",
+            "sniper-terminology:optics-observation:7",
+            "sniper-terminology:optics-observation:8"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:6",
+          "slug": "sniper-terminology-focus",
+          "lessonSlug": "optics-observation",
+          "english": "focus",
+          "ukrainian": "фокусування",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “focus” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «фокусування» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “focus” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «фокусування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:7",
+            "sniper-terminology:optics-observation:8",
+            "sniper-terminology:optics-observation:9"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:7",
+          "slug": "sniper-terminology-lens",
+          "lessonSlug": "optics-observation",
+          "english": "lens",
+          "ukrainian": "лінза",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “lens” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «лінза» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “lens” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «лінза» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:8",
+            "sniper-terminology:optics-observation:9",
+            "sniper-terminology:optics-observation:10"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:8",
+          "slug": "sniper-terminology-field-of-view",
+          "lessonSlug": "optics-observation",
+          "english": "field of view",
+          "ukrainian": "поле зору",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “field of view” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «поле зору» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “field of view” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «поле зору» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:9",
+            "sniper-terminology:optics-observation:10",
+            "sniper-terminology:optics-observation:1"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:9",
+          "slug": "sniper-terminology-target-description",
+          "lessonSlug": "optics-observation",
+          "english": "target description",
+          "ukrainian": "опис цілі",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “target description” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «опис цілі» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “target description” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «опис цілі» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:10",
+            "sniper-terminology:optics-observation:1",
+            "sniper-terminology:optics-observation:2"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:optics-observation:10",
+          "slug": "sniper-terminology-range-card",
+          "lessonSlug": "optics-observation",
+          "english": "range card",
+          "ukrainian": "картка дальностей",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “range card” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «картка дальностей» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “range card” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «картка дальностей» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:optics-observation:1",
+            "sniper-terminology:optics-observation:2",
+            "sniper-terminology:optics-observation:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ballistics-weather",
+      "titleUk": "Балістика, погода та вимірювання",
+      "titleEn": "Ballistics, weather and measurement",
+      "difficulty": 3,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:1",
+          "slug": "sniper-terminology-trajectory",
+          "lessonSlug": "ballistics-weather",
+          "english": "trajectory",
+          "ukrainian": "траєкторія",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “trajectory” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «траєкторія» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “trajectory” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «траєкторія» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:2",
+            "sniper-terminology:ballistics-weather:3",
+            "sniper-terminology:ballistics-weather:4"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:2",
+          "slug": "sniper-terminology-ballistics",
+          "lessonSlug": "ballistics-weather",
+          "english": "ballistics",
+          "ukrainian": "балістика",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “ballistics” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «балістика» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “ballistics” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «балістика» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:3",
+            "sniper-terminology:ballistics-weather:4",
+            "sniper-terminology:ballistics-weather:5"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:3",
+          "slug": "sniper-terminology-wind",
+          "lessonSlug": "ballistics-weather",
+          "english": "wind",
+          "ukrainian": "вітер",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “wind” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вітер» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “wind” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вітер» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:4",
+            "sniper-terminology:ballistics-weather:5",
+            "sniper-terminology:ballistics-weather:6"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:4",
+          "slug": "sniper-terminology-air-temperature",
+          "lessonSlug": "ballistics-weather",
+          "english": "air temperature",
+          "ukrainian": "температура повітря",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “air temperature” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «температура повітря» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “air temperature” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «температура повітря» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:5",
+            "sniper-terminology:ballistics-weather:6",
+            "sniper-terminology:ballistics-weather:7"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:5",
+          "slug": "sniper-terminology-atmospheric-pressure",
+          "lessonSlug": "ballistics-weather",
+          "english": "atmospheric pressure",
+          "ukrainian": "атмосферний тиск",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “atmospheric pressure” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «атмосферний тиск» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “atmospheric pressure” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «атмосферний тиск» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:6",
+            "sniper-terminology:ballistics-weather:7",
+            "sniper-terminology:ballistics-weather:8"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:6",
+          "slug": "sniper-terminology-humidity",
+          "lessonSlug": "ballistics-weather",
+          "english": "humidity",
+          "ukrainian": "вологість",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “humidity” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вологість» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “humidity” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вологість» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:7",
+            "sniper-terminology:ballistics-weather:8",
+            "sniper-terminology:ballistics-weather:9"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:7",
+          "slug": "sniper-terminology-elevation",
+          "lessonSlug": "ballistics-weather",
+          "english": "elevation",
+          "ukrainian": "перевищення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “elevation” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «перевищення» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “elevation” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «перевищення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:8",
+            "sniper-terminology:ballistics-weather:9",
+            "sniper-terminology:ballistics-weather:10"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:8",
+          "slug": "sniper-terminology-angle",
+          "lessonSlug": "ballistics-weather",
+          "english": "angle",
+          "ukrainian": "кут",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “angle” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «кут» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “angle” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «кут» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:9",
+            "sniper-terminology:ballistics-weather:10",
+            "sniper-terminology:ballistics-weather:1"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:9",
+          "slug": "sniper-terminology-range",
+          "lessonSlug": "ballistics-weather",
+          "english": "range",
+          "ukrainian": "дальність",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “range” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «дальність» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “range” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «дальність» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:10",
+            "sniper-terminology:ballistics-weather:1",
+            "sniper-terminology:ballistics-weather:2"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:ballistics-weather:10",
+          "slug": "sniper-terminology-measurement",
+          "lessonSlug": "ballistics-weather",
+          "english": "measurement",
+          "ukrainian": "вимірювання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “measurement” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вимірювання» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “measurement” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вимірювання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:ballistics-weather:1",
+            "sniper-terminology:ballistics-weather:2",
+            "sniper-terminology:ballistics-weather:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "positions-reporting",
+      "titleUk": "Позиції та звітність",
+      "titleEn": "Positions and reporting",
+      "difficulty": 4,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "sniper-terminology:positions-reporting:1",
+          "slug": "sniper-terminology-position",
+          "lessonSlug": "positions-reporting",
+          "english": "position",
+          "ukrainian": "позиція",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “position” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «позиція» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “position” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «позиція» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:2",
+            "sniper-terminology:positions-reporting:3",
+            "sniper-terminology:positions-reporting:4"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:2",
+          "slug": "sniper-terminology-concealment",
+          "lessonSlug": "positions-reporting",
+          "english": "concealment",
+          "ukrainian": "маскування",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “concealment” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «маскування» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “concealment” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «маскування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:3",
+            "sniper-terminology:positions-reporting:4",
+            "sniper-terminology:positions-reporting:5"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:3",
+          "slug": "sniper-terminology-camouflage",
+          "lessonSlug": "positions-reporting",
+          "english": "camouflage",
+          "ukrainian": "камуфляж",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “camouflage” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «камуфляж» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “camouflage” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «камуфляж» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:4",
+            "sniper-terminology:positions-reporting:5",
+            "sniper-terminology:positions-reporting:6"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:4",
+          "slug": "sniper-terminology-cover",
+          "lessonSlug": "positions-reporting",
+          "english": "cover",
+          "ukrainian": "укриття",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “cover” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «укриття» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “cover” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «укриття» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:5",
+            "sniper-terminology:positions-reporting:6",
+            "sniper-terminology:positions-reporting:7"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:5",
+          "slug": "sniper-terminology-approach-route",
+          "lessonSlug": "positions-reporting",
+          "english": "approach route",
+          "ukrainian": "маршрут підходу",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “approach route” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «маршрут підходу» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “approach route” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «маршрут підходу» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:6",
+            "sniper-terminology:positions-reporting:7",
+            "sniper-terminology:positions-reporting:8"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:6",
+          "slug": "sniper-terminology-observation-sector",
+          "lessonSlug": "positions-reporting",
+          "english": "observation sector",
+          "ukrainian": "сектор спостереження",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “observation sector” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «сектор спостереження» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “observation sector” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «сектор спостереження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:7",
+            "sniper-terminology:positions-reporting:8",
+            "sniper-terminology:positions-reporting:9"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:7",
+          "slug": "sniper-terminology-observation-report",
+          "lessonSlug": "positions-reporting",
+          "english": "observation report",
+          "ukrainian": "звіт про спостереження",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “observation report” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «звіт про спостереження» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “observation report” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «звіт про спостереження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:8",
+            "sniper-terminology:positions-reporting:9",
+            "sniper-terminology:positions-reporting:10"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:8",
+          "slug": "sniper-terminology-team-communication",
+          "lessonSlug": "positions-reporting",
+          "english": "team communication",
+          "ukrainian": "зв’язок у групі",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “team communication” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зв’язок у групі» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “team communication” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зв’язок у групі» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:9",
+            "sniper-terminology:positions-reporting:10",
+            "sniper-terminology:positions-reporting:1"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:9",
+          "slug": "sniper-terminology-correction",
+          "lessonSlug": "positions-reporting",
+          "english": "correction",
+          "ukrainian": "поправка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “correction” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «поправка» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “correction” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «поправка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:10",
+            "sniper-terminology:positions-reporting:1",
+            "sniper-terminology:positions-reporting:2"
+          ]
+        },
+        {
+          "externalKey": "sniper-terminology:positions-reporting:10",
+          "slug": "sniper-terminology-logbook",
+          "lessonSlug": "positions-reporting",
+          "english": "logbook",
+          "ukrainian": "журнал записів",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “logbook” in the Sniper terminology vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «журнал записів» у словнику напряму «Снайперська термінологія».",
+          "exampleEn": "The learner reviews the term “logbook” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «журнал записів» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://rdl.train.army.mil/catalog-ws/view/100.ATSC/D2B552B4-2D13-4329-99ED-174C12A642D2-1771510672968/GTAx07_10_005.pdf",
+            "title": "GTA 07-10-005 Sniper Reference Book",
+            "publisher": "United States Army",
+            "sourceType": "DOCTRINE",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "sniper-terminology:positions-reporting:1",
+            "sniper-terminology:positions-reporting:2",
+            "sniper-terminology:positions-reporting:3"
+          ]
+        }
+      ]
+    }
+  ]
+}

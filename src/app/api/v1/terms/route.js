@@ -8,6 +8,11 @@ const querySchema = z.object({
   locale: z.enum(["uk", "en"]).default("uk"),
   q: z.string().trim().max(100).optional(),
   category: z.string().trim().max(80).optional(),
+  partOfSpeech: z
+    .enum(["NOUN", "VERB", "ADJECTIVE", "ADVERB", "PHRASE", "ABBREVIATION", "PROPER_NOUN", "OTHER"])
+    .optional(),
+  difficulty: z.coerce.number().int().min(1).max(5).optional(),
+  sort: z.enum(["alphabetical", "difficulty", "recent"]).default("alphabetical"),
   cursor: z.uuid().optional(),
   limit: z.coerce.number().int().min(1).max(50).default(20),
 });
@@ -18,6 +23,9 @@ export const GET = withApiErrors(async (request) => {
     locale: input.locale,
     query: input.q,
     category: input.category,
+    partOfSpeech: input.partOfSpeech,
+    difficulty: input.difficulty,
+    sort: input.sort,
     cursor: input.cursor,
     limit: input.limit,
   });

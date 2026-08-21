@@ -14,7 +14,7 @@ const createSessionSchema = z
     lessonId: z.uuid().optional(),
     categoryId: z.uuid().optional(),
     mode: z.enum(["LESSON", "PRACTICE", "EN_TO_UA", "UA_TO_EN", "EN_TO_UK", "UK_TO_EN"]).optional(),
-    direction: z.enum(["EN_TO_UA", "UA_TO_EN", "EN_TO_UK", "UK_TO_EN"]).optional(),
+    direction: z.enum(["EN_TO_UA", "UA_TO_EN", "EN_TO_UK", "UK_TO_EN", "MIXED"]).optional(),
   })
   .strict()
   .refine((value) => !(value.lessonId && value.categoryId), {

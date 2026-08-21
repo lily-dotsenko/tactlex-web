@@ -1,0 +1,1505 @@
+{
+  "version": "1.0.0-draft",
+  "category": {
+    "slug": "drones-uas",
+    "nameUk": "Дрони та UAS",
+    "nameEn": "Drones and UAS"
+  },
+  "lessons": [
+    {
+      "slug": "platform-components",
+      "titleUk": "Типи платформ і компоненти",
+      "titleEn": "Platforms and components",
+      "difficulty": 1,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "drones-uas:platform-components:1",
+          "slug": "drones-uas-unmanned-aircraft",
+          "lessonSlug": "platform-components",
+          "english": "unmanned aircraft",
+          "ukrainian": "безпілотне повітряне судно",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “unmanned aircraft” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «безпілотне повітряне судно» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “unmanned aircraft” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «безпілотне повітряне судно» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:2",
+            "drones-uas:platform-components:3",
+            "drones-uas:platform-components:4"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:2",
+          "slug": "drones-uas-unmanned-aircraft-system",
+          "lessonSlug": "platform-components",
+          "english": "unmanned aircraft system",
+          "ukrainian": "безпілотна авіаційна система",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “unmanned aircraft system” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «безпілотна авіаційна система» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “unmanned aircraft system” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «безпілотна авіаційна система» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:3",
+            "drones-uas:platform-components:4",
+            "drones-uas:platform-components:5"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:3",
+          "slug": "drones-uas-uav",
+          "lessonSlug": "platform-components",
+          "english": "UAV",
+          "ukrainian": "БПЛА",
+          "partOfSpeech": "ABBREVIATION",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “UAV” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «БПЛА» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “UAV” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «БПЛА» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:4",
+            "drones-uas:platform-components:5",
+            "drones-uas:platform-components:6"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:4",
+          "slug": "drones-uas-airframe",
+          "lessonSlug": "platform-components",
+          "english": "airframe",
+          "ukrainian": "планер",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “airframe” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «планер» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “airframe” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «планер» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:5",
+            "drones-uas:platform-components:6",
+            "drones-uas:platform-components:7"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:5",
+          "slug": "drones-uas-propeller",
+          "lessonSlug": "platform-components",
+          "english": "propeller",
+          "ukrainian": "пропелер",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “propeller” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «пропелер» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “propeller” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «пропелер» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:6",
+            "drones-uas:platform-components:7",
+            "drones-uas:platform-components:8"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:6",
+          "slug": "drones-uas-motor",
+          "lessonSlug": "platform-components",
+          "english": "motor",
+          "ukrainian": "двигун",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “motor” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «двигун» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “motor” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «двигун» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:7",
+            "drones-uas:platform-components:8",
+            "drones-uas:platform-components:9"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:7",
+          "slug": "drones-uas-rotor",
+          "lessonSlug": "platform-components",
+          "english": "rotor",
+          "ukrainian": "ротор",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “rotor” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «ротор» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “rotor” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «ротор» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:8",
+            "drones-uas:platform-components:9",
+            "drones-uas:platform-components:10"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:8",
+          "slug": "drones-uas-wing",
+          "lessonSlug": "platform-components",
+          "english": "wing",
+          "ukrainian": "крило",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “wing” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «крило» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “wing” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «крило» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:9",
+            "drones-uas:platform-components:10",
+            "drones-uas:platform-components:1"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:9",
+          "slug": "drones-uas-landing-gear",
+          "lessonSlug": "platform-components",
+          "english": "landing gear",
+          "ukrainian": "шасі",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “landing gear” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «шасі» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “landing gear” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «шасі» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:10",
+            "drones-uas:platform-components:1",
+            "drones-uas:platform-components:2"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:platform-components:10",
+          "slug": "drones-uas-payload",
+          "lessonSlug": "platform-components",
+          "english": "payload",
+          "ukrainian": "корисне навантаження",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “payload” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «корисне навантаження» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “payload” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «корисне навантаження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:platform-components:1",
+            "drones-uas:platform-components:2",
+            "drones-uas:platform-components:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "flight-navigation",
+      "titleUk": "Стани польоту й навігація",
+      "titleEn": "Flight states and navigation",
+      "difficulty": 2,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "drones-uas:flight-navigation:1",
+          "slug": "drones-uas-takeoff",
+          "lessonSlug": "flight-navigation",
+          "english": "takeoff",
+          "ukrainian": "зліт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “takeoff” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зліт» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “takeoff” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зліт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:2",
+            "drones-uas:flight-navigation:3",
+            "drones-uas:flight-navigation:4"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:2",
+          "slug": "drones-uas-landing",
+          "lessonSlug": "flight-navigation",
+          "english": "landing",
+          "ukrainian": "посадка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “landing” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «посадка» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “landing” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «посадка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:3",
+            "drones-uas:flight-navigation:4",
+            "drones-uas:flight-navigation:5"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:3",
+          "slug": "drones-uas-altitude",
+          "lessonSlug": "flight-navigation",
+          "english": "altitude",
+          "ukrainian": "висота",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “altitude” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «висота» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “altitude” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «висота» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:4",
+            "drones-uas:flight-navigation:5",
+            "drones-uas:flight-navigation:6"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:4",
+          "slug": "drones-uas-heading",
+          "lessonSlug": "flight-navigation",
+          "english": "heading",
+          "ukrainian": "курс",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “heading” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «курс» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “heading” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «курс» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:5",
+            "drones-uas:flight-navigation:6",
+            "drones-uas:flight-navigation:7"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:5",
+          "slug": "drones-uas-waypoint",
+          "lessonSlug": "flight-navigation",
+          "english": "waypoint",
+          "ukrainian": "маршрутна точка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “waypoint” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «маршрутна точка» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “waypoint” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «маршрутна точка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:6",
+            "drones-uas:flight-navigation:7",
+            "drones-uas:flight-navigation:8"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:6",
+          "slug": "drones-uas-flight-route",
+          "lessonSlug": "flight-navigation",
+          "english": "flight route",
+          "ukrainian": "маршрут польоту",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “flight route” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «маршрут польоту» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “flight route” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «маршрут польоту» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:7",
+            "drones-uas:flight-navigation:8",
+            "drones-uas:flight-navigation:9"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:7",
+          "slug": "drones-uas-hover",
+          "lessonSlug": "flight-navigation",
+          "english": "hover",
+          "ukrainian": "зависання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “hover” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зависання» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “hover” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зависання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:8",
+            "drones-uas:flight-navigation:9",
+            "drones-uas:flight-navigation:10"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:8",
+          "slug": "drones-uas-climb",
+          "lessonSlug": "flight-navigation",
+          "english": "climb",
+          "ukrainian": "набір висоти",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “climb” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «набір висоти» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “climb” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «набір висоти» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:9",
+            "drones-uas:flight-navigation:10",
+            "drones-uas:flight-navigation:1"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:9",
+          "slug": "drones-uas-descent",
+          "lessonSlug": "flight-navigation",
+          "english": "descent",
+          "ukrainian": "зниження",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “descent” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зниження» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “descent” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зниження» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:10",
+            "drones-uas:flight-navigation:1",
+            "drones-uas:flight-navigation:2"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:flight-navigation:10",
+          "slug": "drones-uas-airspace",
+          "lessonSlug": "flight-navigation",
+          "english": "airspace",
+          "ukrainian": "повітряний простір",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “airspace” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «повітряний простір» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “airspace” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «повітряний простір» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:flight-navigation:1",
+            "drones-uas:flight-navigation:2",
+            "drones-uas:flight-navigation:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "control-telemetry",
+      "titleUk": "Канал керування й телеметрія",
+      "titleEn": "Control link and telemetry",
+      "difficulty": 3,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "drones-uas:control-telemetry:1",
+          "slug": "drones-uas-ground-control-station",
+          "lessonSlug": "control-telemetry",
+          "english": "ground control station",
+          "ukrainian": "наземна станція керування",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “ground control station” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «наземна станція керування» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “ground control station” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «наземна станція керування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:2",
+            "drones-uas:control-telemetry:3",
+            "drones-uas:control-telemetry:4"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:2",
+          "slug": "drones-uas-controller",
+          "lessonSlug": "control-telemetry",
+          "english": "controller",
+          "ukrainian": "контролер",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “controller” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «контролер» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “controller” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «контролер» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:3",
+            "drones-uas:control-telemetry:4",
+            "drones-uas:control-telemetry:5"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:3",
+          "slug": "drones-uas-data-link",
+          "lessonSlug": "control-telemetry",
+          "english": "data link",
+          "ukrainian": "канал передавання даних",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “data link” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «канал передавання даних» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “data link” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «канал передавання даних» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:4",
+            "drones-uas:control-telemetry:5",
+            "drones-uas:control-telemetry:6"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:4",
+          "slug": "drones-uas-telemetry",
+          "lessonSlug": "control-telemetry",
+          "english": "telemetry",
+          "ukrainian": "телеметрія",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “telemetry” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «телеметрія» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “telemetry” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «телеметрія» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:5",
+            "drones-uas:control-telemetry:6",
+            "drones-uas:control-telemetry:7"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:5",
+          "slug": "drones-uas-antenna",
+          "lessonSlug": "control-telemetry",
+          "english": "antenna",
+          "ukrainian": "антена",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “antenna” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «антена» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “antenna” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «антена» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:6",
+            "drones-uas:control-telemetry:7",
+            "drones-uas:control-telemetry:8"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:6",
+          "slug": "drones-uas-signal-strength",
+          "lessonSlug": "control-telemetry",
+          "english": "signal strength",
+          "ukrainian": "рівень сигналу",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “signal strength” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «рівень сигналу» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “signal strength” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «рівень сигналу» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:7",
+            "drones-uas:control-telemetry:8",
+            "drones-uas:control-telemetry:9"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:7",
+          "slug": "drones-uas-connection",
+          "lessonSlug": "control-telemetry",
+          "english": "connection",
+          "ukrainian": "з’єднання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “connection” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «з’єднання» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “connection” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «з’єднання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:8",
+            "drones-uas:control-telemetry:9",
+            "drones-uas:control-telemetry:10"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:8",
+          "slug": "drones-uas-latency",
+          "lessonSlug": "control-telemetry",
+          "english": "latency",
+          "ukrainian": "затримка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “latency” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «затримка» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “latency” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «затримка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:9",
+            "drones-uas:control-telemetry:10",
+            "drones-uas:control-telemetry:1"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:9",
+          "slug": "drones-uas-command",
+          "lessonSlug": "control-telemetry",
+          "english": "command",
+          "ukrainian": "команда",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “command” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «команда» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “command” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «команда» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:10",
+            "drones-uas:control-telemetry:1",
+            "drones-uas:control-telemetry:2"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:control-telemetry:10",
+          "slug": "drones-uas-return-to-home",
+          "lessonSlug": "control-telemetry",
+          "english": "return to home",
+          "ukrainian": "повернення до точки старту",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “return to home” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «повернення до точки старту» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “return to home” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «повернення до точки старту» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:control-telemetry:1",
+            "drones-uas:control-telemetry:2",
+            "drones-uas:control-telemetry:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "sensors-imaging",
+      "titleUk": "Сенсори та зображення",
+      "titleEn": "Sensors and imaging",
+      "difficulty": 4,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "drones-uas:sensors-imaging:1",
+          "slug": "drones-uas-camera",
+          "lessonSlug": "sensors-imaging",
+          "english": "camera",
+          "ukrainian": "камера",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “camera” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «камера» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “camera” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «камера» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:2",
+            "drones-uas:sensors-imaging:3",
+            "drones-uas:sensors-imaging:4"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:2",
+          "slug": "drones-uas-sensor",
+          "lessonSlug": "sensors-imaging",
+          "english": "sensor",
+          "ukrainian": "сенсор",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “sensor” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «сенсор» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “sensor” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «сенсор» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:3",
+            "drones-uas:sensors-imaging:4",
+            "drones-uas:sensors-imaging:5"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:3",
+          "slug": "drones-uas-gimbal",
+          "lessonSlug": "sensors-imaging",
+          "english": "gimbal",
+          "ukrainian": "підвіс камери",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “gimbal” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «підвіс камери» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “gimbal” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «підвіс камери» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:4",
+            "drones-uas:sensors-imaging:5",
+            "drones-uas:sensors-imaging:6"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:4",
+          "slug": "drones-uas-image",
+          "lessonSlug": "sensors-imaging",
+          "english": "image",
+          "ukrainian": "зображення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “image” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «зображення» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “image” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «зображення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:5",
+            "drones-uas:sensors-imaging:6",
+            "drones-uas:sensors-imaging:7"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:5",
+          "slug": "drones-uas-video-feed",
+          "lessonSlug": "sensors-imaging",
+          "english": "video feed",
+          "ukrainian": "відеопотік",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “video feed” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «відеопотік» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “video feed” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «відеопотік» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:6",
+            "drones-uas:sensors-imaging:7",
+            "drones-uas:sensors-imaging:8"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:6",
+          "slug": "drones-uas-resolution",
+          "lessonSlug": "sensors-imaging",
+          "english": "resolution",
+          "ukrainian": "роздільна здатність",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “resolution” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «роздільна здатність» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “resolution” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «роздільна здатність» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:7",
+            "drones-uas:sensors-imaging:8",
+            "drones-uas:sensors-imaging:9"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:7",
+          "slug": "drones-uas-zoom",
+          "lessonSlug": "sensors-imaging",
+          "english": "zoom",
+          "ukrainian": "масштабування",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “zoom” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «масштабування» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “zoom” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «масштабування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:8",
+            "drones-uas:sensors-imaging:9",
+            "drones-uas:sensors-imaging:10"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:8",
+          "slug": "drones-uas-infrared",
+          "lessonSlug": "sensors-imaging",
+          "english": "infrared",
+          "ukrainian": "інфрачервоний діапазон",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “infrared” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «інфрачервоний діапазон» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “infrared” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «інфрачервоний діапазон» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:9",
+            "drones-uas:sensors-imaging:10",
+            "drones-uas:sensors-imaging:1"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:9",
+          "slug": "drones-uas-field-of-view",
+          "lessonSlug": "sensors-imaging",
+          "english": "field of view",
+          "ukrainian": "поле зору",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “field of view” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «поле зору» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “field of view” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «поле зору» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:10",
+            "drones-uas:sensors-imaging:1",
+            "drones-uas:sensors-imaging:2"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:sensors-imaging:10",
+          "slug": "drones-uas-metadata",
+          "lessonSlug": "sensors-imaging",
+          "english": "metadata",
+          "ukrainian": "метадані",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “metadata” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «метадані» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “metadata” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «метадані» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:sensors-imaging:1",
+            "drones-uas:sensors-imaging:2",
+            "drones-uas:sensors-imaging:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "maintenance-safety",
+      "titleUk": "Обслуговування, безпека й регулювання",
+      "titleEn": "Maintenance, safety and regulation",
+      "difficulty": 5,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "drones-uas:maintenance-safety:1",
+          "slug": "drones-uas-flight-battery",
+          "lessonSlug": "maintenance-safety",
+          "english": "flight battery",
+          "ukrainian": "польотний акумулятор",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “flight battery” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «польотний акумулятор» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “flight battery” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «польотний акумулятор» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:2",
+            "drones-uas:maintenance-safety:3",
+            "drones-uas:maintenance-safety:4"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:2",
+          "slug": "drones-uas-charging",
+          "lessonSlug": "maintenance-safety",
+          "english": "charging",
+          "ukrainian": "заряджання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “charging” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «заряджання» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “charging” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «заряджання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:3",
+            "drones-uas:maintenance-safety:4",
+            "drones-uas:maintenance-safety:5"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:3",
+          "slug": "drones-uas-firmware",
+          "lessonSlug": "maintenance-safety",
+          "english": "firmware",
+          "ukrainian": "вбудоване програмне забезпечення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “firmware” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вбудоване програмне забезпечення» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “firmware” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вбудоване програмне забезпечення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:4",
+            "drones-uas:maintenance-safety:5",
+            "drones-uas:maintenance-safety:6"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:4",
+          "slug": "drones-uas-calibration",
+          "lessonSlug": "maintenance-safety",
+          "english": "calibration",
+          "ukrainian": "калібрування",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “calibration” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «калібрування» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “calibration” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «калібрування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:5",
+            "drones-uas:maintenance-safety:6",
+            "drones-uas:maintenance-safety:7"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:5",
+          "slug": "drones-uas-inspection",
+          "lessonSlug": "maintenance-safety",
+          "english": "inspection",
+          "ukrainian": "огляд",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “inspection” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «огляд» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “inspection” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «огляд» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:6",
+            "drones-uas:maintenance-safety:7",
+            "drones-uas:maintenance-safety:8"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:6",
+          "slug": "drones-uas-scheduled-maintenance",
+          "lessonSlug": "maintenance-safety",
+          "english": "scheduled maintenance",
+          "ukrainian": "планове обслуговування",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “scheduled maintenance” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «планове обслуговування» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “scheduled maintenance” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «планове обслуговування» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:7",
+            "drones-uas:maintenance-safety:8",
+            "drones-uas:maintenance-safety:9"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:7",
+          "slug": "drones-uas-registration",
+          "lessonSlug": "maintenance-safety",
+          "english": "registration",
+          "ukrainian": "реєстрація",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “registration” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «реєстрація» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “registration” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «реєстрація» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:8",
+            "drones-uas:maintenance-safety:9",
+            "drones-uas:maintenance-safety:10"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:8",
+          "slug": "drones-uas-remote-identification",
+          "lessonSlug": "maintenance-safety",
+          "english": "remote identification",
+          "ukrainian": "дистанційна ідентифікація",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “remote identification” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «дистанційна ідентифікація» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “remote identification” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «дистанційна ідентифікація» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:9",
+            "drones-uas:maintenance-safety:10",
+            "drones-uas:maintenance-safety:1"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:9",
+          "slug": "drones-uas-weather",
+          "lessonSlug": "maintenance-safety",
+          "english": "weather",
+          "ukrainian": "погода",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “weather” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «погода» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “weather” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «погода» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:10",
+            "drones-uas:maintenance-safety:1",
+            "drones-uas:maintenance-safety:2"
+          ]
+        },
+        {
+          "externalKey": "drones-uas:maintenance-safety:10",
+          "slug": "drones-uas-safety",
+          "lessonSlug": "maintenance-safety",
+          "english": "safety",
+          "ukrainian": "безпека",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “safety” in the Drones and UAS vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «безпека» у словнику напряму «Дрони та UAS».",
+          "exampleEn": "The learner reviews the term “safety” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «безпека» у нейтральній мовній вправі.",
+          "contextNoteEn": "Public terminology for language learning; no operational instruction is provided.",
+          "contextNoteUk": "Загальнодоступна термінологія для вивчення мови без оперативних інструкцій.",
+          "source": {
+            "exactUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-u.html",
+            "title": "FAA Pilot/Controller Glossary — U",
+            "publisher": "Federal Aviation Administration",
+            "sourceType": "OTHER",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "drones-uas:maintenance-safety:1",
+            "drones-uas:maintenance-safety:2",
+            "drones-uas:maintenance-safety:3"
+          ]
+        }
+      ]
+    }
+  ]
+}

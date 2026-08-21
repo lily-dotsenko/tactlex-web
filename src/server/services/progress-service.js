@@ -118,14 +118,20 @@ export function createProgressService(db) {
       },
       orderBy: [{ xp: "desc" }, { updatedAt: "asc" }],
       take: limit,
-      include: { user: { select: { profile: { select: { nickname: true } } } } },
+      include: {
+        user: { select: { profile: { select: { nickname: true, avatarKey: true } } } },
+      },
     });
     const currentEntry = currentUserId
       ? await db.leaderboardEntry.findUnique({
           where: { periodId_userId: { periodId: period.id, userId: currentUserId } },
           include: {
             user: {
-              select: { profile: { select: { nickname: true, leaderboardVisible: true } } },
+              select: {
+                profile: {
+                  select: { nickname: true, avatarKey: true, leaderboardVisible: true },
+                },
+              },
             },
           },
         })
@@ -141,12 +147,17 @@ export function createProgressService(db) {
       entries: entries.map((entry, index) => ({
         rank: index + 1,
         nickname: entry.user.profile?.nickname ?? "—",
+        avatarKey: entry.user.profile?.avatarKey ?? null,
         xp: entry.xp,
         isCurrentUser: entry.userId === currentUserId,
       })),
       currentUser:
         currentEntry?.user.profile?.leaderboardVisible === true
-          ? { nickname: currentEntry.user.profile.nickname, xp: currentEntry.xp }
+          ? {
+              nickname: currentEntry.user.profile.nickname,
+              avatarKey: currentEntry.user.profile.avatarKey,
+              xp: currentEntry.xp,
+            }
           : null,
     };
   }

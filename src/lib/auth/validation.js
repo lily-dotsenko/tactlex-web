@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { AVATAR_KEYS } from "@/lib/avatars/catalog";
 
 export const audienceTypes = [
   "military",
@@ -53,6 +54,7 @@ export const profileUpdateSchema = z
     audienceType: z.enum(audienceTypes).nullable().optional(),
     locale: z.enum(["uk", "en"]).optional(),
     leaderboardVisible: z.boolean().optional(),
+    avatarKey: z.enum(AVATAR_KEYS).optional(),
     dailyGoalXp: z.number().int().min(5).max(500).optional(),
     timezone: z
       .string()

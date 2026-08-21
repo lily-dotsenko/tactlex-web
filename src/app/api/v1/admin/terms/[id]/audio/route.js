@@ -1,4 +1,5 @@
 import { apiData, withApiErrors } from "@/lib/http/api-response";
+import { requireAudioUploadsEnabled } from "@/lib/audio/config";
 import { createAudioStorage } from "@/server/services/audio-storage";
 import { audioMetadataSchema } from "@/server/services/admin-content-validation";
 import {
@@ -17,6 +18,7 @@ export const POST = withApiErrors(async (request, { params }) => {
   const principal = await authorizeAdminMutation(request, "audio.manage", "ADMIN_AUDIO", {
     maxBytes: MAX_AUDIO_BYTES + 128 * 1_024,
   });
+  requireAudioUploadsEnabled();
   const form = await request.formData();
   const file = form.get("file");
   if (!file || typeof file.arrayBuffer !== "function") {

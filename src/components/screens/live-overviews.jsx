@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import {
   AlertTriangle,
   Award,
@@ -16,11 +17,12 @@ import {
   ShieldCheck,
   Target,
   Trophy,
-  User,
   Zap,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "@/lib/i18n/navigation";
 import { apiRequest } from "@/components/learning-api";
+import { AVATARS, DEFAULT_AVATAR_KEY, avatarByKey } from "@/lib/avatars/catalog";
 import {
   Badge,
   Button,
@@ -60,10 +62,17 @@ function liveCopy(locale) {
         earned: "Відкрито",
         locked: "Попереду",
         leaderboardEmpty: "Для цього періоду ще немає учасників із відкритим профілем.",
-        privacy: "Відображаються лише псевдоніми користувачів, які погодилися на участь.",
+        privacy:
+          "Відображаються лише псевдоніми й мініаватари користувачів, які погодилися на участь.",
         profile: "Профіль",
         profileLead: "Приватні поля не відображаються іншим користувачам.",
         notShared: "Не публікується",
+        avatarTitle: "Оберіть тактичний аватар",
+        avatarLead:
+          "Усі персонажі доступні одразу; мініаватар також видно в рейтингу, якщо ви ввімкнули участь.",
+        avatarSave: "Зберегти аватар",
+        avatarSaving: "Зберігаємо…",
+        avatarSaved: "Аватар збережено.",
       }
     : {
         loading: "Loading data from the server…",
@@ -90,10 +99,16 @@ function liveCopy(locale) {
         earned: "Unlocked",
         locked: "Ahead",
         leaderboardEmpty: "No opted-in learners are ranked for this period yet.",
-        privacy: "Only nicknames of learners who opted in are displayed.",
+        privacy: "Only nicknames and mini avatars of learners who opted in are displayed.",
         profile: "Profile",
         profileLead: "Private fields are not shown to other learners.",
         notShared: "Not public",
+        avatarTitle: "Choose a tactical avatar",
+        avatarLead:
+          "Every character is available immediately; the mini avatar also appears when you opt into rankings.",
+        avatarSave: "Save avatar",
+        avatarSaving: "Saving…",
+        avatarSaved: "Avatar saved.",
       };
 }
 
@@ -441,7 +456,13 @@ export function LiveLeaderboardScreen() {
                   >
                     <td>#{entry.rank}</td>
                     <td>
-                      <span className="table-avatar">{entry.nickname?.slice(0, 1) || "?"}</span>
+                      <Image
+                        className="table-avatar table-avatar-image"
+                        src={avatarByKey(entry.avatarKey).src}
+                        alt=""
+                        width={34}
+                        height={34}
+                      />
                       <strong>{entry.nickname}</strong>
                       {entry.isCurrentUser && <Badge tone="blue">{t("you")}</Badge>}
                     </td>
@@ -464,10 +485,33 @@ export function LiveLeaderboardScreen() {
 
 export function LiveProfileScreen() {
   const locale = useLocale();
+  const router = useRouter();
   const copy = liveCopy(locale);
   const state = useApi("/profile");
   const user = state.data?.user;
   const nickname = user?.profile?.nickname;
+  const [avatarOverride, setAvatarOverride] = useState(null);
+  const [avatarStatus, setAvatarStatus] = useState("idle");
+  const [avatarError, setAvatarError] = useState("");
+
+  const avatarKey = avatarOverride ?? user?.profile?.avatarKey ?? DEFAULT_AVATAR_KEY;
+  const avatar = avatarByKey(avatarKey);
+
+  async function saveAvatar() {
+    setAvatarStatus("saving");
+    setAvatarError("");
+    try {
+      await apiRequest("/profile", {
+        method: "PATCH",
+        body: JSON.stringify({ avatarKey }),
+      });
+      setAvatarStatus("saved");
+      router.refresh();
+    } catch (error) {
+      setAvatarStatus("error");
+      setAvatarError(error.message);
+    }
+  }
 
   return (
     <div className="page-stack">
@@ -475,7 +519,13 @@ export function LiveProfileScreen() {
       {state.status === "ready" && user && (
         <>
           <Card className="profile-hero">
-            <span className="profile-avatar">{nickname?.slice(0, 1) || <User size={28} />}</span>
+            <Image
+              className="profile-avatar profile-avatar-image"
+              src={avatar.src}
+              alt=""
+              width={78}
+              height={78}
+            />
             <div>
               <p className="eyebrow">{copy.profile}</p>
               <h1>{nickname || copy.notShared}</h1>
@@ -484,6 +534,47 @@ export function LiveProfileScreen() {
             <ButtonLink href="/settings" variant="secondary">
               <Settings size={18} /> {locale === "uk" ? "Налаштування" : "Settings"}
             </ButtonLink>
+          </Card>
+          <Card className="avatar-picker-card">
+            <SectionHeading title={copy.avatarTitle} />
+            <p>{copy.avatarLead}</p>
+            <div className="avatar-grid" role="radiogroup" aria-label={copy.avatarTitle}>
+              {AVATARS.map((item) => {
+                const selected = avatarKey === item.key;
+                const name = locale === "uk" ? item.nameUk : item.nameEn;
+                return (
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    className={selected ? "avatar-option is-selected" : "avatar-option"}
+                    key={item.key}
+                    onClick={() => {
+                      setAvatarOverride(item.key);
+                      setAvatarStatus("idle");
+                    }}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={locale === "uk" ? item.altUk : item.altEn}
+                      width={72}
+                      height={72}
+                    />
+                    <span>{name}</span>
+                    {selected ? <CheckCircle2 size={18} aria-hidden="true" /> : null}
+                  </button>
+                );
+              })}
+            </div>
+            {avatarError ? (
+              <div className="form-alert" role="alert">
+                {avatarError}
+              </div>
+            ) : null}
+            {avatarStatus === "saved" ? <p role="status">{copy.avatarSaved}</p> : null}
+            <Button onClick={saveAvatar} disabled={avatarStatus === "saving"}>
+              {avatarStatus === "saving" ? copy.avatarSaving : copy.avatarSave}
+            </Button>
           </Card>
           <Card className="profile-details">
             <div>

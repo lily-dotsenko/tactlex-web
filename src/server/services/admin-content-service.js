@@ -435,6 +435,7 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
             publishedById: null,
             publishedAt: null,
             archivedAt: null,
+            isBeta: false,
           },
         });
         await replaceTermCollections(
@@ -485,6 +486,7 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
         data.publishedAt = now;
         data.publishedById = actorUserId;
         data.archivedAt = null;
+        data.isBeta = false;
       }
       if (nextStatus === "ARCHIVED") data.archivedAt = now;
       if (nextStatus === "DRAFT") {
@@ -493,6 +495,7 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
         data.publishedAt = null;
         data.publishedById = null;
         data.archivedAt = null;
+        data.isBeta = false;
       }
       if (term.status === "IN_REVIEW" && nextStatus === "DRAFT") {
         await transaction.contentReview.updateMany({
@@ -523,6 +526,79 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
       await audit(transaction, actorUserId, `TERM_${nextStatus}`, "TERM", id, {
         from: term.status,
         revisionNumber: term.currentRevision,
+      });
+      return findTerm(transaction, id);
+    });
+  }
+
+  async function setTermDistractors(actorUserId, id, distractorIds) {
+    const uniqueIds = [...new Set(distractorIds)];
+    if (
+      uniqueIds.length < 3 ||
+      uniqueIds.length !== distractorIds.length ||
+      uniqueIds.includes(id)
+    ) {
+      throw new DomainError(
+        "INVALID_DISTRACTORS",
+        "Термін повинен мати щонайменше три унікальні сторонні варіанти.",
+        422,
+      );
+    }
+    const count = await db.term.count({ where: { id: { in: uniqueIds } } });
+    if (count !== uniqueIds.length) throw notFound("Один із термінів-відволікачів не знайдений.");
+    return db.$transaction(async (transaction) => {
+      await transaction.termDistractor.deleteMany({ where: { termId: id } });
+      await transaction.termDistractor.createMany({
+        data: uniqueIds.flatMap((distractorTermId) => [
+          { termId: id, distractorTermId, direction: "EN_TO_UK" },
+          { termId: id, distractorTermId, direction: "UK_TO_EN" },
+        ]),
+      });
+      await audit(transaction, actorUserId, "TERM_DISTRACTORS_UPDATED", "TERM", id, {
+        distractorTermIds: uniqueIds,
+      });
+      return { termId: id, distractorIds: uniqueIds };
+    });
+  }
+
+  async function publishBetaTerm(actorUserId, id, note) {
+    const term = await findTerm(db, id);
+    const hasEnglish = term.variants.some(
+      (variant) => variant.locale === "EN" && variant.isPrimary,
+    );
+    const hasUkrainian = term.variants.some(
+      (variant) => variant.locale === "UK" && variant.isPrimary,
+    );
+    const hasDefinitions = ["EN", "UK"].every((locale) =>
+      term.definitions.some(
+        (definition) => definition.locale === locale && definition.shortDefinition?.trim(),
+      ),
+    );
+    const hasSource = term.sources.some(({ source }) => /^https?:\/\//u.test(source.exactUrl));
+    if (!hasEnglish || !hasUkrainian || !hasDefinitions || !term.categories.length || !hasSource) {
+      throw new DomainError(
+        "INCOMPLETE_BETA_CONTENT",
+        "Beta-публікація потребує двомовного терміна, визначень, категорії та точного джерела.",
+        422,
+      );
+    }
+    const now = clock();
+    return db.$transaction(async (transaction) => {
+      await transaction.term.update({
+        where: { id },
+        data: {
+          status: "PUBLISHED",
+          isBeta: true,
+          updatedById: actorUserId,
+          publishedById: actorUserId,
+          publishedAt: now,
+          archivedAt: null,
+        },
+      });
+      await audit(transaction, actorUserId, "TERM_BETA_PUBLISHED", "TERM", id, {
+        revisionNumber: term.currentRevision,
+        note: note ?? null,
+        sourceVerification: "UNVERIFIED",
       });
       return findTerm(transaction, id);
     });
@@ -1222,6 +1298,8 @@ export function createAdminContentService(db, { clock = () => new Date() } = {})
     createTerm,
     updateTerm,
     transitionTerm,
+    setTermDistractors,
+    publishBetaTerm,
     listReviews,
     decideReview,
     listLessons,
