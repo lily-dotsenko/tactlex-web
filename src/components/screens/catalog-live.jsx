@@ -84,49 +84,44 @@ export function CatalogLearnScreen() {
   const t = useTranslations("Learn");
   const common = useTranslations("Common");
   const copy = localCopy(locale);
-  const [state, setState] = useState({ status: "loading", categories: [], lessons: [] });
+  const [state, setState] = useState({ status: "loading", categories: [], overview: null });
 
   async function load() {
     setState((current) => ({ ...current, status: "loading" }));
     try {
-      const [categories, lessons] = await Promise.all([
-        apiRequest(`/categories?locale=${locale}`),
-        apiRequest(`/lessons?locale=${locale}`),
-      ]);
+      const overview = await apiRequest(`/learning-overview?locale=${locale}`);
       setState({
         status: "ready",
-        categories: Array.isArray(categories) ? categories : [],
-        lessons: Array.isArray(lessons) ? lessons : [],
+        categories: Array.isArray(overview?.categories) ? overview.categories : [],
+        overview,
       });
     } catch (error) {
-      setState({ status: "error", categories: [], lessons: [], error: error.message });
+      setState({ status: "error", categories: [], overview: null, error: error.message });
     }
   }
 
   useEffect(() => {
     let active = true;
-    Promise.all([
-      apiRequest(`/categories?locale=${locale}`),
-      apiRequest(`/lessons?locale=${locale}`),
-    ])
-      .then(([categories, lessons]) => {
+    apiRequest(`/learning-overview?locale=${locale}`)
+      .then((overview) => {
         if (!active) return;
         setState({
           status: "ready",
-          categories: Array.isArray(categories) ? categories : [],
-          lessons: Array.isArray(lessons) ? lessons : [],
+          categories: Array.isArray(overview?.categories) ? overview.categories : [],
+          overview,
         });
       })
       .catch((error) => {
         if (active)
-          setState({ status: "error", categories: [], lessons: [], error: error.message });
+          setState({ status: "error", categories: [], overview: null, error: error.message });
       });
     return () => {
       active = false;
     };
   }, [locale]);
 
-  const nextLesson = state.lessons[0];
+  const activeSession = state.overview?.activeSession;
+  const nextLesson = state.overview?.nextLesson;
 
   return (
     <div className="page-stack">
@@ -154,20 +149,26 @@ export function CatalogLearnScreen() {
       )}
       {state.status === "ready" && state.categories.length > 0 && (
         <>
-          {nextLesson && (
+          {(activeSession || nextLesson) && (
             <Card className="continue-strip">
               <span className="continue-strip-icon">
                 <BookOpen size={24} />
               </span>
               <div>
                 <Badge tone="blue">{copy.published}</Badge>
-                <h2>{nextLesson.title}</h2>
+                <h2>{activeSession?.lesson?.title || nextLesson?.title}</h2>
                 <p>
-                  {nextLesson.termCount} {copy.terms} · {nextLesson.estimatedMinutes} min
+                  {activeSession
+                    ? activeSession.currentStage
+                    : `${nextLesson.termCount} ${copy.terms} · ${nextLesson.estimatedMinutes} min`}
                 </p>
               </div>
               <ButtonLink
-                href={`/categories/${nextLesson.category?.slug || "all"}/lessons/${nextLesson.id}`}
+                href={
+                  activeSession
+                    ? `/sessions/${activeSession.id}`
+                    : `/categories/${nextLesson.categorySlug}/lessons/${nextLesson.id}`
+                }
                 arrow
               >
                 {common("continue")}
@@ -178,11 +179,7 @@ export function CatalogLearnScreen() {
             {state.categories.map((category) => {
               const Icon = categoryIcon(category.slug);
               const available = Number(category.publishedLessonCount || 0) > 0;
-              const percent = category.targetTermCount
-                ? Math.round(
-                    (Number(category.publishedTermCount || 0) / category.targetTermCount) * 100,
-                  )
-                : 0;
+              const percent = Number(category.progressPercent || 0);
               return (
                 <Card className="learning-category-card" key={category.id}>
                   <div className="learning-category-top">
@@ -199,7 +196,7 @@ export function CatalogLearnScreen() {
                   <p>{category.description || copy.emptyText}</p>
                   <div className="category-plan-row">
                     <span>
-                      {category.publishedTermCount || 0} / {category.targetTermCount || 0}{" "}
+                      {category.practicedTermCount || 0} / {category.targetTermCount || 0}{" "}
                       {copy.terms}
                     </span>
                     <ProgressBar value={percent} label={`${category.name}: ${percent}%`} compact />
@@ -326,12 +323,10 @@ export function LessonLiveScreen({ lessonId, categorySlug }) {
     setStarting(true);
     setStartError("");
     try {
-      const storedDirection = window.localStorage.getItem("tactlex-learning-direction");
-      const direction = storedDirection === "UA_TO_EN" ? "UA_TO_EN" : "EN_TO_UA";
       const session = await apiRequest("/study-sessions", {
         method: "POST",
         headers: { "Idempotency-Key": createIdempotencyKey() },
-        body: JSON.stringify({ lessonId, mode: "LESSON", direction }),
+        body: JSON.stringify({ lessonId, mode: "LESSON", direction: "MIXED" }),
       });
       if (!session?.id) throw new Error(copy.startError);
       router.push(`/sessions/${session.id}`);

@@ -6,6 +6,7 @@ import {
   profileUpdateSchema,
   registerSchema,
 } from "@/lib/auth/validation";
+import { AVATARS, AVATAR_KEYS } from "@/lib/avatars/catalog";
 
 describe("auth validation", () => {
   it("normalizes email while leaving password bytes unchanged", () => {
@@ -50,6 +51,18 @@ describe("auth validation", () => {
       timezone: "Europe/Kyiv",
     });
     expect(() => profileUpdateSchema.parse({ timezone: "Ukraine/Nowhere" })).toThrow();
+  });
+
+  it("accepts all 48 bundled avatars and rejects arbitrary keys or URLs", () => {
+    expect(AVATARS).toHaveLength(48);
+    expect(new Set(AVATAR_KEYS)).toHaveProperty("size", 48);
+    for (const avatarKey of AVATAR_KEYS) {
+      expect(profileUpdateSchema.parse({ avatarKey })).toEqual({ avatarKey });
+    }
+    expect(() =>
+      profileUpdateSchema.parse({ avatarKey: "https://example.test/avatar.png" }),
+    ).toThrow();
+    expect(() => profileUpdateSchema.parse({ avatarKey: "not-in-the-catalog" })).toThrow();
   });
 
   it("normalizes standalone email input", () => {

@@ -1,0 +1,101 @@
+name: Deploy production
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: tactlex
+          POSTGRES_PASSWORD: tactlex
+          POSTGRES_DB: tactlex_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U tactlex -d tactlex_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 12
+    env:
+      DATABASE_URL: postgresql://tactlex:tactlex@localhost:5432/tactlex_test?schema=public
+      TEST_DATABASE_URL: postgresql://tactlex:tactlex@localhost:5432/tactlex_test?schema=public
+      SESSION_PEPPER: ci-only-session-pepper-with-more-than-32-bytes
+      ALLOWED_ORIGINS: http://127.0.0.1:3000,http://localhost:3000
+      NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+      AUDIO_UPLOADS_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run db:validate
+      - run: npm run db:migrate:deploy
+      - run: npm run db:seed
+      - run: npm run db:seed
+      - run: npm run content:validate
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm test
+      - run: npm run test:integration
+      - run: npm run build
+
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    env:
+      DATABASE_URL: ${{ secrets.DIRECT_URL }}
+      DIRECT_URL: ${{ secrets.DIRECT_URL }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Verify required deployment secrets
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          test -n "$DIRECT_URL"
+          test -n "$VERCEL_ORG_ID"
+          test -n "$VERCEL_PROJECT_ID"
+          test -n "$VERCEL_TOKEN"
+      - run: npm ci --no-audit --no-fund
+      - run: npm run db:migrate:deploy
+      - run: npm run db:seed
+      - name: Pull Vercel production settings
+        run: npx --yes vercel@latest pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Vercel artifact
+        run: npx --yes vercel@latest build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy and verify health
+        id: deploy
+        shell: bash
+        run: |
+          deployment_url="$(npx --yes vercel@latest deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})"
+          echo "url=$deployment_url" >> "$GITHUB_OUTPUT"
+          for attempt in {1..12}; do
+            if curl --fail --silent --show-error "$deployment_url/api/health"; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
+      - name: Deployment URL
+        run: echo "${{ steps.deploy.outputs.url }}"

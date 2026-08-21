@@ -1,0 +1,1505 @@
+{
+  "version": "1.0.0-draft",
+  "category": {
+    "slug": "tactical-medicine",
+    "nameUk": "Тактична медицина / TCCC",
+    "nameEn": "Tactical medicine / TCCC"
+  },
+  "lessons": [
+    {
+      "slug": "assessment-roles",
+      "titleUk": "Оцінювання стану й ролі",
+      "titleEn": "Assessment and roles",
+      "difficulty": 1,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "tactical-medicine:assessment-roles:1",
+          "slug": "tactical-medicine-casualty",
+          "lessonSlug": "assessment-roles",
+          "english": "casualty",
+          "ukrainian": "постраждалий",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “casualty” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «постраждалий» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “casualty” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «постраждалий» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:2",
+            "tactical-medicine:assessment-roles:3",
+            "tactical-medicine:assessment-roles:4"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:2",
+          "slug": "tactical-medicine-responder",
+          "lessonSlug": "assessment-roles",
+          "english": "responder",
+          "ukrainian": "особа, що надає допомогу",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “responder” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «особа, що надає допомогу» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “responder” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «особа, що надає допомогу» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:3",
+            "tactical-medicine:assessment-roles:4",
+            "tactical-medicine:assessment-roles:5"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:3",
+          "slug": "tactical-medicine-medical-personnel",
+          "lessonSlug": "assessment-roles",
+          "english": "medical personnel",
+          "ukrainian": "медичний персонал",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “medical personnel” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «медичний персонал» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “medical personnel” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «медичний персонал» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:4",
+            "tactical-medicine:assessment-roles:5",
+            "tactical-medicine:assessment-roles:6"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:4",
+          "slug": "tactical-medicine-patient",
+          "lessonSlug": "assessment-roles",
+          "english": "patient",
+          "ukrainian": "пацієнт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “patient” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «пацієнт» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “patient” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «пацієнт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:5",
+            "tactical-medicine:assessment-roles:6",
+            "tactical-medicine:assessment-roles:7"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:5",
+          "slug": "tactical-medicine-assessment",
+          "lessonSlug": "assessment-roles",
+          "english": "assessment",
+          "ukrainian": "оцінювання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “assessment” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «оцінювання» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “assessment” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «оцінювання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:6",
+            "tactical-medicine:assessment-roles:7",
+            "tactical-medicine:assessment-roles:8"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:6",
+          "slug": "tactical-medicine-symptom",
+          "lessonSlug": "assessment-roles",
+          "english": "symptom",
+          "ukrainian": "симптом",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “symptom” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «симптом» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “symptom” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «симптом» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:7",
+            "tactical-medicine:assessment-roles:8",
+            "tactical-medicine:assessment-roles:9"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:7",
+          "slug": "tactical-medicine-sign",
+          "lessonSlug": "assessment-roles",
+          "english": "sign",
+          "ukrainian": "ознака",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “sign” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «ознака» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “sign” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «ознака» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:8",
+            "tactical-medicine:assessment-roles:9",
+            "tactical-medicine:assessment-roles:10"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:8",
+          "slug": "tactical-medicine-consciousness",
+          "lessonSlug": "assessment-roles",
+          "english": "consciousness",
+          "ukrainian": "свідомість",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “consciousness” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «свідомість» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “consciousness” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «свідомість» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:9",
+            "tactical-medicine:assessment-roles:10",
+            "tactical-medicine:assessment-roles:1"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:9",
+          "slug": "tactical-medicine-pulse",
+          "lessonSlug": "assessment-roles",
+          "english": "pulse",
+          "ukrainian": "пульс",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “pulse” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «пульс» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “pulse” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «пульс» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:10",
+            "tactical-medicine:assessment-roles:1",
+            "tactical-medicine:assessment-roles:2"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:assessment-roles:10",
+          "slug": "tactical-medicine-respiration",
+          "lessonSlug": "assessment-roles",
+          "english": "respiration",
+          "ukrainian": "дихання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 1,
+          "definitionEn": "The concept denoted by “respiration” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «дихання» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “respiration” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «дихання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:assessment-roles:1",
+            "tactical-medicine:assessment-roles:2",
+            "tactical-medicine:assessment-roles:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bleeding-wounds",
+      "titleUk": "Кровотечі та рани",
+      "titleEn": "Bleeding and wounds",
+      "difficulty": 2,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:1",
+          "slug": "tactical-medicine-bleeding",
+          "lessonSlug": "bleeding-wounds",
+          "english": "bleeding",
+          "ukrainian": "кровотеча",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “bleeding” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «кровотеча» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “bleeding” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «кровотеча» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:2",
+            "tactical-medicine:bleeding-wounds:3",
+            "tactical-medicine:bleeding-wounds:4"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:2",
+          "slug": "tactical-medicine-hemorrhage",
+          "lessonSlug": "bleeding-wounds",
+          "english": "hemorrhage",
+          "ukrainian": "геморагія",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “hemorrhage” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «геморагія» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “hemorrhage” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «геморагія» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:3",
+            "tactical-medicine:bleeding-wounds:4",
+            "tactical-medicine:bleeding-wounds:5"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:3",
+          "slug": "tactical-medicine-wound",
+          "lessonSlug": "bleeding-wounds",
+          "english": "wound",
+          "ukrainian": "рана",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “wound” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «рана» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “wound” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «рана» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:4",
+            "tactical-medicine:bleeding-wounds:5",
+            "tactical-medicine:bleeding-wounds:6"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:4",
+          "slug": "tactical-medicine-injury",
+          "lessonSlug": "bleeding-wounds",
+          "english": "injury",
+          "ukrainian": "травма",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “injury” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «травма» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “injury” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «травма» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:5",
+            "tactical-medicine:bleeding-wounds:6",
+            "tactical-medicine:bleeding-wounds:7"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:5",
+          "slug": "tactical-medicine-dressing",
+          "lessonSlug": "bleeding-wounds",
+          "english": "dressing",
+          "ukrainian": "перев’язувальний матеріал",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “dressing” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «перев’язувальний матеріал» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “dressing” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «перев’язувальний матеріал» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:6",
+            "tactical-medicine:bleeding-wounds:7",
+            "tactical-medicine:bleeding-wounds:8"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:6",
+          "slug": "tactical-medicine-bandage",
+          "lessonSlug": "bleeding-wounds",
+          "english": "bandage",
+          "ukrainian": "бинт",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “bandage” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «бинт» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “bandage” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «бинт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:7",
+            "tactical-medicine:bleeding-wounds:8",
+            "tactical-medicine:bleeding-wounds:9"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:7",
+          "slug": "tactical-medicine-tourniquet",
+          "lessonSlug": "bleeding-wounds",
+          "english": "tourniquet",
+          "ukrainian": "турнікет",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “tourniquet” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «турнікет» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “tourniquet” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «турнікет» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:8",
+            "tactical-medicine:bleeding-wounds:9",
+            "tactical-medicine:bleeding-wounds:10"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:8",
+          "slug": "tactical-medicine-pressure",
+          "lessonSlug": "bleeding-wounds",
+          "english": "pressure",
+          "ukrainian": "тиск",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “pressure” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «тиск» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “pressure” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «тиск» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:9",
+            "tactical-medicine:bleeding-wounds:10",
+            "tactical-medicine:bleeding-wounds:1"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:9",
+          "slug": "tactical-medicine-blood-loss",
+          "lessonSlug": "bleeding-wounds",
+          "english": "blood loss",
+          "ukrainian": "втрата крові",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “blood loss” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «втрата крові» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “blood loss” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «втрата крові» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:10",
+            "tactical-medicine:bleeding-wounds:1",
+            "tactical-medicine:bleeding-wounds:2"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:bleeding-wounds:10",
+          "slug": "tactical-medicine-contamination",
+          "lessonSlug": "bleeding-wounds",
+          "english": "contamination",
+          "ukrainian": "забруднення",
+          "partOfSpeech": "NOUN",
+          "difficulty": 2,
+          "definitionEn": "The concept denoted by “contamination” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «забруднення» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “contamination” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «забруднення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:bleeding-wounds:1",
+            "tactical-medicine:bleeding-wounds:2",
+            "tactical-medicine:bleeding-wounds:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "airway-breathing",
+      "titleUk": "Дихальні шляхи й дихання",
+      "titleEn": "Airway and breathing",
+      "difficulty": 3,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "tactical-medicine:airway-breathing:1",
+          "slug": "tactical-medicine-airway",
+          "lessonSlug": "airway-breathing",
+          "english": "airway",
+          "ukrainian": "дихальні шляхи",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “airway” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «дихальні шляхи» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “airway” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «дихальні шляхи» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:2",
+            "tactical-medicine:airway-breathing:3",
+            "tactical-medicine:airway-breathing:4"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:2",
+          "slug": "tactical-medicine-breathing",
+          "lessonSlug": "airway-breathing",
+          "english": "breathing",
+          "ukrainian": "дихання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “breathing” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «дихання» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “breathing” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «дихання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:3",
+            "tactical-medicine:airway-breathing:4",
+            "tactical-medicine:airway-breathing:5"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:3",
+          "slug": "tactical-medicine-chest",
+          "lessonSlug": "airway-breathing",
+          "english": "chest",
+          "ukrainian": "грудна клітка",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “chest” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «грудна клітка» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “chest” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «грудна клітка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:4",
+            "tactical-medicine:airway-breathing:5",
+            "tactical-medicine:airway-breathing:6"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:4",
+          "slug": "tactical-medicine-oxygen",
+          "lessonSlug": "airway-breathing",
+          "english": "oxygen",
+          "ukrainian": "кисень",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “oxygen” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «кисень» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “oxygen” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «кисень» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:5",
+            "tactical-medicine:airway-breathing:6",
+            "tactical-medicine:airway-breathing:7"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:5",
+          "slug": "tactical-medicine-ventilation",
+          "lessonSlug": "airway-breathing",
+          "english": "ventilation",
+          "ukrainian": "вентиляція",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “ventilation” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «вентиляція» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “ventilation” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «вентиляція» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:6",
+            "tactical-medicine:airway-breathing:7",
+            "tactical-medicine:airway-breathing:8"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:6",
+          "slug": "tactical-medicine-obstruction",
+          "lessonSlug": "airway-breathing",
+          "english": "obstruction",
+          "ukrainian": "непрохідність",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “obstruction” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «непрохідність» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “obstruction” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «непрохідність» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:7",
+            "tactical-medicine:airway-breathing:8",
+            "tactical-medicine:airway-breathing:9"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:7",
+          "slug": "tactical-medicine-respiratory-rate",
+          "lessonSlug": "airway-breathing",
+          "english": "respiratory rate",
+          "ukrainian": "частота дихання",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “respiratory rate” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «частота дихання» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “respiratory rate” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «частота дихання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:8",
+            "tactical-medicine:airway-breathing:9",
+            "tactical-medicine:airway-breathing:10"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:8",
+          "slug": "tactical-medicine-lung",
+          "lessonSlug": "airway-breathing",
+          "english": "lung",
+          "ukrainian": "легеня",
+          "partOfSpeech": "NOUN",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “lung” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «легеня» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “lung” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «легеня» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:9",
+            "tactical-medicine:airway-breathing:10",
+            "tactical-medicine:airway-breathing:1"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:9",
+          "slug": "tactical-medicine-chest-seal",
+          "lessonSlug": "airway-breathing",
+          "english": "chest seal",
+          "ukrainian": "оклюзійна наліпка",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “chest seal” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «оклюзійна наліпка» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “chest seal” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «оклюзійна наліпка» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:10",
+            "tactical-medicine:airway-breathing:1",
+            "tactical-medicine:airway-breathing:2"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:airway-breathing:10",
+          "slug": "tactical-medicine-recovery-position",
+          "lessonSlug": "airway-breathing",
+          "english": "recovery position",
+          "ukrainian": "стабільне бокове положення",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 3,
+          "definitionEn": "The concept denoted by “recovery position” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «стабільне бокове положення» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “recovery position” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «стабільне бокове положення» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:airway-breathing:1",
+            "tactical-medicine:airway-breathing:2",
+            "tactical-medicine:airway-breathing:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "circulation-temperature",
+      "titleUk": "Кровообіг, шок і гіпотермія",
+      "titleEn": "Circulation, shock and hypothermia",
+      "difficulty": 4,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:1",
+          "slug": "tactical-medicine-circulation",
+          "lessonSlug": "circulation-temperature",
+          "english": "circulation",
+          "ukrainian": "кровообіг",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “circulation” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «кровообіг» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “circulation” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «кровообіг» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:2",
+            "tactical-medicine:circulation-temperature:3",
+            "tactical-medicine:circulation-temperature:4"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:2",
+          "slug": "tactical-medicine-shock",
+          "lessonSlug": "circulation-temperature",
+          "english": "shock",
+          "ukrainian": "шок",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “shock” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «шок» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “shock” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «шок» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:3",
+            "tactical-medicine:circulation-temperature:4",
+            "tactical-medicine:circulation-temperature:5"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:3",
+          "slug": "tactical-medicine-hypothermia",
+          "lessonSlug": "circulation-temperature",
+          "english": "hypothermia",
+          "ukrainian": "гіпотермія",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “hypothermia” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «гіпотермія» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “hypothermia” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «гіпотермія» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:4",
+            "tactical-medicine:circulation-temperature:5",
+            "tactical-medicine:circulation-temperature:6"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:4",
+          "slug": "tactical-medicine-temperature",
+          "lessonSlug": "circulation-temperature",
+          "english": "temperature",
+          "ukrainian": "температура",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “temperature” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «температура» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “temperature” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «температура» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:5",
+            "tactical-medicine:circulation-temperature:6",
+            "tactical-medicine:circulation-temperature:7"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:5",
+          "slug": "tactical-medicine-skin",
+          "lessonSlug": "circulation-temperature",
+          "english": "skin",
+          "ukrainian": "шкіра",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “skin” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «шкіра» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “skin” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «шкіра» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:6",
+            "tactical-medicine:circulation-temperature:7",
+            "tactical-medicine:circulation-temperature:8"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:6",
+          "slug": "tactical-medicine-perfusion",
+          "lessonSlug": "circulation-temperature",
+          "english": "perfusion",
+          "ukrainian": "перфузія",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “perfusion” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «перфузія» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “perfusion” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «перфузія» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:7",
+            "tactical-medicine:circulation-temperature:8",
+            "tactical-medicine:circulation-temperature:9"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:7",
+          "slug": "tactical-medicine-fluid",
+          "lessonSlug": "circulation-temperature",
+          "english": "fluid",
+          "ukrainian": "рідина",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “fluid” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «рідина» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “fluid” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «рідина» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:8",
+            "tactical-medicine:circulation-temperature:9",
+            "tactical-medicine:circulation-temperature:10"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:8",
+          "slug": "tactical-medicine-fracture",
+          "lessonSlug": "circulation-temperature",
+          "english": "fracture",
+          "ukrainian": "перелом",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “fracture” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «перелом» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “fracture” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «перелом» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:9",
+            "tactical-medicine:circulation-temperature:10",
+            "tactical-medicine:circulation-temperature:1"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:9",
+          "slug": "tactical-medicine-pain",
+          "lessonSlug": "circulation-temperature",
+          "english": "pain",
+          "ukrainian": "біль",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “pain” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «біль» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “pain” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «біль» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:10",
+            "tactical-medicine:circulation-temperature:1",
+            "tactical-medicine:circulation-temperature:2"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:circulation-temperature:10",
+          "slug": "tactical-medicine-monitoring",
+          "lessonSlug": "circulation-temperature",
+          "english": "monitoring",
+          "ukrainian": "спостереження за станом",
+          "partOfSpeech": "NOUN",
+          "difficulty": 4,
+          "definitionEn": "The concept denoted by “monitoring” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «спостереження за станом» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “monitoring” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «спостереження за станом» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:circulation-temperature:1",
+            "tactical-medicine:circulation-temperature:2",
+            "tactical-medicine:circulation-temperature:3"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "evacuation-handover",
+      "titleUk": "Евакуація, передача та документація",
+      "titleEn": "Evacuation, handover and documentation",
+      "difficulty": 5,
+      "estimatedMinutes": 12,
+      "terms": [
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:1",
+          "slug": "tactical-medicine-evacuation",
+          "lessonSlug": "evacuation-handover",
+          "english": "evacuation",
+          "ukrainian": "евакуація",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “evacuation” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «евакуація» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “evacuation” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «евакуація» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:2",
+            "tactical-medicine:evacuation-handover:3",
+            "tactical-medicine:evacuation-handover:4"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:2",
+          "slug": "tactical-medicine-litter",
+          "lessonSlug": "evacuation-handover",
+          "english": "litter",
+          "ukrainian": "ноші",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “litter” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «ноші» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “litter” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «ноші» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:3",
+            "tactical-medicine:evacuation-handover:4",
+            "tactical-medicine:evacuation-handover:5"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:3",
+          "slug": "tactical-medicine-ambulance",
+          "lessonSlug": "evacuation-handover",
+          "english": "ambulance",
+          "ukrainian": "автомобіль швидкої допомоги",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “ambulance” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «автомобіль швидкої допомоги» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “ambulance” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «автомобіль швидкої допомоги» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:4",
+            "tactical-medicine:evacuation-handover:5",
+            "tactical-medicine:evacuation-handover:6"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:4",
+          "slug": "tactical-medicine-handover",
+          "lessonSlug": "evacuation-handover",
+          "english": "handover",
+          "ukrainian": "передача пацієнта",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “handover” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «передача пацієнта» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “handover” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «передача пацієнта» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:5",
+            "tactical-medicine:evacuation-handover:6",
+            "tactical-medicine:evacuation-handover:7"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:5",
+          "slug": "tactical-medicine-casualty-card",
+          "lessonSlug": "evacuation-handover",
+          "english": "casualty card",
+          "ukrainian": "картка постраждалого",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “casualty card” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «картка постраждалого» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “casualty card” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «картка постраждалого» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:6",
+            "tactical-medicine:evacuation-handover:7",
+            "tactical-medicine:evacuation-handover:8"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:6",
+          "slug": "tactical-medicine-medical-facility",
+          "lessonSlug": "evacuation-handover",
+          "english": "medical facility",
+          "ukrainian": "медичний заклад",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “medical facility” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «медичний заклад» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “medical facility” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «медичний заклад» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:7",
+            "tactical-medicine:evacuation-handover:8",
+            "tactical-medicine:evacuation-handover:9"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:7",
+          "slug": "tactical-medicine-evacuation-priority",
+          "lessonSlug": "evacuation-handover",
+          "english": "evacuation priority",
+          "ukrainian": "пріоритет евакуації",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “evacuation priority” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «пріоритет евакуації» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “evacuation priority” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «пріоритет евакуації» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:8",
+            "tactical-medicine:evacuation-handover:9",
+            "tactical-medicine:evacuation-handover:10"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:8",
+          "slug": "tactical-medicine-medical-transport",
+          "lessonSlug": "evacuation-handover",
+          "english": "medical transport",
+          "ukrainian": "медичний транспорт",
+          "partOfSpeech": "PHRASE",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “medical transport” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «медичний транспорт» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “medical transport” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «медичний транспорт» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:9",
+            "tactical-medicine:evacuation-handover:10",
+            "tactical-medicine:evacuation-handover:1"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:9",
+          "slug": "tactical-medicine-documentation",
+          "lessonSlug": "evacuation-handover",
+          "english": "documentation",
+          "ukrainian": "документація",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “documentation” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «документація» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “documentation” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «документація» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:10",
+            "tactical-medicine:evacuation-handover:1",
+            "tactical-medicine:evacuation-handover:2"
+          ]
+        },
+        {
+          "externalKey": "tactical-medicine:evacuation-handover:10",
+          "slug": "tactical-medicine-reassessment",
+          "lessonSlug": "evacuation-handover",
+          "english": "reassessment",
+          "ukrainian": "повторне оцінювання",
+          "partOfSpeech": "NOUN",
+          "difficulty": 5,
+          "definitionEn": "The concept denoted by “reassessment” in the Tactical medicine / TCCC vocabulary.",
+          "definitionUk": "Поняття, позначене терміном «повторне оцінювання» у словнику напряму «Тактична медицина / TCCC».",
+          "exampleEn": "The learner reviews the term “reassessment” in a neutral language exercise.",
+          "exampleUk": "Користувач опрацьовує термін «повторне оцінювання» у нейтральній мовній вправі.",
+          "contextNoteEn": "Language reference only; this material does not replace certified medical training.",
+          "contextNoteUk": "Лише мовна довідка; матеріал не замінює сертифікованого медичного навчання.",
+          "source": {
+            "exactUrl": "https://jts.health.mil/index.cfm/committees/cotccc/guidelines",
+            "title": "Committee on Tactical Combat Casualty Care Guidelines",
+            "publisher": "Joint Trauma System",
+            "sourceType": "MEDICAL",
+            "verificationStatus": "UNVERIFIED"
+          },
+          "origin": "AI_ASSISTED",
+          "audioState": "TTS_FALLBACK",
+          "distractorKeys": [
+            "tactical-medicine:evacuation-handover:1",
+            "tactical-medicine:evacuation-handover:2",
+            "tactical-medicine:evacuation-handover:3"
+          ]
+        }
+      ]
+    }
+  ]
+}

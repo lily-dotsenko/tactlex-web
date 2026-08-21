@@ -1,0 +1,48 @@
+name: Bootstrap production content
+
+on:
+  workflow_dispatch:
+    inputs:
+      admin_email:
+        description: Existing active account that will become the initial administrator
+        required: true
+        type: string
+      confirm_unreviewed_beta:
+        description: Publish the bundled content as explicitly unreviewed beta
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  bootstrap:
+    if: inputs.confirm_unreviewed_beta == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    env:
+      DATABASE_URL: ${{ secrets.DIRECT_URL }}
+      DIRECT_URL: ${{ secrets.DIRECT_URL }}
+      ADMIN_EMAIL: ${{ inputs.admin_email }}
+      CONTENT_ACTOR_EMAIL: ${{ inputs.admin_email }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Verify direct database connection is configured
+        run: test -n "$DIRECT_URL"
+      - run: npm ci --no-audit --no-fund
+      - run: npm run db:migrate:deploy
+      - run: npm run db:seed
+      - run: npm run admin:bootstrap
+      - run: npm run content:validate
+      - run: npm run content:import -- --admin-email="$ADMIN_EMAIL"
+      - run: npm run content:release -- --reviewer-email="$ADMIN_EMAIL" --allow-unreviewed-beta

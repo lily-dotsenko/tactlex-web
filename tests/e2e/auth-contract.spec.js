@@ -50,4 +50,29 @@ test.describe("public form contracts", () => {
     );
     await expect(page.getByRole("textbox")).toHaveCount(0);
   });
+
+  test("registration explains when an email or nickname already exists", async ({ page }) => {
+    await page.route("**/api/v1/auth/register", async (route) => {
+      await route.fulfill({
+        status: 409,
+        contentType: "application/json",
+        body: JSON.stringify({
+          error: {
+            code: "ACCOUNT_ALREADY_EXISTS",
+            message: "Account already exists.",
+          },
+        }),
+      });
+    });
+
+    await page.goto("/uk/register");
+    await page.getByLabel("Псевдонім").fill("lily");
+    await page.getByLabel("Email").fill("learner@example.test");
+    await page.getByLabel("Пароль", { exact: true }).fill("correct horse battery staple");
+    await page.getByRole("button", { name: "Створити профіль" }).click();
+
+    await expect(page.locator(".form-alert")).toContainText(
+      "email або псевдонім уже використовується",
+    );
+  });
 });

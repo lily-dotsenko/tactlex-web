@@ -78,6 +78,13 @@
     "newHere": "New to TactLex?",
     "haveAccount": "Already have a profile?",
     "error": "The request could not be completed. Check your details and try again.",
+    "accountExists": "This email address or nickname is already in use. Sign in to the existing profile or choose another nickname.",
+    "invalidCredentials": "The email address or password is incorrect.",
+    "accountUnavailable": "This account is currently unavailable.",
+    "validationError": "Check your details: the password must contain at least 12 characters and the nickname between 2 and 32.",
+    "rateLimited": "Too many attempts. Wait a little and try again.",
+    "serverError": "The server could not process the request. Try again after restarting the site.",
+    "networkError": "The server cannot be reached. Make sure npm run dev is running.",
     "bilingual": "Full support for Ukrainian and English",
     "privacy": "We never show email addresses in leaderboards and collect only necessary data."
   },

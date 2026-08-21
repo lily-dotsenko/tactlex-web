@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   BookOpen,
@@ -10,6 +11,7 @@ import {
   Search,
   ShieldAlert,
   Tag,
+  X,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import {
@@ -22,7 +24,7 @@ import {
   PageHeader,
   SectionHeading,
 } from "@/components/ui";
-import { apiRequest } from "@/components/learning-api";
+import { apiRequest, apiRequestPage } from "@/components/learning-api";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
 
 function liveCopy(locale) {
@@ -39,6 +41,16 @@ function liveCopy(locale) {
         reportSent: "Повідомлення надіслано модераторам.",
         reportError: "Не вдалося надіслати повідомлення.",
         sending: "Надсилаємо…",
+        partOfSpeech: "Частина мови",
+        difficulty: "Складність",
+        sort: "Сортування",
+        alphabetical: "За алфавітом",
+        recent: "Найновіші",
+        clear: "Очистити фільтри",
+        loadMore: "Завантажити ще",
+        noMore: "Усі результати завантажено",
+        beta: "БЕТА · НЕ ПЕРЕВІРЕНО",
+        unverifiedSource: "Джерело очікує перевірки",
       }
     : {
         loading: "Loading published terms…",
@@ -52,6 +64,16 @@ function liveCopy(locale) {
         reportSent: "The report was sent to moderators.",
         reportError: "The report could not be sent.",
         sending: "Sending…",
+        partOfSpeech: "Part of speech",
+        difficulty: "Difficulty",
+        sort: "Sort",
+        alphabetical: "Alphabetical",
+        recent: "Newest",
+        clear: "Clear filters",
+        loadMore: "Load more",
+        noMore: "All results loaded",
+        beta: "BETA · UNREVIEWED",
+        unverifiedSource: "Source awaiting verification",
       };
 }
 
@@ -63,35 +85,59 @@ function audioFor(term, locale = "en") {
 
 export function GlossaryScreen() {
   const locale = useLocale();
+  const searchParams = useSearchParams();
   const t = useTranslations("Glossary");
   const common = useTranslations("Common");
   const copy = liveCopy(locale);
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [query, setQuery] = useState({ q: "", category: "" });
-  const [state, setState] = useState({ status: "loading", items: [], categories: [], error: "" });
+  const initial = {
+    q: searchParams.get("q") || "",
+    category: searchParams.get("category") || "",
+    partOfSpeech: searchParams.get("partOfSpeech") || "",
+    difficulty: searchParams.get("difficulty") || "",
+    sort: searchParams.get("sort") || "alphabetical",
+  };
+  const [filters, setFilters] = useState(initial);
+  const [query, setQuery] = useState(initial);
+  const [showFilters, setShowFilters] = useState(false);
+  const [state, setState] = useState({
+    status: "loading",
+    items: [],
+    categories: [],
+    nextCursor: null,
+    error: "",
+  });
 
   useEffect(() => {
     let active = true;
-    const params = new URLSearchParams({ locale, limit: "50" });
+    const params = new URLSearchParams({ locale, limit: "24", sort: query.sort });
     if (query.q) params.set("q", query.q);
     if (query.category) params.set("category", query.category);
+    if (query.partOfSpeech) params.set("partOfSpeech", query.partOfSpeech);
+    if (query.difficulty) params.set("difficulty", query.difficulty);
     Promise.all([
-      apiRequest(`/terms?${params}`),
+      apiRequestPage(`/terms?${params}`),
       apiRequest(`/categories?locale=${encodeURIComponent(locale)}`),
     ])
-      .then(([items, categories]) => {
+      .then(([result, categories]) => {
         if (active) {
           setState({
             status: "ready",
-            items: Array.isArray(items) ? items : [],
+            items: result.items,
             categories: Array.isArray(categories) ? categories : [],
+            nextCursor: result.page?.nextCursor ?? null,
             error: "",
           });
         }
       })
       .catch((error) => {
-        if (active) setState({ status: "error", items: [], categories: [], error: error.message });
+        if (active)
+          setState((current) => ({
+            ...current,
+            status: "error",
+            items: [],
+            nextCursor: null,
+            error: error.message,
+          }));
       });
     return () => {
       active = false;
@@ -101,8 +147,69 @@ export function GlossaryScreen() {
   function submit(event) {
     event.preventDefault();
     setState((current) => ({ ...current, status: "loading", error: "" }));
-    setQuery({ q: search.trim(), category });
+    const next = { ...filters, q: filters.q.trim() };
+    const url = new URL(window.location.href);
+    ["q", "category", "partOfSpeech", "difficulty", "sort"].forEach((key) => {
+      if (next[key] && !(key === "sort" && next[key] === "alphabetical")) {
+        url.searchParams.set(key, next[key]);
+      } else {
+        url.searchParams.delete(key);
+      }
+    });
+    window.history.replaceState({}, "", url);
+    setQuery(next);
   }
+
+  function clearFilters() {
+    const cleared = { q: "", category: "", partOfSpeech: "", difficulty: "", sort: "alphabetical" };
+    setFilters(cleared);
+    setQuery(cleared);
+    window.history.replaceState({}, "", window.location.pathname);
+  }
+
+  async function loadMore() {
+    if (!state.nextCursor || state.status === "loading-more") return;
+    setState((current) => ({ ...current, status: "loading-more" }));
+    const params = new URLSearchParams({
+      locale,
+      limit: "24",
+      sort: query.sort,
+      cursor: state.nextCursor,
+    });
+    Object.entries(query).forEach(
+      ([key, value]) => value && key !== "sort" && params.set(key, value),
+    );
+    try {
+      const result = await apiRequestPage(`/terms?${params}`);
+      setState((current) => ({
+        ...current,
+        status: "ready",
+        items: [...current.items, ...result.items],
+        nextCursor: result.page?.nextCursor ?? null,
+      }));
+    } catch (error) {
+      setState((current) => ({ ...current, status: "error", error: error.message }));
+    }
+  }
+
+  function removeFilter(key) {
+    const next = { ...query, [key]: "" };
+    setFilters(next);
+    setQuery(next);
+    const url = new URL(window.location.href);
+    url.searchParams.delete(key);
+    window.history.replaceState({}, "", url);
+  }
+
+  const activeFilters = [
+    query.q && { key: "q", label: query.q },
+    query.category && {
+      key: "category",
+      label: state.categories.find(({ slug }) => slug === query.category)?.name || query.category,
+    },
+    query.partOfSpeech && { key: "partOfSpeech", label: query.partOfSpeech },
+    query.difficulty && { key: "difficulty", label: `${copy.difficulty}: ${query.difficulty}` },
+  ].filter(Boolean);
 
   return (
     <div className="page-stack">
@@ -114,16 +221,18 @@ export function GlossaryScreen() {
           <input
             type="search"
             name="q"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
+            value={filters.q}
+            onChange={(event) => setFilters((current) => ({ ...current, q: event.target.value }))}
             placeholder={t("placeholder")}
           />
         </label>
         <select
           name="category"
           aria-label="Category"
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          value={filters.category}
+          onChange={(event) =>
+            setFilters((current) => ({ ...current, category: event.target.value }))
+          }
         >
           <option value="">{t("all")}</option>
           {state.categories.map((item) => (
@@ -132,14 +241,84 @@ export function GlossaryScreen() {
             </option>
           ))}
         </select>
-        <Button type="submit" variant="secondary">
+        <Button type="button" variant="secondary" onClick={() => setShowFilters((value) => !value)}>
           <Filter size={18} /> {common("filters")}
         </Button>
+        <Button type="submit">{common("search")}</Button>
       </form>
+      {showFilters ? (
+        <Card className="glossary-filter-panel">
+          <Field label={copy.partOfSpeech}>
+            <select
+              value={filters.partOfSpeech}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, partOfSpeech: event.target.value }))
+              }
+            >
+              <option value="">{t("all")}</option>
+              {[
+                "NOUN",
+                "VERB",
+                "ADJECTIVE",
+                "ADVERB",
+                "PHRASE",
+                "ABBREVIATION",
+                "PROPER_NOUN",
+                "OTHER",
+              ].map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label={copy.difficulty}>
+            <select
+              value={filters.difficulty}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, difficulty: event.target.value }))
+              }
+            >
+              <option value="">{t("all")}</option>
+              {[1, 2, 3, 4, 5].map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label={copy.sort}>
+            <select
+              value={filters.sort}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, sort: event.target.value }))
+              }
+            >
+              <option value="alphabetical">{copy.alphabetical}</option>
+              <option value="difficulty">{copy.difficulty}</option>
+              <option value="recent">{copy.recent}</option>
+            </select>
+          </Field>
+        </Card>
+      ) : null}
+      {activeFilters.length ? (
+        <div className="filter-chips" aria-label={common("filters")}>
+          {activeFilters.map((filter) => (
+            <button type="button" key={filter.key} onClick={() => removeFilter(filter.key)}>
+              {filter.label} <X size={14} />
+            </button>
+          ))}
+          <Button type="button" variant="ghost" size="small" onClick={clearFilters}>
+            {copy.clear}
+          </Button>
+        </div>
+      ) : null}
       <SectionHeading
         title={t("results")}
         action={
-          state.status === "ready" ? <Badge tone="neutral">{state.items.length}</Badge> : undefined
+          ["ready", "loading-more"].includes(state.status) ? (
+            <Badge tone="neutral">{state.items.length}</Badge>
+          ) : undefined
         }
       />
       {state.status === "loading" ? <Card>{copy.loading}</Card> : null}
@@ -149,40 +328,59 @@ export function GlossaryScreen() {
       {state.status === "ready" && state.items.length === 0 ? (
         <EmptyState icon={<BookOpen />} title={t("results")} text={copy.empty} />
       ) : null}
-      {state.status === "ready" && state.items.length > 0 ? (
-        <div className="term-list">
-          {state.items.map((term) => (
-            <Card className="term-row" key={term.id}>
-              <PronunciationButton
-                term={term.english ?? term.primary ?? ""}
-                audioUrl={audioFor(term, "en")}
-                compact
-              />
-              <div className="term-main">
-                <div className="term-languages">
-                  <strong lang="en">{term.english}</strong>
-                  <span lang="uk">{term.ukrainian}</span>
+      {["ready", "loading-more"].includes(state.status) && state.items.length > 0 ? (
+        <>
+          <div className="term-list">
+            {state.items.map((term) => (
+              <Card className="term-row" key={term.id}>
+                <PronunciationButton
+                  term={term.english ?? term.primary ?? ""}
+                  audioUrl={audioFor(term, "en")}
+                  compact
+                />
+                <div className="term-main">
+                  <div className="term-languages">
+                    <strong lang="en">{term.english}</strong>
+                    <span lang="uk">{term.ukrainian}</span>
+                  </div>
+                  <div className="term-meta">
+                    <span>{term.partOfSpeech}</span>
+                    {term.categories?.map((item) => (
+                      <span key={item.id}>{item.name}</span>
+                    ))}
+                    {term.sources?.length ? (
+                      <span>{term.isBeta ? copy.unverifiedSource : copy.source}</span>
+                    ) : null}
+                  </div>
                 </div>
-                <div className="term-meta">
-                  <span>{term.partOfSpeech}</span>
-                  {term.categories?.map((item) => (
-                    <span key={item.id}>{item.name}</span>
-                  ))}
-                  {term.sources?.length ? <span>{copy.source}</span> : null}
-                </div>
-              </div>
-              <Badge tone="olive">{copy.published}</Badge>
-              <ButtonLink
-                href={`/glossary/${term.id}`}
-                variant="ghost"
-                size="small"
-                aria-label={`${t("openTerm")}: ${term.english ?? term.primary}`}
+                <Badge tone={term.isBeta ? "yellow" : "olive"}>
+                  {term.isBeta ? copy.beta : copy.published}
+                </Badge>
+                <ButtonLink
+                  href={`/glossary/${term.id}${searchParams.toString() ? `?${searchParams}` : ""}`}
+                  variant="ghost"
+                  size="small"
+                  aria-label={`${t("openTerm")}: ${term.english ?? term.primary}`}
+                >
+                  <ExternalLink size={18} />
+                </ButtonLink>
+              </Card>
+            ))}
+          </div>
+          <div className="glossary-pagination">
+            {state.nextCursor ? (
+              <Button
+                onClick={loadMore}
+                variant="secondary"
+                disabled={state.status === "loading-more"}
               >
-                <ExternalLink size={18} />
-              </ButtonLink>
-            </Card>
-          ))}
-        </div>
+                {state.status === "loading-more" ? copy.loading : copy.loadMore}
+              </Button>
+            ) : (
+              <span>{copy.noMore}</span>
+            )}
+          </div>
+        </>
       ) : null}
     </div>
   );
@@ -190,6 +388,8 @@ export function GlossaryScreen() {
 
 export function TermScreen({ termId }) {
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const contextQuery = searchParams.toString();
   const t = useTranslations("Term");
   const common = useTranslations("Common");
   const copy = liveCopy(locale);
@@ -197,7 +397,9 @@ export function TermScreen({ termId }) {
 
   useEffect(() => {
     let active = true;
-    apiRequest(`/terms/${encodeURIComponent(termId)}?locale=${encodeURIComponent(locale)}`)
+    const params = new URLSearchParams(contextQuery);
+    params.set("locale", locale);
+    apiRequest(`/terms/${encodeURIComponent(termId)}?${params}`)
       .then((term) => {
         if (active) setState({ status: "ready", term, error: "" });
       })
@@ -207,7 +409,7 @@ export function TermScreen({ termId }) {
     return () => {
       active = false;
     };
-  }, [locale, termId]);
+  }, [contextQuery, locale, termId]);
 
   if (state.status === "loading") return <Card>{copy.loading}</Card>;
   if (!state.term) {
@@ -219,17 +421,22 @@ export function TermScreen({ termId }) {
   const term = state.term;
   const ukDefinition = term.definitions?.find((item) => item.locale === "UK");
   const enDefinition = term.definitions?.find((item) => item.locale === "EN");
-  const example = (locale === "uk" ? ukDefinition : enDefinition)?.example;
   return (
     <div className="page-stack term-detail-page">
-      <ButtonLink href="/glossary" variant="ghost" size="small">
+      <ButtonLink
+        href={`/glossary${contextQuery ? `?${contextQuery}` : ""}`}
+        variant="ghost"
+        size="small"
+      >
         <ArrowLeft size={18} /> {common("back")}
       </ButtonLink>
       <Card className="term-hero-card">
         <div className="term-hero-top">
           <div>
             <p className="eyebrow">{t("eyebrow")}</p>
-            <Badge tone="olive">{copy.published}</Badge>
+            <Badge tone={term.isBeta ? "yellow" : "olive"}>
+              {term.isBeta ? copy.beta : copy.published}
+            </Badge>
           </div>
           <PronunciationButton term={term.english} audioUrl={audioFor(term, "en")} />
         </div>
@@ -261,7 +468,27 @@ export function TermScreen({ termId }) {
           </Card>
           <Card>
             <h2>{t("example")}</h2>
-            <p>{example || copy.noExample}</p>
+            <p lang="en">{enDefinition?.example || copy.noExample}</p>
+            <p lang="uk">{ukDefinition?.example || copy.noExample}</p>
+          </Card>
+          <Card>
+            <h2>{locale === "uk" ? "Синоніми та скорочення" : "Synonyms and abbreviations"}</h2>
+            <div className="term-tags">
+              {term.variants?.filter((variant) => !variant.isPrimary).length ? (
+                term.variants
+                  .filter((variant) => !variant.isPrimary)
+                  .map((variant) => <span key={variant.id}>{variant.value}</span>)
+              ) : (
+                <span>
+                  {locale === "uk" ? "Додаткових варіантів немає" : "No additional variants"}
+                </span>
+              )}
+            </div>
+          </Card>
+          <Card>
+            <h2>{locale === "uk" ? "Контекст" : "Context"}</h2>
+            <p lang="en">{enDefinition?.contextNote || copy.noDefinition}</p>
+            <p lang="uk">{ukDefinition?.contextNote || copy.noDefinition}</p>
           </Card>
         </section>
         <aside className="term-detail-aside">
@@ -272,6 +499,11 @@ export function TermScreen({ termId }) {
               term.sources.map((source) => (
                 <a key={source.id} href={source.url} target="_blank" rel="noreferrer">
                   {source.title || source.publisher || source.url} <ExternalLink size={15} />
+                  {source.checkedAt ? (
+                    <small>
+                      {new Intl.DateTimeFormat(locale).format(new Date(source.checkedAt))}
+                    </small>
+                  ) : null}
                 </a>
               ))
             ) : (
@@ -283,6 +515,29 @@ export function TermScreen({ termId }) {
           </ButtonLink>
         </aside>
       </div>
+      <nav
+        className="term-neighbors"
+        aria-label={locale === "uk" ? "Сусідні терміни" : "Adjacent terms"}
+      >
+        {term.neighbors?.previous ? (
+          <ButtonLink
+            href={`/glossary/${term.neighbors.previous}${contextQuery ? `?${contextQuery}` : ""}`}
+            variant="secondary"
+          >
+            <ArrowLeft size={18} /> {locale === "uk" ? "Попередній" : "Previous"}
+          </ButtonLink>
+        ) : (
+          <span />
+        )}
+        {term.neighbors?.next ? (
+          <ButtonLink
+            href={`/glossary/${term.neighbors.next}${contextQuery ? `?${contextQuery}` : ""}`}
+            variant="secondary"
+          >
+            {locale === "uk" ? "Наступний" : "Next"} <ExternalLink size={18} />
+          </ButtonLink>
+        ) : null}
+      </nav>
     </div>
   );
 }

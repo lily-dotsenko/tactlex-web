@@ -57,6 +57,13 @@ function sessionCopy(locale) {
         correctItems: "Правильні відповіді",
         awards: "Нарахування",
         noAwards: "Додаткових нарахувань немає.",
+        introduction: "Ознайомлення",
+        introductionLead: "Перегляньте всі десять термінів перед перевіркою знань.",
+        previousCard: "Попередній термін",
+        nextCard: "Наступний термін",
+        beginPractice: "Почати практику",
+        beginningPractice: "Готуємо вправи…",
+        audioPrompt: "Прослухайте термін і введіть український відповідник",
       }
     : {
         loading: "Loading the server session…",
@@ -84,6 +91,13 @@ function sessionCopy(locale) {
         correctItems: "Correct answers",
         awards: "Awards",
         noAwards: "No additional awards were returned.",
+        introduction: "Introduction",
+        introductionLead: "Review all ten terms before starting the knowledge check.",
+        previousCard: "Previous term",
+        nextCard: "Next term",
+        beginPractice: "Start practice",
+        beginningPractice: "Preparing exercises…",
+        audioPrompt: "Listen to the term and enter its Ukrainian equivalent",
       };
 }
 
@@ -113,6 +127,7 @@ export function SessionScreen({ sessionId }) {
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState(null);
   const [requestError, setRequestError] = useState("");
+  const [introIndex, setIntroIndex] = useState(0);
 
   const loadSession = useCallback(async () => {
     setState((current) => ({ ...current, status: "loading" }));
@@ -176,6 +191,23 @@ export function SessionScreen({ sessionId }) {
       setResult(answerResult);
       setState((current) => ({ ...current, status: "answered" }));
       submissionKey.current = null;
+    } catch (error) {
+      setRequestError(error.message);
+      setState((current) => ({ ...current, status: "ready" }));
+    }
+  }
+
+  async function beginPractice() {
+    setState((current) => ({ ...current, status: "beginning-practice" }));
+    setRequestError("");
+    try {
+      const session = await apiRequest(
+        `/study-sessions/${encodeURIComponent(sessionId)}/practice`,
+        { method: "POST" },
+      );
+      const item = currentSessionItem(session);
+      setState({ status: item ? "ready" : "empty", session, item });
+      itemStartedAt.current = performance.now();
     } catch (error) {
       setRequestError(error.message);
       setState((current) => ({ ...current, status: "ready" }));
@@ -253,6 +285,72 @@ export function SessionScreen({ sessionId }) {
     );
   }
 
+  if (session?.currentStage === "INTRODUCTION") {
+    const cards = Array.isArray(session.introduction) ? session.introduction : [];
+    const card = cards[introIndex];
+    return (
+      <main className="session-page introduction-page" id="main-content">
+        <header className="session-header">
+          <ButtonLink href="/learn" variant="ghost" size="small">
+            <X size={20} /> <span className="session-exit-label">{t("exit")}</span>
+          </ButtonLink>
+          <div className="session-progress">
+            <span>
+              {copy.introduction}: {Math.min(introIndex + 1, cards.length)} / {cards.length}
+            </span>
+            <ProgressBar
+              value={cards.length ? Math.round(((introIndex + 1) / cards.length) * 100) : 0}
+              label={copy.introduction}
+              compact
+            />
+          </div>
+          <Badge tone="blue">{copy.introduction}</Badge>
+        </header>
+        {card ? (
+          <Card className="introduction-card">
+            <p className="eyebrow">{copy.introduction}</p>
+            <h1 lang="en">{card.english}</h1>
+            <p className="introduction-translation" lang="uk">
+              {card.ukrainian}
+            </p>
+            <PronunciationButton term={card.english} audioUrl={card.audioUrl} />
+            <div className="introduction-definitions">
+              <p lang="en">{card.definitionEn}</p>
+              <p lang="uk">{card.definitionUk}</p>
+            </div>
+            {requestError ? (
+              <div className="form-alert" role="alert">
+                {requestError}
+              </div>
+            ) : null}
+            <div className="session-action-row introduction-actions">
+              <Button
+                variant="secondary"
+                onClick={() => setIntroIndex((index) => Math.max(0, index - 1))}
+                disabled={introIndex === 0}
+              >
+                {copy.previousCard}
+              </Button>
+              {introIndex < cards.length - 1 ? (
+                <Button onClick={() => setIntroIndex((index) => index + 1)}>
+                  {copy.nextCard} <ChevronRight size={20} />
+                </Button>
+              ) : (
+                <Button onClick={beginPractice} disabled={state.status === "beginning-practice"}>
+                  {state.status === "beginning-practice"
+                    ? copy.beginningPractice
+                    : copy.beginPractice}
+                </Button>
+              )}
+            </div>
+          </Card>
+        ) : (
+          <EmptyState icon={<ShieldCheck />} title={copy.empty} text={copy.introductionLead} />
+        )}
+      </main>
+    );
+  }
+
   if (!item) {
     return (
       <main className="session-page session-state-page">
@@ -295,7 +393,7 @@ export function SessionScreen({ sessionId }) {
       <Card className="session-card">
         <div className="session-card-top">
           <Badge tone="olive">{locale === "uk" ? "Серверна перевірка" : "Server evaluated"}</Badge>
-          {item.audio && (
+          {(item.audio || item.exerciseType === "AUDIO") && (
             <PronunciationButton
               term={String(item.prompt || "")}
               audioUrl={item.audio.url || null}
@@ -304,7 +402,7 @@ export function SessionScreen({ sessionId }) {
           )}
         </div>
         <p className="session-prompt">{item.exerciseType}</p>
-        <h1>{item.prompt}</h1>
+        <h1>{item.exerciseType === "AUDIO" ? copy.audioPrompt : item.prompt}</h1>
 
         {choices.length > 0 ? (
           <div className="answer-grid" role="radiogroup" aria-label={String(item.prompt)}>

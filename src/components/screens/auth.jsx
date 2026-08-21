@@ -17,6 +17,18 @@ export function AuthScreen({ mode = "login" }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
 
+  function errorMessage(code) {
+    const messageKeys = {
+      ACCOUNT_ALREADY_EXISTS: "accountExists",
+      INVALID_CREDENTIALS: "invalidCredentials",
+      ACCOUNT_UNAVAILABLE: "accountUnavailable",
+      VALIDATION_ERROR: "validationError",
+      RATE_LIMITED: "rateLimited",
+      INTERNAL_ERROR: "serverError",
+    };
+    return t(messageKeys[code] ?? "error");
+  }
+
   async function submit(event) {
     event.preventDefault();
     setPending(true);
@@ -30,10 +42,14 @@ export function AuthScreen({ mode = "login" }) {
         credentials: "include",
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("auth_failed");
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        setError(errorMessage(payload?.error?.code));
+        return;
+      }
       router.push(isRegister ? "/onboarding" : "/dashboard", { locale });
     } catch {
-      setError(t("error"));
+      setError(t("networkError"));
     } finally {
       setPending(false);
     }

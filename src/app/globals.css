@@ -1352,6 +1352,11 @@ select:focus {
   color: var(--olive);
   font-weight: 850;
 }
+.avatar-image,
+.profile-avatar-image {
+  object-fit: cover;
+  image-rendering: pixelated;
+}
 .sidebar-profile > span:last-child {
   display: grid;
 }
@@ -1857,6 +1862,45 @@ a.list-link:hover {
   padding: clamp(22px, 5vw, 42px);
   border-radius: 18px;
 }
+.introduction-card {
+  display: grid;
+  max-width: 760px;
+  min-height: 560px;
+  align-content: center;
+  gap: 18px;
+  margin: auto;
+  padding: clamp(24px, 6vw, 54px);
+  text-align: center;
+}
+.introduction-card h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 4rem);
+}
+.introduction-translation {
+  margin: -8px 0 8px;
+  color: var(--blue);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 760;
+}
+.introduction-card .pronunciation {
+  justify-self: center;
+}
+.introduction-definitions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+}
+.introduction-definitions p {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-alt);
+  padding: 14px;
+}
+.introduction-actions {
+  justify-content: space-between;
+}
 .session-card-top {
   display: flex;
   align-items: center;
@@ -1985,6 +2029,34 @@ a.list-link:hover {
   grid-template-columns: minmax(240px, 1fr) 150px 190px auto;
   gap: 9px;
 }
+.glossary-filter-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.filter-chips > button:not(.button) {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-alt);
+  padding: 6px 10px;
+  color: var(--text);
+}
+.glossary-pagination {
+  display: flex;
+  justify-content: center;
+  padding: 18px 0;
+  color: var(--muted);
+}
 .search-field {
   display: grid;
   min-height: 48px;
@@ -1995,6 +2067,11 @@ a.list-link:hover {
   border-radius: 9px;
   background: var(--surface);
   padding-left: 12px;
+}
+.table-avatar-image {
+  object-fit: cover;
+  image-rendering: pixelated;
+  box-shadow: 0 0 0 2px var(--border);
 }
 .search-field:focus-within {
   border-color: var(--blue);
@@ -2013,6 +2090,18 @@ a.list-link:hover {
 .term-list {
   display: grid;
   gap: 8px;
+}
+.term-neighbors {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.source-card a {
+  display: grid;
+  gap: 4px;
+}
+.source-card a small {
+  color: var(--muted);
 }
 .term-row {
   display: grid;
@@ -2367,6 +2456,9 @@ a.list-link:hover {
   flex-basis: 34px;
   border-radius: 9px;
 }
+.leaderboard-table .table-avatar-image {
+  border-radius: 50%;
+}
 .is-current-user {
   background: var(--blue-soft);
 }
@@ -2394,6 +2486,56 @@ a.list-link:hover {
   color: var(--olive);
   font-size: 1.7rem;
   font-weight: 850;
+}
+.avatar-picker-card {
+  display: grid;
+  gap: 18px;
+}
+.avatar-picker-card > p {
+  margin: -8px 0 0;
+}
+.avatar-picker-card > .button {
+  justify-self: start;
+}
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.avatar-option {
+  position: relative;
+  display: grid;
+  min-height: 118px;
+  place-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-raised);
+  color: var(--text);
+  cursor: pointer;
+}
+.avatar-option:hover {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+.avatar-option.is-selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--blue) 35%, transparent);
+}
+.avatar-option img {
+  border-radius: 12px;
+  image-rendering: pixelated;
+}
+.avatar-option svg {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--blue);
+}
+@media (max-width: 700px) {
+  .avatar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 .profile-hero > div {
   flex: 1;
@@ -3098,6 +3240,14 @@ a.list-link:hover {
   .glossary-toolbar,
   .admin-toolbar {
     grid-template-columns: 1fr;
+  }
+  .glossary-filter-panel,
+  .introduction-definitions {
+    grid-template-columns: 1fr;
+  }
+  .term-neighbors {
+    align-items: stretch;
+    flex-direction: column;
   }
   .term-row {
     grid-template-columns: 44px minmax(0, 1fr) 44px;

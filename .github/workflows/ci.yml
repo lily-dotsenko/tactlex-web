@@ -32,6 +32,7 @@ jobs:
       SESSION_PEPPER: ci-only-session-pepper-with-more-than-32-bytes
       ALLOWED_ORIGINS: http://127.0.0.1:3000,http://localhost:3000
       NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+      AUDIO_UPLOADS_ENABLED: "false"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -43,6 +44,7 @@ jobs:
       - run: npm run db:generate
       - run: npm run db:migrate:deploy
       - run: npm run db:seed
+      - run: npm run content:validate
       - run: npm run db:seed
       - run: npm run format:check
       - run: npm run lint
