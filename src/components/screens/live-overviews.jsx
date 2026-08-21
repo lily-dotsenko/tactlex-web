@@ -45,7 +45,6 @@ function liveCopy(locale) {
         emptyProgress: "Прогрес з’явиться після завершення опублікованого уроку.",
         signIn: "Увійти",
         dashboard: "Навчальна панель",
-        dashboardLead: "Тут відображаються лише показники, які повернув сервер.",
         nextReview: "Перейти до повторення",
         chooseLesson: "Обрати опублікований урок",
         published: "Опубліковано",
@@ -82,7 +81,6 @@ function liveCopy(locale) {
         emptyProgress: "Progress appears after you complete a published lesson.",
         signIn: "Sign in",
         dashboard: "Learning dashboard",
-        dashboardLead: "Only metrics returned by the server are shown here.",
         nextReview: "Go to reviews",
         chooseLesson: "Choose a published lesson",
         published: "Published",
@@ -199,7 +197,7 @@ export function LiveDashboardScreen() {
 
   return (
     <div className="page-stack">
-      <PageHeader eyebrow="TactLex" title={copy.dashboard} lead={copy.dashboardLead} />
+      <PageHeader eyebrow="TactLex" title={copy.dashboard} />
       {progress.status !== "ready" && <LiveState state={progress} copy={copy} />}
       {progress.status === "ready" && data && (
         <>
@@ -212,7 +210,6 @@ export function LiveDashboardScreen() {
                 <div>
                   <p className="eyebrow">{copy.due}</p>
                   <h2>{data.dueCount}</h2>
-                  <p>{copy.dashboardLead}</p>
                 </div>
               </div>
               <ButtonLink href="/review">{copy.nextReview}</ButtonLink>
@@ -310,7 +307,7 @@ export function LiveProgressScreen() {
 
   return (
     <div className="page-stack">
-      <PageHeader eyebrow={copy.totalXp} title={copy.categoryProgress} lead={copy.dashboardLead} />
+      <PageHeader eyebrow={copy.totalXp} title={copy.categoryProgress} />
       {progress.status !== "ready" && <LiveState state={progress} copy={copy} />}
       {progress.status === "ready" && data && (
         <>
@@ -374,11 +371,7 @@ export function LiveAchievementsScreen() {
   const items = Array.isArray(state.data) ? state.data : [];
   return (
     <div className="page-stack">
-      <PageHeader
-        eyebrow={copy.earned}
-        title={locale === "uk" ? "Досягнення" : "Achievements"}
-        lead={copy.dashboardLead}
-      />
+      <PageHeader eyebrow={copy.earned} title={locale === "uk" ? "Досягнення" : "Achievements"} />
       {state.status !== "ready" && <LiveState state={state} copy={copy} />}
       {state.status === "ready" && items.length === 0 && (
         <LiveState state={state} copy={copy} emptyText={copy.achievementsEmpty} />

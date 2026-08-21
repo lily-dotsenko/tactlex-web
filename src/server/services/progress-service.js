@@ -25,7 +25,15 @@ export function createProgressService(db) {
         orderBy: { displayOrder: "asc" },
         include: {
           terms: {
-            where: { term: { status: "PUBLISHED", archivedAt: null } },
+            where: {
+              term: {
+                status: "PUBLISHED",
+                archivedAt: null,
+                lessonTerms: {
+                  some: { lesson: { status: "PUBLISHED", archivedAt: null } },
+                },
+              },
+            },
             select: {
               term: {
                 select: {
