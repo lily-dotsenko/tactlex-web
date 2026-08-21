@@ -113,6 +113,7 @@ API повертає `{ "data": ... }` для успішної відповід�
 
 ## Документація
 
+- [Gameplay: відкрита стежка, квести, патчі та ліги](./docs/gameplay.md)
 - [Product requirements](./docs/product-requirements.md)
 - [Implementation plan](./docs/implementation-plan.md)
 - [Architecture](./docs/architecture.md)

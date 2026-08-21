@@ -12,21 +12,21 @@ export const metadata = {
   applicationName: "TactLex",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png", sizes: "1254x1254" }],
-    apple: [{ url: "/icon.png", type: "image/png", sizes: "1254x1254" }],
+    icon: [{ url: "/icons/morkva-192.png", type: "image/png", sizes: "192x192" }],
+    apple: [{ url: "/icons/morkva-192.png", type: "image/png", sizes: "192x192" }],
   },
   openGraph: {
     type: "website",
     title: "ТактЛекс — військова англійська",
     description: "Короткі уроки, точні повторення та перевірений двомовний словник.",
     siteName: "TactLex",
-    images: [{ url: "/og.png", alt: "ТактЛекс — тренажер військової англійської" }],
+    images: [{ url: "/brand/social-preview.png", alt: "ТактЛекс і бойовий кіт Морква" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "ТактЛекс — військова англійська",
     description: "Тренуй слова. Розумій команди.",
-    images: ["/og.png"],
+    images: ["/brand/social-preview.png"],
   },
 };
 

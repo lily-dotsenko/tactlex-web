@@ -12,13 +12,25 @@ import { createStudyService } from "@/server/services/study-service";
 const createSessionSchema = z
   .object({
     lessonId: z.uuid().optional(),
+    nodeId: z.uuid().optional(),
     categoryId: z.uuid().optional(),
-    mode: z.enum(["LESSON", "PRACTICE", "EN_TO_UA", "UA_TO_EN", "EN_TO_UK", "UK_TO_EN"]).optional(),
+    mode: z
+      .enum([
+        "LESSON",
+        "QUIZ",
+        "CHECKPOINT",
+        "PRACTICE",
+        "EN_TO_UA",
+        "UA_TO_EN",
+        "EN_TO_UK",
+        "UK_TO_EN",
+      ])
+      .optional(),
     direction: z.enum(["EN_TO_UA", "UA_TO_EN", "EN_TO_UK", "UK_TO_EN", "MIXED"]).optional(),
   })
   .strict()
-  .refine((value) => !(value.lessonId && value.categoryId), {
-    message: "Оберіть урок або категорію, але не обидва одночасно.",
+  .refine((value) => [value.lessonId, value.categoryId, value.nodeId].filter(Boolean).length <= 1, {
+    message: "Оберіть урок, вузол або категорію — лише один варіант.",
     path: ["categoryId"],
   });
 

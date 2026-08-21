@@ -12,10 +12,22 @@
   "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "/icon.png",
-      "sizes": "1254x1254",
+      "src": "/icons/morkva-192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/morkva-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/morkva-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
@@ -25,14 +37,14 @@
       "url": "/uk/learn"
     },
     {
-      "name": "Повторення",
-      "short_name": "Повторення",
-      "url": "/uk/review"
+      "name": "Квести",
+      "short_name": "Квести",
+      "url": "/uk/quests"
     },
     {
-      "name": "Словник",
-      "short_name": "Словник",
-      "url": "/uk/glossary"
+      "name": "Ліга",
+      "short_name": "Ліга",
+      "url": "/uk/league"
     }
   ]
 }

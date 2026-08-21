@@ -16,16 +16,15 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
+import { LearningPathScreen } from "@/components/screens/game-screens";
 import {
   Badge,
   Button,
   ButtonLink,
   Card,
   EmptyState,
-  ListLink,
   PageHeader,
   ProgressBar,
-  SectionHeading,
 } from "@/components/ui";
 
 function localCopy(locale) {
@@ -226,77 +225,7 @@ export function CatalogLearnScreen() {
 }
 
 export function CategoryLiveScreen({ categorySlug }) {
-  const locale = useLocale();
-  const common = useTranslations("Common");
-  const copy = localCopy(locale);
-  const [state, setState] = useState({ status: "loading", category: null });
-
-  useEffect(() => {
-    let active = true;
-    apiRequest(`/categories/${encodeURIComponent(categorySlug)}?locale=${locale}`)
-      .then((category) => active && setState({ status: "ready", category }))
-      .catch(
-        (error) => active && setState({ status: "error", category: null, error: error.message }),
-      );
-    return () => {
-      active = false;
-    };
-  }, [categorySlug, locale]);
-
-  return (
-    <div className="page-stack">
-      <ButtonLink href="/learn" variant="ghost" size="small">
-        <ArrowLeft size={18} /> {common("back")}
-      </ButtonLink>
-      {state.status === "loading" && (
-        <Card className="live-detail-loading">{copy.lessonLoading}</Card>
-      )}
-      {state.status === "error" && (
-        <EmptyState icon={<AlertTriangle size={30} />} title={copy.loadError} text={state.error} />
-      )}
-      {state.status === "ready" && state.category && (
-        <>
-          <PageHeader
-            eyebrow={copy.published}
-            title={state.category.name}
-            lead={state.category.description || copy.emptyText}
-          />
-          <Card className="catalog-facts">
-            <span>
-              <BookOpen size={19} /> {state.category.publishedTermCount || 0} {copy.terms}
-            </span>
-            <span>
-              <Clock3 size={19} /> {state.category.publishedLessonCount || 0}{" "}
-              {copy.lessons.toLowerCase()}
-            </span>
-          </Card>
-          <section>
-            <SectionHeading title={copy.lessons} />
-            {!state.category.lessons?.length ? (
-              <EmptyState
-                icon={<BookOpen size={30} />}
-                title={copy.emptyTitle}
-                text={copy.emptyText}
-              />
-            ) : (
-              <Card className="lesson-list">
-                {state.category.lessons.map((lesson) => (
-                  <ListLink
-                    key={lesson.id}
-                    href={`/categories/${categorySlug}/lessons/${lesson.id}`}
-                    title={lesson.title}
-                    meta={`CEFR ${lesson.cefrLevel} · ${lesson.termCount} ${copy.terms} · ${lesson.estimatedMinutes} min`}
-                    icon={<BookOpen size={20} />}
-                    badge={<Badge tone="blue">{copy.published}</Badge>}
-                  />
-                ))}
-              </Card>
-            )}
-          </section>
-        </>
-      )}
-    </div>
-  );
+  return <LearningPathScreen categorySlug={categorySlug} />;
 }
 
 export function LessonLiveScreen({ lessonId, categorySlug }) {

@@ -919,16 +919,18 @@ async function formattedJson(value) {
 }
 
 const manifest = {
-  version: "1.2.0-draft",
+  version: "2.0.0-beta",
   status: "DRAFT_REQUIRES_HUMAN_REVIEW",
   generatedAt: new Date().toISOString(),
   expected: {
     categories: 5,
     terms: 0,
-    lessonTerms: 300,
+    lessonTerms: 556,
     glossaryTerms: 0,
-    lessons: 30,
-    termsPerLesson: 10,
+    lessons: 57,
+    lessonTermsMin: 9,
+    lessonTermsMax: 10,
+    facts: 27,
   },
   files: [],
 };
@@ -952,8 +954,93 @@ for (const sourceGroup of [...vttGlossarySources, tcccGlossarySource]) {
   });
 }
 
+const supplementalLessonCounts = {
+  "basic-military-english": 16,
+  "general-tactical-english": 9,
+  "tactical-medicine": 1,
+  "drones-uas": 1,
+  "sniper-terminology": 0,
+};
+
+const supplementalTitles = {
+  "basic-military-english": ["Базова лексика", "Core vocabulary"],
+  "general-tactical-english": ["Тактична лексика", "Tactical vocabulary"],
+  "tactical-medicine": ["Медична лексика", "Medical vocabulary"],
+  "drones-uas": ["Лексика дронів", "Drone vocabulary"],
+};
+
+function splitEvenly(items, chunkCount) {
+  if (!chunkCount) return [];
+  const baseSize = Math.floor(items.length / chunkCount);
+  const largerChunks = items.length % chunkCount;
+  let cursor = 0;
+  return Array.from({ length: chunkCount }, (_, index) => {
+    const size = baseSize + (index < largerChunks ? 1 : 0);
+    const chunk = items.slice(cursor, cursor + size);
+    cursor += size;
+    return chunk;
+  });
+}
+
+function makeSupplementalLessons(category, glossaryTerms) {
+  const lessonCount = supplementalLessonCounts[category.slug] ?? 0;
+  const [titleUk, titleEn] = supplementalTitles[category.slug] ?? [
+    "Додаткова лексика",
+    "Supplemental vocabulary",
+  ];
+
+  return splitEvenly(glossaryTerms, lessonCount).map((chunk, index) => {
+    const number = index + 1;
+    const slug = `supplemental-${String(number).padStart(2, "0")}`;
+    const difficulty = chunk[0]?.difficulty ?? 2;
+    const terms = chunk.map((sourceTerm) => {
+      const {
+        dictionaryOnly: _dictionaryOnly,
+        sourcePosition: _sourcePosition,
+        ...term
+      } = sourceTerm;
+      return { ...term, lessonSlug: slug };
+    });
+    terms.forEach((term, termIndex) => {
+      term.distractorKeys = [1, 2, 3].map(
+        (offset) => terms[(termIndex + offset) % terms.length].externalKey,
+      );
+    });
+    const source = terms[0].source;
+
+    return {
+      slug,
+      titleUk: `${titleUk} ${number}`,
+      titleEn: `${titleEn} ${number}`,
+      difficulty,
+      cefrLevel: terms[0]?.cefrLevel ?? "A2",
+      estimatedMinutes: 12,
+      terms,
+      fact: {
+        titleUk: `Як працює контекст: ${titleUk.toLowerCase()} ${number}`,
+        titleEn: `How context works: ${titleEn.toLowerCase()} ${number}`,
+        bodyUk:
+          `Терміни «${terms
+            .slice(0, 3)
+            .map((term) => term.ukrainian)
+            .join("», «")}» походять з однієї тематичної добірки. ` +
+          "Порівняння близьких слів у контексті допомагає точніше обирати переклад; цей матеріал є мовною довідкою, а не оперативною інструкцією.",
+        bodyEn:
+          `The terms “${terms
+            .slice(0, 3)
+            .map((term) => term.english)
+            .join("”, “")}” come from the same vocabulary collection. ` +
+          "Comparing related words in context helps learners choose a more precise translation; this material is a language reference, not operational instruction.",
+        sourceTitle: source.title,
+        sourceUrl: source.exactUrl,
+        isBeta: true,
+      },
+    };
+  });
+}
+
 for (const category of curriculum) {
-  const lessons = category.lessons.map(
+  const coreLessons = category.lessons.map(
     ([slug, titleUk, titleEn, pairs, options = {}], lessonIndex) => {
       const difficulty = options.difficulty ?? Math.min(5, lessonIndex + 1);
       const lesson = {
@@ -974,8 +1061,13 @@ for (const category of curriculum) {
       return { ...lesson, terms };
     },
   );
+  const supplementalLessons = makeSupplementalLessons(
+    category,
+    glossaryByCategory.get(category.slug),
+  );
+  const lessons = [...coreLessons, ...supplementalLessons];
   const fileName = `${category.slug}.json`;
-  const glossaryTerms = glossaryByCategory.get(category.slug);
+  const glossaryTerms = [];
   const payload = {
     version: manifest.version,
     category: { slug: category.slug, nameUk: category.nameUk, nameEn: category.nameEn },
@@ -993,11 +1085,7 @@ for (const category of curriculum) {
   });
 }
 
-manifest.expected.glossaryTerms = [...glossaryByCategory.values()].reduce(
-  (sum, terms) => sum + terms.length,
-  0,
-);
-manifest.expected.terms = manifest.expected.lessonTerms + manifest.expected.glossaryTerms;
+manifest.expected.terms = manifest.expected.lessonTerms;
 
 await writeFile(path.join(outputDir, "manifest.json"), await formattedJson(manifest), "utf8");
 console.log(`Built ${manifest.expected.terms} draft terms in ${outputDir}`);

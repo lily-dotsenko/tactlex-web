@@ -22,6 +22,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { apiRequest } from "@/components/learning-api";
+import { PatchBoard } from "@/components/screens/game-screens";
 import { AVATARS, DEFAULT_AVATAR_KEY, avatarByKey } from "@/lib/avatars/catalog";
 import {
   Badge,
@@ -569,6 +570,7 @@ export function LiveProfileScreen() {
               {avatarStatus === "saving" ? copy.avatarSaving : copy.avatarSave}
             </Button>
           </Card>
+          <PatchBoard />
           <Card className="profile-details">
             <div>
               <ShieldCheck size={20} />

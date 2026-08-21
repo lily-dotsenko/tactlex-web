@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Brand } from "./brand";
 import { AdminSidebar, BottomNav, LocaleSwitcher, ThemeToggle, UserSidebar } from "./navigation";
 import { ButtonLink } from "./ui";
+import { GameResourceBar } from "./screens/game-screens";
 
 export async function PublicHeader() {
   const t = await getTranslations("Nav");
@@ -39,6 +40,7 @@ export async function UserShell({ children, user }) {
       <div className="app-stage">
         <header className="app-topbar">
           <Brand compact />
+          <GameResourceBar />
           <div className="topbar-actions">
             <LocaleSwitcher />
             <ThemeToggle />

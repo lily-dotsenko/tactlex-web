@@ -42,7 +42,7 @@ const categories = [
       "Тематичні уроки від A1 до B2: щоденна комунікація, час, підрозділи, техніка, спорядження та точна термінологія.",
     descriptionEn:
       "A1 to B2 thematic lessons covering daily communication, time, units, vehicles, equipment and precise terminology.",
-    targetTermCount: 100,
+    targetTermCount: 251,
     displayOrder: 1,
   },
   {
@@ -51,7 +51,7 @@ const categories = [
     nameEn: "General tactical English",
     descriptionUk: "Базові команди, позначення та взаємодія в публічному навчальному контексті.",
     descriptionEn: "Core commands, labels and interaction in a public training context.",
-    targetTermCount: 60,
+    targetTermCount: 145,
     displayOrder: 2,
   },
   {
@@ -62,7 +62,7 @@ const categories = [
       "Мовна термінологія з відкритих перевірених джерел; не замінює сертифіковане навчання.",
     descriptionEn:
       "Language terminology from verified public sources; not a substitute for certified training.",
-    targetTermCount: 50,
+    targetTermCount: 60,
     displayOrder: 3,
   },
   {
@@ -71,7 +71,7 @@ const categories = [
     nameEn: "Drones and UAS",
     descriptionUk: "Загальнодоступна англійська термінологія без оперативних інструкцій.",
     descriptionEn: "Public English terminology without operational instructions.",
-    targetTermCount: 50,
+    targetTermCount: 60,
     displayOrder: 4,
   },
   {
@@ -145,12 +145,12 @@ const achievementDefinitions = [
     code: "all-two-hundred",
     nameUk: "Повний комплект",
     nameEn: "Full set",
-    descriptionUk: "Опрацювати всі 200 термінів стартової програми.",
-    descriptionEn: "Master all 200 terms in the initial curriculum.",
+    descriptionUk: "Опрацювати всі 556 термінів програми.",
+    descriptionEn: "Master all 556 terms in the curriculum.",
     iconKey: "award",
     rewardXp: 200,
     displayOrder: 6,
-    rule: { metric: "MASTERED_TERMS", threshold: 200 },
+    rule: { metric: "MASTERED_TERMS", threshold: 556 },
   },
   {
     code: "streak-seven",
@@ -186,6 +186,72 @@ const achievementDefinitions = [
     rule: { metric: "PREVIOUSLY_MISSED_CORRECT", threshold: 25 },
   },
 ];
+
+const patchDefinitions = [
+  ["first-sortie", "Перший вихід", "First sortie", "progress", "footprints", "COMMON"],
+  ["first-quiz", "Перший квіз", "First quiz", "quiz", "circle-help", "COMMON"],
+  ["learning-ten", "Навчальна десятка", "Learning ten", "progress", "route", "COMMON"],
+  ["hundred-terms", "Сотня термінів", "One hundred terms", "progress", "book-open", "RARE"],
+  ["three-hundred-terms", "Триста термінів", "Three hundred terms", "progress", "layers", "EPIC"],
+  ["full-dictionary", "Повний словник", "Full dictionary", "progress", "library", "LEGENDARY"],
+  ["category-basic", "Базова підготовка", "Core training", "category", "radio", "RARE"],
+  ["category-tactical", "Тактична мова", "Tactical language", "category", "map", "RARE"],
+  ["category-medicine", "Медична лексика", "Medical language", "category", "cross", "RARE"],
+  ["category-drones", "Небесний словник", "Sky vocabulary", "category", "plane", "RARE"],
+  ["category-sniper", "Точна термінологія", "Precision terminology", "category", "focus", "RARE"],
+  ["streak-three", "Три дні в строю", "Three days steady", "streak", "flame", "COMMON"],
+  ["streak-seven", "Тиждень у ритмі", "Week in rhythm", "streak", "calendar-check", "RARE"],
+  ["streak-thirty", "Місячна дисципліна", "Monthly discipline", "streak", "calendar-days", "EPIC"],
+  ["streak-hundred", "Сто днів", "One hundred days", "streak", "sun", "EPIC"],
+  ["streak-year", "Рік із Морквою", "A year with Morkva", "streak", "crown", "LEGENDARY"],
+  ["clean-run", "Чистий прохід", "Clean run", "quiz", "shield-check", "RARE"],
+  ["five-stars", "П’ять зірок", "Five stars", "quiz", "star", "COMMON"],
+  ["precise-series", "Точна серія", "Precise series", "quiz", "target", "RARE"],
+  ["both-directions", "Два напрями", "Both directions", "quiz", "arrow-left-right", "RARE"],
+  ["learn-from-errors", "Робота над помилками", "Learn from errors", "quiz", "refresh-cw", "EPIC"],
+  ["daily-watch", "Денна варта", "Daily watch", "quest", "sunrise", "COMMON"],
+  ["weekly-operation", "Тижнева операція", "Weekly operation", "quest", "clipboard-check", "RARE"],
+  ["monthly-route", "Місячний маршрут", "Monthly route", "quest", "milestone", "EPIC"],
+  ["quest-master", "Майстер квестів", "Quest master", "quest", "gem", "LEGENDARY"],
+  ["league-bronze", "Бронзова ліга", "Bronze league", "league", "medal", "COMMON"],
+  ["league-steel", "Сталева ліга", "Steel league", "league", "shield", "RARE"],
+  ["league-gold", "Золота ліга", "Gold league", "league", "trophy", "RARE"],
+  ["league-sapphire", "Сапфірова ліга", "Sapphire league", "league", "diamond", "EPIC"],
+  ["league-diamond", "Діамантова ліга", "Diamond league", "league", "sparkles", "LEGENDARY"],
+].map(([code, titleUk, titleEn, category, iconKey, rarity], displayOrder) => ({
+  code,
+  titleUk,
+  titleEn,
+  descriptionUk: `Колекційний патч «${titleUk}» за підтверджене досягнення.`,
+  descriptionEn: `A collectible “${titleEn}” patch for a verified achievement.`,
+  category,
+  iconKey,
+  rarity,
+  displayOrder: displayOrder + 1,
+}));
+
+const questDefinitions = [
+  ["daily-xp", "Денний темп", "Daily pace", "DAILY", "XP_EARNED", 30, 10],
+  ["daily-correct", "Точні відповіді", "Accurate answers", "DAILY", "CORRECT_ANSWERS", 5, 10],
+  ["daily-node", "Один крок", "One step", "DAILY", "NODES_COMPLETED", 1, 10],
+  ["weekly-xp", "Тижневі 250 XP", "Weekly 250 XP", "WEEKLY", "XP_EARNED", 250, 30],
+  ["weekly-nodes", "П’ять вузлів", "Five nodes", "WEEKLY", "NODES_COMPLETED", 5, 30],
+  ["weekly-review", "Повторення термінів", "Term review", "WEEKLY", "REVIEWS_COMPLETED", 20, 30],
+  ["monthly-days", "Десять активних днів", "Ten active days", "MONTHLY", "ACTIVE_DAYS", 10, 50],
+  ["monthly-xp", "Місячні 700 XP", "Monthly 700 XP", "MONTHLY", "XP_EARNED", 700, 50],
+  ["monthly-nodes", "Двадцять вузлів", "Twenty nodes", "MONTHLY", "NODES_COMPLETED", 20, 50],
+].map(([code, titleUk, titleEn, period, metric, threshold, rewardCoins], displayOrder) => ({
+  code,
+  titleUk,
+  titleEn,
+  descriptionUk: `Досягніть цілі: ${titleUk.toLowerCase()}.`,
+  descriptionEn: `Reach the goal: ${titleEn.toLowerCase()}.`,
+  period,
+  metric,
+  threshold,
+  rewardCoins,
+  displayOrder: displayOrder + 1,
+}));
 
 function currentIsoWeek(now = new Date()) {
   const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
@@ -269,6 +335,21 @@ async function seed() {
       });
       await db.achievementRule.deleteMany({ where: { achievementId: saved.id } });
       await db.achievementRule.create({ data: { achievementId: saved.id, ...rule } });
+    }
+
+    for (const patch of patchDefinitions) {
+      await db.patchDefinition.upsert({
+        where: { code: patch.code },
+        update: patch,
+        create: patch,
+      });
+    }
+    for (const quest of questDefinitions) {
+      await db.questDefinition.upsert({
+        where: { code: quest.code },
+        update: quest,
+        create: quest,
+      });
     }
 
     await db.leaderboardPeriod.upsert({

@@ -67,8 +67,23 @@ try {
       );
     }
   }
+  const rewardCounts = {
+    "basic-military-english": 5,
+    "general-tactical-english": 3,
+    "tactical-medicine": 2,
+    "drones-uas": 1,
+    "sniper-terminology": 1,
+  };
+  const categoryPatchCodes = {
+    "basic-military-english": "category-basic",
+    "general-tactical-english": "category-tactical",
+    "tactical-medicine": "category-medicine",
+    "drones-uas": "category-drones",
+    "sniper-terminology": "category-sniper",
+  };
   for (const bundle of bundles) {
     const category = await db.category.findUnique({ where: { slug: bundle.category.slug } });
+    const releasedLessons = [];
     for (const lesson of bundle.lessons) {
       const termIds = lesson.terms.map(({ slug }) => bySlug.get(slug).id);
       const input = {
@@ -76,8 +91,8 @@ try {
         categoryId: category.id,
         titleUk: lesson.titleUk,
         titleEn: lesson.titleEn,
-        descriptionUk: `${lesson.cefrLevel} · 10 термінів із навчальних джерел: ${lesson.titleUk}.`,
-        descriptionEn: `${lesson.cefrLevel} · 10 terms from the learning sources: ${lesson.titleEn}.`,
+        descriptionUk: `${lesson.cefrLevel} · ${lesson.terms.length} термінів із навчальних джерел: ${lesson.titleUk}.`,
+        descriptionEn: `${lesson.cefrLevel} · ${lesson.terms.length} terms from the learning sources: ${lesson.titleEn}.`,
         difficulty: lesson.difficulty,
         estimatedMinutes: lesson.estimatedMinutes,
         termIds,
@@ -88,6 +103,172 @@ try {
         : await service.createLesson(reviewer.id, input);
       if (saved.status !== "PUBLISHED") {
         await service.setLessonStatus(reviewer.id, saved.id, "PUBLISHED");
+      }
+      const fact = lesson.fact
+        ? await db.lessonFact.upsert({
+            where: { lessonId: saved.id },
+            update: lesson.fact,
+            create: { lessonId: saved.id, ...lesson.fact },
+          })
+        : null;
+      releasedLessons.push({ source: lesson, saved, fact });
+    }
+
+    const rewardCount = rewardCounts[bundle.category.slug];
+    const rewardAfter = new Set(
+      Array.from({ length: rewardCount }, (_, index) =>
+        Math.ceil(((index + 1) * releasedLessons.length) / (rewardCount + 1)),
+      ),
+    );
+    let position = 0;
+    for (const [index, lesson] of releasedLessons.entries()) {
+      const baseSlug = `${bundle.category.slug}-${lesson.source.slug}`;
+      const common = {
+        categoryId: category.id,
+        lessonId: lesson.saved.id,
+        active: true,
+      };
+      await db.learningNode.upsert({
+        where: { slug: `${baseSlug}-lesson` },
+        update: {
+          ...common,
+          position,
+          titleUk: lesson.source.titleUk,
+          titleEn: lesson.source.titleEn,
+        },
+        create: {
+          ...common,
+          slug: `${baseSlug}-lesson`,
+          type: "LESSON",
+          position,
+          titleUk: lesson.source.titleUk,
+          titleEn: lesson.source.titleEn,
+          displayMetadata: { estimatedMinutes: lesson.source.estimatedMinutes },
+        },
+      });
+      position += 1;
+      await db.learningNode.upsert({
+        where: { slug: `${baseSlug}-quiz` },
+        update: {
+          ...common,
+          position,
+          titleUk: `Квіз: ${lesson.source.titleUk}`,
+          titleEn: `Quiz: ${lesson.source.titleEn}`,
+        },
+        create: {
+          ...common,
+          slug: `${baseSlug}-quiz`,
+          type: "QUIZ",
+          position,
+          titleUk: `Квіз: ${lesson.source.titleUk}`,
+          titleEn: `Quiz: ${lesson.source.titleEn}`,
+          displayMetadata: { textOnly: true, choices: 4 },
+        },
+      });
+      position += 1;
+      if (lesson.fact) {
+        await db.learningNode.upsert({
+          where: { slug: `${baseSlug}-fact` },
+          update: {
+            categoryId: category.id,
+            lessonId: lesson.saved.id,
+            factId: lesson.fact.id,
+            position,
+            titleUk: lesson.fact.titleUk,
+            titleEn: lesson.fact.titleEn,
+          },
+          create: {
+            categoryId: category.id,
+            lessonId: lesson.saved.id,
+            factId: lesson.fact.id,
+            slug: `${baseSlug}-fact`,
+            type: "FACT",
+            position,
+            titleUk: lesson.fact.titleUk,
+            titleEn: lesson.fact.titleEn,
+            rewardXp: 5,
+          },
+        });
+        position += 1;
+      }
+      if (rewardAfter.has(index + 1)) {
+        await db.learningNode.upsert({
+          where: { slug: `${bundle.category.slug}-reward-${index + 1}` },
+          update: { categoryId: category.id, position },
+          create: {
+            categoryId: category.id,
+            slug: `${bundle.category.slug}-reward-${index + 1}`,
+            type: "REWARD",
+            position,
+            titleUk: "Польова скриня",
+            titleEn: "Field chest",
+            rewardCoins: 20,
+            displayMetadata: { requiredCompletions: index + 1 },
+          },
+        });
+        position += 1;
+      }
+    }
+    await db.learningNode.upsert({
+      where: { slug: `${bundle.category.slug}-checkpoint` },
+      update: { categoryId: category.id, position },
+      create: {
+        categoryId: category.id,
+        slug: `${bundle.category.slug}-checkpoint`,
+        type: "CHECKPOINT",
+        position,
+        titleUk: "Контрольна точка з Морквою",
+        titleEn: "Checkpoint with Morkva",
+        displayMetadata: { mascotState: "checkpoint" },
+      },
+    });
+    position += 1;
+    const categoryPatch = await db.patchDefinition.findUnique({
+      where: { code: categoryPatchCodes[bundle.category.slug] },
+    });
+    await db.learningNode.upsert({
+      where: { slug: `${bundle.category.slug}-patch` },
+      update: { categoryId: category.id, patchId: categoryPatch?.id, position },
+      create: {
+        categoryId: category.id,
+        patchId: categoryPatch?.id,
+        slug: `${bundle.category.slug}-patch`,
+        type: "PATCH",
+        position,
+        titleUk: categoryPatch?.titleUk ?? "Категорійний патч",
+        titleEn: categoryPatch?.titleEn ?? "Category patch",
+      },
+    });
+
+    const legacyProgress = await db.userLessonProgress.findMany({
+      where: {
+        lessonId: { in: releasedLessons.map(({ saved }) => saved.id) },
+        completions: { gt: 0 },
+      },
+    });
+    const completionNodes = await db.learningNode.findMany({
+      where: {
+        categoryId: category.id,
+        type: { in: ["LESSON", "QUIZ"] },
+        lessonId: { in: legacyProgress.map(({ lessonId }) => lessonId) },
+      },
+    });
+    for (const progress of legacyProgress) {
+      for (const node of completionNodes.filter(({ lessonId }) => lessonId === progress.lessonId)) {
+        await db.userLearningNodeProgress.upsert({
+          where: { userId_nodeId: { userId: progress.userId, nodeId: node.id } },
+          update: {},
+          create: {
+            userId: progress.userId,
+            nodeId: node.id,
+            attempts: progress.completions,
+            completions: progress.completions,
+            bestScore: progress.bestScore,
+            stars: progress.bestScore >= 90 ? 3 : progress.bestScore >= 70 ? 2 : 1,
+            firstCompletedAt: progress.firstCompletedAt,
+            lastCompletedAt: progress.lastCompletedAt,
+          },
+        });
       }
     }
   }

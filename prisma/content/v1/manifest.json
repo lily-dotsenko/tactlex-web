@@ -1,47 +1,49 @@
 {
-  "version": "1.2.0-draft",
+  "version": "2.0.0-beta",
   "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
-  "generatedAt": "2026-08-21T12:18:53.437Z",
+  "generatedAt": "2026-08-21T13:24:31.139Z",
   "expected": {
     "categories": 5,
     "terms": 556,
-    "lessonTerms": 300,
-    "glossaryTerms": 256,
-    "lessons": 30,
-    "termsPerLesson": 10
+    "lessonTerms": 556,
+    "glossaryTerms": 0,
+    "lessons": 57,
+    "lessonTermsMin": 9,
+    "lessonTermsMax": 10,
+    "facts": 27
   },
   "files": [
     {
       "file": "basic-military-english.json",
       "categorySlug": "basic-military-english",
       "termCount": 251,
-      "lessonTermCount": 100,
-      "glossaryTermCount": 151,
-      "lessonCount": 10
+      "lessonTermCount": 251,
+      "glossaryTermCount": 0,
+      "lessonCount": 26
     },
     {
       "file": "general-tactical-english.json",
       "categorySlug": "general-tactical-english",
       "termCount": 145,
-      "lessonTermCount": 60,
-      "glossaryTermCount": 85,
-      "lessonCount": 6
+      "lessonTermCount": 145,
+      "glossaryTermCount": 0,
+      "lessonCount": 15
     },
     {
       "file": "tactical-medicine.json",
       "categorySlug": "tactical-medicine",
       "termCount": 60,
-      "lessonTermCount": 50,
-      "glossaryTermCount": 10,
-      "lessonCount": 5
+      "lessonTermCount": 60,
+      "glossaryTermCount": 0,
+      "lessonCount": 6
     },
     {
       "file": "drones-uas.json",
       "categorySlug": "drones-uas",
       "termCount": 60,
-      "lessonTermCount": 50,
-      "glossaryTermCount": 10,
-      "lessonCount": 5
+      "lessonTermCount": 60,
+      "glossaryTermCount": 0,
+      "lessonCount": 6
     },
     {
       "file": "sniper-terminology.json",

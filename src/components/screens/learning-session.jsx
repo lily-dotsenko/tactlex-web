@@ -285,10 +285,12 @@ export function SessionScreen({ sessionId }) {
   }
 
   function chooseAnswer(value, eventTimestamp) {
+    const singleAttempt = state.session?.kind === "QUIZ" || state.session?.kind === "CHECKPOINT";
     if (
       state.status === "submitting" ||
       submittingRef.current ||
       result?.correct ||
+      (singleAttempt && result) ||
       wrongChoices.includes(value)
     )
       return;
@@ -308,7 +310,9 @@ export function SessionScreen({ sessionId }) {
   const total = Number(result?.totalItems ?? session?.totalItems ?? 0);
   const current = Math.min(total || 1, answered + (result ? 0 : 1));
   const progress = total ? Math.round((answered / total) * 100) : 0;
-  const practicePronunciation = pronunciationForItem(item);
+  const practicePronunciation =
+    session?.kind === "QUIZ" || session?.kind === "CHECKPOINT" ? null : pronunciationForItem(item);
+  const singleAttemptQuiz = session?.kind === "QUIZ" || session?.kind === "CHECKPOINT";
 
   if (state.status === "loading" && !session) {
     return (
@@ -473,7 +477,12 @@ export function SessionScreen({ sessionId }) {
                   )}
                   role="radio"
                   aria-checked={selected}
-                  disabled={wrong || result?.correct === true || state.status === "submitting"}
+                  disabled={
+                    wrong ||
+                    result?.correct === true ||
+                    (singleAttemptQuiz && Boolean(result)) ||
+                    state.status === "submitting"
+                  }
                   onClick={(event) => chooseAnswer(choice.value, event.timeStamp)}
                 >
                   <span>{index + 1}</span>
@@ -508,6 +517,12 @@ export function SessionScreen({ sessionId }) {
             {requestError}
           </div>
         )}
+        {singleAttemptQuiz && result?.correct === false && result?.acceptedAnswer ? (
+          <div className="session-correction" role="status">
+            <strong>{locale === "uk" ? "Правильна відповідь:" : "Correct answer:"}</strong>{" "}
+            {result.acceptedAnswer}
+          </div>
+        ) : null}
         <div className="session-action-row">
           {choices.length === 0 && !result ? (
             <Button
@@ -517,7 +532,9 @@ export function SessionScreen({ sessionId }) {
             >
               {state.status === "submitting" ? copy.submitting : copy.submit}
             </Button>
-          ) : result?.correct || (choices.length === 0 && result) ? (
+          ) : result?.correct ||
+            (singleAttemptQuiz && result) ||
+            (choices.length === 0 && result) ? (
             <Button size="large" onClick={continueSession} disabled={state.status === "completing"}>
               {state.status === "completing" ? copy.completing : copy.next}{" "}
               <ChevronRight size={20} />

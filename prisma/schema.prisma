@@ -121,8 +121,61 @@ enum ExerciseType {
 
 enum StudySessionKind {
   LESSON
+  QUIZ
+  CHECKPOINT
   REVIEW
   PRACTICE
+}
+
+enum LearningNodeType {
+  LESSON
+  QUIZ
+  FACT
+  REWARD
+  CHECKPOINT
+  PATCH
+}
+
+enum PatchRarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+enum QuestPeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum QuestMetric {
+  XP_EARNED
+  CORRECT_ANSWERS
+  NODES_COMPLETED
+  QUIZZES_COMPLETED
+  REVIEWS_COMPLETED
+  ACTIVE_DAYS
+}
+
+enum QuestProgressStatus {
+  ACTIVE
+  COMPLETED
+  CLAIMED
+  EXPIRED
+}
+
+enum BonusType {
+  DOUBLE_XP_15M
+  STREAK_FREEZE
+}
+
+enum LeagueDivision {
+  BRONZE
+  STEEL
+  GOLD
+  SAPPHIRE
+  DIAMOND
 }
 
 enum StudySessionStatus {
@@ -186,6 +239,8 @@ enum XpReason {
   FIRST_LESSON_COMPLETION
   PERFECT_LESSON
   ACHIEVEMENT
+  FACT_COMPLETION
+  QUEST_REWARD
   ADMIN_ADJUSTMENT
 }
 
@@ -230,66 +285,74 @@ enum ImportRowStatus {
 }
 
 model User {
-  id                  String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email               String               @unique @db.Citext
-  passwordHash        String               @map("password_hash") @db.Text
-  status              UserStatus           @default(ACTIVE)
-  emailVerifiedAt     DateTime?            @map("email_verified_at") @db.Timestamptz(3)
-  lastLoginAt         DateTime?            @map("last_login_at") @db.Timestamptz(3)
-  createdAt           DateTime             @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt           DateTime             @updatedAt @map("updated_at") @db.Timestamptz(3)
-  profile             UserProfile?
-  userRoles           UserRole[]           @relation("UserRoles")
-  rolesAssigned       UserRole[]           @relation("RolesAssignedBy")
-  sessions            AuthSession[]
-  verificationTokens  VerificationToken[]
-  passwordResetTokens PasswordResetToken[]
-  createdTerms        Term[]               @relation("TermsCreatedBy")
-  updatedTerms        Term[]               @relation("TermsUpdatedBy")
-  approvedTerms       Term[]               @relation("TermsApprovedBy")
-  publishedTerms      Term[]               @relation("TermsPublishedBy")
-  checkedTermSources  TermSource[]         @relation("TermSourcesCheckedBy")
-  requestedReviews    ContentReview[]      @relation("ReviewsRequestedBy")
-  assignedReviews     ContentReview[]      @relation("ReviewsAssignedTo")
-  decidedReviews      ContentReview[]      @relation("ReviewsDecidedBy")
-  revisions           ContentRevision[]
-  audioUploads        AudioAsset[]
-  createdLessons      Lesson[]             @relation("LessonsCreatedBy")
-  updatedLessons      Lesson[]             @relation("LessonsUpdatedBy")
-  studySessions       StudySession[]
-  sessionAnswers      SessionAnswer[]
-  termProgress        UserTermProgress[]
-  reviewLogs          ReviewLog[]
-  dailyActivities     UserDailyActivity[]
-  lessonProgress      UserLessonProgress[]
-  achievements        UserAchievement[]
-  xpTransactions      XpTransaction[]
-  leaderboardEntries  LeaderboardEntry[]
-  submittedReports    TermReport[]         @relation("ReportsSubmittedBy")
-  resolvedReports     TermReport[]         @relation("ReportsResolvedBy")
-  imports             ContentImport[]
-  idempotencyRequests IdempotencyRequest[]
-  auditLogs           AuditLog[]
+  id                   String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email                String                     @unique @db.Citext
+  passwordHash         String                     @map("password_hash") @db.Text
+  status               UserStatus                 @default(ACTIVE)
+  emailVerifiedAt      DateTime?                  @map("email_verified_at") @db.Timestamptz(3)
+  lastLoginAt          DateTime?                  @map("last_login_at") @db.Timestamptz(3)
+  createdAt            DateTime                   @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt            DateTime                   @updatedAt @map("updated_at") @db.Timestamptz(3)
+  profile              UserProfile?
+  userRoles            UserRole[]                 @relation("UserRoles")
+  rolesAssigned        UserRole[]                 @relation("RolesAssignedBy")
+  sessions             AuthSession[]
+  verificationTokens   VerificationToken[]
+  passwordResetTokens  PasswordResetToken[]
+  createdTerms         Term[]                     @relation("TermsCreatedBy")
+  updatedTerms         Term[]                     @relation("TermsUpdatedBy")
+  approvedTerms        Term[]                     @relation("TermsApprovedBy")
+  publishedTerms       Term[]                     @relation("TermsPublishedBy")
+  checkedTermSources   TermSource[]               @relation("TermSourcesCheckedBy")
+  requestedReviews     ContentReview[]            @relation("ReviewsRequestedBy")
+  assignedReviews      ContentReview[]            @relation("ReviewsAssignedTo")
+  decidedReviews       ContentReview[]            @relation("ReviewsDecidedBy")
+  revisions            ContentRevision[]
+  audioUploads         AudioAsset[]
+  createdLessons       Lesson[]                   @relation("LessonsCreatedBy")
+  updatedLessons       Lesson[]                   @relation("LessonsUpdatedBy")
+  studySessions        StudySession[]
+  sessionAnswers       SessionAnswer[]
+  termProgress         UserTermProgress[]
+  reviewLogs           ReviewLog[]
+  dailyActivities      UserDailyActivity[]
+  lessonProgress       UserLessonProgress[]
+  achievements         UserAchievement[]
+  xpTransactions       XpTransaction[]
+  leaderboardEntries   LeaderboardEntry[]
+  submittedReports     TermReport[]               @relation("ReportsSubmittedBy")
+  resolvedReports      TermReport[]               @relation("ReportsResolvedBy")
+  imports              ContentImport[]
+  idempotencyRequests  IdempotencyRequest[]
+  auditLogs            AuditLog[]
+  learningNodeProgress UserLearningNodeProgress[]
+  wallet               UserWallet?
+  coinTransactions     CoinTransaction[]
+  questProgress        UserQuestProgress[]
+  bonuses              UserBonus[]
+  patches              UserPatch[]
+  featuredPatches      UserFeaturedPatch[]
 
   @@map("users")
 }
 
 model UserProfile {
-  userId             String        @id @map("user_id") @db.Uuid
-  nickname           String        @unique @db.Citext
-  audienceType       AudienceType? @map("audience_type")
-  preferredLocale    Locale        @default(UK) @map("preferred_locale")
-  timezone           String        @default("Europe/Kyiv") @db.VarChar(64)
-  dailyGoalXp        Int           @default(20) @map("daily_goal_xp")
-  leaderboardVisible Boolean       @default(false) @map("leaderboard_visible")
-  avatarKey          String        @default("atlas-olive") @map("avatar_key") @db.VarChar(40)
-  totalXp            Int           @default(0) @map("total_xp")
-  level              Int           @default(1)
-  currentStreak      Int           @default(0) @map("current_streak")
-  longestStreak      Int           @default(0) @map("longest_streak")
-  createdAt          DateTime      @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt          DateTime      @updatedAt @map("updated_at") @db.Timestamptz(3)
-  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             String         @id @map("user_id") @db.Uuid
+  nickname           String         @unique @db.Citext
+  audienceType       AudienceType?  @map("audience_type")
+  preferredLocale    Locale         @default(UK) @map("preferred_locale")
+  timezone           String         @default("Europe/Kyiv") @db.VarChar(64)
+  dailyGoalXp        Int            @default(20) @map("daily_goal_xp")
+  leaderboardVisible Boolean        @default(false) @map("leaderboard_visible")
+  avatarKey          String         @default("atlas-olive") @map("avatar_key") @db.VarChar(40)
+  totalXp            Int            @default(0) @map("total_xp")
+  level              Int            @default(1)
+  currentStreak      Int            @default(0) @map("current_streak")
+  longestStreak      Int            @default(0) @map("longest_streak")
+  leagueDivision     LeagueDivision @default(BRONZE) @map("league_division")
+  createdAt          DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt          DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user               User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_profiles")
 }
@@ -445,6 +508,7 @@ model Category {
   terms            TermCategory[]
   lessons          Lesson[]
   achievementRules AchievementRule[]
+  learningNodes    LearningNode[]
 
   @@index([archivedAt, displayOrder])
   @@map("categories")
@@ -712,6 +776,8 @@ model Lesson {
   terms            LessonTerm[]
   sessions         StudySession[]
   userProgress     UserLessonProgress[]
+  fact             LessonFact?
+  learningNodes    LearningNode[]
 
   @@index([categoryId, status])
   @@index([status, publishedAt])
@@ -732,10 +798,80 @@ model LessonTerm {
   @@map("lesson_terms")
 }
 
+model LessonFact {
+  id          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lessonId    String         @unique @map("lesson_id") @db.Uuid
+  titleUk     String         @map("title_uk") @db.VarChar(220)
+  titleEn     String         @map("title_en") @db.VarChar(220)
+  bodyUk      String         @map("body_uk") @db.Text
+  bodyEn      String         @map("body_en") @db.Text
+  sourceTitle String         @map("source_title") @db.VarChar(300)
+  sourceUrl   String         @map("source_url") @db.Text
+  isBeta      Boolean        @default(true) @map("is_beta")
+  createdAt   DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+  lesson      Lesson         @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  nodes       LearningNode[]
+
+  @@map("lesson_facts")
+}
+
+model LearningNode {
+  id              String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  categoryId      String                     @map("category_id") @db.Uuid
+  lessonId        String?                    @map("lesson_id") @db.Uuid
+  factId          String?                    @map("fact_id") @db.Uuid
+  patchId         String?                    @map("patch_id") @db.Uuid
+  type            LearningNodeType
+  slug            String                     @unique @db.VarChar(160)
+  position        Int
+  titleUk         String                     @map("title_uk") @db.VarChar(220)
+  titleEn         String                     @map("title_en") @db.VarChar(220)
+  rewardCoins     Int                        @default(0) @map("reward_coins")
+  rewardXp        Int                        @default(0) @map("reward_xp")
+  displayMetadata Json?                      @map("display_metadata") @db.JsonB
+  active          Boolean                    @default(true)
+  createdAt       DateTime                   @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime                   @updatedAt @map("updated_at") @db.Timestamptz(3)
+  category        Category                   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  lesson          Lesson?                    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  fact            LessonFact?                @relation(fields: [factId], references: [id], onDelete: Cascade)
+  patch           PatchDefinition?           @relation(fields: [patchId], references: [id], onDelete: SetNull)
+  progress        UserLearningNodeProgress[]
+  sessions        StudySession[]
+
+  @@unique([categoryId, position])
+  @@index([categoryId, active, position])
+  @@index([lessonId])
+  @@map("learning_nodes")
+}
+
+model UserLearningNodeProgress {
+  id               String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId           String       @map("user_id") @db.Uuid
+  nodeId           String       @map("node_id") @db.Uuid
+  attempts         Int          @default(0)
+  completions      Int          @default(0)
+  bestScore        Int          @default(0) @map("best_score")
+  stars            Int          @default(0) @db.SmallInt
+  firstCompletedAt DateTime?    @map("first_completed_at") @db.Timestamptz(3)
+  lastCompletedAt  DateTime?    @map("last_completed_at") @db.Timestamptz(3)
+  claimedAt        DateTime?    @map("claimed_at") @db.Timestamptz(3)
+  createdAt        DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime     @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  node             LearningNode @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, nodeId])
+  @@index([nodeId])
+  @@map("user_learning_node_progress")
+}
+
 model StudySession {
   id               String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId           String             @map("user_id") @db.Uuid
   lessonId         String?            @map("lesson_id") @db.Uuid
+  nodeId           String?            @map("node_id") @db.Uuid
   kind             StudySessionKind
   direction        Direction
   status           StudySessionStatus @default(ACTIVE)
@@ -753,12 +889,14 @@ model StudySession {
   updatedAt        DateTime           @updatedAt @map("updated_at") @db.Timestamptz(3)
   user             User               @relation(fields: [userId], references: [id], onDelete: Restrict)
   lesson           Lesson?            @relation(fields: [lessonId], references: [id], onDelete: Restrict)
+  node             LearningNode?      @relation(fields: [nodeId], references: [id], onDelete: SetNull)
   items            StudySessionItem[]
   answers          SessionAnswer[]
 
   @@unique([userId, idempotencyKey])
   @@index([userId, startedAt(sort: Desc)])
   @@index([status, expiresAt])
+  @@index([nodeId])
   @@map("study_sessions")
 }
 
@@ -965,6 +1103,140 @@ model UserAchievement {
   @@unique([userId, achievementId])
   @@index([achievementId, awardedAt])
   @@map("user_achievements")
+}
+
+model UserWallet {
+  userId    String   @id @map("user_id") @db.Uuid
+  coins     Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_wallets")
+}
+
+model CoinTransaction {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  amount     Int
+  reason     String   @db.VarChar(100)
+  sourceType String   @map("source_type") @db.VarChar(80)
+  sourceId   String   @map("source_id") @db.VarChar(160)
+  dedupeKey  String   @unique @map("dedupe_key") @db.VarChar(240)
+  metadata   Json?    @db.JsonB
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("coin_transactions")
+}
+
+model QuestDefinition {
+  id            String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code          String              @unique @db.VarChar(100)
+  titleUk       String              @map("title_uk") @db.VarChar(200)
+  titleEn       String              @map("title_en") @db.VarChar(200)
+  descriptionUk String              @map("description_uk") @db.Text
+  descriptionEn String              @map("description_en") @db.Text
+  period        QuestPeriod
+  metric        QuestMetric
+  threshold     Int
+  rewardCoins   Int                 @map("reward_coins")
+  rewardBonus   BonusType?          @map("reward_bonus")
+  isActive      Boolean             @default(true) @map("is_active")
+  displayOrder  Int                 @default(0) @map("display_order")
+  createdAt     DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt     DateTime            @updatedAt @map("updated_at") @db.Timestamptz(3)
+  progress      UserQuestProgress[]
+
+  @@index([period, isActive, displayOrder])
+  @@map("quest_definitions")
+}
+
+model UserQuestProgress {
+  id          String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String              @map("user_id") @db.Uuid
+  questId     String              @map("quest_id") @db.Uuid
+  periodKey   String              @map("period_key") @db.VarChar(40)
+  current     Int                 @default(0)
+  status      QuestProgressStatus @default(ACTIVE)
+  completedAt DateTime?           @map("completed_at") @db.Timestamptz(3)
+  claimedAt   DateTime?           @map("claimed_at") @db.Timestamptz(3)
+  createdAt   DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime            @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user        User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quest       QuestDefinition     @relation(fields: [questId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questId, periodKey])
+  @@index([userId, status])
+  @@map("user_quest_progress")
+}
+
+model UserBonus {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  type        BonusType
+  quantity    Int       @default(0)
+  activeUntil DateTime? @map("active_until") @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, type])
+  @@map("user_bonuses")
+}
+
+model PatchDefinition {
+  id            String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code          String              @unique @db.VarChar(100)
+  titleUk       String              @map("title_uk") @db.VarChar(180)
+  titleEn       String              @map("title_en") @db.VarChar(180)
+  descriptionUk String              @map("description_uk") @db.Text
+  descriptionEn String              @map("description_en") @db.Text
+  rarity        PatchRarity         @default(COMMON)
+  iconKey       String              @map("icon_key") @db.VarChar(80)
+  category      String              @db.VarChar(60)
+  requirement   Json?               @db.JsonB
+  displayOrder  Int                 @default(0) @map("display_order")
+  createdAt     DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt     DateTime            @updatedAt @map("updated_at") @db.Timestamptz(3)
+  awards        UserPatch[]
+  featuredBy    UserFeaturedPatch[]
+  nodes         LearningNode[]
+
+  @@index([category, displayOrder])
+  @@map("patch_definitions")
+}
+
+model UserPatch {
+  id          String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String          @map("user_id") @db.Uuid
+  patchId     String          @map("patch_id") @db.Uuid
+  triggerType String          @map("trigger_type") @db.VarChar(80)
+  triggerId   String?         @map("trigger_id") @db.VarChar(160)
+  awardedAt   DateTime        @default(now()) @map("awarded_at") @db.Timestamptz(3)
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  patch       PatchDefinition @relation(fields: [patchId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, patchId])
+  @@index([patchId, awardedAt])
+  @@map("user_patches")
+}
+
+model UserFeaturedPatch {
+  id        String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String          @map("user_id") @db.Uuid
+  patchId   String          @map("patch_id") @db.Uuid
+  slot      Int             @db.SmallInt
+  createdAt DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime        @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  patch     PatchDefinition @relation(fields: [patchId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, slot])
+  @@unique([userId, patchId])
+  @@index([patchId])
+  @@map("user_featured_patches")
 }
 
 model XpTransaction {

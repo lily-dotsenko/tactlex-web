@@ -12,6 +12,9 @@ const NORMALIZATION_VERSION = "answer-normalization-v1";
 const MAX_TRANSACTION_RETRIES = 3;
 
 const sessionInclude = {
+  node: {
+    select: { id: true, slug: true, type: true, titleUk: true, titleEn: true },
+  },
   lesson: {
     select: { id: true, slug: true, titleUk: true, titleEn: true },
   },
@@ -176,7 +179,7 @@ function mapProgress(progress) {
 
 function mapSession(session, summary = null) {
   const introduction =
-    session.currentStage === "INTRODUCTION"
+    session.currentStage === "INTRODUCTION" && session.kind === "LESSON"
       ? session.items.map((item) => ({
           termId: item.termId,
           english: primaryVariant(item.term, "EN")?.value ?? null,
@@ -203,6 +206,7 @@ function mapSession(session, summary = null) {
     completedAt: session.completedAt,
     summary,
     lesson: session.lesson,
+    node: session.node,
     introduction,
     answeredItems: session.items.filter((item) => item.status === "ANSWERED").length,
     totalItems: session.items.length,
@@ -237,14 +241,15 @@ function mapSession(session, summary = null) {
         attemptedAnswers: item.answers
           .filter((attempt) => !attempt.isCorrect)
           .map((attempt) => attempt.submittedAnswer),
-        audio: audioAsset
-          ? {
-              id: audioAsset.id,
-              kind: audioAsset.kind,
-              provider: audioAsset.provider,
-              url: `/api/v1/audio/${audioAsset.id}`,
-            }
-          : null,
+        audio:
+          audioAsset && session.kind !== "QUIZ" && session.kind !== "CHECKPOINT"
+            ? {
+                id: audioAsset.id,
+                kind: audioAsset.kind,
+                provider: audioAsset.provider,
+                url: `/api/v1/audio/${audioAsset.id}`,
+              }
+            : null,
         result: answer
           ? {
               id: answer.id,
@@ -372,9 +377,20 @@ export function deriveEffectiveRating(isCorrect, requestedRating) {
 }
 
 async function sessionTerms(db, input) {
-  if (input.lessonId) {
+  const node = input.nodeId
+    ? await db.learningNode.findFirst({
+        where: { id: input.nodeId, active: true },
+        include: { lesson: true },
+      })
+    : null;
+  if (input.nodeId && !node) throw notFound("Вузол навчальної стежки не знайдено.");
+  if (node && !["LESSON", "QUIZ", "CHECKPOINT"].includes(node.type)) {
+    throw conflict("NODE_NOT_PLAYABLE", "Цей вузол не запускає навчальну сесію.");
+  }
+  const lessonId = node?.lessonId ?? input.lessonId;
+  if (lessonId) {
     const lesson = await db.lesson.findFirst({
-      where: { id: input.lessonId, status: "PUBLISHED", archivedAt: null },
+      where: { id: lessonId, status: "PUBLISHED", archivedAt: null },
       include: {
         terms: {
           orderBy: { position: "asc" },
@@ -402,12 +418,13 @@ async function sessionTerms(db, input) {
         "Урок повинен містити від 8 до 12 опублікованих термінів.",
       );
     }
-    return { lesson, terms, kind: "LESSON" };
+    return { lesson, terms, kind: node?.type ?? "LESSON", node };
   }
 
-  if (input.categoryId) {
+  const categoryId = node?.categoryId ?? input.categoryId;
+  if (categoryId) {
     const category = await db.category.findFirst({
-      where: { id: input.categoryId, archivedAt: null },
+      where: { id: categoryId, archivedAt: null },
       select: { id: true },
     });
     if (!category) throw notFound("Категорію не знайдено.");
@@ -416,7 +433,7 @@ async function sessionTerms(db, input) {
     where: {
       status: "PUBLISHED",
       archivedAt: null,
-      ...(input.categoryId ? { categories: { some: { categoryId: input.categoryId } } } : {}),
+      ...(categoryId ? { categories: { some: { categoryId } } } : {}),
     },
     orderBy: { id: "asc" },
     take: 10,
@@ -427,7 +444,7 @@ async function sessionTerms(db, input) {
     },
   });
   if (terms.length === 0) throw notFound("Немає доступних опублікованих термінів.");
-  return { lesson: null, terms, kind: "PRACTICE" };
+  return { lesson: null, terms, kind: node?.type ?? "PRACTICE", node };
 }
 
 export function createStudyService(db, { clock = () => new Date() } = {}) {
@@ -439,8 +456,10 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
     const direction = databaseDirection(input.direction ?? input.mode);
     const selected = await sessionTerms(db, input);
     const items = selected.terms.map((term, index) => {
-      const pattern =
-        direction === "MIXED"
+      const isTextQuiz = selected.kind === "QUIZ" || selected.kind === "CHECKPOINT";
+      const pattern = isTextQuiz
+        ? { source: index % 2 === 0 ? "EN" : "UK", type: "MULTIPLE_CHOICE" }
+        : direction === "MIXED"
           ? MIXED_EXERCISES[index % MIXED_EXERCISES.length]
           : {
               source: sourceLocale(direction),
@@ -462,7 +481,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
         stage: "PRACTICE",
         exerciseType: pattern.type,
         optionsSnapshot: choiceSnapshot(term, selected.terms, pattern.source),
-        maxAttempts: 4,
+        maxAttempts: isTextQuiz ? 1 : 4,
         servedAt: now,
       };
     });
@@ -473,6 +492,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
         data: {
           userId,
           lessonId: selected.lesson?.id ?? null,
+          nodeId: selected.node?.id ?? null,
           kind: selected.kind,
           direction,
           status: "ACTIVE",
@@ -588,6 +608,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                 id: true,
                 userId: true,
                 lessonId: true,
+                nodeId: true,
                 kind: true,
                 direction: true,
                 status: true,
@@ -739,10 +760,13 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               throw conflict("ANSWER_ALREADY_TRIED", "Цей варіант уже перевірено.");
             }
             const attemptNumber = (item.answers[0]?.attemptNumber ?? 0) + 1;
-            const attemptLimit = Math.max(
-              item.maxAttempts,
-              Array.isArray(item.optionsSnapshot) ? item.optionsSnapshot.length : 1,
-            );
+            const attemptLimit =
+              session.kind === "QUIZ" || session.kind === "CHECKPOINT"
+                ? 1
+                : Math.max(
+                    item.maxAttempts,
+                    Array.isArray(item.optionsSnapshot) ? item.optionsSnapshot.length : 1,
+                  );
             const retryAllowed = !evaluation.correct && attemptNumber < attemptLimit;
             const firstAttemptCorrect = evaluation.correct && attemptNumber === 1;
             const rating = deriveEffectiveRating(firstAttemptCorrect, input.rating);
@@ -1002,6 +1026,35 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                   completions: { increment: 1 },
                   bestScore: Math.max(existing?.bestScore ?? 0, correct),
                   firstCompletedAt: existing?.firstCompletedAt ?? now,
+                  lastCompletedAt: now,
+                },
+              });
+            }
+
+            if (session.nodeId) {
+              const existingNodeProgress = await transaction.userLearningNodeProgress.findUnique({
+                where: { userId_nodeId: { userId, nodeId: session.nodeId } },
+              });
+              const accuracy = Math.round((correct / session.items.length) * 100);
+              const stars = accuracy === 100 ? 3 : accuracy >= 80 ? 2 : accuracy >= 60 ? 1 : 0;
+              await transaction.userLearningNodeProgress.upsert({
+                where: { userId_nodeId: { userId, nodeId: session.nodeId } },
+                create: {
+                  userId,
+                  nodeId: session.nodeId,
+                  attempts: 1,
+                  completions: 1,
+                  bestScore: accuracy,
+                  stars,
+                  firstCompletedAt: now,
+                  lastCompletedAt: now,
+                },
+                update: {
+                  attempts: { increment: 1 },
+                  completions: { increment: 1 },
+                  bestScore: Math.max(existingNodeProgress?.bestScore ?? 0, accuracy),
+                  stars: Math.max(existingNodeProgress?.stars ?? 0, stars),
+                  firstCompletedAt: existingNodeProgress?.firstCompletedAt ?? now,
                   lastCompletedAt: now,
                 },
               });

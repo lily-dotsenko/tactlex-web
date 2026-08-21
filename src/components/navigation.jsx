@@ -9,6 +9,7 @@ import {
   BarChart3,
   BookOpen,
   ClipboardCheck,
+  Crosshair,
   FileText,
   Home,
   Languages,
@@ -35,15 +36,16 @@ import { avatarByKey } from "@/lib/avatars/catalog";
 export const primaryNav = [
   { href: "/dashboard", label: "home", icon: Home },
   { href: "/learn", label: "learn", icon: BookOpen },
-  { href: "/review", label: "review", icon: RotateCcw },
-  { href: "/glossary", label: "glossary", icon: Library },
+  { href: "/quests", label: "quests", icon: Crosshair },
+  { href: "/league", label: "league", icon: Trophy },
   { href: "/profile", label: "profile", icon: User },
 ];
 
 export const secondaryNav = [
+  { href: "/review", label: "review", icon: RotateCcw },
+  { href: "/glossary", label: "glossary", icon: Library },
   { href: "/progress", label: "progress", icon: BarChart3 },
   { href: "/achievements", label: "achievements", icon: Award },
-  { href: "/leaderboard", label: "leaderboard", icon: Trophy },
   { href: "/settings", label: "settings", icon: Settings },
 ];
 

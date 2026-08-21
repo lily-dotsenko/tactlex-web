@@ -25,6 +25,8 @@
   "Nav": {
     "home": "Home",
     "learn": "Learn",
+    "quests": "Quests",
+    "league": "League",
     "review": "Review",
     "glossary": "Glossary",
     "profile": "Profile",
@@ -47,7 +49,7 @@
     "trust": "Free · Ukrainian and English · From 5 minutes a day",
     "program": "MVP structure",
     "programTitle": "Four fields. One consistent system.",
-    "programLead": "The programme is designed for 200 terms. Only entries that have passed source and translation review appear in the glossary.",
+    "programLead": "The programme contains 556 terms in 57 open lessons and quizzes. Beta material remains clearly labelled until subject-matter review.",
     "how": "How learning works",
     "howTitle": "One short cycle — from introduction to review.",
     "step1": "Introduction",

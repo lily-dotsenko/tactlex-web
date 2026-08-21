@@ -11,6 +11,7 @@ const slugs = new Set();
 const cefrByDifficulty = [null, "A1", "A2", "B1", "B2", "C1"];
 let termCount = 0;
 let lessonCount = 0;
+let factCount = 0;
 
 function required(value, label) {
   if (typeof value !== "string" || !value.trim()) errors.push(`${label} is required`);
@@ -72,8 +73,13 @@ for (const descriptor of manifest.files) {
   };
   for (const lesson of payload.lessons) {
     lessonCount += 1;
-    if (lesson.terms.length !== manifest.expected.termsPerLesson) {
-      errors.push(`${lesson.slug}: expected ${manifest.expected.termsPerLesson} terms`);
+    if (
+      lesson.terms.length < manifest.expected.lessonTermsMin ||
+      lesson.terms.length > manifest.expected.lessonTermsMax
+    ) {
+      errors.push(
+        `${lesson.slug}: expected ${manifest.expected.lessonTermsMin}-${manifest.expected.lessonTermsMax} terms`,
+      );
     }
     if (lesson.cefrLevel !== cefrByDifficulty[lesson.difficulty]) {
       errors.push(`${lesson.slug}: CEFR level does not match difficulty`);
@@ -83,6 +89,17 @@ for (const descriptor of manifest.files) {
         errors.push(`${term.slug}: CEFR level does not match lesson`);
       }
       validateTerm(term, lesson.slug, { requireDistractors: true });
+    }
+    if (lesson.fact) {
+      factCount += 1;
+      required(lesson.fact.titleUk, `${lesson.slug}.fact.titleUk`);
+      required(lesson.fact.titleEn, `${lesson.slug}.fact.titleEn`);
+      required(lesson.fact.bodyUk, `${lesson.slug}.fact.bodyUk`);
+      required(lesson.fact.bodyEn, `${lesson.slug}.fact.bodyEn`);
+      required(lesson.fact.sourceTitle, `${lesson.slug}.fact.sourceTitle`);
+      if (!lesson.fact.sourceUrl || !URL.canParse(lesson.fact.sourceUrl)) {
+        errors.push(`${lesson.slug}.fact: exact public source URL is required`);
+      }
     }
   }
   for (const term of glossaryTerms) {
@@ -111,6 +128,8 @@ if (termCount !== manifest.expected.terms)
   errors.push(`Expected ${manifest.expected.terms} terms, got ${termCount}`);
 if (lessonCount !== manifest.expected.lessons)
   errors.push(`Expected ${manifest.expected.lessons} lessons, got ${lessonCount}`);
+if (factCount !== manifest.expected.facts)
+  errors.push(`Expected ${manifest.expected.facts} facts, got ${factCount}`);
 if (manifest.files.length !== manifest.expected.categories) {
   errors.push(
     `Expected ${manifest.expected.categories} category files, got ${manifest.files.length}`,

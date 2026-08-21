@@ -5,8 +5,8 @@ import { describe, expect, test } from "vitest";
 
 const releaseDirectory = path.join(process.cwd(), "prisma", "content", "v1");
 
-describe("supplemental VTT glossary", () => {
-  test("adds dictionary-only entries without changing the 300 lesson terms", async () => {
+describe("supplemental VTT learning content", () => {
+  test("places all 556 terms in 57 lessons with 27 sourced facts", async () => {
     const manifest = JSON.parse(
       await readFile(path.join(releaseDirectory, "manifest.json"), "utf8"),
     );
@@ -18,36 +18,40 @@ describe("supplemental VTT glossary", () => {
     const glossaryTerms = bundles.flatMap(({ glossaryTerms = [] }) => glossaryTerms);
     const lessonTerms = bundles.flatMap(({ lessons }) => lessons.flatMap(({ terms }) => terms));
 
-    expect(lessonTerms).toHaveLength(300);
-    expect(glossaryTerms).toHaveLength(256);
+    const facts = bundles.flatMap(({ lessons }) => lessons.map(({ fact }) => fact).filter(Boolean));
+    expect(lessonTerms).toHaveLength(556);
+    expect(glossaryTerms).toHaveLength(0);
+    expect(facts).toHaveLength(27);
     expect(manifest.expected).toMatchObject({
       terms: 556,
-      lessonTerms: 300,
-      glossaryTerms: 256,
-      lessons: 30,
+      lessonTerms: 556,
+      glossaryTerms: 0,
+      lessons: 57,
+      facts: 27,
     });
-    expect(glossaryTerms.every(({ dictionaryOnly }) => dictionaryOnly)).toBe(true);
-    expect(glossaryTerms.every(({ distractorKeys }) => distractorKeys === undefined)).toBe(true);
-    const lessonHeadwords = new Set(lessonTerms.map(({ english }) => english.toLowerCase()));
-    expect(new Set(glossaryTerms.map(({ english }) => english.toLowerCase())).size).toBe(256);
-    expect(glossaryTerms.some(({ english }) => lessonHeadwords.has(english.toLowerCase()))).toBe(
-      false,
-    );
+    expect(new Set(lessonTerms.map(({ externalKey }) => externalKey)).size).toBe(556);
+    expect(lessonTerms.every(({ distractorKeys }) => distractorKeys.length === 3)).toBe(true);
+    expect(facts.every(({ sourceUrl }) => URL.canParse(sourceUrl))).toBe(true);
   });
 
   test("uses the requested bilingual TCCC Ukraine terminology source", async () => {
     const medicine = JSON.parse(
       await readFile(path.join(releaseDirectory, "tactical-medicine.json"), "utf8"),
     );
-    const byEnglish = new Map(medicine.glossaryTerms.map((term) => [term.english, term]));
+    const byEnglish = new Map(
+      medicine.lessons.flatMap(({ terms }) => terms).map((term) => [term.english, term]),
+    );
 
     expect(byEnglish.get("massive hemorrhage")?.ukrainian).toBe("масивна кровотеча");
     expect(byEnglish.get("head injury")?.ukrainian).toBe("травма голови");
     expect(byEnglish.get("pain control")?.ukrainian).toBe("знеболення");
     expect(
-      medicine.glossaryTerms.every(({ source }) =>
-        source.exactUrl.startsWith("https://tccc.org.ua/"),
-      ),
+      medicine.lessons
+        .flatMap(({ terms }) => terms)
+        .filter(({ english }) =>
+          ["massive hemorrhage", "head injury", "pain control"].includes(english),
+        )
+        .every(({ source }) => source.exactUrl.startsWith("https://tccc.org.ua/")),
     ).toBe(true);
   });
 });
