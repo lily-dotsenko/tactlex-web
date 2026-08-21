@@ -67,29 +67,39 @@ export function createGamificationService(transaction, { clock = () => new Date(
     if (existing) return { amount: 0, duplicate: true };
 
     const now = clock();
+    let effectiveAmount = amount;
+    if (reason !== "ACHIEVEMENT" && transaction.userBonus?.findUnique) {
+      const boost = await transaction.userBonus.findUnique({
+        where: { userId_type: { userId, type: "DOUBLE_XP_15M" } },
+      });
+      if (boost?.activeUntil && boost.activeUntil > now) effectiveAmount *= 2;
+    }
     await transaction.xpTransaction.create({
       data: {
         userId,
-        amount,
+        amount: effectiveAmount,
         reason,
         sourceType,
         sourceId,
         dedupeKey,
         policyVersion: XP_POLICY_VERSION,
-        metadata: metadata ?? undefined,
+        metadata:
+          effectiveAmount === amount
+            ? (metadata ?? undefined)
+            : { ...(metadata ?? {}), baseAmount: amount, bonus: "DOUBLE_XP_15M" },
         createdAt: now,
       },
     });
     const profile = await transaction.userProfile.update({
       where: { userId },
-      data: { totalXp: { increment: amount } },
+      data: { totalXp: { increment: effectiveAmount } },
     });
     const level = levelFromXp(profile.totalXp);
     if (level !== profile.level) {
       await transaction.userProfile.update({ where: { userId }, data: { level } });
     }
-    await updateLeaderboard(transaction, userId, amount, now);
-    return { amount, duplicate: false, totalXp: profile.totalXp, level };
+    await updateLeaderboard(transaction, userId, effectiveAmount, now);
+    return { amount: effectiveAmount, duplicate: false, totalXp: profile.totalXp, level };
   }
 
   async function recordActivity({
@@ -136,9 +146,31 @@ export function createGamificationService(transaction, { clock = () => new Date(
         where: { userId, goalMetAt: { not: null }, activityDate: { lt: activityDate } },
         orderBy: { activityDate: "desc" },
       });
+      const previousIso = previous?.activityDate.toISOString().slice(0, 10);
+      const currentIso = activityDate.toISOString().slice(0, 10);
+      let streakPreviousIso = previousIso;
+      if (previousIso) {
+        const missedDays = Math.round(
+          (Date.parse(`${currentIso}T00:00:00Z`) - Date.parse(`${previousIso}T00:00:00Z`)) / DAY_MS,
+        );
+        if (missedDays === 2 && transaction.userBonus?.findUnique) {
+          const freeze = await transaction.userBonus.findUnique({
+            where: { userId_type: { userId, type: "STREAK_FREEZE" } },
+          });
+          if ((freeze?.quantity ?? 0) > 0) {
+            await transaction.userBonus.update({
+              where: { id: freeze.id },
+              data: { quantity: { decrement: 1 } },
+            });
+            streakPreviousIso = new Date(activityDate.getTime() - DAY_MS)
+              .toISOString()
+              .slice(0, 10);
+          }
+        }
+      }
       const streak = updateStreak({
-        previousActivityDate: previous?.activityDate.toISOString().slice(0, 10),
-        currentActivityDate: activityDate.toISOString().slice(0, 10),
+        previousActivityDate: streakPreviousIso,
+        currentActivityDate: currentIso,
         previousCurrentStreak: profile.currentStreak,
         previousLongestStreak: profile.longestStreak,
       });

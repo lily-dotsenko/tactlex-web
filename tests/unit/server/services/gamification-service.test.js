@@ -68,4 +68,79 @@ describe("transactional gamification dates", () => {
     expect(categoryFindMany).toHaveBeenCalledOnce();
     expect(JSON.stringify(categoryFindMany.mock.calls)).not.toContain('"categoryId":""');
   });
+
+  it("doubles eligible XP only while the purchased boost is active", async () => {
+    const transaction = {
+      xpTransaction: { findUnique: vi.fn(async () => null), create: vi.fn(async () => ({})) },
+      userBonus: {
+        findUnique: vi.fn(async () => ({
+          activeUntil: new Date("2026-07-21T12:15:00.000Z"),
+        })),
+      },
+      userProfile: {
+        update: vi.fn(async () => ({ totalXp: 40, level: 1 })),
+      },
+      leaderboardPeriod: {
+        upsert: vi
+          .fn()
+          .mockResolvedValueOnce({ id: "all-time" })
+          .mockResolvedValueOnce({ id: "weekly" }),
+      },
+      leaderboardEntry: { upsert: vi.fn(async () => ({})) },
+    };
+
+    const result = await createGamificationService(transaction, {
+      clock: () => new Date("2026-07-21T12:00:00.000Z"),
+    }).awardXp({
+      userId: "user-1",
+      amount: 20,
+      reason: "LESSON_COMPLETED",
+      sourceType: "LESSON",
+      sourceId: "lesson-1",
+      dedupeKey: "xp-1",
+    });
+
+    expect(result.amount).toBe(40);
+    expect(transaction.xpTransaction.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        amount: 40,
+        metadata: { baseAmount: 20, bonus: "DOUBLE_XP_15M" },
+      }),
+    });
+  });
+
+  it("consumes one streak freeze for exactly one missed day", async () => {
+    const freezeUpdate = vi.fn(async () => ({}));
+    const transaction = {
+      userProfile: {
+        findUnique: vi.fn(async () => ({
+          timezone: "Europe/Kyiv",
+          dailyGoalXp: 20,
+          currentStreak: 7,
+          longestStreak: 9,
+        })),
+        update: vi.fn(async () => ({})),
+      },
+      userDailyActivity: {
+        findUnique: vi.fn(async () => null),
+        create: vi.fn(async ({ data }) => ({ ...data, goalMetAt: null })),
+        findFirst: vi.fn(async () => ({ activityDate: new Date("2026-07-19T00:00:00.000Z") })),
+        update: vi.fn(async () => ({})),
+      },
+      userBonus: {
+        findUnique: vi.fn(async () => ({ id: "freeze-1", quantity: 1 })),
+        update: freezeUpdate,
+      },
+    };
+
+    const result = await createGamificationService(transaction, {
+      clock: () => new Date("2026-07-21T12:00:00.000Z"),
+    }).recordActivity({ userId: "user-1", xpEarned: 20 });
+
+    expect(result.currentStreak).toBe(8);
+    expect(freezeUpdate).toHaveBeenCalledWith({
+      where: { id: "freeze-1" },
+      data: { quantity: { decrement: 1 } },
+    });
+  });
 });

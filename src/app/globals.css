@@ -1357,6 +1357,10 @@ select:focus {
   object-fit: cover;
   image-rendering: pixelated;
 }
+.custom-avatar {
+  display: block;
+  overflow: hidden;
+}
 .sidebar-profile > span:last-child {
   display: grid;
 }
@@ -2471,6 +2475,9 @@ a.list-link:hover {
 .leaderboard-table .table-avatar-image {
   border-radius: 50%;
 }
+.leaderboard-table .custom-avatar.table-avatar {
+  border-radius: 50%;
+}
 .is-current-user {
   background: var(--blue-soft);
 }
@@ -2509,6 +2516,79 @@ a.list-link:hover {
 .avatar-picker-card > .button {
   justify-self: start;
 }
+.avatar-builder-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  align-items: start;
+  gap: 28px;
+}
+.avatar-builder-preview {
+  position: sticky;
+  top: 94px;
+  display: grid;
+  min-height: 340px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background:
+    radial-gradient(
+      circle at 50% 28%,
+      color-mix(in srgb, var(--blue) 16%, transparent),
+      transparent 48%
+    ),
+    var(--surface-raised);
+}
+.avatar-builder-preview .custom-avatar {
+  width: min(260px, 82%);
+  height: auto;
+  filter: drop-shadow(0 18px 28px color-mix(in srgb, #000 25%, transparent));
+}
+.avatar-builder-controls {
+  display: grid;
+  gap: 18px;
+}
+.avatar-builder-group {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+}
+.avatar-builder-group legend {
+  margin-bottom: 9px;
+  font-weight: 850;
+}
+.avatar-builder-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+  gap: 8px;
+}
+.avatar-builder-options button {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface-raised);
+  color: var(--text);
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.avatar-builder-options button:hover,
+.avatar-builder-options button.is-selected {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+.avatar-builder-options button.is-selected {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--blue) 28%, transparent);
+}
+.avatar-color-swatch {
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  border: 2px solid color-mix(in srgb, var(--text) 22%, transparent);
+  border-radius: 50%;
+}
 .avatar-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2546,6 +2626,16 @@ a.list-link:hover {
 }
 @media (max-width: 700px) {
   .avatar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .avatar-builder-layout {
+    grid-template-columns: 1fr;
+  }
+  .avatar-builder-preview {
+    position: static;
+    min-height: 280px;
+  }
+  .avatar-builder-options {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -3562,6 +3652,20 @@ a.list-link:hover {
 .path-progress [role="progressbar"] {
   background: rgb(255 255 255 / 0.5);
 }
+.path-category-switcher {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 2px 2px 8px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+.path-category-switcher .button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  white-space: nowrap;
+}
 .open-path-note {
   display: flex;
   align-items: center;
@@ -3893,6 +3997,79 @@ a.list-link:hover {
   width: 18px;
 }
 
+.rewards-section {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+}
+.rewards-section .section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+.rewards-section .section-heading p {
+  margin: 6px 0 0;
+}
+.wallet-balance {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 9px 13px;
+  border-radius: 16px;
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+.wallet-balance svg {
+  width: 19px;
+}
+.inline-notice {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--yellow-soft);
+  color: var(--text);
+}
+.reward-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.reward-shop-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  border-bottom-width: 5px;
+}
+.reward-shop-card > .button,
+.reward-shop-card > .claimed-label {
+  grid-column: 2;
+  justify-self: start;
+}
+.reward-shop-card h3,
+.reward-shop-card p {
+  margin: 0 0 5px;
+}
+.reward-shop-card p,
+.reward-shop-card small {
+  color: var(--muted);
+}
+.reward-shop-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px 13px 17px 12px;
+  background: var(--olive-soft);
+  color: var(--olive);
+  transform: rotate(-3deg);
+}
+
 .league-hero {
   grid-template-columns: auto 1fr;
   background: #183138;
@@ -3946,6 +4123,25 @@ a.list-link:hover {
   background: var(--blue-soft);
   color: var(--blue);
 }
+.league-row.zone-promotion {
+  box-shadow: inset 4px 0 #58b947;
+}
+.league-row.zone-relegation {
+  box-shadow: inset 4px 0 #ee6c4d;
+}
+.league-featured-patch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.league-featured-patch svg {
+  width: 14px;
+  height: 14px;
+}
 .league-rank {
   display: grid;
   place-items: center;
@@ -3964,6 +4160,13 @@ a.list-link:hover {
   color: var(--olive);
   font-weight: 950;
   transform: rotate(-2deg);
+  overflow: hidden;
+}
+.league-avatar img,
+.league-avatar .custom-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .patch-board-section {
@@ -4134,6 +4337,19 @@ a.list-link:hover {
   .quest-card > .claimed-label {
     grid-column: 2;
     justify-self: start;
+  }
+  .rewards-section {
+    padding: 17px 12px;
+  }
+  .rewards-section .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .wallet-balance {
+    align-self: flex-start;
+  }
+  .reward-shop-grid {
+    grid-template-columns: 1fr;
   }
   .patch-board-section {
     padding: 17px 12px;

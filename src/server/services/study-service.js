@@ -16,7 +16,13 @@ const sessionInclude = {
     select: { id: true, slug: true, type: true, titleUk: true, titleEn: true },
   },
   lesson: {
-    select: { id: true, slug: true, titleUk: true, titleEn: true },
+    select: {
+      id: true,
+      slug: true,
+      titleUk: true,
+      titleEn: true,
+      category: { select: { slug: true } },
+    },
   },
   items: {
     orderBy: { position: "asc" },
@@ -906,6 +912,7 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
               where: { id: sessionId, userId },
               include: {
                 items: { select: { id: true, status: true } },
+                lesson: { select: { category: { select: { slug: true } } } },
                 answers: {
                   select: { isCorrect: true, awardedXp: true, attemptNumber: true },
                 },
@@ -978,6 +985,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                       longestStreak: profile.longestStreak,
                     }
                   : null,
+                returnTo: session.lesson?.category?.slug
+                  ? `/categories/${session.lesson.category.slug}`
+                  : "/learn",
                 recovered: true,
               };
             }
@@ -1130,6 +1140,9 @@ export function createStudyService(db, { clock = () => new Date() } = {}) {
                     longestStreak: profile.longestStreak,
                   }
                 : null,
+              returnTo: session.lesson?.category?.slug
+                ? `/categories/${session.lesson.category.slug}`
+                : "/learn",
             };
           }),
       )

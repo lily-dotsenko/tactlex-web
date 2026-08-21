@@ -15,9 +15,9 @@ Quiz sessions use one question per lesson term, exactly four snapshotted text ch
 
 ## Rewards and privacy
 
-Coins are an internal, non-transferable reward. Patch definitions are cosmetic and cannot modify XP. Coin grants and reward claims use unique ledger keys. A learner may feature up to three owned patches.
+Coins are an internal, non-transferable reward. Patch definitions are cosmetic and cannot modify XP. Coin grants, purchases, reward claims, and league payouts use unique ledger keys. A learner may feature up to three owned patches. The rewards inventory offers cosmetic profile frames, a 15-minute double-XP boost, and at most two streak freezes. Achievement XP is never doubled.
 
-League participation requires the existing leaderboard opt-in. League responses expose only nickname, avatar, featured cosmetic state, and XP; email is never part of league output.
+League participation requires the existing leaderboard opt-in. Weekly groups contain at most 30 learners and use server-side promotion, relegation, tie-break, payout, and first-division patch rules. League responses expose only nickname, avatar, the first featured patch, and XP; email is never part of league output.
 
 ## Main API surfaces
 
@@ -28,6 +28,9 @@ League participation requires the existing leaderboard opt-in. League responses 
 - `POST /api/v1/path-nodes/{id}/claim`
 - `GET /api/v1/quests`
 - `POST /api/v1/quests/{id}/claim`
+- `GET /api/v1/rewards`
+- `POST /api/v1/rewards/purchase`
+- `POST /api/v1/bonuses/{id}/activate`
 - `GET /api/v1/patches`
 - `PATCH /api/v1/profile/featured-patches`
 - `GET /api/v1/leagues/current`

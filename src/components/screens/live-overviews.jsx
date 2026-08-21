@@ -7,7 +7,6 @@ import {
   Award,
   BarChart3,
   BookOpen,
-  CheckCircle2,
   Flame,
   LockKeyhole,
   Medal,
@@ -23,7 +22,14 @@ import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { apiRequest } from "@/components/learning-api";
 import { PatchBoard } from "@/components/screens/game-screens";
-import { AVATARS, DEFAULT_AVATAR_KEY, avatarByKey } from "@/lib/avatars/catalog";
+import { avatarByKey } from "@/lib/avatars/catalog";
+import { CustomAvatar } from "@/components/custom-avatar";
+import {
+  AVATAR_COLORS,
+  AVATAR_CUSTOMIZATION,
+  DEFAULT_CUSTOM_AVATAR,
+  normalizeCustomAvatar,
+} from "@/lib/avatars/custom";
 import {
   Badge,
   Button,
@@ -67,9 +73,9 @@ function liveCopy(locale) {
         profile: "Профіль",
         profileLead: "Приватні поля не відображаються іншим користувачам.",
         notShared: "Не публікується",
-        avatarTitle: "Оберіть тактичний аватар",
+        avatarTitle: "Створіть свій аватар",
         avatarLead:
-          "Усі персонажі доступні одразу; мініаватар також видно в рейтингу, якщо ви ввімкнули участь.",
+          "Налаштуйте зовнішність, одяг та екіпірування. Мініаватар також буде видно в рейтингу, якщо ви ввімкнули участь.",
         avatarSave: "Зберегти аватар",
         avatarSaving: "Зберігаємо…",
         avatarSaved: "Аватар збережено.",
@@ -102,13 +108,238 @@ function liveCopy(locale) {
         profile: "Profile",
         profileLead: "Private fields are not shown to other learners.",
         notShared: "Not public",
-        avatarTitle: "Choose a tactical avatar",
+        avatarTitle: "Create your avatar",
         avatarLead:
-          "Every character is available immediately; the mini avatar also appears when you opt into rankings.",
+          "Customize appearance, clothing, and equipment. The mini avatar also appears when you opt into rankings.",
         avatarSave: "Save avatar",
         avatarSaving: "Saving…",
         avatarSaved: "Avatar saved.",
       };
+}
+
+const avatarBuilderCopy = {
+  uk: {
+    gender: ["Стать", { neutral: "Нейтральна", woman: "Жіноча", man: "Чоловіча" }],
+    skin: [
+      "Колір шкіри",
+      {
+        porcelain: "Світлий",
+        peach: "Персиковий",
+        sand: "Пісочний",
+        amber: "Бурштиновий",
+        copper: "Мідний",
+        umber: "Темний",
+      },
+    ],
+    head: ["Форма голови", { oval: "Овальна", round: "Кругла", angular: "Кутаста" }],
+    hair: [
+      "Зачіска",
+      {
+        none: "Без волосся",
+        crop: "Коротка",
+        fade: "Фейд",
+        side: "Набік",
+        bob: "Каре",
+        braid: "Коса",
+        bun: "Пучок",
+        forelock: "Оселедець",
+      },
+    ],
+    hairColor: [
+      "Колір волосся",
+      {
+        black: "Чорний",
+        brown: "Каштановий",
+        auburn: "Рудий",
+        blond: "Світлий",
+        silver: "Сивий",
+        blue: "Синій",
+      },
+    ],
+    facialHair: [
+      "Борода й вуса",
+      {
+        none: "Немає",
+        stubble: "Щетина",
+        moustache: "Вуса",
+        goatee: "Еспаньйолка",
+        beard: "Борода",
+      },
+    ],
+    torso: [
+      "Одяг",
+      {
+        "field-shirt": "Польова сорочка",
+        hoodie: "Худі",
+        jacket: "Куртка",
+        "cossack-shirt": "Козацька сорочка",
+        "medic-shirt": "Сорочка медика",
+        "flight-suit": "Льотний комбінезон",
+      },
+    ],
+    equipment: [
+      "Екіпірування",
+      {
+        none: "Без екіпірування",
+        vest: "Жилет",
+        "chest-rig": "Нагрудник",
+        scarf: "Шарф",
+        "shoulder-strap": "Плечовий ремінь",
+        "medic-pouch": "Медична сумка",
+      },
+    ],
+    accessory: [
+      "Тактичні аксесуари",
+      {
+        none: "Немає",
+        headset: "Гарнітура",
+        glasses: "Окуляри",
+        goggles: "Захисні окуляри",
+        cap: "Кепка",
+        helmet: "Шолом",
+        bandana: "Бандана",
+        earpiece: "Навушник",
+      },
+    ],
+  },
+  en: {
+    gender: ["Gender", { neutral: "Neutral", woman: "Woman", man: "Man" }],
+    skin: [
+      "Skin tone",
+      {
+        porcelain: "Porcelain",
+        peach: "Peach",
+        sand: "Sand",
+        amber: "Amber",
+        copper: "Copper",
+        umber: "Umber",
+      },
+    ],
+    head: ["Head shape", { oval: "Oval", round: "Round", angular: "Angular" }],
+    hair: [
+      "Hairstyle",
+      {
+        none: "None",
+        crop: "Crop",
+        fade: "Fade",
+        side: "Side",
+        bob: "Bob",
+        braid: "Braid",
+        bun: "Bun",
+        forelock: "Forelock",
+      },
+    ],
+    hairColor: [
+      "Hair color",
+      {
+        black: "Black",
+        brown: "Brown",
+        auburn: "Auburn",
+        blond: "Blond",
+        silver: "Silver",
+        blue: "Blue",
+      },
+    ],
+    facialHair: [
+      "Facial hair",
+      {
+        none: "None",
+        stubble: "Stubble",
+        moustache: "Moustache",
+        goatee: "Goatee",
+        beard: "Beard",
+      },
+    ],
+    torso: [
+      "Clothing",
+      {
+        "field-shirt": "Field shirt",
+        hoodie: "Hoodie",
+        jacket: "Jacket",
+        "cossack-shirt": "Cossack shirt",
+        "medic-shirt": "Medic shirt",
+        "flight-suit": "Flight suit",
+      },
+    ],
+    equipment: [
+      "Equipment",
+      {
+        none: "None",
+        vest: "Vest",
+        "chest-rig": "Chest rig",
+        scarf: "Scarf",
+        "shoulder-strap": "Shoulder strap",
+        "medic-pouch": "Medic pouch",
+      },
+    ],
+    accessory: [
+      "Tactical accessories",
+      {
+        none: "None",
+        headset: "Headset",
+        glasses: "Glasses",
+        goggles: "Goggles",
+        cap: "Cap",
+        helmet: "Helmet",
+        bandana: "Bandana",
+        earpiece: "Earpiece",
+      },
+    ],
+  },
+};
+
+function AvatarBuilder({ value, onChange, locale }) {
+  const groups = [
+    "gender",
+    "skin",
+    "head",
+    "hair",
+    "hairColor",
+    "facialHair",
+    "torso",
+    "equipment",
+    "accessory",
+  ];
+  return (
+    <div className="avatar-builder-controls">
+      {groups.map((group) => {
+        const [label, labels] = avatarBuilderCopy[locale][group];
+        return (
+          <fieldset className="avatar-builder-group" key={group}>
+            <legend>{label}</legend>
+            <div className="avatar-builder-options">
+              {AVATAR_CUSTOMIZATION[group].map((option) => {
+                const color =
+                  group === "skin"
+                    ? AVATAR_COLORS.skin[option]
+                    : group === "hairColor"
+                      ? AVATAR_COLORS.hair[option]
+                      : null;
+                return (
+                  <button
+                    type="button"
+                    className={value[group] === option ? "is-selected" : ""}
+                    aria-pressed={value[group] === option}
+                    key={option}
+                    onClick={() => onChange({ ...value, [group]: option })}
+                  >
+                    {color ? (
+                      <span
+                        className="avatar-color-swatch"
+                        style={{ backgroundColor: color }}
+                        aria-hidden="true"
+                      />
+                    ) : null}
+                    <span>{labels[option]}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
+        );
+      })}
+    </div>
+  );
 }
 
 function useApi(path) {
@@ -450,13 +681,21 @@ export function LiveLeaderboardScreen() {
                   >
                     <td>#{entry.rank}</td>
                     <td>
-                      <Image
-                        className="table-avatar table-avatar-image"
-                        src={avatarByKey(entry.avatarKey).src}
-                        alt=""
-                        width={34}
-                        height={34}
-                      />
+                      {entry.avatarConfig ? (
+                        <CustomAvatar
+                          config={entry.avatarConfig}
+                          size={34}
+                          className="table-avatar"
+                        />
+                      ) : (
+                        <Image
+                          className="table-avatar table-avatar-image"
+                          src={avatarByKey(entry.avatarKey).src}
+                          alt=""
+                          width={34}
+                          height={34}
+                        />
+                      )}
                       <strong>{entry.nickname}</strong>
                       {entry.isCurrentUser && <Badge tone="blue">{t("you")}</Badge>}
                     </td>
@@ -488,8 +727,9 @@ export function LiveProfileScreen() {
   const [avatarStatus, setAvatarStatus] = useState("idle");
   const [avatarError, setAvatarError] = useState("");
 
-  const avatarKey = avatarOverride ?? user?.profile?.avatarKey ?? DEFAULT_AVATAR_KEY;
-  const avatar = avatarByKey(avatarKey);
+  const avatarConfig = normalizeCustomAvatar(
+    avatarOverride ?? user?.profile?.avatarConfig ?? DEFAULT_CUSTOM_AVATAR,
+  );
 
   async function saveAvatar() {
     setAvatarStatus("saving");
@@ -497,7 +737,7 @@ export function LiveProfileScreen() {
     try {
       await apiRequest("/profile", {
         method: "PATCH",
-        body: JSON.stringify({ avatarKey }),
+        body: JSON.stringify({ avatarConfig }),
       });
       setAvatarStatus("saved");
       router.refresh();
@@ -513,13 +753,7 @@ export function LiveProfileScreen() {
       {state.status === "ready" && user && (
         <>
           <Card className="profile-hero">
-            <Image
-              className="profile-avatar profile-avatar-image"
-              src={avatar.src}
-              alt=""
-              width={78}
-              height={78}
-            />
+            <CustomAvatar config={avatarConfig} size={78} className="profile-avatar" />
             <div>
               <p className="eyebrow">{copy.profile}</p>
               <h1>{nickname || copy.notShared}</h1>
@@ -532,33 +766,22 @@ export function LiveProfileScreen() {
           <Card className="avatar-picker-card">
             <SectionHeading title={copy.avatarTitle} />
             <p>{copy.avatarLead}</p>
-            <div className="avatar-grid" role="radiogroup" aria-label={copy.avatarTitle}>
-              {AVATARS.map((item) => {
-                const selected = avatarKey === item.key;
-                const name = locale === "uk" ? item.nameUk : item.nameEn;
-                return (
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={selected}
-                    className={selected ? "avatar-option is-selected" : "avatar-option"}
-                    key={item.key}
-                    onClick={() => {
-                      setAvatarOverride(item.key);
-                      setAvatarStatus("idle");
-                    }}
-                  >
-                    <Image
-                      src={item.src}
-                      alt={locale === "uk" ? item.altUk : item.altEn}
-                      width={72}
-                      height={72}
-                    />
-                    <span>{name}</span>
-                    {selected ? <CheckCircle2 size={18} aria-hidden="true" /> : null}
-                  </button>
-                );
-              })}
+            <div className="avatar-builder-layout">
+              <div className="avatar-builder-preview" aria-live="polite">
+                <CustomAvatar
+                  config={avatarConfig}
+                  size={260}
+                  title={locale === "uk" ? "Попередній перегляд аватара" : "Avatar preview"}
+                />
+              </div>
+              <AvatarBuilder
+                value={avatarConfig}
+                locale={locale}
+                onChange={(next) => {
+                  setAvatarOverride(next);
+                  setAvatarStatus("idle");
+                }}
+              />
             </div>
             {avatarError ? (
               <div className="form-alert" role="alert">

@@ -12,14 +12,19 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
   const playbackTokenRef = useRef(0);
   const startTimerRef = useRef(null);
   const watchdogRef = useRef(null);
+  const humanFallbackRef = useRef(null);
   const [state, setState] = useState("idle");
   const [mode, setMode] = useState(audioUrl ? "human" : "synthetic");
 
   useEffect(() => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.getVoices();
+    }
     return () => {
       playbackTokenRef.current += 1;
       window.clearTimeout(startTimerRef.current);
       window.clearTimeout(watchdogRef.current);
+      window.clearTimeout(humanFallbackRef.current);
       audioRef.current?.pause();
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -31,6 +36,7 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
     playbackTokenRef.current += 1;
     window.clearTimeout(startTimerRef.current);
     window.clearTimeout(watchdogRef.current);
+    window.clearTimeout(humanFallbackRef.current);
     audioRef.current?.pause();
     audioRef.current = null;
     utteranceRef.current = null;
@@ -48,7 +54,7 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
     const token = playbackTokenRef.current;
     const utterance = new SpeechSynthesisUtterance(term);
     utterance.lang = lang;
-    utterance.rate = 0.92;
+    utterance.rate = 1;
     const voices = synthesis.getVoices();
     const requestedLanguage = lang.toLowerCase();
     const voice =
@@ -74,8 +80,8 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
     setMode("synthetic");
     setState("loading");
 
-    // Chromium occasionally leaves a cancelled utterance in its queue. A short
-    // delay flushes it before the next phrase and prevents silent/hanging audio.
+    // Give Chromium one event-loop tick to flush a cancelled utterance without
+    // making the learner wait perceptibly for speech to start.
     startTimerRef.current = window.setTimeout(() => {
       if (playbackTokenRef.current !== token) return;
       synthesis.cancel();
@@ -87,7 +93,7 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
         utteranceRef.current = null;
         setState("idle");
       }, 15_000);
-    }, 40);
+    }, 10);
   }
 
   async function play() {
@@ -104,13 +110,27 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
     try {
       setState("loading");
       const audio = new Audio(audioUrl);
+      audio.preload = "auto";
       audioRef.current = audio;
-      audio.onplay = () => setState("playing");
+      audio.onplay = () => {
+        window.clearTimeout(humanFallbackRef.current);
+        setState("playing");
+      };
       audio.onended = () => {
         audioRef.current = null;
         setState("idle");
       };
-      audio.onerror = speakWithTts;
+      const fallbackToTts = () => {
+        window.clearTimeout(humanFallbackRef.current);
+        audio.onerror = null;
+        audio.pause();
+        if (audioRef.current === audio) audioRef.current = null;
+        speakWithTts();
+      };
+      audio.onerror = fallbackToTts;
+      humanFallbackRef.current = window.setTimeout(() => {
+        if (audioRef.current === audio && audio.paused) fallbackToTts();
+      }, 900);
       await audio.play();
       setMode("human");
     } catch {

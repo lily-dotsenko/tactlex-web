@@ -127,7 +127,9 @@ export function createProgressService(db) {
       orderBy: [{ xp: "desc" }, { updatedAt: "asc" }],
       take: limit,
       include: {
-        user: { select: { profile: { select: { nickname: true, avatarKey: true } } } },
+        user: {
+          select: { profile: { select: { nickname: true, avatarKey: true, avatarConfig: true } } },
+        },
       },
     });
     const currentEntry = currentUserId
@@ -137,7 +139,12 @@ export function createProgressService(db) {
             user: {
               select: {
                 profile: {
-                  select: { nickname: true, avatarKey: true, leaderboardVisible: true },
+                  select: {
+                    nickname: true,
+                    avatarKey: true,
+                    avatarConfig: true,
+                    leaderboardVisible: true,
+                  },
                 },
               },
             },
@@ -156,6 +163,7 @@ export function createProgressService(db) {
         rank: index + 1,
         nickname: entry.user.profile?.nickname ?? "—",
         avatarKey: entry.user.profile?.avatarKey ?? null,
+        avatarConfig: entry.user.profile?.avatarConfig ?? null,
         xp: entry.xp,
         isCurrentUser: entry.userId === currentUserId,
       })),
@@ -164,6 +172,7 @@ export function createProgressService(db) {
           ? {
               nickname: currentEntry.user.profile.nickname,
               avatarKey: currentEntry.user.profile.avatarKey,
+              avatarConfig: currentEntry.user.profile.avatarConfig,
               xp: currentEntry.xp,
             }
           : null,

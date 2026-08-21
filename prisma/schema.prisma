@@ -332,6 +332,8 @@ model User {
   bonuses              UserBonus[]
   patches              UserPatch[]
   featuredPatches      UserFeaturedPatch[]
+  cosmetics            UserCosmetic[]
+  leagueMemberships    LeagueMembership[]
 
   @@map("users")
 }
@@ -345,6 +347,7 @@ model UserProfile {
   dailyGoalXp        Int            @default(20) @map("daily_goal_xp")
   leaderboardVisible Boolean        @default(false) @map("leaderboard_visible")
   avatarKey          String         @default("atlas-olive") @map("avatar_key") @db.VarChar(40)
+  avatarConfig       Json?          @map("avatar_config") @db.JsonB
   totalXp            Int            @default(0) @map("total_xp")
   level              Int            @default(1)
   currentStreak      Int            @default(0) @map("current_streak")
@@ -1239,6 +1242,39 @@ model UserFeaturedPatch {
   @@map("user_featured_patches")
 }
 
+model CosmeticItem {
+  id            String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code          String         @unique @db.VarChar(100)
+  type          String         @db.VarChar(40)
+  titleUk       String         @map("title_uk") @db.VarChar(180)
+  titleEn       String         @map("title_en") @db.VarChar(180)
+  descriptionUk String         @map("description_uk") @db.Text
+  descriptionEn String         @map("description_en") @db.Text
+  priceCoins    Int            @map("price_coins")
+  metadata      Json?          @db.JsonB
+  isActive      Boolean        @default(true) @map("is_active")
+  displayOrder  Int            @default(0) @map("display_order")
+  createdAt     DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt     DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+  owners        UserCosmetic[]
+
+  @@index([type, isActive, displayOrder])
+  @@map("cosmetic_items")
+}
+
+model UserCosmetic {
+  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String       @map("user_id") @db.Uuid
+  cosmeticId String       @map("cosmetic_id") @db.Uuid
+  acquiredAt DateTime     @default(now()) @map("acquired_at") @db.Timestamptz(3)
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cosmetic   CosmeticItem @relation(fields: [cosmeticId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, cosmeticId])
+  @@index([cosmeticId])
+  @@map("user_cosmetics")
+}
+
 model XpTransaction {
   id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId        String   @map("user_id") @db.Uuid
@@ -1284,6 +1320,52 @@ model LeaderboardEntry {
   @@index([periodId, xp(sort: Desc)])
   @@index([userId])
   @@map("leaderboard_entries")
+}
+
+model LeagueSeason {
+  id          String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug        String             @unique @db.VarChar(80)
+  startsAt    DateTime           @map("starts_at") @db.Timestamptz(3)
+  endsAt      DateTime           @map("ends_at") @db.Timestamptz(3)
+  finalizedAt DateTime?          @map("finalized_at") @db.Timestamptz(3)
+  createdAt   DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+  groups      LeagueGroup[]
+  memberships LeagueMembership[]
+
+  @@index([startsAt, endsAt])
+  @@map("league_seasons")
+}
+
+model LeagueGroup {
+  id          String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seasonId    String             @map("season_id") @db.Uuid
+  division    LeagueDivision
+  groupNumber Int                @map("group_number")
+  createdAt   DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+  season      LeagueSeason       @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  members     LeagueMembership[]
+
+  @@unique([seasonId, division, groupNumber])
+  @@index([seasonId, division])
+  @@map("league_groups")
+}
+
+model LeagueMembership {
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seasonId    String       @map("season_id") @db.Uuid
+  groupId     String       @map("group_id") @db.Uuid
+  userId      String       @map("user_id") @db.Uuid
+  weeklyXp    Int          @default(0) @map("weekly_xp")
+  reachedAt   DateTime     @default(now()) @map("reached_at") @db.Timestamptz(3)
+  finalizedAt DateTime?    @map("finalized_at") @db.Timestamptz(3)
+  season      LeagueSeason @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  group       LeagueGroup  @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([seasonId, userId])
+  @@index([groupId, weeklyXp(sort: Desc), reachedAt])
+  @@index([userId, seasonId])
+  @@map("league_memberships")
 }
 
 model TermReport {

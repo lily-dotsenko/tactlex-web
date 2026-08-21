@@ -32,6 +32,7 @@ import { Link, useRouter } from "@/lib/i18n/navigation";
 import { Brand } from "./brand";
 import { IconButton } from "./ui";
 import { avatarByKey } from "@/lib/avatars/catalog";
+import { CustomAvatar } from "@/components/custom-avatar";
 
 export const primaryNav = [
   { href: "/dashboard", label: "home", icon: Home },
@@ -153,7 +154,11 @@ export function UserSidebar({ user }) {
         ) : null}
       </nav>
       <div className="sidebar-profile">
-        <Image className="avatar avatar-image" src={avatar.src} alt="" width={38} height={38} />
+        {user?.avatarConfig ? (
+          <CustomAvatar config={user.avatarConfig} size={38} className="avatar" />
+        ) : (
+          <Image className="avatar avatar-image" src={avatar.src} alt="" width={38} height={38} />
+        )}
         <span>
           <strong>{nickname}</strong>
           <small>{totalXp} XP</small>

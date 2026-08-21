@@ -253,6 +253,40 @@ const questDefinitions = [
   displayOrder: displayOrder + 1,
 }));
 
+const cosmeticDefinitions = [
+  ["frame-olive", "FRAME", "Оливкова рамка", "Olive frame", 80, "#637d42"],
+  ["frame-sky", "FRAME", "Небесна рамка", "Sky frame", 100, "#1cb4d4"],
+  ["frame-sun", "FRAME", "Сонячна рамка", "Sun frame", 120, "#f1bd22"],
+  ["frame-violet", "FRAME", "Фіолетова рамка", "Violet frame", 140, "#8d429e"],
+  ["frame-coral", "FRAME", "Коралова рамка", "Coral frame", 160, "#ee6c4d"],
+  [
+    "frame-monthly-route",
+    "FRAME",
+    "Рамка місячного маршруту",
+    "Monthly route frame",
+    0,
+    "#58b947",
+    false,
+  ],
+].map(([code, type, titleUk, titleEn, priceCoins, color, isActive = true], displayOrder) => ({
+  code,
+  type,
+  titleUk,
+  titleEn,
+  descriptionUk:
+    type === "FRAME"
+      ? "Косметична рамка профілю без впливу на навчальний прогрес."
+      : "Косметичний аватар Моркви без впливу на навчальний прогрес.",
+  descriptionEn:
+    type === "FRAME"
+      ? "A cosmetic profile frame with no effect on learning progress."
+      : "A cosmetic Morkva avatar with no effect on learning progress.",
+  priceCoins,
+  metadata: type === "FRAME" ? { color } : { variant: color },
+  isActive,
+  displayOrder: displayOrder + 1,
+}));
+
 function currentIsoWeek(now = new Date()) {
   const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   const day = date.getUTCDay() || 7;
@@ -349,6 +383,13 @@ async function seed() {
         where: { code: quest.code },
         update: quest,
         create: quest,
+      });
+    }
+    for (const cosmetic of cosmeticDefinitions) {
+      await db.cosmeticItem.upsert({
+        where: { code: cosmetic.code },
+        update: cosmetic,
+        create: cosmetic,
       });
     }
 

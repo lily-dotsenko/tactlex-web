@@ -26,8 +26,10 @@ import {
 } from "lucide-react";
 import clsx from "clsx";
 
+import { CustomAvatar } from "@/components/custom-avatar";
 import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
 import { Button, ButtonLink, Card, EmptyState, ProgressBar } from "@/components/ui";
+import { avatarByKey } from "@/lib/avatars/catalog";
 import { useRouter } from "@/lib/i18n/navigation";
 
 const nodeIcons = {
@@ -75,6 +77,12 @@ function copy(locale) {
         saveFeatured: "Зберегти закріплені",
         earned: "Отримано",
         lockedReward: "Нагорода стане доступною після виконання умови.",
+        rewards: "Арсенал бонусів",
+        rewardsLead: "Обмінюйте зароблені жетони на бонуси й косметичні рамки.",
+        buy: "Придбати",
+        activate: "Активувати",
+        owned: "У колекції",
+        inventory: "В інвентарі",
       }
     : {
         path: "Open learning path",
@@ -102,6 +110,12 @@ function copy(locale) {
         saveFeatured: "Save featured patches",
         earned: "Earned",
         lockedReward: "Complete the requirement to claim this reward.",
+        rewards: "Bonus inventory",
+        rewardsLead: "Exchange earned coins for boosts and cosmetic profile frames.",
+        buy: "Buy",
+        activate: "Activate",
+        owned: "Owned",
+        inventory: "In inventory",
       };
 }
 
@@ -159,6 +173,7 @@ export function LearningPathScreen({ categorySlug }) {
   const router = useRouter();
   const words = copy(locale);
   const [state, setState] = useState({ loading: true, path: null, error: "" });
+  const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState(null);
   const [busy, setBusy] = useState(false);
   const recommendedRef = useRef(null);
@@ -176,8 +191,15 @@ export function LearningPathScreen({ categorySlug }) {
 
   useEffect(() => {
     let active = true;
-    apiRequest(`/categories/${encodeURIComponent(categorySlug)}/path?locale=${locale}`)
-      .then((path) => active && setState({ loading: false, path, error: "" }))
+    Promise.all([
+      apiRequest(`/categories/${encodeURIComponent(categorySlug)}/path?locale=${locale}`),
+      apiRequest(`/learning-overview?locale=${locale}`),
+    ])
+      .then(([path, overview]) => {
+        if (!active) return;
+        setCategories(overview.categories ?? []);
+        setState({ loading: false, path, error: "" });
+      })
       .catch((error) => active && setState({ loading: false, path: null, error: error.message }));
     return () => {
       active = false;
@@ -264,6 +286,23 @@ export function LearningPathScreen({ categorySlug }) {
           />
         </div>
       </header>
+      <nav
+        className="path-category-switcher"
+        aria-label={locale === "uk" ? "Категорії навчання" : "Learning categories"}
+      >
+        {categories.map((category) => (
+          <ButtonLink
+            href={`/categories/${category.slug}`}
+            variant={category.slug === categorySlug ? "primary" : "ghost"}
+            size="small"
+            className={category.slug === categorySlug ? "is-current" : undefined}
+            aria-current={category.slug === categorySlug ? "page" : undefined}
+            key={category.id}
+          >
+            {category.name}
+          </ButtonLink>
+        ))}
+      </nav>
       <div className="open-path-note">
         <Sparkles /> {words.allOpen}
       </div>
@@ -454,7 +493,134 @@ export function QuestsScreen() {
           </div>
         </section>
       ))}
+      <RewardsPanel />
     </div>
+  );
+}
+
+function RewardsPanel() {
+  const locale = useLocale();
+  const words = copy(locale);
+  const [data, setData] = useState(null);
+  const [busy, setBusy] = useState("");
+  const [message, setMessage] = useState("");
+
+  async function load() {
+    try {
+      setData(await apiRequest(`/rewards?locale=${locale}`));
+    } catch (error) {
+      setMessage(error.message);
+    }
+  }
+
+  useEffect(() => {
+    let active = true;
+    apiRequest(`/rewards?locale=${locale}`)
+      .then((value) => active && setData(value))
+      .catch((error) => active && setMessage(error.message));
+    return () => {
+      active = false;
+    };
+  }, [locale]);
+
+  async function purchase(productCode) {
+    setBusy(productCode);
+    setMessage("");
+    try {
+      await apiRequest("/rewards/purchase", {
+        method: "POST",
+        headers: { "Idempotency-Key": createIdempotencyKey() },
+        body: JSON.stringify({ productCode }),
+      });
+      await load();
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setBusy("");
+    }
+  }
+
+  async function activate(bonusId) {
+    setBusy(bonusId);
+    setMessage("");
+    try {
+      await apiRequest(`/bonuses/${encodeURIComponent(bonusId)}/activate`, { method: "POST" });
+      await load();
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setBusy("");
+    }
+  }
+
+  const doubleXp = data?.bonuses.find((bonus) => bonus.type === "DOUBLE_XP_15M");
+  return (
+    <section className="rewards-section">
+      <div className="section-heading">
+        <div>
+          <h2>{words.rewards}</h2>
+          <p>{words.rewardsLead}</p>
+        </div>
+        <strong className="wallet-balance">
+          <Gem aria-hidden="true" /> {data?.coins ?? 0}
+        </strong>
+      </div>
+      {message ? (
+        <p className="inline-notice" role="status">
+          {message}
+        </p>
+      ) : null}
+      <div className="reward-shop-grid">
+        {data?.products.map((product) => {
+          const isCosmetic = product.type !== "BONUS";
+          const owned = Number(product.owned ?? 0);
+          const activatable = product.code === "double-xp-15m" && owned > 0;
+          return (
+            <Card className="reward-shop-card" key={product.code}>
+              <span className="reward-shop-icon">
+                {isCosmetic ? (
+                  <Sparkles />
+                ) : product.code === "streak-freeze" ? (
+                  <ShieldCheck />
+                ) : (
+                  <Zap />
+                )}
+              </span>
+              <div>
+                <h3>{product.title}</h3>
+                {product.description ? <p>{product.description}</p> : null}
+                <small>
+                  {owned > 0
+                    ? `${isCosmetic ? words.owned : words.inventory}: ${owned}`
+                    : `${product.priceCoins} ${locale === "uk" ? "жетонів" : "coins"}`}
+                </small>
+              </div>
+              {activatable ? (
+                <Button
+                  size="small"
+                  onClick={() => activate(doubleXp.id)}
+                  disabled={Boolean(busy) || Boolean(doubleXp.activeUntil)}
+                >
+                  {doubleXp.activeUntil ? "×2 active" : words.activate}
+                </Button>
+              ) : isCosmetic && owned ? (
+                <span className="claimed-label">
+                  <Check /> {words.owned}
+                </span>
+              ) : (
+                <Button
+                  size="small"
+                  onClick={() => purchase(product.code)}
+                  disabled={Boolean(busy)}
+                >
+                  {words.buy} · {product.priceCoins}
+                </Button>
+              )}
+            </Card>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -491,12 +657,32 @@ export function LeagueScreen() {
       <Card className="league-board">
         {data?.entries?.map((entry) => (
           <div
-            className={clsx("league-row", entry.isCurrentUser && "is-current")}
+            className={clsx(
+              "league-row",
+              entry.isCurrentUser && "is-current",
+              entry.zone && `zone-${entry.zone.toLowerCase()}`,
+            )}
             key={`${entry.rank}-${entry.nickname}`}
           >
             <span className="league-rank">{entry.rank <= 3 ? <Medal /> : entry.rank}</span>
-            <span className="league-avatar">{entry.nickname.slice(0, 1).toUpperCase()}</span>
-            <strong>{entry.nickname}</strong>
+            <span className="league-avatar">
+              {entry.avatarConfig ? (
+                <CustomAvatar config={entry.avatarConfig} size={42} />
+              ) : entry.avatarKey ? (
+                <Image src={avatarByKey(entry.avatarKey).src} alt="" width={42} height={42} />
+              ) : (
+                entry.nickname.slice(0, 1).toUpperCase()
+              )}
+            </span>
+            <strong>
+              {entry.nickname}
+              {entry.featuredPatch ? (
+                <small className="league-featured-patch">
+                  <Award />
+                  {locale === "uk" ? entry.featuredPatch.titleUk : entry.featuredPatch.titleEn}
+                </small>
+              ) : null}
+            </strong>
             <span>{entry.xp} XP</span>
           </div>
         ))}

@@ -1,21 +1,26 @@
-import { startOfDay, startOfMonth, startOfWeek } from "date-fns";
-
 import { conflict, notFound } from "@/server/services/errors";
+import { getLocalActivityDate } from "@/server/services/gamification-service";
 import { runSerializable } from "@/server/services/study-service";
 
-function periodStart(period, now) {
-  if (period === "MONTHLY") return startOfMonth(now);
-  if (period === "WEEKLY") return startOfWeek(now, { weekStartsOn: 1 });
-  return startOfDay(now);
+function periodStart(period, now, timezone = "Europe/Kyiv") {
+  const localDay = getLocalActivityDate(now, timezone);
+  if (period === "MONTHLY") {
+    return new Date(Date.UTC(localDay.getUTCFullYear(), localDay.getUTCMonth(), 1));
+  }
+  if (period === "WEEKLY") {
+    const mondayOffset = (localDay.getUTCDay() || 7) - 1;
+    return new Date(localDay.getTime() - mondayOffset * 86_400_000);
+  }
+  return localDay;
 }
 
-function periodKey(period, now) {
-  const start = periodStart(period, now);
+function periodKey(period, now, timezone) {
+  const start = periodStart(period, now, timezone);
   return `${period.toLowerCase()}:${start.toISOString().slice(0, 10)}`;
 }
 
-async function metricValue(db, userId, definition, now) {
-  const start = periodStart(definition.period, now);
+async function metricValue(db, userId, definition, now, timezone) {
+  const start = periodStart(definition.period, now, timezone);
   if (definition.metric === "NODES_COMPLETED" || definition.metric === "QUIZZES_COMPLETED") {
     return db.userLearningNodeProgress.count({
       where: {
@@ -62,12 +67,23 @@ async function creditQuestCoins(transaction, userId, questId, periodKeyValue, am
   return amount;
 }
 
+async function awardPatch(transaction, userId, code, triggerType, triggerId) {
+  const patch = await transaction.patchDefinition.findUnique({ where: { code } });
+  if (!patch) return null;
+  await transaction.userPatch.upsert({
+    where: { userId_patchId: { userId, patchId: patch.id } },
+    create: { userId, patchId: patch.id, triggerType, triggerId },
+    update: {},
+  });
+  return patch;
+}
+
 export function createGameService(db, { clock = () => new Date() } = {}) {
   async function getStatus(userId) {
     const now = clock();
-    const today = startOfDay(now);
-    const [profile, wallet, activity, bonuses] = await Promise.all([
-      db.userProfile.findUnique({ where: { userId } }),
+    const profile = await db.userProfile.findUnique({ where: { userId } });
+    const today = getLocalActivityDate(now, profile?.timezone ?? "Europe/Kyiv");
+    const [wallet, activity, bonuses] = await Promise.all([
       db.userWallet.upsert({ where: { userId }, create: { userId }, update: {} }),
       db.userDailyActivity.findUnique({
         where: { userId_activityDate: { userId, activityDate: today } },
@@ -90,14 +106,18 @@ export function createGameService(db, { clock = () => new Date() } = {}) {
 
   async function getQuests(userId, { locale = "uk" } = {}) {
     const now = clock();
-    const definitions = await db.questDefinition.findMany({
-      where: { isActive: true },
-      orderBy: [{ period: "asc" }, { displayOrder: "asc" }],
-    });
+    const [definitions, profile] = await Promise.all([
+      db.questDefinition.findMany({
+        where: { isActive: true },
+        orderBy: [{ period: "asc" }, { displayOrder: "asc" }],
+      }),
+      db.userProfile.findUnique({ where: { userId }, select: { timezone: true } }),
+    ]);
+    const timezone = profile?.timezone ?? "Europe/Kyiv";
     const result = [];
     for (const quest of definitions) {
-      const key = periodKey(quest.period, now);
-      const current = await metricValue(db, userId, quest, now);
+      const key = periodKey(quest.period, now, timezone);
+      const current = await metricValue(db, userId, quest, now, timezone);
       const status = current >= quest.threshold ? "COMPLETED" : "ACTIVE";
       const progress = await db.userQuestProgress.upsert({
         where: { userId_questId_periodKey: { userId, questId: quest.id, periodKey: key } },
@@ -138,8 +158,13 @@ export function createGameService(db, { clock = () => new Date() } = {}) {
         where: { id: questId, isActive: true },
       });
       if (!quest) throw notFound("Квест не знайдено.");
-      const key = periodKey(quest.period, now);
-      const current = await metricValue(transaction, userId, quest, now);
+      const profile = await transaction.userProfile.findUnique({
+        where: { userId },
+        select: { timezone: true },
+      });
+      const timezone = profile?.timezone ?? "Europe/Kyiv";
+      const key = periodKey(quest.period, now, timezone);
+      const current = await metricValue(transaction, userId, quest, now, timezone);
       if (current < quest.threshold) throw conflict("QUEST_NOT_COMPLETE", "Квест ще не виконано.");
       const progress = await transaction.userQuestProgress.upsert({
         where: { userId_questId_periodKey: { userId, questId, periodKey: key } },
@@ -165,7 +190,195 @@ export function createGameService(db, { clock = () => new Date() } = {}) {
           update: { quantity: { increment: 1 } },
         });
       }
-      return { claimed: true, coinsAwarded, bonus: quest.rewardBonus };
+      const periodQuests = await transaction.questDefinition.findMany({
+        where: { period: quest.period, isActive: true },
+        select: { id: true },
+      });
+      const claimedInPeriod = await transaction.userQuestProgress.count({
+        where: {
+          userId,
+          periodKey: key,
+          questId: { in: periodQuests.map(({ id }) => id) },
+          claimedAt: { not: null },
+        },
+      });
+      let bundle = null;
+      if (claimedInPeriod === periodQuests.length) {
+        const patchCode =
+          quest.period === "DAILY"
+            ? "daily-watch"
+            : quest.period === "WEEKLY"
+              ? "weekly-operation"
+              : "monthly-route";
+        await awardPatch(transaction, userId, patchCode, "QUEST_BUNDLE", key);
+        if (quest.period === "DAILY") {
+          await transaction.userBonus.upsert({
+            where: { userId_type: { userId, type: "DOUBLE_XP_15M" } },
+            create: { userId, type: "DOUBLE_XP_15M", quantity: 1 },
+            update: { quantity: { increment: 1 } },
+          });
+          bundle = { bonus: "DOUBLE_XP_15M", patchCode };
+        } else if (quest.period === "WEEKLY") {
+          const bonus = await transaction.userBonus.findUnique({
+            where: { userId_type: { userId, type: "STREAK_FREEZE" } },
+          });
+          if (!bonus) {
+            await transaction.userBonus.create({
+              data: { userId, type: "STREAK_FREEZE", quantity: 1 },
+            });
+          } else if (bonus.quantity < 2) {
+            await transaction.userBonus.update({
+              where: { id: bonus.id },
+              data: { quantity: { increment: 1 } },
+            });
+          }
+          const extra = await creditQuestCoins(transaction, userId, "weekly-bundle", key, 50);
+          bundle = { coins: extra, bonus: "STREAK_FREEZE", patchCode };
+        } else {
+          const seasonalFrame = await transaction.cosmeticItem.findUnique({
+            where: { code: "frame-monthly-route" },
+          });
+          if (seasonalFrame) {
+            await transaction.userCosmetic.upsert({
+              where: { userId_cosmeticId: { userId, cosmeticId: seasonalFrame.id } },
+              create: { userId, cosmeticId: seasonalFrame.id },
+              update: {},
+            });
+          }
+          bundle = { patchCode, cosmeticCode: seasonalFrame?.code ?? null };
+        }
+      }
+      return { claimed: true, coinsAwarded, bonus: quest.rewardBonus, bundle };
+    });
+  }
+
+  async function getRewards(userId, { locale = "uk" } = {}) {
+    const [status, cosmetics, bonuses] = await Promise.all([
+      getStatus(userId),
+      db.cosmeticItem.findMany({
+        where: { OR: [{ isActive: true }, { owners: { some: { userId } } }] },
+        orderBy: { displayOrder: "asc" },
+        include: { owners: { where: { userId }, take: 1 } },
+      }),
+      db.userBonus.findMany({ where: { userId } }),
+    ]);
+    return {
+      coins: status.coins,
+      products: [
+        {
+          code: "double-xp-15m",
+          type: "BONUS",
+          title: locale === "uk" ? "×2 XP на 15 хвилин" : "×2 XP for 15 minutes",
+          priceCoins: 30,
+          owned: bonuses.find(({ type }) => type === "DOUBLE_XP_15M")?.quantity ?? 0,
+        },
+        {
+          code: "streak-freeze",
+          type: "BONUS",
+          title: locale === "uk" ? "Захист серії" : "Streak freeze",
+          priceCoins: 50,
+          owned: bonuses.find(({ type }) => type === "STREAK_FREEZE")?.quantity ?? 0,
+        },
+        ...cosmetics.map((item) => ({
+          code: item.code,
+          type: item.type,
+          title: item[locale === "en" ? "titleEn" : "titleUk"],
+          description: item[locale === "en" ? "descriptionEn" : "descriptionUk"],
+          priceCoins: item.priceCoins,
+          owned: item.owners.length > 0 ? 1 : 0,
+          metadata: item.metadata,
+        })),
+      ],
+      bonuses: bonuses.map(({ id, type, quantity, activeUntil }) => ({
+        id,
+        type,
+        quantity,
+        activeUntil,
+      })),
+    };
+  }
+
+  async function purchaseReward(userId, productCode, idempotencyKey) {
+    return runSerializable(db, async (transaction) => {
+      const bonusProducts = {
+        "double-xp-15m": { type: "DOUBLE_XP_15M", price: 30 },
+        "streak-freeze": { type: "STREAK_FREEZE", price: 50 },
+      };
+      const bonusProduct = bonusProducts[productCode];
+      const cosmetic = bonusProduct
+        ? null
+        : await transaction.cosmeticItem.findFirst({
+            where: { code: productCode, isActive: true },
+          });
+      if (!bonusProduct && !cosmetic) throw notFound("Нагороду не знайдено.");
+      const price = bonusProduct?.price ?? cosmetic.priceCoins;
+      const dedupeKey = `PURCHASE:${userId}:${idempotencyKey}`;
+      const prior = await transaction.coinTransaction.findUnique({ where: { dedupeKey } });
+      if (prior) return { purchased: true, replayed: true, coinsSpent: 0 };
+      if (cosmetic) {
+        const owned = await transaction.userCosmetic.findUnique({
+          where: { userId_cosmeticId: { userId, cosmeticId: cosmetic.id } },
+        });
+        if (owned) throw conflict("COSMETIC_ALREADY_OWNED", "Цю косметичну нагороду вже отримано.");
+      }
+      if (bonusProduct?.type === "STREAK_FREEZE") {
+        const current = await transaction.userBonus.findUnique({
+          where: { userId_type: { userId, type: "STREAK_FREEZE" } },
+        });
+        if ((current?.quantity ?? 0) >= 2) {
+          throw conflict("STREAK_FREEZE_LIMIT", "Можна зберігати не більше двох захистів серії.");
+        }
+      }
+      const debited = await transaction.userWallet.updateMany({
+        where: { userId, coins: { gte: price } },
+        data: { coins: { decrement: price } },
+      });
+      if (debited.count !== 1) throw conflict("INSUFFICIENT_COINS", "Недостатньо жетонів.");
+      await transaction.coinTransaction.create({
+        data: {
+          userId,
+          amount: -price,
+          reason: "REWARD_PURCHASE",
+          sourceType: bonusProduct ? "BONUS" : "COSMETIC",
+          sourceId: productCode,
+          dedupeKey,
+        },
+      });
+      if (bonusProduct) {
+        await transaction.userBonus.upsert({
+          where: { userId_type: { userId, type: bonusProduct.type } },
+          create: { userId, type: bonusProduct.type, quantity: 1 },
+          update: { quantity: { increment: 1 } },
+        });
+      } else {
+        await transaction.userCosmetic.create({
+          data: { userId, cosmeticId: cosmetic.id },
+        });
+      }
+      return { purchased: true, productCode, coinsSpent: price };
+    });
+  }
+
+  async function activateBonus(userId, bonusId) {
+    return runSerializable(db, async (transaction) => {
+      const now = clock();
+      const bonus = await transaction.userBonus.findFirst({
+        where: { id: bonusId, userId },
+      });
+      if (!bonus) throw notFound("Бонус не знайдено.");
+      if (bonus.type !== "DOUBLE_XP_15M") {
+        throw conflict("BONUS_NOT_ACTIVATABLE", "Цей бонус застосовується автоматично.");
+      }
+      if (bonus.quantity < 1) throw conflict("BONUS_EMPTY", "Немає доступних бонусів.");
+      if (bonus.activeUntil && bonus.activeUntil > now) {
+        throw conflict("BONUS_ALREADY_ACTIVE", "Бонус ×2 XP уже активний.");
+      }
+      const activeUntil = new Date(now.getTime() + 15 * 60 * 1_000);
+      await transaction.userBonus.update({
+        where: { id: bonus.id },
+        data: { quantity: { decrement: 1 }, activeUntil },
+      });
+      return { id: bonus.id, type: bonus.type, activeUntil };
     });
   }
 
@@ -247,5 +460,14 @@ export function createGameService(db, { clock = () => new Date() } = {}) {
     return { patchIds };
   }
 
-  return { getStatus, getQuests, claimQuest, getPatches, setFeaturedPatches };
+  return {
+    getStatus,
+    getQuests,
+    claimQuest,
+    getRewards,
+    purchaseReward,
+    activateBonus,
+    getPatches,
+    setFeaturedPatches,
+  };
 }

@@ -62,6 +62,7 @@ function sessionCopy(locale) {
         audioPrompt: "Прослухайте термін і введіть український відповідник",
         summaryEyebrow: "Підсумок заняття",
         dashboard: "На головну",
+        backToCategory: "Повернутися до напряму",
         review: "Повторення",
       }
     : {
@@ -94,6 +95,7 @@ function sessionCopy(locale) {
         audioPrompt: "Listen to the term and enter its Ukrainian equivalent",
         summaryEyebrow: "Lesson summary",
         dashboard: "Dashboard",
+        backToCategory: "Back to learning path",
         review: "Review",
       };
 }
@@ -264,7 +266,7 @@ export function SessionScreen({ sessionId }) {
       if (completion?.summary) {
         window.sessionStorage.setItem(
           `tactlex-session-summary:${sessionId}`,
-          JSON.stringify(completion.summary),
+          JSON.stringify({ ...completion.summary, returnTo: completion.returnTo || "/learn" }),
         );
       }
       router.push(`/sessions/${sessionId}/result`);
@@ -573,7 +575,12 @@ export function ResultLiveScreen({ sessionId }) {
         if (session?.summary) {
           window.sessionStorage.setItem(
             `tactlex-session-summary:${sessionId}`,
-            JSON.stringify(session.summary),
+            JSON.stringify({
+              ...session.summary,
+              returnTo: session.lesson?.category?.slug
+                ? `/categories/${session.lesson.category.slug}`
+                : "/learn",
+            }),
           );
           setState({ status: "ready", summary: session.summary });
           return;
@@ -602,7 +609,7 @@ export function ResultLiveScreen({ sessionId }) {
         icon={<ShieldCheck size={31} />}
         title={copy.resultUnavailable}
         text={state.error || copy.resultUnavailableText}
-        action={<ButtonLink href="/dashboard">{copy.dashboard}</ButtonLink>}
+        action={<ButtonLink href="/learn">{copy.backToCategory}</ButtonLink>}
       />
     );
   }
@@ -654,7 +661,7 @@ export function ResultLiveScreen({ sessionId }) {
         )}
       </Card>
       <div className="result-actions">
-        <ButtonLink href="/dashboard">{copy.dashboard}</ButtonLink>
+        <ButtonLink href={summary.returnTo || "/learn"}>{copy.backToCategory}</ButtonLink>
         <ButtonLink href="/review" variant="secondary">
           {copy.review}
         </ButtonLink>

@@ -65,6 +65,24 @@ describe("auth validation", () => {
     expect(() => profileUpdateSchema.parse({ avatarKey: "not-in-the-catalog" })).toThrow();
   });
 
+  it("accepts an allowlisted custom avatar and rejects unknown parts", () => {
+    const avatarConfig = {
+      gender: "woman",
+      skin: "copper",
+      head: "round",
+      hair: "braid",
+      hairColor: "auburn",
+      facialHair: "none",
+      torso: "cossack-shirt",
+      equipment: "scarf",
+      accessory: "headset",
+    };
+    expect(profileUpdateSchema.parse({ avatarConfig })).toEqual({ avatarConfig });
+    expect(() =>
+      profileUpdateSchema.parse({ avatarConfig: { ...avatarConfig, accessory: "remote-url" } }),
+    ).toThrow();
+  });
+
   it("normalizes standalone email input", () => {
     expect(normalizeEmail("ADMIN@EXAMPLE.COM")).toBe("admin@example.com");
   });

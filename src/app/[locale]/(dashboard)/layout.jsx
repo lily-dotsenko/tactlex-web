@@ -9,6 +9,7 @@ export default async function DashboardLayout({ children, params }) {
       user={{
         nickname: principal.profile?.nickname ?? null,
         avatarKey: principal.profile?.avatarKey ?? null,
+        avatarConfig: principal.profile?.avatarConfig ?? null,
         totalXp: principal.profile?.totalXp ?? 0,
         isAdmin: principal.roles.includes("ADMIN"),
       }}
