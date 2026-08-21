@@ -1,5 +1,6 @@
 import { notFound } from "@/server/services/errors";
 import { normalizeAnswer } from "@/lib/validation/answer";
+import { cefrForDifficulty } from "@/lib/learning/cefr";
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
 
@@ -42,6 +43,7 @@ function mapTerm(term, locale) {
     ukrainian: primary("UK"),
     partOfSpeech: term.partOfSpeech.toLocaleLowerCase("en-US"),
     difficulty: term.difficulty,
+    cefrLevel: cefrForDifficulty(term.difficulty),
     origin: term.origin,
     isBeta: term.isBeta,
     status: term.status,
@@ -164,6 +166,7 @@ export function createCatalogService(db) {
         title: localize(lesson, locale, "title"),
         description: localize(lesson, locale, "description"),
         difficulty: lesson.difficulty,
+        cefrLevel: cefrForDifficulty(lesson.difficulty),
         estimatedMinutes: lesson.estimatedMinutes,
         termCount: lesson._count.terms,
       })),
@@ -241,6 +244,7 @@ export function createCatalogService(db) {
       description: localize(lesson, locale, "description"),
       category: lesson.category ? mapCategory(lesson.category, locale) : null,
       difficulty: lesson.difficulty,
+      cefrLevel: cefrForDifficulty(lesson.difficulty),
       estimatedMinutes: lesson.estimatedMinutes,
       termCount: lesson._count.terms,
     }));
@@ -270,6 +274,7 @@ export function createCatalogService(db) {
       description: localize(lesson, locale, "description"),
       category: lesson.category ? mapCategory(lesson.category, locale) : null,
       difficulty: lesson.difficulty,
+      cefrLevel: cefrForDifficulty(lesson.difficulty),
       estimatedMinutes: lesson.estimatedMinutes,
       termCount: lesson._count.terms,
       terms: lesson.terms

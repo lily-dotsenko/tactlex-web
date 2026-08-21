@@ -8,7 +8,7 @@ Every publishable term needs:
 
 - one primary EN and one primary UA variant;
 - explicitly approved synonyms, if any;
-- part of speech and difficulty;
+- part of speech, stored difficulty and its public CEFR level;
 - short definitions in both languages;
 - usage example and context note;
 - at least one category;
@@ -47,7 +47,7 @@ CSV import is bounded, validates headers and every row, reports row-level errors
 
 ## Demo content
 
-Seed records are intentionally small and labelled as demo drafts. They prove model and workflow behavior; they are not presented as a complete 200-term curriculum. Only the subject-matter expert may approve and publish them.
+The versioned release contains 300 terms in 30 lessons. Imports remain drafts; a temporary owner-authorized beta release keeps unreviewed records visibly marked and never fabricates reviewer metadata. Normal approval and publication still require a subject-matter expert.
 
 ## Reports
 

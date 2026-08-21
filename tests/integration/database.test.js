@@ -84,7 +84,7 @@ databaseSuite("PostgreSQL integration", () => {
     ]);
 
     expect(roles).toBe(2);
-    expect(categories).toBe(4);
+    expect(categories).toBe(5);
     expect(achievements).toBe(9);
     expect(allTimePeriods).toBe(1);
   });

@@ -12,6 +12,17 @@ const adminEmail = argument("admin-email") ?? process.env.CONTENT_ACTOR_EMAIL;
 if (!adminEmail) throw new Error("Use --admin-email=<existing administrator email>.");
 
 const db = new PrismaClient();
+
+function aliasVariant(locale, value) {
+  return {
+    locale,
+    kind: /^[A-Z0-9]{2,6}$/u.test(value) ? "ABBREVIATION" : "SYNONYM",
+    value,
+    isPrimary: false,
+    isAcceptedAnswer: true,
+  };
+}
+
 try {
   const actor = await db.user.findUnique({
     where: { email: adminEmail },
@@ -54,6 +65,8 @@ try {
               isPrimary: true,
               isAcceptedAnswer: true,
             },
+            ...(term.aliasesEn ?? []).map((value) => aliasVariant("EN", value)),
+            ...(term.aliasesUk ?? []).map((value) => aliasVariant("UK", value)),
           ],
           definitions: [
             {

@@ -8,6 +8,7 @@ const errors = [];
 const warnings = [];
 const keys = new Set();
 const slugs = new Set();
+const cefrByDifficulty = [null, "A1", "A2", "B1", "B2", "C1"];
 let termCount = 0;
 let lessonCount = 0;
 
@@ -23,10 +24,17 @@ for (const descriptor of manifest.files) {
   if (payload.lessons.length !== descriptor.lessonCount) {
     errors.push(`${descriptor.file}: expected ${descriptor.lessonCount} lessons`);
   }
+  const descriptorTermCount = payload.lessons.reduce((sum, lesson) => sum + lesson.terms.length, 0);
+  if (descriptorTermCount !== descriptor.termCount) {
+    errors.push(`${descriptor.file}: expected ${descriptor.termCount} terms`);
+  }
   for (const lesson of payload.lessons) {
     lessonCount += 1;
     if (lesson.terms.length !== manifest.expected.termsPerLesson) {
       errors.push(`${lesson.slug}: expected ${manifest.expected.termsPerLesson} terms`);
+    }
+    if (lesson.cefrLevel !== cefrByDifficulty[lesson.difficulty]) {
+      errors.push(`${lesson.slug}: CEFR level does not match difficulty`);
     }
     for (const term of lesson.terms) {
       termCount += 1;
@@ -40,6 +48,12 @@ for (const descriptor of manifest.files) {
       required(term.exampleUk, `${term.slug}.exampleUk`);
       required(term.contextNoteEn, `${term.slug}.contextNoteEn`);
       required(term.contextNoteUk, `${term.slug}.contextNoteUk`);
+      if (term.cefrLevel !== lesson.cefrLevel) {
+        errors.push(`${term.slug}: CEFR level does not match lesson`);
+      }
+      for (const alias of [...(term.aliasesEn ?? []), ...(term.aliasesUk ?? [])]) {
+        required(alias, `${term.slug}.alias`);
+      }
       if (keys.has(term.externalKey)) errors.push(`Duplicate externalKey: ${term.externalKey}`);
       if (slugs.has(term.slug)) errors.push(`Duplicate slug: ${term.slug}`);
       keys.add(term.externalKey);

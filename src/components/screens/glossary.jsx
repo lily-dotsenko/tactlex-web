@@ -26,6 +26,7 @@ import {
 } from "@/components/ui";
 import { apiRequest, apiRequestPage } from "@/components/learning-api";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
+import { cefrForDifficulty } from "@/lib/learning/cefr";
 
 function liveCopy(locale) {
   return locale === "uk"
@@ -42,7 +43,7 @@ function liveCopy(locale) {
         reportError: "Не вдалося надіслати повідомлення.",
         sending: "Надсилаємо…",
         partOfSpeech: "Частина мови",
-        difficulty: "Складність",
+        difficulty: "Рівень CEFR",
         sort: "Сортування",
         alphabetical: "За алфавітом",
         recent: "Найновіші",
@@ -65,7 +66,7 @@ function liveCopy(locale) {
         reportError: "The report could not be sent.",
         sending: "Sending…",
         partOfSpeech: "Part of speech",
-        difficulty: "Difficulty",
+        difficulty: "CEFR level",
         sort: "Sort",
         alphabetical: "Alphabetical",
         recent: "Newest",
@@ -208,7 +209,10 @@ export function GlossaryScreen() {
       label: state.categories.find(({ slug }) => slug === query.category)?.name || query.category,
     },
     query.partOfSpeech && { key: "partOfSpeech", label: query.partOfSpeech },
-    query.difficulty && { key: "difficulty", label: `${copy.difficulty}: ${query.difficulty}` },
+    query.difficulty && {
+      key: "difficulty",
+      label: `${copy.difficulty}: ${cefrForDifficulty(query.difficulty)}`,
+    },
   ].filter(Boolean);
 
   return (
@@ -282,7 +286,7 @@ export function GlossaryScreen() {
               <option value="">{t("all")}</option>
               {[1, 2, 3, 4, 5].map((value) => (
                 <option key={value} value={value}>
-                  {value}
+                  {cefrForDifficulty(value)}
                 </option>
               ))}
             </select>
@@ -345,6 +349,7 @@ export function GlossaryScreen() {
                   </div>
                   <div className="term-meta">
                     <span>{term.partOfSpeech}</span>
+                    {term.cefrLevel ? <span>CEFR {term.cefrLevel}</span> : null}
                     {term.categories?.map((item) => (
                       <span key={item.id}>{item.name}</span>
                     ))}
@@ -453,7 +458,7 @@ export function TermScreen({ termId }) {
               <BookOpen size={16} /> {item.name}
             </span>
           ))}
-          {term.difficulty ? <span>{term.difficulty}</span> : null}
+          {term.cefrLevel ? <span>CEFR {term.cefrLevel}</span> : null}
         </div>
       </Card>
       <div className="term-detail-grid">

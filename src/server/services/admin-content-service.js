@@ -110,14 +110,46 @@ async function replaceTermCollections(db, termId, input, actorUserId, now) {
   validateTermCollections(input);
 
   if (input.variants) {
-    await db.termVariant.deleteMany({ where: { termId } });
-    if (input.variants.length) {
-      await db.termVariant.createMany({
-        data: input.variants.map((variant) => ({
-          termId,
-          ...variant,
-          normalizedValue: normalizeAnswer(variant.value, variant.locale === "EN" ? "en" : "uk"),
-        })),
+    const existingVariants = await db.termVariant.findMany({ where: { termId } });
+    const existingByKey = new Map(
+      existingVariants.map((variant) => [`${variant.locale}:${variant.normalizedValue}`, variant]),
+    );
+    const retainedIds = [];
+
+    // Remove primary/accepted flags first so changing the primary variant cannot
+    // violate the partial unique index. Historical session rows keep their IDs.
+    await db.termVariant.updateMany({
+      where: { termId },
+      data: { isPrimary: false, isAcceptedAnswer: false },
+    });
+
+    for (const variant of input.variants) {
+      const normalizedValue = normalizeAnswer(variant.value, variant.locale === "EN" ? "en" : "uk");
+      const existing = existingByKey.get(`${variant.locale}:${normalizedValue}`);
+      if (existing) {
+        retainedIds.push(existing.id);
+        await db.termVariant.update({
+          where: { id: existing.id },
+          data: { ...variant, normalizedValue },
+        });
+      } else {
+        const created = await db.termVariant.create({
+          data: { termId, ...variant, normalizedValue },
+        });
+        retainedIds.push(created.id);
+      }
+    }
+
+    const obsoleteIds = existingVariants
+      .filter(({ id }) => !retainedIds.includes(id))
+      .map(({ id }) => id);
+    if (obsoleteIds.length) {
+      await db.termVariant.deleteMany({
+        where: {
+          id: { in: obsoleteIds },
+          acceptedAnswers: { none: {} },
+          promptItems: { none: {} },
+        },
       });
     }
   }

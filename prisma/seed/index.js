@@ -35,13 +35,24 @@ const adminPermissionCodes = permissions.map(({ code }) => code);
 
 const categories = [
   {
+    slug: "basic-military-english",
+    nameUk: "Базова військова англійська",
+    nameEn: "Basic military English",
+    descriptionUk:
+      "Тематичні уроки від A1 до B2: щоденна комунікація, час, підрозділи, техніка, спорядження та точна термінологія.",
+    descriptionEn:
+      "A1 to B2 thematic lessons covering daily communication, time, units, vehicles, equipment and precise terminology.",
+    targetTermCount: 100,
+    displayOrder: 1,
+  },
+  {
     slug: "general-tactical-english",
     nameUk: "Загальна тактична англійська",
     nameEn: "General tactical English",
     descriptionUk: "Базові команди, позначення та взаємодія в публічному навчальному контексті.",
     descriptionEn: "Core commands, labels and interaction in a public training context.",
     targetTermCount: 60,
-    displayOrder: 1,
+    displayOrder: 2,
   },
   {
     slug: "tactical-medicine",
@@ -52,7 +63,7 @@ const categories = [
     descriptionEn:
       "Language terminology from verified public sources; not a substitute for certified training.",
     targetTermCount: 50,
-    displayOrder: 2,
+    displayOrder: 3,
   },
   {
     slug: "drones-uas",
@@ -61,7 +72,7 @@ const categories = [
     descriptionUk: "Загальнодоступна англійська термінологія без оперативних інструкцій.",
     descriptionEn: "Public English terminology without operational instructions.",
     targetTermCount: 50,
-    displayOrder: 3,
+    displayOrder: 4,
   },
   {
     slug: "sniper-terminology",
@@ -70,7 +81,7 @@ const categories = [
     descriptionUk: "Мовний словник із відкритих джерел без інструкцій із застосування зброї.",
     descriptionEn: "A public-source language glossary without weapon-employment instruction.",
     targetTermCount: 40,
-    displayOrder: 4,
+    displayOrder: 5,
   },
 ];
 

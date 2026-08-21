@@ -107,6 +107,55 @@ describe("admin content service", () => {
     });
   });
 
+  it("preserves variant ids referenced by immutable learning history", async () => {
+    const termVariant = {
+      findMany: vi.fn().mockResolvedValue([
+        {
+          id: "variant-en",
+          locale: "EN",
+          normalizedValue: "medical evacuation",
+        },
+        {
+          id: "variant-old",
+          locale: "EN",
+          normalizedValue: "medevacuation",
+        },
+      ]),
+      updateMany: vi.fn().mockResolvedValue({ count: 2 }),
+      update: vi.fn().mockResolvedValue({}),
+      create: vi.fn(),
+      deleteMany: vi.fn().mockResolvedValue({ count: 0 }),
+    };
+    const db = transactionDb({ termVariant });
+    db.term.findUnique.mockResolvedValue(completeTerm());
+    const service = createAdminContentService(db, { clock: () => now });
+
+    await service.updateTerm("admin-1", "term-1", {
+      changeNote: "Refresh accepted spelling",
+      variants: [
+        {
+          locale: "EN",
+          kind: "PRIMARY",
+          value: "medical evacuation",
+          isPrimary: true,
+          isAcceptedAnswer: true,
+        },
+      ],
+    });
+
+    expect(termVariant.update).toHaveBeenCalledWith({
+      where: { id: "variant-en" },
+      data: expect.objectContaining({ normalizedValue: "medical evacuation", isPrimary: true }),
+    });
+    expect(termVariant.deleteMany).toHaveBeenCalledWith({
+      where: {
+        id: { in: ["variant-old"] },
+        acceptedAnswers: { none: {} },
+        promptItems: { none: {} },
+      },
+    });
+  });
+
   it("supersedes the pending review when a term returns to draft", async () => {
     const db = transactionDb();
     db.term.findUnique.mockResolvedValue(completeTerm("IN_REVIEW"));

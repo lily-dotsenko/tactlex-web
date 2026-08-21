@@ -66,6 +66,7 @@ function categoryIcon(slug) {
   if (slug?.includes("tccc") || slug?.includes("medicine")) return HeartPulse;
   if (slug?.includes("uas") || slug?.includes("drone")) return RadioTower;
   if (slug?.includes("sniper")) return Crosshair;
+  if (slug?.includes("basic")) return BookOpen;
   return Layers3;
 }
 
@@ -160,7 +161,7 @@ export function CatalogLearnScreen() {
                 <p>
                   {activeSession
                     ? activeSession.currentStage
-                    : `${nextLesson.termCount} ${copy.terms} · ${nextLesson.estimatedMinutes} min`}
+                    : `CEFR ${nextLesson.cefrLevel} · ${nextLesson.termCount} ${copy.terms} · ${nextLesson.estimatedMinutes} min`}
                 </p>
               </div>
               <ButtonLink
@@ -284,7 +285,7 @@ export function CategoryLiveScreen({ categorySlug }) {
                     key={lesson.id}
                     href={`/categories/${categorySlug}/lessons/${lesson.id}`}
                     title={lesson.title}
-                    meta={`${lesson.termCount} ${copy.terms} · ${lesson.estimatedMinutes} min`}
+                    meta={`CEFR ${lesson.cefrLevel} · ${lesson.termCount} ${copy.terms} · ${lesson.estimatedMinutes} min`}
                     icon={<BookOpen size={20} />}
                     badge={<Badge tone="blue">{copy.published}</Badge>}
                   />
@@ -359,6 +360,7 @@ export function LessonLiveScreen({ lessonId, categorySlug }) {
             <h1>{state.lesson.title}</h1>
             <p className="page-lead">{state.lesson.description}</p>
             <div className="lesson-meta-row">
+              <span>CEFR {state.lesson.cefrLevel}</span>
               <span>
                 <BookOpen size={18} /> {state.lesson.termCount} {copy.terms}
               </span>

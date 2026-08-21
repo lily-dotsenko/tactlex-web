@@ -1,14 +1,20 @@
 {
-  "version": "1.0.0-draft",
+  "version": "1.1.0-draft",
   "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
-  "generatedAt": "2026-08-20T21:33:28.673Z",
+  "generatedAt": "2026-08-21T10:49:59.215Z",
   "expected": {
-    "categories": 4,
-    "terms": 200,
-    "lessons": 20,
+    "categories": 5,
+    "terms": 300,
+    "lessons": 30,
     "termsPerLesson": 10
   },
   "files": [
+    {
+      "file": "basic-military-english.json",
+      "categorySlug": "basic-military-english",
+      "termCount": 100,
+      "lessonCount": 10
+    },
     {
       "file": "general-tactical-english.json",
       "categorySlug": "general-tactical-english",

@@ -1,3 +1,5 @@
+import { cefrForDifficulty } from "@/lib/learning/cefr";
+
 function localize(record, locale, field) {
   return record[`${field}${locale === "en" ? "En" : "Uk"}`] ?? null;
 }
@@ -63,6 +65,7 @@ export function createLearningOverviewService(db) {
         title: localize(lesson, locale, "title"),
         description: localize(lesson, locale, "description"),
         difficulty: lesson.difficulty,
+        cefrLevel: cefrForDifficulty(lesson.difficulty),
         estimatedMinutes: lesson.estimatedMinutes,
         termCount: lesson._count.terms,
         completed: Boolean(lesson.userProgress[0]?.firstCompletedAt),
