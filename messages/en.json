@@ -204,7 +204,7 @@
   "Review": {
     "eyebrow": "Review",
     "title": "Strengthen what you have learned",
-    "lead": "The server builds your queue from answers and scheduled due dates.",
+    "lead": "Review the terms that need reinforcement.",
     "due": "Due today",
     "dueCount": "12 terms",
     "estimate": "about 7 minutes",
@@ -214,7 +214,7 @@
     "hard": "Hard",
     "good": "Good",
     "easy": "Easy",
-    "intervalNote": "Intervals appear after an answer and are supplied by the server."
+    "intervalNote": "Choose how easily you recalled the answer."
   },
   "Glossary": {
     "eyebrow": "Glossary",

@@ -384,11 +384,11 @@ export function LessonLiveScreen({ lessonId, categorySlug }) {
                 <BookOpen size={21} />
               </span>
               <div>
-                <h3>{locale === "uk" ? "Серверна сесія" : "Server-backed session"}</h3>
+                <h3>{locale === "uk" ? "Знайомство з термінами" : "Term introduction"}</h3>
                 <p>
                   {locale === "uk"
-                    ? "Завдання та варіанти надходять без ключів відповідей."
-                    : "Prompts and choices arrive without answer keys."}
+                    ? "Перегляньте значення, контекст і вимову кожного терміна."
+                    : "Review the meaning, context, and pronunciation of every term."}
                 </p>
               </div>
             </div>
@@ -398,11 +398,11 @@ export function LessonLiveScreen({ lessonId, categorySlug }) {
                 <ShieldCheck size={21} />
               </span>
               <div>
-                <h3>{locale === "uk" ? "Перевірка на сервері" : "Server evaluation"}</h3>
+                <h3>{locale === "uk" ? "Перевірка знань" : "Knowledge check"}</h3>
                 <p>
                   {locale === "uk"
-                    ? "Правильність, XP і прогрес не визначаються браузером."
-                    : "Correctness, XP and progress are never decided by the browser."}
+                    ? "Виконайте вправи з вибором відповіді, введенням і аудіюванням."
+                    : "Complete choice, typed-answer, and listening exercises."}
                 </p>
               </div>
             </div>

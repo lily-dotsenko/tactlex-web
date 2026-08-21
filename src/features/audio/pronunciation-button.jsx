@@ -8,11 +8,18 @@ import clsx from "clsx";
 export function PronunciationButton({ term, audioUrl = null, lang = "en-US", compact = false }) {
   const t = useTranslations("Audio");
   const audioRef = useRef(null);
+  const utteranceRef = useRef(null);
+  const playbackTokenRef = useRef(0);
+  const startTimerRef = useRef(null);
+  const watchdogRef = useRef(null);
   const [state, setState] = useState("idle");
   const [mode, setMode] = useState(audioUrl ? "human" : "synthetic");
 
   useEffect(() => {
     return () => {
+      playbackTokenRef.current += 1;
+      window.clearTimeout(startTimerRef.current);
+      window.clearTimeout(watchdogRef.current);
       audioRef.current?.pause();
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -20,29 +27,72 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
     };
   }, []);
 
+  function stopPlayback() {
+    playbackTokenRef.current += 1;
+    window.clearTimeout(startTimerRef.current);
+    window.clearTimeout(watchdogRef.current);
+    audioRef.current?.pause();
+    audioRef.current = null;
+    utteranceRef.current = null;
+    window.speechSynthesis?.cancel();
+    setState("idle");
+  }
+
   function speakWithTts() {
-    if (!("speechSynthesis" in window)) {
+    if (!("speechSynthesis" in window) || !term.trim()) {
       setState("unavailable");
       return;
     }
-    window.speechSynthesis.cancel();
+    const synthesis = window.speechSynthesis;
+    stopPlayback();
+    const token = playbackTokenRef.current;
     const utterance = new SpeechSynthesisUtterance(term);
     utterance.lang = lang;
-    const voices = window.speechSynthesis.getVoices();
-    const voice = voices.find((item) => item.lang.toLowerCase().startsWith("en"));
+    utterance.rate = 0.92;
+    const voices = synthesis.getVoices();
+    const requestedLanguage = lang.toLowerCase();
+    const voice =
+      voices.find((item) => item.lang.toLowerCase() === requestedLanguage) ??
+      voices.find((item) => item.lang.toLowerCase().startsWith("en"));
     if (voice) utterance.voice = voice;
-    utterance.onstart = () => setState("playing");
-    utterance.onend = () => setState("idle");
-    utterance.onerror = () => setState("unavailable");
+    utterance.onstart = () => {
+      if (playbackTokenRef.current === token) setState("playing");
+    };
+    utterance.onend = () => {
+      if (playbackTokenRef.current !== token) return;
+      window.clearTimeout(watchdogRef.current);
+      utteranceRef.current = null;
+      setState("idle");
+    };
+    utterance.onerror = (event) => {
+      if (playbackTokenRef.current !== token) return;
+      window.clearTimeout(watchdogRef.current);
+      utteranceRef.current = null;
+      setState(["canceled", "interrupted"].includes(event.error) ? "idle" : "unavailable");
+    };
+    utteranceRef.current = utterance;
     setMode("synthetic");
-    window.speechSynthesis.speak(utterance);
+    setState("loading");
+
+    // Chromium occasionally leaves a cancelled utterance in its queue. A short
+    // delay flushes it before the next phrase and prevents silent/hanging audio.
+    startTimerRef.current = window.setTimeout(() => {
+      if (playbackTokenRef.current !== token) return;
+      synthesis.cancel();
+      synthesis.resume();
+      synthesis.speak(utterance);
+      watchdogRef.current = window.setTimeout(() => {
+        if (playbackTokenRef.current !== token) return;
+        synthesis.cancel();
+        utteranceRef.current = null;
+        setState("idle");
+      }, 15_000);
+    }, 40);
   }
 
   async function play() {
-    if (state === "playing") {
-      audioRef.current?.pause();
-      window.speechSynthesis?.cancel();
-      setState("idle");
+    if (["playing", "loading"].includes(state)) {
+      stopPlayback();
       return;
     }
 
@@ -56,7 +106,10 @@ export function PronunciationButton({ term, audioUrl = null, lang = "en-US", com
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
       audio.onplay = () => setState("playing");
-      audio.onended = () => setState("idle");
+      audio.onended = () => {
+        audioRef.current = null;
+        setState("idle");
+      };
       audio.onerror = speakWithTts;
       await audio.play();
       setMode("human");

@@ -1,18 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  AlertTriangle,
-  CheckCircle2,
-  Clock3,
-  RefreshCw,
-  RotateCcw,
-  ShieldCheck,
-} from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock3, RefreshCw, RotateCcw } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import clsx from "clsx";
 import { apiRequest, createIdempotencyKey } from "@/components/learning-api";
 import { PronunciationButton } from "@/features/audio/pronunciation-button";
+import { pronunciationForItem } from "@/lib/learning/session-presentation";
 import { Badge, Button, Card, EmptyState, PageHeader, ProgressBar } from "@/components/ui";
 
 function reviewCopy(locale) {
@@ -21,41 +15,35 @@ function reviewCopy(locale) {
         loading: "Завантажуємо чергу повторень…",
         error: "Не вдалося завантажити повторення",
         empty: "На сьогодні все повторено",
-        emptyText: "Сервер не повернув термінів із простроченою датою повторення.",
+        emptyText: "Зараз немає термінів, які потрібно повторити.",
         retry: "Спробувати знову",
         due: "До повторення зараз",
         answer: "Ваша відповідь",
         placeholder: "Введіть відповідь",
         rate: "Як легко пригадалася відповідь?",
         submit: "Надіслати повторення",
-        submitting: "Перевіряємо на сервері…",
-        serverCorrect: "Сервер підтвердив правильну відповідь",
-        serverIncorrect: "Сервер визначив відповідь як неправильну та застосував Again",
-        accepted: "Прийнята відповідь",
+        submitting: "Перевіряємо…",
         nextDue: "Наступне повторення",
-        xp: "Нараховано XP",
+        xp: "Отримано XP",
         next: "Наступний термін",
-        authority: "Правильність, інтервал і XP повертає сервер.",
+        scheduledReview: "Планове повторення",
       }
     : {
         loading: "Loading the review queue…",
         error: "Reviews could not be loaded",
         empty: "Everything due today is reviewed",
-        emptyText: "The server returned no terms with a due review date.",
+        emptyText: "There are no terms to review right now.",
         retry: "Try again",
         due: "Due now",
         answer: "Your answer",
         placeholder: "Type your answer",
         rate: "How easily did you recall it?",
         submit: "Submit review",
-        submitting: "Checking on the server…",
-        serverCorrect: "The server confirmed a correct answer",
-        serverIncorrect: "The server marked the answer incorrect and applied Again",
-        accepted: "Accepted answer",
+        submitting: "Checking…",
         nextDue: "Next review",
         xp: "XP awarded",
         next: "Next term",
-        authority: "Correctness, interval and XP are returned by the server.",
+        scheduledReview: "Scheduled review",
       };
 }
 
@@ -131,6 +119,7 @@ export function ReviewLiveScreen() {
   }
 
   const item = queue.items[0];
+  const pronunciation = pronunciationForItem(item);
 
   return (
     <div className="page-stack">
@@ -172,14 +161,14 @@ export function ReviewLiveScreen() {
             />
           </div>
           <div className="review-live-prompt">
-            {item.audio && (
+            {pronunciation && (
               <PronunciationButton
-                term={String(item.prompt || "")}
-                audioUrl={item.audio.url || null}
+                key={`${item.termId}:${item.prompt}`}
+                {...pronunciation}
                 compact
               />
             )}
-            <p>{item.stage}</p>
+            <p>{item.stage === "SCHEDULED_REVIEW" ? copy.scheduledReview : item.stage}</p>
             <h2>{item.prompt}</h2>
             {item.dueAt && (
               <span>
@@ -188,7 +177,13 @@ export function ReviewLiveScreen() {
             )}
           </div>
 
-          <label className="field">
+          <label
+            className={clsx(
+              "field session-typed-answer",
+              result?.correct === true && "is-correct",
+              result?.correct === false && "is-wrong",
+            )}
+          >
             <span className="field-label">{copy.answer}</span>
             <input
               value={answer}
@@ -229,19 +224,7 @@ export function ReviewLiveScreen() {
             </div>
           )}
           {result && (
-            <div
-              className={clsx(
-                "answer-feedback",
-                result.correct ? "feedback-correct" : "feedback-wrong",
-              )}
-              role="status"
-            >
-              <strong>{result.correct ? copy.serverCorrect : copy.serverIncorrect}</strong>
-              {result.acceptedAnswer && (
-                <p>
-                  {copy.accepted}: <b>{result.acceptedAnswer}</b>
-                </p>
-              )}
+            <div className="review-result-meta" role="status">
               {result.nextDueAt && (
                 <p>
                   {copy.nextDue}:{" "}
@@ -255,9 +238,6 @@ export function ReviewLiveScreen() {
           )}
 
           <div className="review-live-actions">
-            <p>
-              <ShieldCheck size={17} /> {copy.authority}
-            </p>
             {!result ? (
               <Button
                 onClick={submitReview}

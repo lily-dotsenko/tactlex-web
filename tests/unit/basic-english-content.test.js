@@ -26,5 +26,14 @@ describe("basic military English release", () => {
       expect(lesson.terms.every((term) => term.cefrLevel === lesson.cefrLevel)).toBe(true);
       expect(lesson.terms.every((term) => term.lessonSlug === lesson.slug)).toBe(true);
     }
+
+    const getDressed = terms.find(({ english }) => english === "get dressed");
+    const physicalTraining = terms.find(({ english }) => english === "physical training");
+    expect(getDressed.aliasesUk).toEqual(
+      expect.arrayContaining(["одягатись", "одягтися", "одягтись"]),
+    );
+    expect(physicalTraining.aliasesUk).toEqual(
+      expect.arrayContaining(["фізичне тренування", "фізичні тренування", "фізпідготовка"]),
+    );
   });
 });

@@ -143,6 +143,14 @@ export function LiveUiStyles() {
         font-size: 0.78rem;
       }
       .review-live-actions p svg { color: var(--olive); flex: 0 0 auto; }
+      .review-result-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .review-result-meta p { margin: 0; }
       @media (max-width: 600px) {
         .public-header .public-actions .utility-button:not(.utility-icon-only) {
           display: inline-flex;

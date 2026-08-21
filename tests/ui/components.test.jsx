@@ -2,7 +2,7 @@
 
 import "@testing-library/jest-dom/vitest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { NextIntlClientProvider } from "next-intl";
@@ -92,6 +92,7 @@ describe("PronunciationButton", () => {
       value: {
         cancel: vi.fn(),
         getVoices: vi.fn(() => []),
+        resume: vi.fn(),
         speak: vi.fn(),
       },
     });
@@ -99,7 +100,7 @@ describe("PronunciationButton", () => {
 
   afterEach(cleanup);
 
-  it("discloses synthetic speech and exposes a term-specific label", () => {
+  it("discloses synthetic speech and exposes a term-specific label", async () => {
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
         <PronunciationButton term="rally point" />
@@ -109,6 +110,6 @@ describe("PronunciationButton", () => {
     expect(screen.getByText("Synthetic voice")).toBeVisible();
     const button = screen.getByRole("button", { name: "Play pronunciation: rally point" });
     fireEvent.click(button);
-    expect(window.speechSynthesis.speak).toHaveBeenCalledOnce();
+    await waitFor(() => expect(window.speechSynthesis.speak).toHaveBeenCalledOnce());
   });
 });

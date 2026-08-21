@@ -33,22 +33,21 @@ import {
 function sessionCopy(locale) {
   return locale === "uk"
     ? {
-        loading: "Завантажуємо серверну сесію…",
+        loading: "Завантажуємо заняття…",
         unavailable: "Навчальна сесія недоступна",
         empty: "У цій сесії немає доступних завдань.",
         retry: "Спробувати знову",
         submit: "Надіслати на перевірку",
-        submitting: "Перевіряємо на сервері…",
+        submitting: "Перевіряємо…",
         next: "Наступне завдання",
         completing: "Завершуємо сесію…",
         answerLabel: "Ваша відповідь",
         answerPlaceholder: "Введіть відповідь",
         noClientScoring: "У цій сесії немає доступних завдань.",
         resultUnavailable: "Підсумок цієї сесії недоступний",
-        resultUnavailableText:
-          "Сервер не повернув підсумкові показники. Жодних результатів не було вигадано в браузері.",
+        resultUnavailableText: "Не вдалося завантажити підсумок заняття.",
         completed: "Сесію завершено",
-        resultLead: "Усі показники нижче повернув сервер під час завершення сесії.",
+        resultLead: "Ваш результат і отриманий досвід.",
         accuracy: "Точність",
         xp: "Нараховано XP",
         correctItems: "Правильні відповіді",
@@ -61,24 +60,26 @@ function sessionCopy(locale) {
         beginPractice: "Почати практику",
         beginningPractice: "Готуємо вправи…",
         audioPrompt: "Прослухайте термін і введіть український відповідник",
+        summaryEyebrow: "Підсумок заняття",
+        dashboard: "На головну",
+        review: "Повторення",
       }
     : {
-        loading: "Loading the server session…",
+        loading: "Loading the lesson…",
         unavailable: "The learning session is unavailable",
         empty: "This session has no available tasks.",
         retry: "Try again",
         submit: "Send for evaluation",
-        submitting: "Checking on the server…",
+        submitting: "Checking…",
         next: "Next task",
         completing: "Completing session…",
         answerLabel: "Your answer",
         answerPlaceholder: "Type your answer",
         noClientScoring: "This session has no available tasks.",
         resultUnavailable: "This session summary is unavailable",
-        resultUnavailableText:
-          "The server did not return summary metrics. No results were invented in the browser.",
+        resultUnavailableText: "The lesson summary could not be loaded.",
         completed: "Session complete",
-        resultLead: "Every metric below was returned by the server when the session completed.",
+        resultLead: "Your lesson result and earned experience.",
         accuracy: "Accuracy",
         xp: "XP awarded",
         correctItems: "Correct answers",
@@ -91,7 +92,20 @@ function sessionCopy(locale) {
         beginPractice: "Start practice",
         beginningPractice: "Preparing exercises…",
         audioPrompt: "Listen to the term and enter its Ukrainian equivalent",
+        summaryEyebrow: "Lesson summary",
+        dashboard: "Dashboard",
+        review: "Review",
       };
+}
+
+function awardLabel(reason, locale) {
+  const labels = {
+    CORRECT_ANSWERS: { uk: "Правильні відповіді", en: "Correct answers" },
+    FIRST_LESSON_COMPLETION: { uk: "Перше завершення уроку", en: "First lesson completion" },
+    PERFECT_LESSON: { uk: "Урок без помилок", en: "Perfect lesson" },
+    SCHEDULED_REVIEW: { uk: "Планове повторення", en: "Scheduled review" },
+  };
+  return labels[reason]?.[locale] ?? reason.replaceAll("_", " ").toLocaleLowerCase(locale);
 }
 
 function normalizeChoice(choice, index) {
@@ -571,7 +585,7 @@ export function ResultLiveScreen({ sessionId }) {
         icon={<ShieldCheck size={31} />}
         title={copy.resultUnavailable}
         text={state.error || copy.resultUnavailableText}
-        action={<ButtonLink href="/dashboard">Dashboard</ButtonLink>}
+        action={<ButtonLink href="/dashboard">{copy.dashboard}</ButtonLink>}
       />
     );
   }
@@ -583,7 +597,7 @@ export function ResultLiveScreen({ sessionId }) {
         <Trophy size={34} aria-hidden="true" />
       </div>
       <PageHeader
-        eyebrow="After Action Review"
+        eyebrow={copy.summaryEyebrow}
         title={copy.completed}
         lead={copy.resultLead}
         compact
@@ -613,7 +627,7 @@ export function ResultLiveScreen({ sessionId }) {
           <ul>
             {summary.awards.map((award, index) => (
               <li key={`${award.reason}-${index}`}>
-                <span>{award.reason}</span>
+                <span>{awardLabel(award.reason, locale)}</span>
                 <strong>+{award.amount} XP</strong>
               </li>
             ))}
@@ -623,9 +637,9 @@ export function ResultLiveScreen({ sessionId }) {
         )}
       </Card>
       <div className="result-actions">
-        <ButtonLink href="/dashboard">Dashboard</ButtonLink>
+        <ButtonLink href="/dashboard">{copy.dashboard}</ButtonLink>
         <ButtonLink href="/review" variant="secondary">
-          Review
+          {copy.review}
         </ButtonLink>
       </div>
     </div>

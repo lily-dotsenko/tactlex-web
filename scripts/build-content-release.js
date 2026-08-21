@@ -98,16 +98,55 @@ const curriculum = [
         "A1 · Щоденний розпорядок",
         "A1 · Daily routine",
         [
-          ["wake up", "прокидатися", { partOfSpeech: "VERB" }],
-          ["make the bed", "застеляти ліжко", { partOfSpeech: "VERB" }],
-          ["get dressed", "одягатися", { partOfSpeech: "VERB" }],
-          ["take a shower", "приймати душ", { partOfSpeech: "VERB" }],
-          ["shave", "голитися", { partOfSpeech: "VERB" }],
-          ["attend formation", "бути на шикуванні", { partOfSpeech: "VERB" }],
+          [
+            "wake up",
+            "прокидатися",
+            {
+              partOfSpeech: "VERB",
+              aliasesUk: ["прокинутися", "прокинутись", "просинатися", "просинатись"],
+            },
+          ],
+          [
+            "make the bed",
+            "застеляти ліжко",
+            {
+              partOfSpeech: "VERB",
+              aliasesUk: ["застелити ліжко", "застилати ліжко"],
+            },
+          ],
+          [
+            "get dressed",
+            "одягатися",
+            {
+              partOfSpeech: "VERB",
+              aliasesUk: ["одягатись", "одягтися", "одягтись"],
+            },
+          ],
+          ["take a shower", "приймати душ", { partOfSpeech: "VERB", aliasesUk: ["прийняти душ"] }],
+          [
+            "shave",
+            "голитися",
+            {
+              partOfSpeech: "VERB",
+              aliasesUk: ["голитись", "поголитися", "поголитись"],
+            },
+          ],
+          [
+            "attend formation",
+            "бути на шикуванні",
+            { partOfSpeech: "VERB", aliasesUk: ["прийти на шикування"] },
+          ],
           ["roll call", "перекличка"],
-          ["physical training", "фізична підготовка", { aliasesEn: ["PT"] }],
-          ["mess hall", "їдальня"],
-          ["duty roster", "графік чергувань"],
+          [
+            "physical training",
+            "фізична підготовка",
+            {
+              aliasesEn: ["PT"],
+              aliasesUk: ["фізичне тренування", "фізичні тренування", "фізпідготовка"],
+            },
+          ],
+          ["mess hall", "їдальня", { aliasesUk: ["військова їдальня"] }],
+          ["duty roster", "графік чергувань", { aliasesUk: ["розклад чергувань"] }],
         ],
         { difficulty: 1, source: basicLessonSources.workingDay },
       ],
