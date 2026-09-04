@@ -1,5 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
+import { configureDatabaseUrl } from "@/lib/db/database-url";
+
+configureDatabaseUrl();
+
 const globalForPrisma = globalThis;
 
 export const prisma =

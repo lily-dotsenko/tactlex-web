@@ -91,8 +91,9 @@ jobs:
           # redacted placeholders into a locally prebuilt Function artifact.
           deployment_url="$(npx --yes vercel@latest deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }})"
           echo "url=$deployment_url" >> "$GITHUB_OUTPUT"
+          health_url="https://tactlex-web.vercel.app/api/health"
           for attempt in {1..12}; do
-            if curl --fail --silent --show-error "$deployment_url/api/health"; then
+            if health_body="$(curl --fail --silent --show-error "$health_url")" && [ "$health_body" = '{"status":"ok"}' ]; then
               exit 0
             fi
             sleep 5
